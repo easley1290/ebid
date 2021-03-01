@@ -19,3 +19,6 @@ Route::get('/', function () {
 Route::get('/contactos', function () {
     return view('ebid-views-portal.contactos');
 });
+Route::get('/administracion', function () {
+    return view('ebid-views-admin.home');
+});
