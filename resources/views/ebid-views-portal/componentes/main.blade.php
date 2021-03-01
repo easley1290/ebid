@@ -11,21 +11,25 @@
         <div class="container d-flex align-items-center justify-content-between">
             <a href="/" class="logo"><img src="{{ asset('assets/img/logo.png') }}" alt="" class="img-fluid"></a>
             <nav class="nav-menu d-none d-lg-block">
-                <ul>
-                <li class="active"><a href="#inicio">Inicio</a></li>
+                <ul><li class="{{ asset('deberia enviar active con una variable') }}"><a href="/">Inicio</a></li>
                 <li class="drop-down"><a href="">Nosotros</a>
                     <ul>
-                        <li><a href="#">Drop Down 1</a></li>
-                        <li><a href="#">Drop Down 2</a></li>
-                        <li><a href="#">Drop Down 3</a></li>
-                        <li><a href="#">Drop Down 4</a></li>
+                        <li><a href="#">Mision y vision</a></li>
+                        <li><a href="#">Rectoria y direccion academica</a></li>
+                        <li><a href="#">Plantel docente</a></li>
                     </ul>
                 </li>
-                <li><a href="">Oferta académica</a></li>
+                <li class="drop-down"><a href="">Oferta académica</a>
+                    <ul>
+                        <li><a href="#">Perfil profesional</a></li>
+                        <li><a href="#">Proceso de admision</a></li>
+                        <li><a href="#">Malla curricular</a></li>
+                        <li><a href="#">Inscripciones</a></li>
+                    </ul>
+                </li>
                 <li><a href="">Galeria</a></li>
                 <li><a href="">Noticias</a></li>
-                <li><a href="">Contactos</a></li>
-                </ul>
+                <li><a href="/contactos">Contactos</a></li></ul>
             </nav>
             <a href="" class="btn-miembro" style="">Eres miembro?</a>
         </div>

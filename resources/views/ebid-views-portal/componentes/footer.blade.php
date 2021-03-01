@@ -12,10 +12,10 @@
               <strong>Email:</strong> easley.gc@gmail.com<br>
             </p>
             <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="#" class="youtube"><i class="bx bxl-youtube"></i></a>
+              <a href="https://www.twitter.com" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="https://www.facebook.com" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="https://www.instagram.com" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="https;//www.youtube.com" class="youtube"><i class="bx bxl-youtube"></i></a>
             </div>
           </div>
         </div>
@@ -23,12 +23,12 @@
         <div class="col-lg-4 col-md-6 footer-links">
           <h4>Navega por nuestra pagina</h4>
           <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Inicio</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="/">Inicio</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="#">Nosotros</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="#">Oferta academica</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="#">Galeria</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="#">Noticias</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Contactos</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="/contactos">Contactos</a></li>
             <br><br>
             <li><a href="#">ERES MIEMBRO? INGRESA A NUESTRO SISTEMA</a></li>
           </ul>
