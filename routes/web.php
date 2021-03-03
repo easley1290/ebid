@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PruebaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,5 @@ Route::get('/contactos', function () {
 Route::get('/administracion', function () {
     return view('ebid-views-admin.home');
 });
+
+Route::resource('/Prueba', PruebaController::class);
