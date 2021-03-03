@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,13 +11,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property Subdominio[] $subdominios
  */
 class Dominio extends Model
-{
+{   
     /**
      * The table associated with the model.
      * 
      * @var string
      */
-    protected $table = 'dominio';
+    protected $table = 'dominios';
 
     /**
      * The primary key for the model.

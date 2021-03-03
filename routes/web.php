@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PruebaController;
+use App\Http\Controllers\DominioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,5 @@ Route::get('/administracion', function () {
 });
 
 Route::resource('/Prueba', PruebaController::class);
+/***********Rutas dominio**********/
+Route::resource('dominios', DominioController::class);
