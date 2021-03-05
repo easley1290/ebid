@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Dominio;
 
+
 class DominioController extends Controller
 {
     /**
@@ -36,7 +37,16 @@ class DominioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'dom_nombre' => 'required',
+            'dom_descrip' => 'required',
+        ]);
+        $dominio_nuevo = new Dominio;
+
+        $dominio_nuevo->dom_nombre = $request->input('dom_nombre');
+        $dominio_nuevo->dom_descrip = $request->input('dom_descrip');
+        $dominio_nuevo->save();
+        return redirect('/Dominio')->with('success', 'Dato guardado');
     }
 
     /**
@@ -58,7 +68,7 @@ class DominioController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -70,7 +80,16 @@ class DominioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'dom_nombre' => 'required',
+            'dom_descrip' => 'required',
+        ]);
+        $dominio_edit = Dominio::find($id);
+
+        $dominio_edit->dom_nombre = $request->input('dom_nombre');
+        $dominio_edit->dom_descrip = $request->input('dom_descrip');
+        $dominio_edit->save();
+        return redirect('/Dominio')->with('success', 'Dato actualizado');
     }
 
     /**
@@ -81,6 +100,9 @@ class DominioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dominio_delete = Dominio::find($id);
+
+        $dominio_delete->delete();
+        return redirect('/Dominio')->with('success', 'Dato eliminado');
     }
 }

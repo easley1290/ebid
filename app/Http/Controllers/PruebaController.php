@@ -23,7 +23,7 @@ class PruebaController extends Controller
      */
     public function create()
     {
-        //
+        return view('ebid-views-admin.home');
     }
 
     /**

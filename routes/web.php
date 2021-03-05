@@ -27,4 +27,4 @@ Route::get('/administracion', function () {
 
 Route::resource('/Prueba', PruebaController::class);
 /***********Rutas dominio**********/
-Route::resource('dominios', DominioController::class);
+Route::resource('/Dominio', DominioController::class);

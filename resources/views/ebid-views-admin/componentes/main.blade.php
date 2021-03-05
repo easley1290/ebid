@@ -173,7 +173,7 @@
                         
                           
                             <li >
-                              <a class="sidenav-item-link" href="dominios">
+                              <a class="sidenav-item-link" href="{{ route('Dominio.index') }}">
                                 <span class="nav-text">Dominio</span>
                                 
                               </a>
@@ -923,52 +923,10 @@
                         
 
                         
-                        
-                          
-                            <li >
-                              <a class="sidenav-item-link" href="rtl.html">
-                                <span class="nav-text">RTL Direction</span>
-                                
-                              </a>
-                            </li>
-                          
-                        
-
-                        
                       </div>
                     </ul>
                   </li>
-                
-
-                
               </ul>
-
-            </div>
-
-            <div class="sidebar-footer">
-              <hr class="separator mb-0" />
-              <div class="sidebar-footer-content">
-                <h6 class="text-uppercase">
-                  Cpu Uses <span class="float-right">40%</span>
-                </h6>
-                <div class="progress progress-xs">
-                  <div
-                    class="progress-bar active"
-                    style="width: 40%;"
-                    role="progressbar"
-                  ></div>
-                </div>
-                <h6 class="text-uppercase">
-                  Memory Uses <span class="float-right">65%</span>
-                </h6>
-                <div class="progress progress-xs">
-                  <div
-                    class="progress-bar progress-bar-warning"
-                    style="width: 65%;"
-                    role="progressbar"
-                  ></div>
-                </div>
-              </div>
             </div>
           </div>
         </aside>
@@ -984,16 +942,6 @@
               </button>
               <!-- search form -->
               <div class="search-form d-none d-lg-inline-block">
-                <div class="input-group">
-                  <button type="button" name="search" id="search-btn" class="btn btn-flat">
-                    <i class="mdi mdi-magnify"></i>
-                  </button>
-                  <input type="text" name="query" id="search-input" class="form-control" placeholder="'button', 'chart' etc."
-                    autofocus autocomplete="off" />
-                </div>
-                <div id="search-results-container">
-                  <ul id="search-results"></ul>
-                </div>
               </div>
 
               <div class="navbar-right ">
@@ -1087,10 +1035,9 @@
           </header>
 
 
-      <div class="content-wrapper">
-        <div class="content">						 
+      <div class="content-wrapper">					 
+          
           @yield('contenido')
-        </div>
 
       </div>
       @extends('ebid-views-admin.componentes.footer')
