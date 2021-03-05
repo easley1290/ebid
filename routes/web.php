@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\DominioController;
+use App\Http\Controllers\SubdominioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,5 @@ Route::get('/administracion', function () {
 Route::resource('/Prueba', PruebaController::class);
 /***********Rutas dominio**********/
 Route::resource('/Dominio', DominioController::class);
+/***********Rutas Subdominio**********/
+Route::resource('/Subdominio', SubDominioController::class);

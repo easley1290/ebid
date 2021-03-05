@@ -185,7 +185,7 @@
                         
                           
                             <li >
-                              <a class="sidenav-item-link" href="subdominios">
+                              <a class="sidenav-item-link" href="{{ route('Subdominio.index') }}">
                                 <span class="nav-text">Sub dominio</span>
                                 
                               </a>
