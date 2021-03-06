@@ -23,11 +23,20 @@ Route::get('/contactos', function () {
     return view('ebid-views-portal.contactos');
 });
 Route::get('/administracion', function () {
-    return view('ebid-views-admin.home');
+    return view('ebid-views-administrador.home');
 });
+
+/*Route::get('/administracion', function () {
+    return view('ebid-views-admin.home');
+});*/
 
 Route::resource('/Prueba', PruebaController::class);
 /***********Rutas dominio**********/
 Route::resource('/Dominio', DominioController::class);
 /***********Rutas Subdominio**********/
 Route::resource('/Subdominio', SubDominioController::class);
+
+
+/***************  LOGIN  ****************** */
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
