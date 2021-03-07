@@ -31,7 +31,7 @@
                 <li><a href="">Noticias</a></li>
                 <li><a href="/contactos">Contactos</a></li></ul>
             </nav>
-                <a href="@if (Auth::check()) /administracion @else loginn @endif" class="btn-miembro" style="">Eres miembro?</a>
+                <a href="@if (Auth::check()) /administracion @else login_ @endif" class="btn-miembro" style="">Eres miembro?</a>
                 <!--a href="administracion" class="btn-miembro" style="">Eres miembro?</a-->
         </div>
     </header>

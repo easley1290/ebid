@@ -85,7 +85,7 @@ class DominioController extends Controller
             'dom_nombre' => 'required',
             'dom_descripcion' => 'required',
         ]);
-        $dominio_edit = Dominio::find($id);
+        $dominio_edit = Dominios::find($id);
 
         $dominio_edit->dom_nombre = $request->input('dom_nombre');
         $dominio_edit->dom_descripcion = $request->input('dom_descripcion');
@@ -101,7 +101,7 @@ class DominioController extends Controller
      */
     public function destroy($id)
     {
-        $dominio_delete = Dominio::find($id);
+        $dominio_delete = Dominios::find($id);
 
         $dominio_delete->delete();
         return redirect('/Dominio')->with('success', 'Dato eliminado');

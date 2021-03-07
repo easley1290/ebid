@@ -76,11 +76,7 @@
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
                             <li>
-<<<<<<< HEAD
-                              <a class="sidenav-item-link" href="{{  }}">
-=======
                               <a class="sidenav-item-link" href="{{ route('Dominio.index') }}">
->>>>>>> 5394c9a7d11e2ee8f6397fd62831f2ad27e54dad
                                 <span class="nav-text">Dominios</span>
                                 
                               </a>
@@ -104,7 +100,7 @@
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
                             <li>
-                              <a class="sidenav-item-link" href="index.html">
+                              <a class="sidenav-item-link" href="{{route('Personas.index')}}">
                                 <span class="nav-text">Personal</span>
                                 
                               </a>

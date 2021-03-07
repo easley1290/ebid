@@ -34,9 +34,9 @@
                             <tr>
                                 <td class="">{{ $subdominio->subd_id}}</td>
                                 <td class="">{{ $subdominio->subd_nombre}}</td>
-                                <td class="">{{ $subdominio->subd_descrip}}</td>
+                                <td class="">{{ $subdominio->subd_descripcion}}</td>
                                 @foreach($auxiliar[1] as $dominio)
-                                  @if($dominio->dom_id === $subdominio->dom_id)
+                                  @if($dominio->dom_id === $subdominio->subd_dom_id)
                                   <td class="">{{ $dominio->dom_nombre}}</td>
                                   @endif
                                 @endforeach
@@ -51,7 +51,7 @@
                     </div>
                    <!-- Prueba <div>
                     @foreach($auxiliar[1] as $dominio)
-                      <h1>{{$dominio->dom_id}}</h1>
+                      <h1>{{$dominio->subd_dom_id}}</h1>
                     @endforeach
                     </div> end Prueba-->
             </div>
@@ -79,7 +79,7 @@
                         <label for="exampleInputPassword1" class="form-label">Dominio perteneciente</label>
                         <select class="form-select" aria-label="Default select example" name="dom_id">
                         @foreach($auxiliar[1] as $dominio)               
-                          <option value="{{$dominio->dom_id}}">{{$dominio->dom_nombre}}</option>
+                          <option value="{{$dominio->subd_dom_id}}">{{$dominio->dom_nombre}}</option>
                         @endforeach
                         </select>
                       </div>
@@ -117,7 +117,7 @@
                         <label for="exampleInputPassword1" class="form-label">Dominio</label>
                         <select class="form-select" aria-label="Default select example" name="dom_id" id="dom_id">
                           @foreach($auxiliar[1] as $dominio)               
-                            <option value="{{$dominio->dom_id}}">{{$dominio->dom_nombre}}</option>
+                            <option value="{{$dominio->subd_dom_id}}">{{$dominio->dom_nombre}}</option>
                           @endforeach
                         </select>
                       </div>

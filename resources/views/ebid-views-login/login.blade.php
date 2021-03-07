@@ -76,7 +76,7 @@
               </div>
               <button type="submit" class="btn btn-lg btn-primary btn-block mb-4">Acceder</button>
               <p>Quieres ser miembro de Ebid?
-                <a class="text-blue" href="registerr">Inscribirse</a>
+                <a class="text-blue" href="register_">Inscribirse</a>
               </p>
 
             </div>
