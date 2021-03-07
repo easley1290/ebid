@@ -76,11 +76,7 @@
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
                             <li>
-<<<<<<< HEAD
-                              <a class="sidenav-item-link" href="{{  }}">
-=======
                               <a class="sidenav-item-link" href="{{ route('Dominio.index') }}">
->>>>>>> 5394c9a7d11e2ee8f6397fd62831f2ad27e54dad
                                 <span class="nav-text">Dominios</span>
                                 
                               </a>
@@ -350,14 +346,14 @@
                   <li class="dropdown user-menu">
                     <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                       <img src="{{ asset('assets/img/counts-img.jpg') }}" class="user-image" alt="User Image" />
-                      <span class="d-none d-lg-inline-block">{{auth()->user()->name}}</span>
+                      <span class="d-none d-lg-inline-block">{{ auth()->user()->name }}</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
                       <!-- User image -->
                       <li class="dropdown-header">
                         <div class="d-inline-block">
-                          {{auth()->user()->name}}
-                          <small class="pt-1">{{auth()->user()->email}}</small>
+                          {{ auth()->user()->name }}
+                          <small class="pt-1">{{ auth()->user()->email }}</small>
                         </div>
                       </li>
 

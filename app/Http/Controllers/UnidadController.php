@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Unidad;
+use App\Models\UnidadAcademica;
 
 class UnidadController extends Controller
 {
@@ -14,8 +14,8 @@ class UnidadController extends Controller
      */
     public function index()
     {
-        $unidadesAcademicas = Unidad::all();
-        return view('ebid-views-admin.unidad-academica')->with('unidadesAcademicas', $unidadesAcademicas);
+        $unidadesAcademicas = UnidadAcademica::all();
+        return view('ebid-views-administrador.unidad-academica')->with('unidadesAcademicas', $unidadesAcademicas);
     }
 
     /**

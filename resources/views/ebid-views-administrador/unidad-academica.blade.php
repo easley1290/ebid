@@ -1,4 +1,4 @@
-@extends('ebid-views-admin.componentes.main')
+@extends('ebid-views-administrador.componentes.main')
 @section('contenido')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
