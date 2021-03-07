@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\DominioController;
 use App\Http\Controllers\SubdominioController;
+use App\Http\Controllers\UnidadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +26,8 @@ Route::get('/administracion', function () {
     return view('ebid-views-admin.home');
 });
 
-Route::resource('/Prueba', PruebaController::class);
+/***********Rutas Informacion de la institucion**********/
+Route::resource('/unidad', UnidadController::class);
 /***********Rutas dominio**********/
 Route::resource('/Dominio', DominioController::class);
 /***********Rutas Subdominio**********/

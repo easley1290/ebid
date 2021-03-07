@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -64,7 +64,7 @@ class Especialidad extends Model
      */
     public function unidad()
     {
-        return $this->belongsTo('App\Unidad', 'uni_id', 'uni_id');
+        return $this->belongsTo('App\Models\Unidad', 'uni_id', 'uni_id');
     }
 
     /**
@@ -72,7 +72,7 @@ class Especialidad extends Model
      */
     public function estudiantes()
     {
-        return $this->hasMany('App\Estudiante', 'esp_id', 'esp_id');
+        return $this->hasMany('App\Models\Estudiante', 'esp_id', 'esp_id');
     }
 
     /**
@@ -80,6 +80,6 @@ class Especialidad extends Model
      */
     public function materias()
     {
-        return $this->hasMany('App\Materium', 'esp_id', 'esp_id');
+        return $this->hasMany('App\Models\Materia', 'esp_id', 'esp_id');
     }
 }

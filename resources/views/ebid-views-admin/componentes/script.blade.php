@@ -26,7 +26,8 @@
     });
   });
 </script>
-  
-<script src="{{ asset('assets/assets/plugins/toastr/toastr.min.js') }}"></script>
+  {{-- Notificaciones --}}
+{{-- <script src="{{ asset('assets/assets/plugins/toastr/toastr.min.js') }}"></script> --}}
+
 
 <script src="{{ asset('assets/assets/js/sleek.bundle.js') }}"></script>

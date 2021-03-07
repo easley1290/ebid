@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -47,6 +47,6 @@ class Categoria extends Model
      */
     public function docentes()
     {
-        return $this->hasMany('App\Docente', 'cat_id', 'cat_id');
+        return $this->hasMany('App\Models\Docente', 'cat_id', 'cat_id');
     }
 }

@@ -44,6 +44,6 @@ class Subdominio extends Model
      */
     public function dominio()
     {
-        return $this->belongsTo('App\Dominio', 'dom_id', 'dom_id');
+        return $this->belongsTo('App\Models\Dominio', 'dom_id', 'dom_id');
     }
 }

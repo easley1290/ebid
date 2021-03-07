@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -47,16 +47,16 @@ class Nota extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function materium()
+    public function materia()
     {
-        return $this->belongsTo('App\Materium', 'mat_id', 'mat_id');
+        return $this->belongsTo('App\Models\Materia', 'mat_id', 'mat_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function estudiantes()
+    public function estudiante()
     {
-        return $this->hasMany('App\Estudiante', 'nota_id', 'nota_id');
+        return $this->hasMany('App\Models\Estudiante', 'nota_id', 'nota_id');
     }
 }

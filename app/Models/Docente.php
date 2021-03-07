@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -61,9 +61,9 @@ class Docente extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function categorium()
+    public function categoria()
     {
-        return $this->belongsTo('App\Categorium', 'cat_id', 'cat_id');
+        return $this->belongsTo('App\Models\Categoria', 'cat_id', 'cat_id');
     }
 
     /**
@@ -71,7 +71,7 @@ class Docente extends Model
      */
     public function usuario()
     {
-        return $this->belongsTo('App\Usuario', 'usu_id', 'usu_id');
+        return $this->belongsTo('App\Models\Usuario', 'usu_id', 'usu_id');
     }
 
     /**
@@ -79,6 +79,6 @@ class Docente extends Model
      */
     public function docenteMaterias()
     {
-        return $this->hasMany('App\DocenteMaterium', 'doc_id', 'doc_id');
+        return $this->hasMany('App\Models\DocenteMateria', 'doc_id', 'doc_id');
     }
 }

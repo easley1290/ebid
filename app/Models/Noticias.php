@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -39,6 +39,6 @@ class Noticias extends Model
      */
     public function unidad()
     {
-        return $this->belongsTo('App\Unidad', 'uni_id', 'uni_id');
+        return $this->belongsTo('App\Models\Unidad', 'uni_id', 'uni_id');
     }
 }

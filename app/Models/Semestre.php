@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -45,7 +45,7 @@ class Semestre extends Model
      */
     public function estudiantes()
     {
-        return $this->hasMany('App\Estudiante', 'sem_id', 'sem_id');
+        return $this->hasMany('App\Models\Estudiante', 'sem_id', 'sem_id');
     }
 
     /**
@@ -53,6 +53,6 @@ class Semestre extends Model
      */
     public function materias()
     {
-        return $this->hasMany('App\Materium', 'sem_id', 'sem_id');
+        return $this->hasMany('App\Models\Materia', 'sem_id', 'sem_id');
     }
 }

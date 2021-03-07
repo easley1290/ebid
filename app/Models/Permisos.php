@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -37,6 +37,6 @@ class Permisos extends Model
      */
     public function rol()
     {
-        return $this->belongsTo('App\Rol', null, 'rol_id');
+        return $this->belongsTo('App\Models\Rol', null, 'rol_id');
     }
 }

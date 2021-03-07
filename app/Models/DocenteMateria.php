@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Docente $docente
  * @property Materium $materium
  */
-class Docente-materia extends Model
+class DocenteMateria extends Model
 {
     /**
      * The table associated with the model.
@@ -44,14 +44,14 @@ class Docente-materia extends Model
      */
     public function docente()
     {
-        return $this->belongsTo('App\Docente', 'doc_id', 'doc_id');
+        return $this->belongsTo('App\Models\Docente', 'doc_id', 'doc_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function materium()
+    public function materia()
     {
-        return $this->belongsTo('App\Materium', 'mat_id', 'mat_id');
+        return $this->belongsTo('App\Models\Materia', 'mat_id', 'mat_id');
     }
 }

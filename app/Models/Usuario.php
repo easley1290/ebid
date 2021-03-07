@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -55,7 +55,7 @@ class Usuario extends Model
      */
     public function persona()
     {
-        return $this->belongsTo('App\Persona', 'per_id', 'per_id');
+        return $this->belongsTo('App\Models\Persona', 'per_id', 'per_id');
     }
 
     /**
@@ -63,7 +63,7 @@ class Usuario extends Model
      */
     public function rol()
     {
-        return $this->belongsTo('App\Rol', null, 'rol_id');
+        return $this->belongsTo('App\Models\Rol', null, 'rol_id');
     }
 
     /**
@@ -71,7 +71,7 @@ class Usuario extends Model
      */
     public function unidad()
     {
-        return $this->belongsTo('App\Unidad', 'uni_id', 'uni_id');
+        return $this->belongsTo('App\Models\Unidad', 'uni_id', 'uni_id');
     }
 
     /**
@@ -79,7 +79,7 @@ class Usuario extends Model
      */
     public function administrativos()
     {
-        return $this->hasMany('App\Administrativo', 'usu_id', 'usu_id');
+        return $this->hasMany('App\Models\Administrativo', 'usu_id', 'usu_id');
     }
 
     /**
@@ -87,7 +87,7 @@ class Usuario extends Model
      */
     public function docentes()
     {
-        return $this->hasMany('App\Docente', 'usu_id', 'usu_id');
+        return $this->hasMany('App\Models\Docente', 'usu_id', 'usu_id');
     }
 
     /**
@@ -95,6 +95,6 @@ class Usuario extends Model
      */
     public function estudiantes()
     {
-        return $this->hasMany('App\Estudiante', 'usu_id', 'usu_id');
+        return $this->hasMany('App\Models\Estudiante', 'usu_id', 'usu_id');
     }
 }

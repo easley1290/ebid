@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -54,6 +54,6 @@ class Persona extends Model
      */
     public function usuarios()
     {
-        return $this->hasMany('App\Usuario', 'per_id', 'per_id');
+        return $this->hasMany('App\Models\Usuario', 'per_id', 'per_id');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -68,23 +68,23 @@ class Estudiante extends Model
      */
     public function especialidad()
     {
-        return $this->belongsTo('App\Especialidad', 'esp_id', 'esp_id');
+        return $this->belongsTo('App\Models\Especialidad', 'esp_id', 'esp_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function materium()
+    public function materia()
     {
-        return $this->belongsTo('App\Materium', 'mat_id', 'mat_id');
+        return $this->belongsTo('App\Models\Materia', 'mat_id', 'mat_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function notum()
+    public function nota()
     {
-        return $this->belongsTo('App\Notum', 'nota_id', 'nota_id');
+        return $this->belongsTo('App\Models\Nota', 'nota_id', 'nota_id');
     }
 
     /**
@@ -92,7 +92,7 @@ class Estudiante extends Model
      */
     public function semestre()
     {
-        return $this->belongsTo('App\Semestre', 'sem_id', 'sem_id');
+        return $this->belongsTo('App\Models\Semestre', 'sem_id', 'sem_id');
     }
 
     /**
@@ -100,6 +100,6 @@ class Estudiante extends Model
      */
     public function usuario()
     {
-        return $this->belongsTo('App\Usuario', 'usu_id', 'usu_id');
+        return $this->belongsTo('App\Models\Usuario', 'usu_id', 'usu_id');
     }
 }

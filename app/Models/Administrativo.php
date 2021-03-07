@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -59,6 +59,6 @@ class Administrativo extends Model
      */
     public function usuario()
     {
-        return $this->belongsTo('App\Usuario', 'usu_id', 'usu_id');
+        return $this->belongsTo('App\Models\Usuario', 'usu_id', 'usu_id');
     }
 }

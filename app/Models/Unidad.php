@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -63,7 +63,7 @@ class Unidad extends Model
      */
     public function especialidads()
     {
-        return $this->hasMany('App\Especialidad', 'uni_id', 'uni_id');
+        return $this->hasMany('App\Models\Especialidad', 'uni_id', 'uni_id');
     }
 
     /**
@@ -71,7 +71,7 @@ class Unidad extends Model
      */
     public function noticias()
     {
-        return $this->hasMany('App\Noticia', 'uni_id', 'uni_id');
+        return $this->hasMany('App\Models\Noticia', 'uni_id', 'uni_id');
     }
 
     /**
@@ -79,6 +79,6 @@ class Unidad extends Model
      */
     public function usuarios()
     {
-        return $this->hasMany('App\Usuario', 'uni_id', 'uni_id');
+        return $this->hasMany('App\Models\Usuario', 'uni_id', 'uni_id');
     }
 }

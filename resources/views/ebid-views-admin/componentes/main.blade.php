@@ -1,7 +1,4 @@
-  @extends('ebid-views-admin.componentes.link')
-</head>
-
-
+@extends('ebid-views-admin.componentes.link')
 <body class="header-fixed sidebar-fixed sidebar-dark header-light" id="body">
   
   <script>
@@ -50,9 +47,6 @@
 
               <!-- sidebar menu -->
               <ul class="nav sidebar-inner" id="sidebar-menu">
-                
-
-                
                   <li  class="has-sub active expand" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
                       aria-expanded="false" aria-controls="dashboard">
@@ -62,38 +56,20 @@
                     <ul  class="collapse show"  id="dashboard"
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
-                        
-                        
-                          
                             <li  class="active" >
                               <a class="sidenav-item-link" href="index.html">
                                 <span class="nav-text">Ecommerce</span>
                                 
                               </a>
                             </li>
-                          
-                        
-
-                        
-                        
-                          
-                            <li >
+                            <li>
                               <a class="sidenav-item-link" href="analytics.html">
                                 <span class="nav-text">Analytics</span>                             
                               </a>
                             </li>
-                          
-                        
-
-                        
                       </div>
                     </ul>
                   </li>
-                
-
-                
-
-                
                   <li  class="has-sub" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#app"
                       aria-expanded="false" aria-controls="app">
@@ -103,63 +79,33 @@
                     <ul  class="collapse"  id="app"
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
-                        
-                        
-                          
                             <li >
                               <a class="sidenav-item-link" href="chat.html">
                                 <span class="nav-text">Chat</span>
                                 
                               </a>
                             </li>
-                          
-                        
-
-                        
-                        
-                          
-                            <li >
+                            <li>
                               <a class="sidenav-item-link" href="contacts.html">
                                 <span class="nav-text">Contacts</span>
                                 
                               </a>
                             </li>
-                          
-                        
-
-                        
-                        
-                          
-                            <li >
+                            <li>
                               <a class="sidenav-item-link" href="team.html">
                                 <span class="nav-text">Team</span>
                                 
                               </a>
                             </li>
-                          
-                        
-
-                        
-                        
-                          
-                            <li >
+                            <li>
                               <a class="sidenav-item-link" href="calendar.html">
                                 <span class="nav-text">Calendar</span>
                                 
                               </a>
                             </li>
-                          
-                        
-
-                        
                       </div>
                     </ul>
                   </li>
-                
-
-                
-
-                
                   <li  class="has-sub" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#components"
                       aria-expanded="false" aria-controls="components">
@@ -169,154 +115,72 @@
                     <ul  class="collapse"  id="components"
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
-                        
-                        
-                          
-                            <li >
+                            <li>
                               <a class="sidenav-item-link" href="{{ route('Dominio.index') }}">
                                 <span class="nav-text">Dominio</span>
-                                
                               </a>
                             </li>
-                          
-                        
-
-                        
-                        
-                          
-                            <li >
+                            <li>
                               <a class="sidenav-item-link" href="{{ route('Subdominio.index') }}">
                                 <span class="nav-text">Sub dominio</span>
-                                
                               </a>
                             </li>
-                          
-                        
-
-                        
-                        
-                          
-                            <li >
+                            <li>
+                              <a class="sidenav-item-link" href="unidad">
+                                <span class="nav-text">Informacion de unidad academica</span>
+                              </a>
+                            </li>
+                            <li>
                               <a class="sidenav-item-link" href="breadcrumb.html">
                                 <span class="nav-text">Breadcrumb</span>
-                                
                               </a>
                             </li>
-                          
-                        
-
-                        
-                        
-                          
                             <li >
                               <a class="sidenav-item-link" href="button-default.html">
                                 <span class="nav-text">Button Default</span>
-                                
                               </a>
                             </li>
-                          
-                        
-
-                        
-                        
-                          
                             <li >
                               <a class="sidenav-item-link" href="button-dropdown.html">
                                 <span class="nav-text">Button Dropdown</span>
-                                
                               </a>
                             </li>
-                          
-                        
-
-                        
-                        
-                          
                             <li >
                               <a class="sidenav-item-link" href="button-group.html">
                                 <span class="nav-text">Button Group</span>
-                                
                               </a>
                             </li>
-                          
-                        
-
-                        
-                        
-                          
                             <li >
                               <a class="sidenav-item-link" href="button-social.html">
                                 <span class="nav-text">Button Social</span>
-                                
                               </a>
                             </li>
-                          
-                        
-
-                        
-                        
-                          
                             <li >
                               <a class="sidenav-item-link" href="button-loading.html">
                                 <span class="nav-text">Button Loading</span>
-                                
                               </a>
                             </li>
-                          
-                        
-
-                        
-                        
-                          
                             <li >
                               <a class="sidenav-item-link" href="card.html">
                                 <span class="nav-text">Card</span>
-                                
                               </a>
                             </li>
-                          
-                        
-
-                        
-                        
-                          
-                            <li >
+                            <li>
                               <a class="sidenav-item-link" href="carousel.html">
                                 <span class="nav-text">Carousel</span>
-                                
                               </a>
                             </li>
-                          
-                        
-
-                        
-                        
-                          
-                            <li >
+                            <li>
                               <a class="sidenav-item-link" href="collapse.html">
                                 <span class="nav-text">Collapse</span>
-                                
                               </a>
                             </li>
-                          
-                        
-
-                        
-                        
-                          
-                            <li >
+                            <li>
                               <a class="sidenav-item-link" href="list-group.html">
                                 <span class="nav-text">List Group</span>
-                                
                               </a>
                             </li>
-                          
-                        
-
-                        
-                        
-                          
-                            <li >
+                            <li>
                               <a class="sidenav-item-link" href="modal.html">
                                 <span class="nav-text">Modal</span>
                                 

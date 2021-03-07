@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -44,7 +44,7 @@ class Rol extends Model
      */
     public function permisos()
     {
-        return $this->hasMany('App\Permiso', null, 'rol_id');
+        return $this->hasMany('App\Models\Permiso', null, 'rol_id');
     }
 
     /**
@@ -52,6 +52,6 @@ class Rol extends Model
      */
     public function usuarios()
     {
-        return $this->hasMany('App\Usuario', null, 'rol_id');
+        return $this->hasMany('App\Models\Usuario', null, 'rol_id');
     }
 }

@@ -17,7 +17,7 @@ class Dominio extends Model
      * 
      * @var string
      */
-    protected $table = 'dominios';
+    protected $table = 'dominio';
 
     /**
      * The primary key for the model.
@@ -43,6 +43,6 @@ class Dominio extends Model
      */
     public function subdominios()
     {
-        return $this->hasMany('App\Subdominio', 'dom_id', 'dom_id');
+        return $this->hasMany('App\Models\Subdominio', 'dom_id', 'dom_id');
     }
 }
