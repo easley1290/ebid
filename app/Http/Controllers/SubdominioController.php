@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Subdominio;
-use App\Models\Dominio;
+use App\Models\Subdominios;
+use App\Models\Dominios;
 
 
 class SubdominioController extends Controller
@@ -16,8 +16,8 @@ class SubdominioController extends Controller
      */
     public function index()
     {
-        $subdominios = Subdominio::all();
-        $dominios = Dominio::all();
+        $subdominios = Subdominios::all();
+        $dominios = Dominios::all();
         $auxiliar = [$subdominios, $dominios];
         return view('ebid-views-administrador.subdominio.subdominio')->with('auxiliar', $auxiliar);
     }
@@ -45,11 +45,11 @@ class SubdominioController extends Controller
             'subd_descrip' => 'required',
             'dom_id' => 'required',
         ]);
-        $subdominio_nuevo = new Subdominio;
+        $subdominio_nuevo = new Subdominios;
 
         $subdominio_nuevo->subd_nombre = $request->input('subd_nombre');
-        $subdominio_nuevo->subd_descrip = $request->input('subd_descrip');
-        $subdominio_nuevo->dom_id = $request->input('dom_id');
+        $subdominio_nuevo->subd_descripcion = $request->input('subd_descrip');
+        $subdominio_nuevo->subd_dom_id = $request->input('dom_id');
         $subdominio_nuevo->save();
         return redirect('/Subdominio')->with('success', 'Dato guardado');
     }
@@ -90,11 +90,11 @@ class SubdominioController extends Controller
             'subd_descrip' => 'required',
             'dom_id' => 'required',
         ]);
-        $subdominio_edit = Subdominio::find($id);
+        $subdominio_edit = Subdominios::find($id);
 
         $subdominio_edit->subd_nombre = $request->input('subd_nombre');
-        $subdominio_edit->subd_descrip = $request->input('subd_descrip');
-        $subdominio_edit->dom_id = $request->input('dom_id');
+        $subdominio_edit->subd_descripcion = $request->input('subd_descrip');
+        $subdominio_edit->subd_dom_id = $request->input('dom_id');
         $subdominio_edit->save();
         return redirect('/Subdominio')->with('success', 'Dato actualizado');
     }
@@ -107,7 +107,7 @@ class SubdominioController extends Controller
      */
     public function destroy($id)
     {
-        $dominio_delete = Subdominio::find($id);
+        $dominio_delete = Subdominios::find($id);
 
         $dominio_delete->delete();
         return redirect('/Subdominio')->with('success', 'Dato eliminado');

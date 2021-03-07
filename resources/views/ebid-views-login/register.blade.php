@@ -91,7 +91,7 @@
               <div class="col-md-12">
                 <button type="submit" class="btn btn-lg btn-primary btn-block mb-4">Incribirse</button>
                 <p>Ya tienes una cuenta?
-                  <a class="text-blue" href="loginn">Volver</a>
+                  <a class="text-blue" href="login_">Volver</a>
                 </p>
               </div>
             </div>
