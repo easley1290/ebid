@@ -6,13 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $per_id
- * @property int $rol_id
+ * @property int $per_rol_id
  * @property string $per_nombre
- * @property string $per_descrip
- * @property Rol $rol
+ * @property string $per_descripcion
+ * @property Role $role
  */
 class Permisos extends Model
 {
+    /**
+     * The table associated with the model.
+     * 
+     * @var string
+     */
+    protected $table = 'permisos';
+
     /**
      * The primary key for the model.
      * 
@@ -23,7 +30,7 @@ class Permisos extends Model
     /**
      * @var array
      */
-    protected $fillable = ['rol_id', 'per_nombre', 'per_descrip'];
+    protected $fillable = ['per_rol_id', 'per_nombre', 'per_descripcion'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -35,8 +42,8 @@ class Permisos extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function rol()
+    public function roles()
     {
-        return $this->belongsTo('App\Models\Rol', null, 'rol_id');
+        return $this->belongsTo('App\Models\Roles', 'per_rol_id', 'rol_id');
     }
 }

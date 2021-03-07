@@ -7,17 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $dom_id
  * @property string $dom_nombre
- * @property string $dom_descrip
+ * @property string $dom_descripcion
  * @property Subdominio[] $subdominios
  */
-class Dominio extends Model
-{   
+class Dominios extends Model
+{
     /**
      * The table associated with the model.
      * 
      * @var string
      */
-    protected $table = 'dominio';
+    protected $table = 'dominios';
 
     /**
      * The primary key for the model.
@@ -29,7 +29,7 @@ class Dominio extends Model
     /**
      * @var array
      */
-    protected $fillable = ['dom_nombre', 'dom_descrip'];
+    protected $fillable = ['dom_nombre', 'dom_descripcion'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -43,6 +43,6 @@ class Dominio extends Model
      */
     public function subdominios()
     {
-        return $this->hasMany('App\Models\Subdominio', 'dom_id', 'dom_id');
+        return $this->hasMany('App\Models\Subdominios', 'subd_dom_id', 'dom_id');
     }
 }

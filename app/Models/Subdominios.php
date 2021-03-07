@@ -6,19 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $subd_id
- * @property int $dom_id
+ * @property int $subd_dom_id
  * @property string $subd_nombre
- * @property string $subd_descrip
+ * @property string $subd_descripcion
  * @property Dominio $dominio
  */
-class Subdominio extends Model
+class Subdominios extends Model
 {
     /**
      * The table associated with the model.
      * 
      * @var string
      */
-    protected $table = 'subdominio';
+    protected $table = 'subdominios';
 
     /**
      * The primary key for the model.
@@ -30,7 +30,7 @@ class Subdominio extends Model
     /**
      * @var array
      */
-    protected $fillable = ['dom_id', 'subd_nombre', 'subd_descrip'];
+    protected $fillable = ['subd_dom_id', 'subd_nombre', 'subd_descripcion'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -42,8 +42,8 @@ class Subdominio extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function dominio()
+    public function dominios()
     {
-        return $this->belongsTo('App\Models\Dominio', 'dom_id', 'dom_id');
+        return $this->belongsTo('App\Models\Dominios', 'subd_dom_id', 'dom_id');
     }
 }

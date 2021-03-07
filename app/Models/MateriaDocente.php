@@ -5,32 +5,33 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property int $doc_mat_id
- * @property string $doc_id
- * @property string $mat_id
+ * @property int $matd_id
+ * @property string $matd_doc_id
+ * @property string $matd_mat_id
+ * @property int $matd_subd_estado
  * @property Docente $docente
- * @property Materium $materium
+ * @property Materia $materia
  */
-class DocenteMateria extends Model
+class MateriaDocente extends Model
 {
     /**
      * The table associated with the model.
      * 
      * @var string
      */
-    protected $table = 'docente_materia';
+    protected $table = 'materias_docente';
 
     /**
      * The primary key for the model.
      * 
      * @var string
      */
-    protected $primaryKey = 'doc_mat_id';
+    protected $primaryKey = 'matd_id';
 
     /**
      * @var array
      */
-    protected $fillable = ['doc_id', 'mat_id'];
+    protected $fillable = ['matd_doc_id', 'matd_mat_id', 'matd_subd_estado'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -42,16 +43,16 @@ class DocenteMateria extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function docente()
+    public function docentes()
     {
-        return $this->belongsTo('App\Models\Docente', 'doc_id', 'doc_id');
+        return $this->belongsTo('App\Models\Docentes', 'matd_doc_id', 'doc_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function materia()
+    public function materias()
     {
-        return $this->belongsTo('App\Models\Materia', 'mat_id', 'mat_id');
+        return $this->belongsTo('App\Models\Materias', 'matd_mat_id', 'mat_id');
     }
 }

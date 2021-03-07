@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Dominio;
+use App\Models\Dominios;
 
 
 class DominioController extends Controller
@@ -15,8 +15,8 @@ class DominioController extends Controller
      */
     public function index()
     {
-        $dominios = Dominio::all();
-        return view("ebid-views-admin.dominio.dominio")->with('dominios', $dominios);
+        $dominios = Dominios::all();
+        return view("ebid-views-administrador.dominio.dominio")->with('dominios', $dominios);
     }
 
     /**
@@ -39,12 +39,12 @@ class DominioController extends Controller
     {
         $this->validate($request,[
             'dom_nombre' => 'required',
-            'dom_descrip' => 'required',
+            'dom_descripcion' => 'required',
         ]);
-        $dominio_nuevo = new Dominio;
+        $dominio_nuevo = new Dominios;
 
         $dominio_nuevo->dom_nombre = $request->input('dom_nombre');
-        $dominio_nuevo->dom_descrip = $request->input('dom_descrip');
+        $dominio_nuevo->dom_descripcion = $request->input('dom_descripcion');
         $dominio_nuevo->save();
         return redirect('/Dominio')->with('success', 'Dato guardado');
     }
@@ -82,12 +82,12 @@ class DominioController extends Controller
     {
         $this->validate($request,[
             'dom_nombre' => 'required',
-            'dom_descrip' => 'required',
+            'dom_descripcion' => 'required',
         ]);
         $dominio_edit = Dominio::find($id);
 
         $dominio_edit->dom_nombre = $request->input('dom_nombre');
-        $dominio_edit->dom_descrip = $request->input('dom_descrip');
+        $dominio_edit->dom_descripcion = $request->input('dom_descripcion');
         $dominio_edit->save();
         return redirect('/Dominio')->with('success', 'Dato actualizado');
     }

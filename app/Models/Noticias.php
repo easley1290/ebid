@@ -6,15 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $not_id
- * @property string $uni_id
- * @property string $not_foto
+ * @property string $not_ua_id
  * @property string $not_titulo
- * @property string $not_descripcion
- * @property int $subd_id_estado
- * @property Unidad $unidad
+ * @property string $not_imagen
+ * @property string $not_historia
+ * @property int $not_subd_estado
+ * @property UnidadAcademica $unidadAcademica
  */
 class Noticias extends Model
 {
+    /**
+     * The table associated with the model.
+     * 
+     * @var string
+     */
+    protected $table = 'noticias';
+
     /**
      * The primary key for the model.
      * 
@@ -25,7 +32,7 @@ class Noticias extends Model
     /**
      * @var array
      */
-    protected $fillable = ['uni_id', 'not_foto', 'not_titulo', 'not_descripcion', 'subd_id_estado'];
+    protected $fillable = ['not_ua_id', 'not_titulo', 'not_imagen', 'not_historia', 'not_subd_estado'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -37,8 +44,8 @@ class Noticias extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function unidad()
+    public function unidadAcademica()
     {
-        return $this->belongsTo('App\Models\Unidad', 'uni_id', 'uni_id');
+        return $this->belongsTo('App\Models\UnidadAcademica', 'not_ua_id', 'ua_id');
     }
 }

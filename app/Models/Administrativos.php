@@ -6,20 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property string $adm_id
- * @property int $usu_id
- * @property int $subd_id_estado
- * @property string $adm_nombre
- * @property string $adm_descrip
- * @property Usuario $usuario
+ * @property int $adm_per_id
+ * @property string $adm_cargo
+ * @property string $adm_area_pertenece
+ * @property int $adm_subd_estado
+ * @property Persona $persona
  */
-class Administrativo extends Model
+class Administrativos extends Model
 {
     /**
      * The table associated with the model.
      * 
      * @var string
      */
-    protected $table = 'administrativo';
+    protected $table = 'administrativos';
 
     /**
      * The primary key for the model.
@@ -45,7 +45,7 @@ class Administrativo extends Model
     /**
      * @var array
      */
-    protected $fillable = ['usu_id', 'subd_id_estado', 'adm_nombre', 'adm_descrip'];
+    protected $fillable = ['adm_per_id', 'adm_cargo', 'adm_area_pertenece', 'adm_subd_estado'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -57,8 +57,8 @@ class Administrativo extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function usuario()
+    public function personas()
     {
-        return $this->belongsTo('App\Models\Usuario', 'usu_id', 'usu_id');
+        return $this->belongsTo('App\Models\Personas', 'adm_per_id', 'per_id');
     }
 }

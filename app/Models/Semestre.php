@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $sem_id
- * @property int $subd_id_estado
  * @property string $sem_nombre
  * @property string $sem_descripcion
- * @property Estudiante[] $estudiantes
- * @property Materium[] $materias
+ * @property int $sem_subd_estado
+ * @property MateriaEstudiante[] $materiaEstudiantes
+ * @property Pensum[] $pensums
  */
 class Semestre extends Model
 {
@@ -31,7 +31,7 @@ class Semestre extends Model
     /**
      * @var array
      */
-    protected $fillable = ['subd_id_estado', 'sem_nombre', 'sem_descripcion'];
+    protected $fillable = ['sem_nombre', 'sem_descripcion', 'sem_subd_estado'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -43,16 +43,16 @@ class Semestre extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function estudiantes()
+    public function materiaEstudiante()
     {
-        return $this->hasMany('App\Models\Estudiante', 'sem_id', 'sem_id');
+        return $this->hasMany('App\Models\MateriaEstudiante', 'mate_sem_id', 'sem_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function materias()
+    public function pensum()
     {
-        return $this->hasMany('App\Models\Materia', 'sem_id', 'sem_id');
+        return $this->hasMany('App\Models\Pensum', 'pen_sem_id', 'sem_id');
     }
 }

@@ -31,7 +31,7 @@
                 <li><a href="">Noticias</a></li>
                 <li><a href="/contactos">Contactos</a></li></ul>
             </nav>
-            <a href="{{route('Prueba.index')}}" class="btn-miembro" style="">Te interesa?</a>
+            <a href="login" class="btn-miembro" style="">Login</a>
             
             <a href="administracion" class="btn-miembro" style="">Eres miembro?</a>
         </div>

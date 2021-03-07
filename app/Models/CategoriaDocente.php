@@ -7,21 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $cat_id
  * @property string $cat_nombre
- * @property int $subd_id_estado
- * @property int $subd_id_documentacion
- * @property int $subd_id_extension
- * @property int $subd_id_genero
- * @property int $subd_id_periodo
+ * @property string $cat_verificacion
+ * @property string $cat_tipo_documento
+ * @property int $cat_subd_estado
  * @property Docente[] $docentes
  */
-class Categoria extends Model
+class CategoriaDocente extends Model
 {
     /**
      * The table associated with the model.
      * 
      * @var string
      */
-    protected $table = 'categoria';
+    protected $table = 'categorias_docente';
 
     /**
      * The primary key for the model.
@@ -31,9 +29,16 @@ class Categoria extends Model
     protected $primaryKey = 'cat_id';
 
     /**
+     * Indicates if the IDs are auto-incrementing.
+     * 
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
      * @var array
      */
-    protected $fillable = ['cat_nombre', 'subd_id_estado', 'subd_id_documentacion', 'subd_id_extension', 'subd_id_genero', 'subd_id_periodo'];
+    protected $fillable = ['cat_nombre', 'cat_verificacion', 'cat_tipo_documento', 'cat_subd_estado'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -47,6 +52,6 @@ class Categoria extends Model
      */
     public function docentes()
     {
-        return $this->hasMany('App\Models\Docente', 'cat_id', 'cat_id');
+        return $this->hasMany('App\Models\Docentes', 'doc_cat_id', 'cat_id');
     }
 }

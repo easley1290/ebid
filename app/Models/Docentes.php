@@ -6,24 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property string $doc_id
- * @property int $usu_id
- * @property int $cat_id
- * @property int $subd_id_estado
- * @property string $doc_nombre
- * @property string $doc_descrip
+ * @property int $doc_per_id
+ * @property int $doc_cat_id
  * @property float $doc_salario
- * @property Categorium $categorium
- * @property Usuario $usuario
- * @property DocenteMaterium[] $docenteMaterias
+ * @property string $doc_cargo
+ * @property string $doc_descripcion
+ * @property CategoriasDocente $categoriasDocente
+ * @property Persona $persona
+ * @property MateriasDocente[] $materiasDocentes
  */
-class Docente extends Model
+class Docentes extends Model
 {
     /**
      * The table associated with the model.
      * 
      * @var string
      */
-    protected $table = 'docente';
+    protected $table = 'docentes';
 
     /**
      * The primary key for the model.
@@ -49,7 +48,7 @@ class Docente extends Model
     /**
      * @var array
      */
-    protected $fillable = ['usu_id', 'cat_id', 'subd_id_estado', 'doc_nombre', 'doc_descrip', 'doc_salario'];
+    protected $fillable = ['doc_per_id', 'doc_cat_id', 'doc_salario', 'doc_cargo', 'doc_descripcion'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -61,24 +60,24 @@ class Docente extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function categoria()
+    public function categoriaDocente()
     {
-        return $this->belongsTo('App\Models\Categoria', 'cat_id', 'cat_id');
+        return $this->belongsTo('App\Models\CategoriaDocente', 'doc_cat_id', 'cat_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function usuario()
+    public function personas()
     {
-        return $this->belongsTo('App\Models\Usuario', 'usu_id', 'usu_id');
+        return $this->belongsTo('App\Models\Personas', 'doc_per_id', 'per_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function docenteMaterias()
+    public function materiaDocente()
     {
-        return $this->hasMany('App\Models\DocenteMateria', 'doc_id', 'doc_id');
+        return $this->hasMany('App\Models\MateriaDocente', 'matd_doc_id', 'doc_id');
     }
 }

@@ -5,32 +5,29 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property string $uni_id
- * @property string $uni_nombre
- * @property string $uni_descripcion
- * @property string $uni_vision
- * @property string $uni_mision
- * @property string $uni_objetivo
- * @property int $subd_id_estado
- * @property Especialidad[] $especialidads
- * @property Noticia[] $noticias
- * @property Usuario[] $usuarios
+ * @property string $mat_id
+ * @property string $mat_nombre
+ * @property string $mat_descripcion
+ * @property int $mat_subd_estado
+ * @property MateriaEstudiante[] $materiaEstudiantes
+ * @property MateriasDocente[] $materiasDocentes
+ * @property Pensum[] $pensums
  */
-class Unidad extends Model
+class Materias extends Model
 {
     /**
      * The table associated with the model.
      * 
      * @var string
      */
-    protected $table = 'unidad';
+    protected $table = 'materias';
 
     /**
      * The primary key for the model.
      * 
      * @var string
      */
-    protected $primaryKey = 'uni_id';
+    protected $primaryKey = 'mat_id';
 
     /**
      * The "type" of the auto-incrementing ID.
@@ -49,7 +46,7 @@ class Unidad extends Model
     /**
      * @var array
      */
-    protected $fillable = ['uni_nombre', 'uni_descripcion', 'uni_vision', 'uni_mision', 'uni_objetivo', 'subd_id_estado'];
+    protected $fillable = ['mat_nombre', 'mat_descripcion', 'mat_subd_estado'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -61,24 +58,24 @@ class Unidad extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function especialidads()
+    public function materiaEstudiante()
     {
-        return $this->hasMany('App\Models\Especialidad', 'uni_id', 'uni_id');
+        return $this->hasMany('App\Models\MateriaEstudiante', 'mate_mat_id', 'mat_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function noticias()
+    public function materiaDocente()
     {
-        return $this->hasMany('App\Models\Noticia', 'uni_id', 'uni_id');
+        return $this->hasMany('App\Models\MateriaDocente', 'matd_mat_id', 'mat_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function usuarios()
+    public function pensum()
     {
-        return $this->hasMany('App\Models\Usuario', 'uni_id', 'uni_id');
+        return $this->hasMany('App\Models\Pensum', 'pen_mat_id', 'mat_id');
     }
 }
