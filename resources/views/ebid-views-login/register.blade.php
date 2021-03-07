@@ -21,11 +21,19 @@
         </div>
         <div class="card-body p-5">
           <h4 class="text-dark mb-5">Llene los siguientes datos</h4>
-          <form action="api/auth/register " method="POST">
+          <form method="POST" action="{{ route('register') }}">
+            @csrf
             <div class="row">
               <div class="form-group col-md-12 mb-4">
-                <input type="text" class="form-control input-lg" id="name" name="name" aria-describedby="nameHelp" placeholder="Nombres">
+                <input id="name" type="text" class="form-control input-lg @error('name') is-invalid @enderror" 
+                name="name" value="{{ old('name') }}" placeholder="Nombres" required autocomplete="name" autofocus>
+                @error('name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
               </div>
+
               <!--div class="form-group col-md-6 mb-4">
                 <input type="text" class="form-control input-lg" id="paterno" aria-describedby="paternoHelp" placeholder="Apellido Paterno">
               </div>
@@ -53,20 +61,37 @@
               <div class="form-group col-md-6 mb-4">
                 <input type="number" class="form-control input-lg" id="materno" aria-describedby="maternoHelp" placeholder="Telefono">
               </div-->
+
               <div class="form-group col-md-12 mb-4">
-                <input type="email" class="form-control input-lg" id="email" name="email" aria-describedby="emailHelp" placeholder="Correo">
+                <input id="email" type="email" class="form-control input-lg @error('email') is-invalid @enderror" 
+                name="email" value="{{ old('email') }}" placeholder="Correo" required autocomplete="email">
+                @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
               </div>
+
               <div class="form-group col-md-12 ">
-                <input type="password" class="form-control input-lg" id="password" name="password" placeholder="Contraseña">
+                <input id="password" type="password" class="form-control input-lg @error('password') is-invalid @enderror" 
+                name="password" placeholder="Contraseña" required autocomplete="new-password">
+
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
               </div>
+
               <div class="form-group col-md-12 ">
-                <input type="password" class="form-control input-lg" id="password_confirmation" name="password_confirmation" placeholder="Confirmar contraseña">
+                <input id="password-confirm" type="password" class="form-control" 
+                name="password_confirmation" placeholder="Confirmar Contraseña" required autocomplete="new-password">
               </div>
+
               <div class="col-md-12">
-                
                 <button type="submit" class="btn btn-lg btn-primary btn-block mb-4">Incribirse</button>
                 <p>Ya tienes una cuenta?
-                  <a class="text-blue" href="registro">Volver</a>
+                  <a class="text-blue" href="loginn">Volver</a>
                 </p>
               </div>
             </div>

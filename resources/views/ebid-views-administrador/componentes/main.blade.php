@@ -7,7 +7,7 @@
           <div id="sidebar" class="sidebar sidebar-with-footer">
             <!-- Aplication Brand -->
             <div class="app-brand">
-              <a href="/administracion" title="Sleek Dashboard">
+              <a href="/" title="Sleek Dashboard">
                 <svg
                   class="brand-icon"
                   preserveAspectRatio="xMidYMid"
@@ -36,7 +36,7 @@
                 
                   <!----------------------------INICIO---------------------------------->
                   <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="">
+                    <a class="sidenav-item-link" href="/administracion">
                       <i class="mdi mdi-home"></i>
                       <span class="nav-text">Inicio</span>
                     </a>
@@ -76,13 +76,13 @@
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
                             <li>
-                              <a class="sidenav-item-link" href="index.html">
+                              <a class="sidenav-item-link" href="{{ route('Dominio.index') }}">
                                 <span class="nav-text">Dominios</span>
                                 
                               </a>
                             </li>
                             <li >
-                              <a class="sidenav-item-link" href="analytics.html">
+                              <a class="sidenav-item-link" href="{{ route('Subdominio.index') }}">
                                 <span class="nav-text">Subdominios</span>                             
                               </a>
                             </li>   
@@ -115,15 +115,37 @@
                   </li>
                   <!----------------------------MODULO DE USUARIOS---------------------------------->
                   <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="">
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#usuarios"
+                      aria-expanded="false" aria-controls="usuarios">
                       <i class="mdi mdi-account-group"></i>
-                      <span class="nav-text">USUARIOS</span>
+                      <span class="nav-text">USUARIOS</span> <b class="caret"></b>
                     </a>
+                    <ul  class="collapse"  id="usuarios"
+                      data-parent="#sidebar-menu">
+                      <div class="sub-menu">
+                            <li>
+                              <a class="sidenav-item-link" href="index.html">
+                                <span class="nav-text">Estudiantes</span>
+                                
+                              </a>
+                            </li>
+                            <li >
+                              <a class="sidenav-item-link" href="analytics.html">
+                                <span class="nav-text">Docentes</span>                             
+                              </a>
+                            </li> 
+                            <li >
+                              <a class="sidenav-item-link" href="analytics.html">
+                                <span class="nav-text">Administrativo</span>                             
+                              </a>
+                            </li>   
+                      </div>
+                    </ul>
                   </li>
 
                   <!----------------------------NOTAS---------------------------------->
                   <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="">
+                    <a class="sidenav-item-link" href="index.html">
                       <i class="mdi mdi-notebook"></i>
                       <span class="nav-text">Notas</span>
                     </a>
@@ -141,13 +163,13 @@
                       <div class="sub-menu">
                             <li>
                               <a class="sidenav-item-link" href="index.html">
-                                <span class="nav-text">Historial Depositos</span>
+                                <span class="nav-text">Registro</span>
                                 
                               </a>
                             </li>
                             <li >
                               <a class="sidenav-item-link" href="analytics.html">
-                                <span class="nav-text">Nuevo Deposito</span>                             
+                                <span class="nav-text">Validación</span>                             
                               </a>
                             </li>   
                       </div>
@@ -236,8 +258,6 @@
                   
 
 
-
-
                   <!--li  class="has-sub" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#documentation"
                       aria-expanded="false" aria-controls="documentation">
@@ -253,102 +273,29 @@
                             <li >
                               <a class="sidenav-item-link" href="introduction.html">
                                 <span class="nav-text">Introduction</span>
-                                
                               </a>
                             </li>
-                            <li >
-                              <a class="sidenav-item-link" href="quick-start.html">
-                                <span class="nav-text">Quick Start</span>
-                                
-                              </a>
-                            </li>
-                            <li >
-                              <a class="sidenav-item-link" href="customization.html">
-                                <span class="nav-text">Customization</span>
-                                
-                              </a>
-                            </li>
+                            
+
                             <li class="section-title">
                               Layouts
                             </li>
-                          
-    
-                        <li  class="has-sub" >
-                          <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#headers"
-                            aria-expanded="false" aria-controls="headers">
-                            <span class="nav-text">Header Variations</span> <b class="caret"></b>
-                          </a>
-                          <ul  class="collapse"  id="headers">
-                            <div class="sub-menu">
-                              
-                              <li >
-                                <a href="header-fixed.html">Header Fixed</a>
-                              </li>
-                              
-                              <li >
-                                <a href="header-static.html">Header Static</a>
-                              </li>
-                              
-                              <li >
-                                <a href="header-light.html">Header Light</a>
-                              </li>
-                              
-                              <li >
-                                <a href="header-dark.html">Header Dark</a>
-                              </li>
-                              
-                            </div>
-                          </ul>
-                        </li>
-
-                        <li  class="has-sub" >
-                          <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#sidebar-navs"
-                            aria-expanded="false" aria-controls="sidebar-navs">
-                            <span class="nav-text">Sidebar Variations</span> <b class="caret"></b>
-                          </a>
-                          <ul  class="collapse"  id="sidebar-navs">
-                            <div class="sub-menu">
-                              
-                              <li >
-                                <a href="sidebar-fixed-default.html">Sidebar Fixed Default</a>
-                              </li>
-                              
-                              <li >
-                                <a href="sidebar-fixed-minified.html">Sidebar Fixed Minified</a>
-                              </li>
-                              
-                              <li >
-                                <a href="sidebar-fixed-offcanvas.html">Sidebar Fixed Offcanvas</a>
-                              </li>
-                              
-                              <li >
-                                <a href="sidebar-static-default.html">Sidebar Static Default</a>
-                              </li>
-                              
-                              <li >
-                                <a href="sidebar-static-minified.html">Sidebar Static Minified</a>
-                              </li>
-                              
-                              <li >
-                                <a href="sidebar-static-offcanvas.html">Sidebar Static Offcanvas</a>
-                              </li>
-                              
-                              <li >
-                                <a href="sidebar-with-footer.html">Sidebar With Footer</a>
-                              </li>
-                              
-                              <li >
-                                <a href="sidebar-without-footer.html">Sidebar Without Footer</a>
-                              </li>
-                              
-                              <li >
-                                <a href="right-sidebar.html">Right Sidebar</a>
-                              </li>
-                              
-                            </div>
-                          </ul>
-                        </li>
-
+                            <li  class="has-sub" >
+                              <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#headers"
+                                aria-expanded="false" aria-controls="headers">
+                                <span class="nav-text">Header Variations</span> <b class="caret"></b>
+                              </a>
+                              <ul  class="collapse"  id="headers">
+                                <div class="sub-menu">
+                                  <li >
+                                    <a href="header-fixed.html">Header Fixed</a>
+                                  </li>
+                                  <li >
+                                    <a href="header-static.html">Header Static</a>
+                                  </li>
+                                </div>
+                              </ul>
+                            </li>
                       </div>
                     </ul>
                   </li-->
@@ -394,19 +341,19 @@
                   <!--li class="right-sidebar-in right-sidebar-2-menu">
                     <i class="mdi mdi-settings mdi-spin"></i>
                   </li-->
+
                   <!-- User Account -->
                   <li class="dropdown user-menu">
                     <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                      <img src="assets/img/user/user.png" class="user-image" alt="User Image" />
-                      <span class="d-none d-lg-inline-block">Yo</span>
+                      <img src="{{ asset('assets/img/counts-img.jpg') }}" class="user-image" alt="User Image" />
+                      <span class="d-none d-lg-inline-block">{{auth()->user()->name}}</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
                       <!-- User image -->
                       <li class="dropdown-header">
-                        <img src="assets/img/user/user.png" class="img-circle" alt="User Image" />
                         <div class="d-inline-block">
-                          Yo -- 
-                          <small class="pt-1">yo@gmail.com</small>
+                          {{auth()->user()->name}}
+                          <small class="pt-1">{{auth()->user()->email}}</small>
                         </div>
                       </li>
 

@@ -16,7 +16,7 @@ class DominioController extends Controller
     public function index()
     {
         $dominios = Dominio::all();
-        return view("ebid-views-admin.dominio.dominio")->with('dominios', $dominios);
+        return view("ebid-views-administrador.dominio.dominio")->with('dominios', $dominios);
     }
 
     /**
@@ -38,8 +38,7 @@ class DominioController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'dom_nombre' => 'required',
-            'dom_descrip' => 'required',
+            'dom_nombre' => 'required'
         ]);
         $dominio_nuevo = new Dominio;
 
@@ -47,6 +46,7 @@ class DominioController extends Controller
         $dominio_nuevo->dom_descrip = $request->input('dom_descrip');
         $dominio_nuevo->save();
         return redirect('/Dominio')->with('success', 'Dato guardado');
+
     }
 
     /**

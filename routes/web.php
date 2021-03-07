@@ -40,3 +40,11 @@ Route::resource('/Subdominio', SubDominioController::class);
 /***************  LOGIN  ****************** */
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/loginn', function () {
+    return view('ebid-views-login.login');
+});
+Route::get('/registerr', function () {
+    return view('ebid-views-login.register');
+});

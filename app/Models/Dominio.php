@@ -17,7 +17,8 @@ class Dominio extends Model
      * 
      * @var string
      */
-    protected $table = 'dominios';
+    //protected $table = 'dominios';
+    protected $table = 'dominio';
 
     /**
      * The primary key for the model.
