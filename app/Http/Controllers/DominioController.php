@@ -47,6 +47,7 @@ class DominioController extends Controller
         $dominio_nuevo->dom_descripcion = $request->input('dom_descripcion');
         $dominio_nuevo->save();
         return redirect('/Dominio')->with('success', 'Dato guardado');
+
     }
 
     /**

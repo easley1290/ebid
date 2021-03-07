@@ -19,7 +19,7 @@ class SubdominioController extends Controller
         $subdominios = Subdominio::all();
         $dominios = Dominio::all();
         $auxiliar = [$subdominios, $dominios];
-        return view('ebid-views-admin.subdominio.subdominio')->with('auxiliar', $auxiliar);
+        return view('ebid-views-administrador.subdominio.subdominio')->with('auxiliar', $auxiliar);
     }
 
     /**

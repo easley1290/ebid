@@ -1,4 +1,4 @@
-@extends('ebid-views-admin.componentes.main')
+@extends('ebid-views-administrador.componentes.main')
 @section('contenido')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap5.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
@@ -58,7 +58,7 @@
                   <div class="modal-body">
                       <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Nombre del Dominio</label>
-                        <input name="dom_nombre" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input name="dom_nombre" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                       </div>
                       <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Descripción</label>
@@ -140,7 +140,7 @@
 <script>
 $(document).ready(function() {
   $('#dominios').DataTable({
-        "lengthMenu":[[5, 10, 50, -1], [5, 10, 50, "All"]]
+        "lengthMenu":[[10, 25, 50, -1], [10, 25, 50, "All"]]
     });
 } );
 </script>
