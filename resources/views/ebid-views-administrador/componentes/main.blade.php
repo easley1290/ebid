@@ -100,7 +100,7 @@
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
                             <li>
-                              <a class="sidenav-item-link" href="{{route('Personas.index')}}">
+                              <a class="sidenav-item-link" href="{{route('Persona.index')}}">
                                 <span class="nav-text">Personal</span>
                                 
                               </a>

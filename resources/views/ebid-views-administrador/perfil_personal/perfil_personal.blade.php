@@ -22,41 +22,63 @@
                         <table id="personas" class="table card-table table-responsive table-responsive-large" style="width:100%">
                           <thead>
                             <tr>
-                              <th>ID</th>
+                              <th style="display:none">ID</th>
                               <th>Nombre Completo</th>
+                              <th style="display:none">nombre</th>
+                              <th style="display:none">ap_pat</th>
+                              <th style="display:none">ap_m</th>
+                              <th style="display:none">genero</th>
+                              <th style="display:none">fecha_nac</th>
                               <th>Correo</th>
                               <th>Tipo Doc.</th>
+                              <th style="display:none">per_subd_documentacion</th>
                               <th>Numero Doc</th>
+                              <th style="display:none">per_num_documentacion</th>
+                              <th style="display:none">per_subd_extension</th>
+                              <th style="display:none">per_telefono</th>
+                              <th style="display:none">per_domicilio</th>
+                              <th>Acciones</th>
                             </tr>
                           </thead>
                           <tbody>
                           @foreach($personas as $persona)
                             <tr>
-                                <td class="">{{ $persona->per_id}}</td>
+                                <td class="" style="display:none">{{ $persona->per_id}}</td>
                                 <td class="">{{ $persona->per_nombres}}
                                              {{ $persona->per_paterno}}
                                              {{ $persona->per_materno}}
                                 </td>
+                                <td class="" style="display:none">{{ $persona->per_nombres}}</td>
+                                <td class="" style="display:none">{{ $persona->per_paterno}}</td>
+                                <td class="" style="display:none">{{ $persona->per_materno}}</td>
+                                <td class="" style="display:none">{{ $persona->per_subd_genero}}</td>
+                                <td class="" style="display:none">{{ $persona->per_fecha_nacimiento}}</td>
+                                
                                 <td class="">{{ $persona->per_correo_personal}}</td>
                                 
-                                @foreach($tipo_doc as $subdominio)
-                                    @if($subdominio->subd_id == $persona->per_subd_documentacion)
+                                @foreach($tipo_docs as $subdominio)
+                                    @if($subdominio->subd_id === $persona->per_subd_documentacion)
                                     <td class="">{{ $subdominio->subd_nombre}}</td>
                                     @endif
                                 @endforeach
                                 </td>
+                                <td class="" style="display:none">{{ $persona->per_subd_documentacion}}</td>
                                 <td class="">{{ $persona->per_num_documentacion}}
-                                @foreach($extension as $subdominio)
-                                    @if($subdominio->subd_id == $persona->per_subd_extension)
+                                @foreach($extensions as $subdominio)
+                                    @if($subdominio->subd_id === $persona->per_subd_extension)
                                     {{ $subdominio->subd_nombre}}
                                     @endif
                                 @endforeach
                                 </td>
+                                <td class="" style="display:none">{{ $persona->per_num_documentacion}}</td>
+                                <td class="" style="display:none">{{ $persona->per_subd_extension}}</td>
+                                <td class="" style="display:none">{{ $persona->per_telefono}}</td>
+                                <td class="" style="display:none">{{ $persona->per_domicilio}}</td>
                                 <td><a href="#" class="btn btn-info edit" >Editar</a>
                                     <a href="#" class="btn btn-danger text-white delete">Eliminar</a>
                                 </td>
                             </tr>
-                            @endforeach
+                          @endforeach
                           </tbody>
                         </table>
                       </div>
@@ -66,73 +88,83 @@
      
             <!-- Modal crear-->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
+              <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Creación de Personas</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="{{ route('Personas.store') }}" method="POST">
+                  <form action="{{ route('Persona.store') }}" method="POST">
                   {{ csrf_field() }}
                   <div class="modal-body">
-                      <div class="mb-3">
+                    <div class="row">
+                      <div class="col-md-4">
                         <label for="exampleInputEmail1" class="form-label">Nombres</label>
                         <input name="nombres" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                       </div>
-                      <div class="mb-3">
+                      <div class="col-md-4">
                         <label for="exampleInputPassword1" class="form-label">Ap. Paterno</label>
                         <input name="paterno" type="text" class="form-control" id="exampleInputPassword1" required>
                       </div>
-                      <div class="mb-3">
+                      <div class="col-md-4">
                         <label for="exampleInputPassword1" class="form-label">Ap.Materno</label>
                         <input name="materno" type="text" class="form-control" id="exampleInputPassword1" required>
                       </div>
-                      <div class="mb-3">
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
                         <label for="exampleInputPassword1" class="form-label">Género</label>
                         <select class="form-select" aria-label="Default select example" name="genero" required>
-                        @foreach($genero as $genero)               
-                          <option value="{{$genero->subd_id}}">{{$genero->subd_nombre}}</option>
+                        @foreach($generos as $genero)               
+                          <option value="{{$genero->subd_id}}">{{$genero->subd_nombre}}</option> 
                         @endforeach
                         </select>
                       </div>
-                      <div class="mb-3">
+                      <div class="col-md-6">
                         <label for="exampleInputPassword1" class="form-label">Fecha Naciminento</label>
                         <input name="fec_nac" type="date" class="form-control" id="exampleInputPassword1" required>
                       </div>
-                      <div class="mb-3">
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
                         <label for="exampleInputPassword1" class="form-label">Tipo Documento</label>
                         <select class="form-select" aria-label="Default select example" name="tipo_doc" required>
-                        @foreach($tipo_doc as $tipo_doc)               
+                        @foreach($tipo_docs as $tipo_doc)               
                           <option value="{{$tipo_doc->subd_id}}">{{$tipo_doc->subd_nombre}}</option>
                         @endforeach
                         </select>
                       </div>
-                      <div class="mb-3">
+                      <div class="col-md-4">
                         <label for="exampleInputPassword1" class="form-label">Numero Documento</label>
                         <input name="num_doc" type="number" class="form-control" id="exampleInputPassword1" required>
                       </div>
-                      <div class="mb-3">
+                      <div class="col-md-4">
                         <label for="exampleInputPassword1" class="form-label">Extensión</label>
                         <select class="form-select" aria-label="Default select example" name="extension" required>
-                        @foreach($extension as $extension)               
+                        @foreach($extensions as $extension)               
                           <option value="{{$extension->subd_id}}">{{$extension->subd_nombre}}</option>
                         @endforeach
                         </select>
                       </div>
-                      <div class="mb-3">
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
                         <label for="exampleInputPassword1" class="form-label">Telefono</label>
                         <input name="telefono" type="number" class="form-control" id="exampleInputPassword1">
                       </div>
-                      <div class="mb-3">
+                      <div class="col-md-6">
                         <label for="exampleInputPassword1" class="form-label">Correo Personal</label>
                         <input name="correo" type="email" class="form-control" id="exampleInputPassword1" required>
                       </div>
-                      <div class="mb-3">
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
                         <label for="exampleInputPassword1" class="form-label">Domicilio</label>
                         <input name="domicilio" type="text" class="form-control" id="exampleInputPassword1">
                       </div>
+                    </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Enviar</button>
+                        <button type="submit" class="btn btn-primary">Crear</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                       </div>
                     </div>
@@ -140,7 +172,94 @@
                 </div>
               </div>
             </div>
-
+            <!-- Modal editar -->
+            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edición de Personas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <form action="/Persona" method="POST" id="editForm">
+                  {{ csrf_field() }}
+                  {{ method_field('PUT') }}
+                  <div class="modal-body">
+                    <div class="row">
+                      <input id="per_id" name="per_id" type="hidden">
+                      <div class="col-md-4">
+                        <label for="exampleInputEmail1" class="form-label">Nombres</label>
+                        <input id="per_nombres" name="per_nombres" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="exampleInputPassword1" class="form-label">Ap. Paterno</label>
+                        <input id="per_paterno" name="per_paterno" type="text" class="form-control" id="exampleInputPassword1" required>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="exampleInputPassword1" class="form-label">Ap.Materno</label>
+                        <input id="per_materno" name="per_materno" type="text" class="form-control" id="exampleInputPassword1" required>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label for="exampleInputPassword1" class="form-label">Género</label>
+                        <select class="form-select" aria-label="Default select example" id="per_subd_genero" name="per_subd_genero" required>
+                        @foreach($generos as $genero)               
+                          <option value="{{$genero->subd_id}}">{{$genero->subd_nombre}}</option> 
+                        @endforeach
+                        </select>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="exampleInputPassword1" class="form-label">Fecha Naciminento</label>
+                        <input id="per_fecha_nacimiento" name="per_fecha_nacimiento" type="date" class="form-control" id="exampleInputPassword1" required>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <label for="exampleInputPassword1" class="form-label">Tipo Documento</label>
+                        <select class="form-select" aria-label="Default select example" id="per_subd_documentacion" name="per_subd_documentacion" required>
+                        @foreach($tipo_docs as $tipo_doc)               
+                          <option value="{{$tipo_doc->subd_id}}">{{$tipo_doc->subd_nombre}}</option>
+                        @endforeach
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="exampleInputPassword1" class="form-label">Numero Documento</label>
+                        <input id="per_num_documentacion" name="per_num_documentacion" type="number" class="form-control" id="exampleInputPassword1" required>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="exampleInputPassword1" class="form-label">Extensión</label>
+                        <select class="form-select" aria-label="Default select example" id="per_subd_extension" name="per_subd_extension" required>
+                        @foreach($extensions as $extension)               
+                          <option value="{{$extension->subd_id}}">{{$extension->subd_nombre}}</option>
+                        @endforeach
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label for="exampleInputPassword1" class="form-label">Telefono</label>
+                        <input id="per_telefono" name="per_telefono" type="number" class="form-control" id="exampleInputPassword1">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="exampleInputPassword1" class="form-label">Correo Personal</label>
+                        <input id="per_correo_personal" name="per_correo_personal" type="email" class="form-control" id="exampleInputPassword1" required>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <label for="exampleInputPassword1" class="form-label">Domicilio</label>
+                        <input id="per_domicilio" name="per_domicilio" type="text" class="form-control" id="exampleInputPassword1">
+                      </div>
+                    </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                    </form> 
+                </div>
+              </div>
+            </div>
             <!-- Modal eliminar-->
             <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
@@ -149,7 +268,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Eliminar Persona</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="/Personas" method="POST" id="deleteForm">
+                  <form action="/Persona" method="POST" id="deleteForm">
                   {{ csrf_field() }}
                   {{ method_field('DELETE') }}
                   <div class="modal-body">
@@ -184,7 +303,34 @@ $(document).ready(function() {
 } );
 </script>
 
+<!-- editar -->
+<script type="text/javascript">
+$(document).ready(function(){
+  var table = $('#personas').DataTable();
+  table.on('click', '.edit', function(){
+    $tr = $(this).closest('tr');
+    if ($($tr).hasClass('child')) {
+      $tr = $tr.prev('.parent');
+    }
+    var data = table.row($tr).data();
+    console.log(data);
+    $('#per_nombres').val(data[2]);
+    $('#per_paterno').val(data[3]);
+    $('#per_materno').val(data[4]);
+    $('#per_subd_genero').val(data[5]);
+    $('#per_fecha_nacimiento').val(data[6]);
+    $('#per_subd_documentacion').val(data[9]);
+    $('#per_num_documentacion').val(data[11]);
+    $('#per_subd_extension').val(data[12]);
+    $('#per_telefono').val(data[13]);
+    $('#per_correo_personal').val(data[7]);
+    $('#per_domicilio').val(data[14]);
 
+    $('#editForm').attr('action', '/Persona/'+data[0]);
+    $('#editModal').modal('show');
+  })
+});
+</script>
           
 <!-- eliminar -->
 <script type="text/javascript">
@@ -197,9 +343,10 @@ $(document).ready(function() {
       }
       var data = table.row($tr).data();
   
-      $('#deleteForm').attr('action', '/Personas/'+data[0]);
+      $('#deleteForm').attr('action', '/Persona/'+data[0]);
       $('#deleteModal').modal('show');
     })
   });
 </script>
+
 @endsection

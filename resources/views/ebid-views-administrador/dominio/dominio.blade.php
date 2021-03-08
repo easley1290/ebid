@@ -34,7 +34,7 @@
                                 <td class="">{{ $dominio->dom_id }}</td>
                                 <td class="">{{ $dominio->dom_nombre }}</td>
                                 <td class="">{{ $dominio->dom_descripcion }}</td>
-                                <td><a href="#" class="btn btn-info edit" >Editar</a>
+                                <td width="50px"><a href="#" class="btn btn-info edit" >Editar</a>
                                     <a href="#" class="btn btn-danger text-white delete">Eliminar</a>
                                 </td>
                             </tr>

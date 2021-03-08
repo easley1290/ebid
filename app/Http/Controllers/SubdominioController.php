@@ -51,9 +51,9 @@ class SubdominioController extends Controller
         $subdominio_nuevo->subd_nombre = $request->input('subd_nombre');
         $subdominio_nuevo->subd_descripcion = $request->input('subd_descripcion');
         $subdominio_nuevo->subd_dom_id = $request->input('subd_dom_id');
-        dd($subdominio_nuevo);
         $subdominio_nuevo->save();
-        //return redirect('/Subdominio')->with('success', 'Dato guardado');
+        return redirect('/Subdominio')->with('success', 'Dato guardado');
+
     }
 
     /**

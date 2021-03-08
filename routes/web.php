@@ -47,4 +47,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/login_', function () {return view('ebid-views-login.login');});
 Route::get('/register_', function () {return view('ebid-views-login.register');});
 /***************  PERFIL  ****************** */
-Route::resource('/Personas', PersonaController::class);
+Route::resource('/Persona', PersonaController::class);
