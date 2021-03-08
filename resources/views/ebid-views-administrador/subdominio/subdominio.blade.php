@@ -26,6 +26,7 @@
                               <th>Nombre</th>
                               <th>Descripción</th>
                               <th>Dominio</th>
+                              <th style="display:none">subd_dom_id</th>
                               <th>Acciones</th>
                             </tr>
                           </thead>
@@ -40,6 +41,7 @@
                                   <td class="">{{ $dominio->dom_nombre}}</td>
                                   @endif
                                 @endforeach
+                                <td class="" style="display:none">{{ $subdominio->subd_dom_id}}</td>
                                 <td><a href="#" class="btn btn-info edit" >Editar</a>
                                     <a href="#" class="btn btn-danger text-white delete">Eliminar</a>
                                 </td>
@@ -116,7 +118,7 @@
                       </div>
                       <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Dominio</label>
-                        <select class="form-select" aria-label="Default select example" name="dom_id" id="dom_id">
+                        <select class="form-select" aria-label="Default select example" name="dom_id" id="dom_id" required>
                           @foreach($auxiliar[1] as $dominio)               
                             <option value="{{$dominio->dom_id}}">{{$dominio->dom_nombre}}</option>
                           @endforeach
@@ -185,7 +187,7 @@ $(document).ready(function(){
     console.log(data);
     $('#subd_nombre').val(data[1]);
     $('#subd_descrip').val(data[2]);
-    $('#dom_id').val(data[3]);
+    $('#dom_id').val(data[4]);
 
     $('#editForm').attr('action', '/Subdominio/'+data[0]);
     $('#editModal').modal('show');
