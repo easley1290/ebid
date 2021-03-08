@@ -64,7 +64,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Creación del Dominio</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="{{ route('Subdominio.store') }}" method="POST"> <!-- {{route('Dominio.store')}} -->
+                  <form action="{{ route('subdominio.store') }}" method="POST"> <!-- {{route('Dominio.store')}} -->
                   {{ csrf_field() }}
                   <div class="modal-body">
                       <div class="mb-3">
@@ -73,13 +73,13 @@
                       </div>
                       <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Descripción</label>
-                        <input name="subd_descrip" type="text" class="form-control" id="exampleInputPassword1">
+                        <input name="subd_descripcion" type="text" class="form-control" id="exampleInputPassword1">
                       </div>
                       <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Dominio perteneciente</label>
-                        <select class="form-select" aria-label="Default select example" name="dom_id">
+                        <select class="form-select" aria-label="Default select example" name="subd_dom_id">
                         @foreach($auxiliar[1] as $dominio)               
-                          <option value="{{$dominio->subd_dom_id}}">{{$dominio->dom_nombre}}</option>
+                          <option value="{{$dominio->dom_id}}">{{$dominio->dom_nombre}}</option>
                         @endforeach
                         </select>
                       </div>
@@ -101,7 +101,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Editar Subdominio</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="/Subdominio" method="POST" id="editForm"> <!-- {{route('Dominio.store')}} -->
+                  <form action="/subdominio" method="POST" id="editForm"> <!-- {{route('Dominio.store')}} -->
                   {{ csrf_field() }}
                   {{ method_field('PUT') }}
                   <div class="modal-body">
@@ -139,7 +139,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Eliminar Dominio</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="/Subdominio" method="POST" id="deleteForm"> <!-- {{route('Dominio.store')}} -->
+                  <form action="/subdominio" method="POST" id="deleteForm"> <!-- {{route('Dominio.store')}} -->
                   {{ csrf_field() }}
                   {{ method_field('DELETE') }}
                   <div class="modal-body">
@@ -184,7 +184,7 @@ $(document).ready(function(){
     console.log(data);
     $('#subd_nombre').val(data[1]);
     $('#subd_descrip').val(data[2]);
-    $('#dom_id').val(data[3]);
+    $('#subd_dom_id').val(data[3]);
 
     $('#editForm').attr('action', '/Subdominio/'+data[0]);
     $('#editModal').modal('show');

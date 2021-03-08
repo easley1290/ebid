@@ -1,10 +1,10 @@
 @extends('ebid-views-administrador.componentes.link')
 </head>
-<body class="header-fixed sidebar-fixed sidebar-dark header-light" id="body">
+<body class="header-fixed sidebar-fixed sidebar-dark header-light sidebar-minified-out" id="body">
   
   <div class="wrapper">
         <aside class="left-sidebar bg-sidebar">
-          <div id="sidebar" class="sidebar sidebar-with-footer">
+          <div id="sidebar" class="sidebar">
             <!-- Aplication Brand -->
             <div class="app-brand">
               <a href="/" title="Sleek Dashboard">
@@ -82,7 +82,7 @@
                               </a>
                             </li>
                             <li >
-                              <a class="sidenav-item-link" href="{{ route('Subdominio.index') }}">
+                              <a class="sidenav-item-link" href="{{ route('subdominio.index') }}">
                                 <span class="nav-text">Subdominios</span>                             
                               </a>
                             </li>   
@@ -209,7 +209,7 @@
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#portal"
                       aria-expanded="false" aria-controls="portal">
                       <i class="mdi mdi-monitor"></i>
-                      <span class="nav-text">Portal</span> <b class="caret"></b>
+                      <span class="nav-text">Portal Web</span> <b class="caret"></b>
                     </a>
                     <ul  class="collapse"  id="portal"
                       data-parent="#sidebar-menu">

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DominioController;
 use App\Http\Controllers\SubdominioController;
-use App\Http\Controllers\UnidadController;
+use App\Http\Controllers\InstitucionController;
 use App\Http\Controllers\PersonaController;
 
 /*
@@ -28,7 +28,8 @@ Route::get('/administracion', function () {
 });
 
 /***********Rutas Informacion de la institucion**********/
-Route::resource('/unidad', UnidadController::class);
+Route::resource('/institucion', InstitucionController::class);
+
 /*Route::get('/administracion', function () {
     return view('ebid-views-admin.home');
 });*/
@@ -37,7 +38,7 @@ Route::resource('/unidad', UnidadController::class);
 /***********Rutas dominio**********/
 Route::resource('/Dominio', DominioController::class);
 /***********Rutas Subdominio**********/
-Route::resource('/Subdominio', SubDominioController::class);
+Route::resource('/subdominio', SubdominioController::class);
 
 
 /***************  LOGIN  ****************** */
