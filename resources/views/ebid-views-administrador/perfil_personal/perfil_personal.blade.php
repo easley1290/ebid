@@ -27,6 +27,7 @@
                               <th>Correo</th>
                               <th>Tipo Doc.</th>
                               <th>Numero Doc</th>
+                              <th>Acciones</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -40,23 +41,23 @@
                                 <td class="">{{ $persona->per_correo_personal}}</td>
                                 
                                 @foreach($tipo_doc as $subdominio)
-                                    @if($subdominio->subd_id == $persona->per_subd_documentacion)
+                                    @if($subdominio->subd_id === $persona->per_subd_documentacion)
                                     <td class="">{{ $subdominio->subd_nombre}}</td>
                                     @endif
                                 @endforeach
                                 </td>
                                 <td class="">{{ $persona->per_num_documentacion}}
                                 @foreach($extension as $subdominio)
-                                    @if($subdominio->subd_id == $persona->per_subd_extension)
+                                    @if($subdominio->subd_id === $persona->per_subd_extension)
                                     {{ $subdominio->subd_nombre}}
                                     @endif
                                 @endforeach
                                 </td>
-                                <td><a href="#" class="btn btn-info edit" >Editar</a>
+                                <td><a href="#" class="btn btn-info" >Editar</a>
                                     <a href="#" class="btn btn-danger text-white delete">Eliminar</a>
                                 </td>
                             </tr>
-                            @endforeach
+                          @endforeach
                           </tbody>
                         </table>
                       </div>
@@ -91,7 +92,7 @@
                         <label for="exampleInputPassword1" class="form-label">Género</label>
                         <select class="form-select" aria-label="Default select example" name="genero" required>
                         @foreach($genero as $genero)               
-                          <option value="{{$genero->subd_id}}">{{$genero->subd_nombre}}</option>
+                          <option value="{{$genero->subd_id}}">{{$genero->subd_nombre}}</option> 
                         @endforeach
                         </select>
                       </div>
@@ -202,4 +203,5 @@ $(document).ready(function() {
     })
   });
 </script>
+
 @endsection

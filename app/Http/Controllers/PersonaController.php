@@ -29,7 +29,7 @@ class PersonaController extends Controller
         return  view('ebid-views-administrador.perfil_personal.perfil_personal',
                 compact('personas','genero','tipo_doc','extension'));
     }
-
+ 
     /**
      * Show the form for creating a new resource.
      *

@@ -61,7 +61,7 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Creación del Dominio</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Creación de Subdominio</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <form action="{{ route('Subdominio.store') }}" method="POST"> <!-- {{route('Dominio.store')}} -->
@@ -73,15 +73,16 @@
                       </div>
                       <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Descripción</label>
-                        <input name="subd_descrip" type="text" class="form-control" id="exampleInputPassword1">
+                        <input name="subd_descripcion" type="text" class="form-control" id="exampleInputPassword1">
                       </div>
                       <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Dominio perteneciente</label>
-                        <select class="form-select" aria-label="Default select example" name="dom_id">
+                        <select class="form-select" aria-label="Default select example" name="subd_dom_id" id="subd_dom_id">
                         @foreach($auxiliar[1] as $dominio)               
-                          <option value="{{$dominio->subd_dom_id}}">{{$dominio->dom_nombre}}</option>
+                          <option value="{{$dominio->dom_id}}">{{$dominio->dom_nombre}}</option>
                         @endforeach
                         </select>
+                        <!-- <input type="text" class="form-control" name="subd_dom_id" id="subd_dom_id"> -->
                       </div>
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -117,7 +118,7 @@
                         <label for="exampleInputPassword1" class="form-label">Dominio</label>
                         <select class="form-select" aria-label="Default select example" name="dom_id" id="dom_id">
                           @foreach($auxiliar[1] as $dominio)               
-                            <option value="{{$dominio->subd_dom_id}}">{{$dominio->dom_nombre}}</option>
+                            <option value="{{$dominio->dom_id}}">{{$dominio->dom_nombre}}</option>
                           @endforeach
                         </select>
                       </div>
