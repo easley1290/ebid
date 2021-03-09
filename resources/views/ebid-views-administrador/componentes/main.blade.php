@@ -187,6 +187,11 @@
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
                             <li>
+                              <a class="sidenav-item-link" href="{{ route('UnidadAcademica.index') }}">
+                                <span class="nav-text">Unidad Académica</span>
+                              </a>
+                            </li>
+                            <li>
                               <a class="sidenav-item-link" href="index.html">
                                 <span class="nav-text">Especialidades</span>
                               </a>
@@ -220,8 +225,8 @@
                               </a>
                             </li>
                             <li >
-                              <a class="sidenav-item-link" href="analytics.html">
-                                <span class="nav-text">Programa de enseñanza</span>                             
+                              <a class="sidenav-item-link" href="{{ route('Institucion.index') }}">
+                                <span class="nav-text">Institución</span>                             
                               </a>
                             </li> 
                             <li >

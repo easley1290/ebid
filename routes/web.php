@@ -5,6 +5,8 @@ use App\Http\Controllers\DominioController;
 use App\Http\Controllers\SubdominioController;
 use App\Http\Controllers\UnidadController;
 use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\InstitucionController;
+use App\Http\Controllers\UnidadAcademicaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +49,7 @@ Route::get('/login_', function () {return view('ebid-views-login.login');});
 Route::get('/register_', function () {return view('ebid-views-login.register');});
 /***************  PERFIL  ****************** */
 Route::resource('/Persona', PersonaController::class);
+/***************  Institucion  ****************** */
+Route::resource('/Institucion', InstitucionController::class);
+/***************  UnidadAcademica  ****************** */
+Route::resource('/UnidadAcademica', UnidadAcademicaController::class);
