@@ -9,7 +9,7 @@
 <body>
     <header id="header" class="fixed-top ">
         <div class="container d-flex align-items-center justify-content-between">
-            <a href="/" class="logo"><img src="{{ asset('assets/img/logo1.png') }}" alt="" class="img-fluid"></a>
+            <a href="/" class="logo"><img src="{{ asset('assets/img/logo1.jpg') }}" alt="" class="img-fluid"></a>
             <nav class="nav-menu d-none d-lg-block">
                 <ul><li class="{{ asset('deberia enviar active con una variable') }}"><a href="/">Inicio</a></li>
                 <li class="drop-down"><a href="">Nosotros</a>

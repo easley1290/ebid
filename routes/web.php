@@ -7,6 +7,11 @@ use App\Http\Controllers\UnidadController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\InstitucionController;
 use App\Http\Controllers\UnidadAcademicaController;
+use App\Http\Controllers\CarreraController;
+use App\Http\Controllers\SemestreController;
+use App\Http\Controllers\EspecialidadController;
+use App\Http\Controllers\MateriaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -53,3 +58,11 @@ Route::resource('/Persona', PersonaController::class);
 Route::resource('/Institucion', InstitucionController::class);
 /***************  UnidadAcademica  ****************** */
 Route::resource('/UnidadAcademica', UnidadAcademicaController::class);
+/***************  Carrera  ****************** */
+Route::resource('/Carrera', CarreraController::class);
+/***************  Semestre  ****************** */
+Route::resource('/Semestre', SemestreController::class);
+/***************  Especialidad  ****************** */
+Route::resource('/Especialidad', EspecialidadController::class);
+/***************  Materia  ****************** */
+Route::resource('/Materia', MateriaController::class);
