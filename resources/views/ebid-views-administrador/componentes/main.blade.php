@@ -184,17 +184,27 @@
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
                             <li>
-                              <a class="sidenav-item-link" href="index.html">
+                              <a class="sidenav-item-link" href="{{ route('UnidadAcademica.index') }}">
+                                <span class="nav-text">Unidad Académica</span>
+                              </a>
+                            </li>
+                            <li>
+                              <a class="sidenav-item-link" href="{{ route('Especialidad.index') }}">
                                 <span class="nav-text">Especialidades</span>
                               </a>
                             </li>
+                            <li>
+                              <a class="sidenav-item-link" href="{{ route('Carrera.index') }}">
+                                <span class="nav-text">Carreras</span>
+                              </a>
+                            </li>
                             <li >
-                              <a class="sidenav-item-link" href="analytics.html">
+                              <a class="sidenav-item-link" href="{{ route('Semestre.index') }}">
                                 <span class="nav-text">Semestres</span>                             
                               </a>
                             </li> 
                             <li >
-                              <a class="sidenav-item-link" href="analytics.html">
+                              <a class="sidenav-item-link" href="{{ route('Materia.index') }}">
                                 <span class="nav-text">Materias</span>                             
                               </a>
                             </li>   
