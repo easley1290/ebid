@@ -79,11 +79,7 @@
                       </div>
                       <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Dominio perteneciente</label>
-<<<<<<< HEAD
-                        <select class="form-select" aria-label="Default select example" name="subd_dom_id">
-=======
                         <select class="form-select" aria-label="Default select example" name="subd_dom_id" id="subd_dom_id">
->>>>>>> f53a0c6d6bddc720c78cd156d68759b925e81e02
                         @foreach($auxiliar[1] as $dominio)               
                           <option value="{{$dominio->dom_id}}">{{$dominio->dom_nombre}}</option>
                         @endforeach
@@ -191,11 +187,7 @@ $(document).ready(function(){
     console.log(data);
     $('#subd_nombre').val(data[1]);
     $('#subd_descrip').val(data[2]);
-<<<<<<< HEAD
-    $('#subd_dom_id').val(data[3]);
-=======
     $('#dom_id').val(data[4]);
->>>>>>> f53a0c6d6bddc720c78cd156d68759b925e81e02
 
     $('#editForm').attr('action', '/Subdominio/'+data[0]);
     $('#editModal').modal('show');

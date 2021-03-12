@@ -10,8 +10,7 @@ class InstitucionController extends Controller
 {
     public function index()
     {
-        $institucion = Institucion::all();
-        return view('ebid-views-administrador.institucion')->with('institucion', $institucion);
+        
     }
 
     /**

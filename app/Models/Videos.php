@@ -5,32 +5,40 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property int $gal_id
- * @property string $gal_ua_id
- * @property string $gal_direccion
- * @property string $gal_descripcion
+ * @property int $vid_id
+ * @property string $vid_ua_id
+ * @property string $vid_titulo
+ * @property string $vid_url
+ * @property int $vid_subd_estado
  * @property UnidadAcademica $unidadAcademica
  */
-class Galeria extends Model
+class Videos extends Model
 {
     /**
      * The table associated with the model.
      * 
      * @var string
      */
-    protected $table = 'galeria';
+    protected $table = 'videos';
 
     /**
      * The primary key for the model.
      * 
      * @var string
      */
-    protected $primaryKey = 'gal_id';
+    protected $primaryKey = 'vid_id';
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     * 
+     * @var bool
+     */
+    public $incrementing = false;
 
     /**
      * @var array
      */
-    protected $fillable = ['gal_ua_id', 'gal_titulo', 'gal_direccion', 'gal_subd_estado'];
+    protected $fillable = ['vid_ua_id', 'vid_titulo', 'vid_url', 'vid_subd_estado'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -44,6 +52,6 @@ class Galeria extends Model
      */
     public function unidadAcademica()
     {
-        return $this->belongsTo('App\Models\UnidadAcademica', 'gal_ua_id', 'ua_id');
+        return $this->belongsTo('App\Models\UnidadAcademica', 'vid_ua_id', 'ua_id');
     }
 }
