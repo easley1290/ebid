@@ -1,10 +1,10 @@
 @extends('ebid-views-administrador.componentes.link')
 </head>
-<body class="header-fixed sidebar-fixed sidebar-dark header-light" id="body">
+<body class="header-fixed sidebar-fixed sidebar-dark header-light sidebar-minified-out" id="body">
   
   <div class="wrapper">
         <aside class="left-sidebar bg-sidebar">
-          <div id="sidebar" class="sidebar sidebar-with-footer">
+          <div id="sidebar" class="sidebar">
             <!-- Aplication Brand -->
             <div class="app-brand">
               <a href="/" title="Sleek Dashboard">
@@ -31,9 +31,6 @@
             <div class="sidebar-scrollbar">
               <!-- sidebar menu -->
               <ul class="nav sidebar-inner" id="sidebar-menu">
-                  
-                
-                
                   <!----------------------------INICIO---------------------------------->
                   <li  class="has-sub" >
                     <a class="sidenav-item-link" href="/administracion">
@@ -82,7 +79,7 @@
                               </a>
                             </li>
                             <li >
-                              <a class="sidenav-item-link" href="{{ route('Subdominio.index') }}">
+                              <a class="sidenav-item-link" href="{{ route('subdominio.index') }}">
                                 <span class="nav-text">Subdominios</span>                             
                               </a>
                             </li>   
@@ -224,33 +221,39 @@
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#portal"
                       aria-expanded="false" aria-controls="portal">
                       <i class="mdi mdi-monitor"></i>
-                      <span class="nav-text">Portal</span> <b class="caret"></b>
+                      <span class="nav-text">Admón. Portal web</span> <b class="caret"></b>
                     </a>
                     <ul  class="collapse"  id="portal"
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
                             <li>
-                              <a class="sidenav-item-link" href="index.html">
+                              <a class="sidenav-item-link" href="{{ route('quienessomos.index') }}">
                                 <span class="nav-text">Quienes Somos</span>
                               </a>
                             </li>
-                            <li >
-                              <a class="sidenav-item-link" href="{{ route('Institucion.index') }}">
-                                <span class="nav-text">Institución</span>                             
+                            <li>
+                              <a class="sidenav-item-link" href="analytics.html">
+                                <span class="nav-text">Programa de enseñanza</span>                             
                               </a>
                             </li> 
-                            <li >
-                              <a class="sidenav-item-link" href="analytics.html">
-                                <span class="nav-text">Galeria</span>                             
-                              </a>
-                            </li>  
-                            <li >
-                              <a class="sidenav-item-link" href="analytics.html">
+                              
+                            <li>
+                              <a class="sidenav-item-link" href="{{ route('noticias.index') }}">
                                 <span class="nav-text">Noticias</span>                             
                               </a>
                             </li> 
-                            <li >
-                              <a class="sidenav-item-link" href="analytics.html">
+                            <li>
+                              <a class="sidenav-item-link" href="{{ route('galeria.index') }}">
+                                <span class="nav-text">Galeria</span>                             
+                              </a>
+                            </li>
+                            <li>
+                              <a class="sidenav-item-link" href="{{ route('videos.index') }}">
+                                <span class="nav-text">Videos</span>                             
+                              </a>
+                            </li>
+                            <li>
+                              <a class="sidenav-item-link" href="{{ route('contactos.index') }}">
                                 <span class="nav-text">Contactos</span>                             
                               </a>
                             </li>   
@@ -361,14 +364,14 @@
                   <li class="dropdown user-menu">
                     <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                       <img src="{{ asset('assets/img/counts-img.jpg') }}" class="user-image" alt="User Image" />
-                      <span class="d-none d-lg-inline-block">{{auth()->user()->name}}</span>
+                      <span class="d-none d-lg-inline-block">{{ auth()->user()->name }}</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
                       <!-- User image -->
                       <li class="dropdown-header">
                         <div class="d-inline-block">
-                          {{auth()->user()->name}}
-                          <small class="pt-1">{{auth()->user()->email}}</small>
+                          {{ auth()->user()->name }}
+                          <small class="pt-1">{{ auth()->user()->email }}</small>
                         </div>
                       </li>
 

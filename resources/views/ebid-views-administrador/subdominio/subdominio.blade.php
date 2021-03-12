@@ -66,7 +66,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Creación de Subdominio</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="{{ route('Subdominio.store') }}" method="POST"> <!-- {{route('Dominio.store')}} -->
+                  <form action="{{ route('subdominio.store') }}" method="POST"> <!-- {{route('Dominio.store')}} -->
                   {{ csrf_field() }}
                   <div class="modal-body">
                       <div class="mb-3">
@@ -104,7 +104,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Editar Subdominio</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="/Subdominio" method="POST" id="editForm"> <!-- {{route('Dominio.store')}} -->
+                  <form action="/subdominio" method="POST" id="editForm"> <!-- {{route('Dominio.store')}} -->
                   {{ csrf_field() }}
                   {{ method_field('PUT') }}
                   <div class="modal-body">
@@ -142,7 +142,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Eliminar Dominio</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="/Subdominio" method="POST" id="deleteForm"> <!-- {{route('Dominio.store')}} -->
+                  <form action="/subdominio" method="POST" id="deleteForm"> <!-- {{route('Dominio.store')}} -->
                   {{ csrf_field() }}
                   {{ method_field('DELETE') }}
                   <div class="modal-body">

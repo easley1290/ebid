@@ -3,8 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DominioController;
 use App\Http\Controllers\SubdominioController;
-use App\Http\Controllers\UnidadController;
 use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\PortalAdminQSController;
+use App\Http\Controllers\PortalAdminNoticeController;
+use App\Http\Controllers\PortalAdminContactController;
+use App\Http\Controllers\PortalAdminGalleryController;
+use App\Http\Controllers\PortalAdminVideosController;
+
 use App\Http\Controllers\InstitucionController;
 use App\Http\Controllers\UnidadAcademicaController;
 use App\Http\Controllers\CarreraController;
@@ -34,17 +39,19 @@ Route::get('/administracion', function () {
     return view('ebid-views-administrador.home');
 });
 
-/***********Rutas Informacion de la institucion**********/
-Route::resource('/unidad', UnidadController::class);
-/*Route::get('/administracion', function () {
-    return view('ebid-views-admin.home');
-});*/
+/***********Rutas Administracion de Portal Web**********/
+Route::prefix('administracion')->group(function () {
+    Route::resource('/quienessomos', PortalAdminQSController::class);
+    Route::resource('/contactos', PortalAdminContactController::class);
+    Route::resource('/noticias', PortalAdminNoticeController::class);
+    Route::resource('/galeria', PortalAdminGalleryController::class);
+    Route::resource('/videos', PortalAdminVideosController::class);
+});
 
-//Route::resource('/Prueba', PruebaController::class);
 /***********Rutas dominio**********/
 Route::resource('/Dominio', DominioController::class);
 /***********Rutas Subdominio**********/
-Route::resource('/Subdominio', SubDominioController::class);
+Route::resource('/subdominio', SubdominioController::class);
 
 
 /***************  LOGIN  ****************** */

@@ -45,8 +45,9 @@ class SubdominioController extends Controller
             'subd_descripcion' => 'required',
             'subd_dom_id' => 'required',
         ]);
+        
         $subdominio_nuevo = new Subdominios;
-
+        
         $subdominio_nuevo->subd_nombre = $request->input('subd_nombre');
         $subdominio_nuevo->subd_descripcion = $request->input('subd_descripcion');
         $subdominio_nuevo->subd_dom_id = $request->input('subd_dom_id');
