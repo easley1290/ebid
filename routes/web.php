@@ -11,7 +11,7 @@ use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\SemestreController;
 use App\Http\Controllers\EspecialidadController;
 use App\Http\Controllers\MateriaController;
-
+use App\Http\Controllers\PensumController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,3 +66,5 @@ Route::resource('/Semestre', SemestreController::class);
 Route::resource('/Especialidad', EspecialidadController::class);
 /***************  Materia  ****************** */
 Route::resource('/Materia', MateriaController::class);
+/***************  Pensum  ****************** */
+Route::resource('/Pensum', PensumController::class);

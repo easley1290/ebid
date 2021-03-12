@@ -181,7 +181,7 @@
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#materias"
                       aria-expanded="false" aria-controls="materias">
                       <i class="mdi mdi-school"></i>
-                      <span class="nav-text">Materias</span> <b class="caret"></b>
+                      <span class="nav-text">Area Académica</span> <b class="caret"></b>
                     </a>
                     <ul  class="collapse"  id="materias"
                       data-parent="#sidebar-menu">
@@ -211,6 +211,11 @@
                                 <span class="nav-text">Materias</span>                             
                               </a>
                             </li>   
+                            <li >
+                              <a class="sidenav-item-link" href="{{ route('Pensum.index') }}">
+                                <span class="nav-text">Pensum</span>                             
+                              </a>
+                            </li>  
                       </div>
                     </ul>
                   </li>
