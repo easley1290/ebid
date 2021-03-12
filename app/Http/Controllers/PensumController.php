@@ -106,6 +106,7 @@ class PensumController extends Controller
         $pensum_edit->pen_sem_id = $request->input('pen_sem_id');
         $pensum_edit->pen_subd_estado = $request->input('pen_subd_estado');
         $pensum_edit->save();
+        
         return redirect('/Pensum')->with('success', 'Dato guardado');
     }
 
