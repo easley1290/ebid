@@ -52,7 +52,7 @@ class SubdominioController extends Controller
         $subdominio_nuevo->subd_descripcion = $request->input('subd_descripcion');
         $subdominio_nuevo->subd_dom_id = $request->input('subd_dom_id');
         $subdominio_nuevo->save();
-        return redirect('/Subdominio')->with('success', 'Dato guardado');
+        return redirect()->route('subdominio.index')->with('success', 'Dato guardado');
 
     }
 
@@ -98,7 +98,7 @@ class SubdominioController extends Controller
         $subdominio_edit->subd_descripcion = $request->input('subd_descrip');
         $subdominio_edit->subd_dom_id = $request->input('dom_id');
         $subdominio_edit->save();
-        return redirect('/Subdominio')->with('success', 'Dato actualizado');
+        return redirect()->route('subdominio.index')->with('success', 'Dato actualizado');
     }
 
     /**
@@ -112,7 +112,7 @@ class SubdominioController extends Controller
         $dominio_delete = Subdominios::find($id);
 
         $dominio_delete->delete();
-        return redirect('/Subdominio')->with('success', 'Dato eliminado');
+        return redirect()->route('subdominio.index')->with('success', 'Dato eliminado');
     
     }
 

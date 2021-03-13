@@ -77,7 +77,7 @@ class PersonaController extends Controller
         $persona_nuevo->per_subd_estado =       '1';
         $persona_nuevo->save();
 
-        return redirect('/Persona');
+        return redirect()->route('Persona.index');
     }
 
     /**
@@ -141,7 +141,7 @@ class PersonaController extends Controller
         $persona_edit->per_subd_estado = '1';
 
         $persona_edit->save();
-        return redirect('/Persona');
+        return redirect()->route('Persona.index');
     }
 
     /**
@@ -155,6 +155,6 @@ class PersonaController extends Controller
         $persona_delete = Personas::find($id);
 
         $persona_delete->delete();
-        return redirect('/Persona');
+        return redirect()->route('Persona.index');
     }
 }
