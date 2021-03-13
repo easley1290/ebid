@@ -52,7 +52,7 @@ Route::prefix('administracion')->group(function () {
 /***********Rutas dominio**********/
 Route::resource('/Dominio', DominioController::class);
 /***********Rutas Subdominio**********/
-Route::resource('/subdominio', SubdominioController::class);
+Route::resource('/Subdominio', SubdominioController::class);
 
 
 /***************  LOGIN  ****************** */

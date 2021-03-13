@@ -79,7 +79,7 @@
                               </a>
                             </li>
                             <li >
-                              <a class="sidenav-item-link" href="{{ route('subdominio.index') }}">
+                              <a class="sidenav-item-link" href="{{ route('Subdominio.index') }}">
                                 <span class="nav-text">Subdominios</span>                             
                               </a>
                             </li>   
