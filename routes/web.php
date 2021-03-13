@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DominioController;
 use App\Http\Controllers\SubdominioController;
 use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\PersonaInsController;
+use App\Http\Controllers\ContraseñaController;
 use App\Http\Controllers\PortalAdminQSController;
 use App\Http\Controllers\PortalAdminNoticeController;
 use App\Http\Controllers\PortalAdminContactController;
@@ -62,6 +64,8 @@ Route::get('/login_', function () {return view('ebid-views-login.login');});
 Route::get('/register_', function () {return view('ebid-views-login.register');});
 /***************  PERFIL  ****************** */
 Route::resource('/Persona', PersonaController::class);
+Route::resource('/PersonaInstitucional', PersonaInsController::class);
+Route::resource('/Contrasenia', ContraseñaController::class);
 /***************  Institucion  ****************** */
 Route::resource('/Institucion', InstitucionController::class);
 /***************  UnidadAcademica  ****************** */

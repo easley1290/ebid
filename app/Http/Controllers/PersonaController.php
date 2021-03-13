@@ -68,6 +68,7 @@ class PersonaController extends Controller
             
             $persona_nuevo = new Personas;
 
+<<<<<<< HEAD
             $persona_nuevo->per_ua_id =             'UA-EA0001';
             $persona_nuevo->per_nombres =           $request->nombres;
             $persona_nuevo->per_paterno =           $request->paterno;
@@ -87,6 +88,24 @@ class PersonaController extends Controller
         catch (Throwable $e){
             return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
         }
+=======
+        $persona_nuevo->per_ua_id =             'UA-EA0001';
+        $persona_nuevo->per_nombres =           $request->nombres;
+        $persona_nuevo->per_paterno =           $request->paterno;
+        $persona_nuevo->per_materno =           $request->materno;
+        $persona_nuevo->per_num_documentacion = $request->num_doc;
+        $persona_nuevo->per_fecha_nacimiento =  $request->fec_nac;
+        $persona_nuevo->per_telefono =          $request->telefono;
+        $persona_nuevo->per_correo_personal =   $request->correo;
+        $persona_nuevo->per_domicilio =         $request->domicilio;
+        $persona_nuevo->per_subd_documentacion =$request->tipo_doc;
+        $persona_nuevo->per_subd_extension =    $request->extension;
+        $persona_nuevo->per_subd_genero =       $request->genero;
+        $persona_nuevo->per_subd_estado =       '1';
+        $persona_nuevo->save();
+
+        return redirect()->route('Persona.index');
+>>>>>>> d6c885a892256c9b2f743394341bbd8f19c6275f
     }
 
     /**
@@ -137,6 +156,7 @@ class PersonaController extends Controller
 
             $persona_edit = Personas::find($id);
 
+<<<<<<< HEAD
             $persona_edit->per_nombres = $request->input('per_nombres');
             $persona_edit->per_paterno = $request->input('per_paterno');
             $persona_edit->per_materno = $request->input('per_materno');
@@ -155,6 +175,10 @@ class PersonaController extends Controller
         catch (Throwable $e){
             return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
         }
+=======
+        $persona_edit->save();
+        return redirect()->route('Persona.index');
+>>>>>>> d6c885a892256c9b2f743394341bbd8f19c6275f
     }
 
     /**
@@ -165,6 +189,7 @@ class PersonaController extends Controller
      */
     public function destroy($id)
     {
+<<<<<<< HEAD
         try{
             $persona_delete = Personas::find($id);
             $persona_delete->delete();
@@ -173,5 +198,11 @@ class PersonaController extends Controller
         catch (Throwable $e){
             return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
         }
+=======
+        $persona_delete = Personas::find($id);
+
+        $persona_delete->delete();
+        return redirect()->route('Persona.index');
+>>>>>>> d6c885a892256c9b2f743394341bbd8f19c6275f
     }
 }

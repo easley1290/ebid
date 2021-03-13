@@ -103,10 +103,15 @@
                               </a>
                             </li>
                             <li >
-                              <a class="sidenav-item-link" href="analytics.html">
+                              <a class="sidenav-item-link" href="{{route('PersonaInstitucional.index')}}">
                                 <span class="nav-text">Institucional</span>                             
                               </a>
-                            </li>   
+                            </li> 
+                            <li >
+                              <a class="sidenav-item-link" href="{{route('Contrasenia.index')}}">
+                                <span class="nav-text">Cambiar Contraseña</span>                             
+                              </a>
+                            </li> 
                       </div>
                     </ul>
                   </li>
