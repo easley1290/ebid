@@ -98,7 +98,7 @@
                       <div class="sub-menu">
                             <li>
                               <a class="sidenav-item-link" href="{{route('Persona.index')}}">
-                                <span class="nav-text">Personal</span>
+                                <span class="nav-text">Personas</span>
                                 
                               </a>
                             </li>
@@ -171,12 +171,12 @@
                             </li>
                             <li >
                               <a class="sidenav-item-link" href="{{ route('ValidarComprobante.index') }}">
-                                <span class="nav-text">Validar Comprobante</span>                             
+                                <span class="nav-text">Validar Comprobantes</span>                             
                               </a>
                             </li> 
                             <li >
                               <a class="sidenav-item-link" href="{{ route('RegistroComprobante.index') }}">
-                                <span class="nav-text">Estudiantes inscritos</span>                             
+                                <span class="nav-text">Comprobantes Validados</span>                             
                               </a>
                             </li>   
                       </div>

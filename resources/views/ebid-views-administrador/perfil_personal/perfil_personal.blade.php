@@ -33,7 +33,7 @@
                     <!-- Recent Order Table -->
                     <div class="card card-table-border-none" id="recent-orders">
                     <div class="card-header">
-                          <div class="col-md-9"><h4 class="row">Listado de las personas registradas en la Intitución</h4></div>
+                          <div class="col-md-9"><h4 class="row">Listado de las personas registradas</h4></div>
                           <div class="col-md-3"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                               <span class="mdi mdi-comment-plus"></span>&nbsp;Agregar una persona
                           </button></div>
@@ -72,13 +72,13 @@
                                 <td class="" style="display:none">{{ $persona->per_fecha_nacimiento}}</td>
                                 
                                 <td class="">{{ $persona->email}}</td>
-                                
-                                @foreach($tipo_docs as $subdominio)
-                                    @if($subdominio->subd_id === $persona->per_subd_documentacion)
-                                    <td class="">{{ $subdominio->subd_nombre}}</td>
-                                    @endif
-                                @endforeach
-                                
+                                <td class="">
+                                  @foreach($tipo_docs as $subdominio)
+                                      @if($subdominio->subd_id === $persona->per_subd_documentacion)
+                                      {{ $subdominio->subd_nombre}}
+                                      @endif
+                                  @endforeach
+                                </td>
                                 <td class="" style="display:none">{{ $persona->per_subd_documentacion}}</td>
                                 <td class="">{{ $persona->per_num_documentacion}}
                                 @foreach($extensions as $subdominio)
@@ -111,7 +111,7 @@
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Creación de Personas</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Creación de Persona</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div> 
                   <form action="{{ route('Persona.store') }}" method="POST">
@@ -197,7 +197,7 @@
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edición de Personas</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edición de Persona</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <form action="/Persona" method="POST" id="editForm">
