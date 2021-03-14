@@ -88,16 +88,17 @@ class ContraseñaController extends Controller
         $contraseña = Personas::select('*')
                     ->where('per_id','=',$id)
                     ->first();
-            
-        
+        $texto_hashed= $contraseña->password;
+        $texto_normal= $request->input('per_contraseña_antigua');
+    
         if(isset($request->per_contraseña_antigua))
         {
-            if($request->input('per_contraseña_antigua') == $contraseña->per_contrasenia)
+            if(Hash::check($texto_normal,$texto_hashed))
             {
                 if($request->input('contraseña_nueva') == $request->input('contraseña_nueva1'))
                 {
                     $persona_edit = Personas::find($id);
-                    $persona_edit->per_contrasenia = $request->input('contraseña_nueva');
+                    $persona_edit->password = Hash::make($request->input('contraseña_nueva'));
                     $persona_edit->save();
                     return redirect()->route('Contrasenia.index')->with('success', 'Contraseña Guardada');
                 }
@@ -117,7 +118,7 @@ class ContraseñaController extends Controller
             if($request->input('contraseña_nueva') == $request->input('contraseña_nueva1'))
             {
                 $persona_edit = Personas::find($id);
-                $persona_edit->per_contrasenia = $request->input('contraseña_nueva');
+                $persona_edit->password = Hash::make($request->input('contraseña_nueva'));
                 $persona_edit->save();
                 return redirect()->route('PersonaInstitucional.index')->with('success', 'Contraseña Guardada');
             }

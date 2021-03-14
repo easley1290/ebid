@@ -69,7 +69,8 @@ class PersonaController extends Controller
         $persona_nuevo->per_num_documentacion = $request->num_doc;
         $persona_nuevo->per_fecha_nacimiento =  $request->fec_nac;
         $persona_nuevo->per_telefono =          $request->telefono;
-        $persona_nuevo->per_correo_personal =   $request->correo;
+        $persona_nuevo->name = $request->input('nombres').' '.$request->input('paterno').' '.$request->input('materno');
+        $persona_nuevo->email =                 $request->correo;
         $persona_nuevo->per_domicilio =         $request->domicilio;
         $persona_nuevo->per_subd_documentacion =$request->tipo_doc;
         $persona_nuevo->per_subd_extension =    $request->extension;
@@ -133,12 +134,13 @@ class PersonaController extends Controller
         $persona_edit->per_num_documentacion = $request->input('per_num_documentacion');
         $persona_edit->per_fecha_nacimiento = $request->input('per_fecha_nacimiento');
         $persona_edit->per_telefono = $request->input('per_telefono');
-        $persona_edit->per_correo_personal = $request->input('per_correo_personal');
+        $persona_edit->name = $request->input('per_nombres').' '.$request->input('per_paterno').' '.$request->input('per_materno');
+        $persona_edit->email = $request->input('per_correo_personal');
         $persona_edit->per_domicilio = $request->input('per_domicilio');
         $persona_edit->per_subd_documentacion = $request->input('per_subd_documentacion');
         $persona_edit->per_subd_extension = $request->input('per_subd_extension');
         $persona_edit->per_subd_genero = $request->input('per_subd_genero');
-        $persona_edit->per_subd_estado = '1';
+        $persona_edit->per_subd_estado = '7';
 
         $persona_edit->save();
         return redirect()->route('Persona.index');

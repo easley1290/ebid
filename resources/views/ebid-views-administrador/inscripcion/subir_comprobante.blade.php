@@ -12,11 +12,11 @@
                     <!-- Recent Order Table -->
                     <div class="card card-table-border-none" id="recent-orders">
                       <div class="card-header justify-content-between">
-                        <h2>Tabla de Datos Institucionales</h2>
-                        <!-- Button trigger modal 
+                        <h2>Subir Comprobante</h2>
+                        <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Crear Datos Institucionales
-                        </button>-->
+                        Nuevo Comprobante
+                        </button>
                       </div>
                       <div class="card-body pt-0 pb-5">
                         <table id="personas" class="table card-table table-responsive table-responsive-large" style="width:100%">
@@ -27,27 +27,29 @@
                               <th style="display:none">nombre</th>
                               <th style="display:none">ap_pat</th>
                               <th style="display:none">ap_m</th>
-                              <th>Codigo Institucional</th>
-                              <th>Correo Institucional</th>
-                              <th>Foto</th>
-                              <th style="display:none">c</th>
+                              <th>Estado</th>
+                              <th>Comprobante</th>
                               <th>Acciones</th>
                             </tr>
                           </thead>
                           <tbody>
-                          @foreach($personas as $persona)
+                          @foreach($estudiantes as $estudiante)
                             <tr>
-                                <td class="" style="display:none">{{ $persona->per_id}}</td>
-                                <td class="" width="30%">{{ $persona->name}}</td>
-                                <td class="" style="display:none">{{ $persona->per_nombres}}</td>
-                                <td class="" style="display:none">{{ $persona->per_paterno}}</td>
-                                <td class="" style="display:none">{{ $persona->per_materno}}</td>
-                                <td class="" width="10%">{{ $persona->per_codigo_institucional}}</td>
-                                <td class="" width="10%">{{ $persona->per_correo_institucional}}</td>
-                                <td class="" width="15%"><img src="{{$persona->per_foto_personal}}" width="100%"></td>
-                                <td class="" style="display:none">{{ $persona->per_contrasenia}}</td>
-                                <td width="35%"><a href="#" class="btn btn-info edit" >Editar</a>
-                                    <a href="#" class="btn btn-success text-white edit_con">Cambiar Contraseña</a>
+                                <td class="" style="display:none">{{ $estudiante->est_id}}</td>
+                                <td class="" width="30%">{{ $estudiante->name}}</td>
+                                <td class="" style="display:none">{{ $estudiante->per_nombres}}</td>
+                                <td class="" style="display:none">{{ $estudiante->per_paterno}}</td>
+                                <td class="" style="display:none">{{ $estudiante->per_materno}}</td>
+                                <td class="" width="20%">
+                                  @foreach($estado as $estado)
+                                      @if($estado->subd_id === $estudiante->est_subd_estado)
+                                      {{ $estado->subd_nombre}}
+                                      @endif
+                                  @endforeach
+                                </td>
+                                <td class="" width="20%"><a href="{{asset($estudiante->est_comprobante)}}" target="_blank">Comprobante</a></td>
+                                <td width="30%"><a href="#" class="btn btn-info edit" >Editar</a>
+                                    <a href="#" class="btn btn-danger text-white delete">Eliminar</a>
                                 </td>
                             </tr>
                           @endforeach
@@ -58,15 +60,55 @@
                   
             </div>
      
+            <!-- Modal crear-->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Creación de Comprobante</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <form action="{{ route('Comprobante.store') }}" method="POST" enctype="multipart/form-data">
+                  {{ csrf_field() }}
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <label for="exampleInputEmail1" class="form-label">Nombres</label>
+                        <input name="nombres" type="text" class="form-control" value="{{auth()->user()->per_nombres}}" required readonly="readonly">
+                      </div>
+                      <div class="col-md-4">
+                        <label for="exampleInputPassword1" class="form-label">Ap. Paterno</label>
+                        <input name="paterno" type="text" class="form-control" value="{{auth()->user()->per_paterno}}" required readonly="readonly">
+                      </div>
+                      <div class="col-md-4">
+                        <label for="exampleInputPassword1" class="form-label">Ap.Materno</label>
+                        <input name="materno" type="text" class="form-control" value="{{auth()->user()->per_materno}}" required readonly="readonly">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label for="exampleInputPassword1" class="form-label">Comprobante</label>
+                        <input id="comprobante" name="comprobante" type="file" class="form-control">
+                      </div>
+                    </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Crear</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                    </form>
+                </div>
+              </div>
+            </div>
             <!-- Modal editar -->
             <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edición de Datos</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edición de Comprobante</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="/PersonaInstitucional" method="POST" id="editForm" enctype="multipart/form-data">
+                  <form action="/Comprobante" method="POST" id="editForm" enctype="multipart/form-data">
                   {{ csrf_field() }}
                   {{ method_field('PUT') }}
                   <div class="modal-body">
@@ -74,35 +116,24 @@
                       <input id="per_id" name="per_id" type="hidden">
                       <div class="col-md-4">
                         <label for="exampleInputEmail1" class="form-label">Nombres</label>
-                        <input id="per_nombres" name="per_nombres" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required readonly="readonly">
+                        <input id="per_nombres" name="per_nombres" type="text" class="form-control" readonly="readonly" required>
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputPassword1" class="form-label">Ap. Paterno</label>
-                        <input id="per_paterno" name="per_paterno" type="text" class="form-control" id="exampleInputPassword1" required readonly="readonly">
+                        <input id="per_paterno" name="per_paterno" type="text" class="form-control" readonly="readonly" required>
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputPassword1" class="form-label">Ap.Materno</label>
-                        <input id="per_materno" name="per_materno" type="text" class="form-control" id="exampleInputPassword1" required readonly="readonly">
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <label for="exampleInputPassword1" class="form-label">Codigo Institucional</label>
-                        <input id="per_codigo_institucional" name="per_codigo_institucional" type="test" class="form-control" id="exampleInputPassword1" required>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <label for="exampleInputPassword1" class="form-label">Correo Institucional</label>
-                        <input id="per_correo_institucional" name="per_correo_institucional" type="email" class="form-control" id="exampleInputPassword1" required>
+                        <input id="per_materno" name="per_materno" type="text" class="form-control" readonly="readonly" required>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-6">
-                        <label for="exampleInputPassword1" class="form-label">Foto</label>
-                        <input id="per_foto_personal" name="per_foto_personal" type="file" class="form-control">
+                        <label for="exampleInputPassword1" class="form-label">Comprobante</label>
+                        <input id="comprobante" name="comprobante" type="file" class="form-control">
                       </div>
                     </div>
+                    
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Guardar</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
@@ -112,54 +143,20 @@
                 </div>
               </div>
             </div>
-            <!-- Modal editar contraseña-->
-            <div class="modal fade" id="editconModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edición de Datos</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <form action="/Contraseña" method="POST" id="editconForm">
-                  {{ csrf_field() }}
-                  {{ method_field('PUT') }}
-                  <div class="modal-body">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <label for="exampleInputPassword1" class="form-label">Contraseña Nueva</label>
-                        <input id="contraseña_nueva" name="contraseña_nueva" type="password" class="form-control" required>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <label for="exampleInputPassword1" class="form-label">Repetir Contraseña</label>
-                        <input id="contraseña_nueva1" name="contraseña_nueva1" type="password" class="form-control" required>
-                      </div>
-                    </div>
-                      <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                      </div>
-                    </div>
-                    </form> 
-                </div>
-              </div>
-            </div>
-
-            <!-- Modal eliminar
+            <!-- Modal eliminar-->
             <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Persona</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Comprobante</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="/Persona" method="POST" id="deleteForm">
+                  <form action="/Comprobante" method="POST" id="deleteForm">
                   {{ csrf_field() }}
                   {{ method_field('DELETE') }}
                   <div class="modal-body">
                       <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Esta seguro de eliminar la persona?</label>
+                        <label for="exampleInputEmail1" class="form-label">Esta seguro de eliminar el comprobante?</label>
                       </div>
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Borrar</button>
@@ -169,7 +166,7 @@
                     </form>
                 </div>
               </div>
-            </div>-->
+            </div>
 
             
 
@@ -203,36 +200,14 @@ $(document).ready(function(){
     $('#per_nombres').val(data[2]);
     $('#per_paterno').val(data[3]);
     $('#per_materno').val(data[4]);
-    $('#per_codigo_institucional').val(data[5]);
-    $('#per_correo_institucional').val(data[6]);
-    //$('#per_foto_personal').val(data[7]);
 
-    $('#editForm').attr('action', '/PersonaInstitucional/'+data[0]);
+    $('#editForm').attr('action', '/Comprobante/'+data[0]);
     $('#editModal').modal('show');
   })
 });
 </script>
-
-<!-- editar contraseña -->
-<script type="text/javascript">
-  $(document).ready(function(){
-    var table = $('#personas').DataTable();
-    table.on('click', '.edit_con', function(){
-      $tr = $(this).closest('tr');
-      if ($($tr).hasClass('child')) {
-        $tr = $tr.prev('.parent');
-      }
-      var data = table.row($tr).data();
-      console.log(data);
-      //$('#contraseña_nueva').val(data[8]);
-  
-      $('#editconForm').attr('action', '/Contrasenia/'+data[0]);
-      $('#editconModal').modal('show');
-    })
-  });
-  </script>
           
-<!-- eliminar 
+<!-- eliminar -->
 <script type="text/javascript">
   $(document).ready(function(){
     var table = $('#personas').DataTable();
@@ -243,10 +218,10 @@ $(document).ready(function(){
       }
       var data = table.row($tr).data();
   
-      $('#deleteForm').attr('action', '/Persona/'+data[0]);
+      $('#deleteForm').attr('action', '/Comprobante/'+data[0]);
       $('#deleteModal').modal('show');
     })
   });
-</script>-->
+</script>
 
 @endsection

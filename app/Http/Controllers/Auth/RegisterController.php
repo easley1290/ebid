@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\Models\User;
+use App\Models\Personas;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -50,8 +50,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'per_nombres' => ['required', 'string', 'max:255'],
+            'per_paterno' => ['required', 'string', 'max:255'],
+            'per_materno' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:personas'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -64,10 +66,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        return Personas::create([
+            'per_ua_id' =>'UA-EA0001',
+            'per_nombres' => $data['per_nombres'],
+            'per_paterno' => $data['per_paterno'],
+            'per_materno' => $data['per_materno'],
+            'name' => $data['per_nombres'].' '.$data['per_paterno'].' '.$data['per_materno'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'per_subd_estado' => '7',
         ]);
     }
 }

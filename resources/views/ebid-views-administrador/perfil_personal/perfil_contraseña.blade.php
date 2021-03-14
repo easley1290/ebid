@@ -15,7 +15,7 @@
                         <h2>Cambio de contraseña</h2>
                       </div>
                       <div class="card-body pt-0 pb-5">
-                        <form action="{{route('Contrasenia.update', auth()->user()->id)}}" method="POST" id="editForm">
+                        <form action="{{route('Contrasenia.update', auth()->user()->per_id)}}" method="POST" id="editForm">
                             @csrf
                             @method('PUT')
                             <div class="">

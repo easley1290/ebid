@@ -44,24 +44,21 @@
                           @foreach($personas as $persona)
                             <tr>
                                 <td class="" style="display:none">{{ $persona->per_id}}</td>
-                                <td class="">{{ $persona->per_nombres}}
-                                             {{ $persona->per_paterno}}
-                                             {{ $persona->per_materno}}
-                                </td>
+                                <td class="">{{ $persona->name}}</td>
                                 <td class="" style="display:none">{{ $persona->per_nombres}}</td>
                                 <td class="" style="display:none">{{ $persona->per_paterno}}</td>
                                 <td class="" style="display:none">{{ $persona->per_materno}}</td>
                                 <td class="" style="display:none">{{ $persona->per_subd_genero}}</td>
                                 <td class="" style="display:none">{{ $persona->per_fecha_nacimiento}}</td>
                                 
-                                <td class="">{{ $persona->per_correo_personal}}</td>
+                                <td class="">{{ $persona->email}}</td>
                                 
                                 @foreach($tipo_docs as $subdominio)
                                     @if($subdominio->subd_id === $persona->per_subd_documentacion)
                                     <td class="">{{ $subdominio->subd_nombre}}</td>
                                     @endif
                                 @endforeach
-                                </td>
+                                
                                 <td class="" style="display:none">{{ $persona->per_subd_documentacion}}</td>
                                 <td class="">{{ $persona->per_num_documentacion}}
                                 @foreach($extensions as $subdominio)

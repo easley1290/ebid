@@ -20,6 +20,9 @@ use App\Http\Controllers\EspecialidadController;
 use App\Http\Controllers\MateriaController;
 
 use App\Http\Controllers\PensumController;
+use App\Http\Controllers\SubirComprobanteController;
+use App\Http\Controllers\ValidarComprobanteController;
+use App\Http\Controllers\RegistroComprobanteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +69,11 @@ Route::get('/register_', function () {return view('ebid-views-login.register');}
 Route::resource('/Persona', PersonaController::class);
 Route::resource('/PersonaInstitucional', PersonaInsController::class);
 Route::resource('/Contrasenia', ContraseñaController::class);
+/***************  Comprobante  ****************** */
+Route::resource('/Comprobante', SubirComprobanteController::class);
+Route::resource('/ValidarComprobante', ValidarComprobanteController::class);
+Route::resource('/RegistroComprobante', RegistroComprobanteController::class);
+
 /***************  Institucion  ****************** */
 Route::resource('/Institucion', InstitucionController::class);
 /***************  UnidadAcademica  ****************** */

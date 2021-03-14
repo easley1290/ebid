@@ -3,7 +3,7 @@
 <body class="" id="body">
   <div class="container d-flex flex-column justify-content-between vh-100">
   <div class="row justify-content-center mt-5">
-    <div class="col-md-10">
+    <div class="col-md-8">
       <div class="card">
         <div class="card-header bg-primary">
           <div class="app-brand">
@@ -25,9 +25,27 @@
             @csrf
             <div class="row">
               <div class="form-group col-md-12 mb-4">
-                <input id="name" type="text" class="form-control input-lg @error('name') is-invalid @enderror" 
-                name="name" value="{{ old('name') }}" placeholder="Nombres" required autocomplete="name" autofocus>
-                @error('name')
+                <input id="per_nombres" type="text" class="form-control input-lg @error('per_nombres') is-invalid @enderror" 
+                name="per_nombres" value="{{ old('per_nombres') }}" placeholder="Nombres" required autocomplete="per_nombres" autofocus>
+                @error('per_nombres')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+              </div>
+              <div class="form-group col-md-12 mb-4">
+                <input id="per_paterno" type="text" class="form-control input-lg @error('per_paterno') is-invalid @enderror" 
+                name="per_paterno" value="{{ old('per_paterno') }}" placeholder="Apellido Paterno" required autocomplete="per_paterno">
+                @error('per_paterno')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+              </div>
+              <div class="form-group col-md-12 mb-4">
+                <input id="per_materno" type="text" class="form-control input-lg @error('per_materno') is-invalid @enderror" 
+                name="per_materno" value="{{ old('per_materno') }}" placeholder="Apellido materno" required autocomplete="per_materno">
+                @error('per_materno')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>

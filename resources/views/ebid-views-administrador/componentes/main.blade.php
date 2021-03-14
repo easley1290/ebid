@@ -164,14 +164,19 @@
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
                             <li>
-                              <a class="sidenav-item-link" href="index.html">
-                                <span class="nav-text">Registro</span>
+                              <a class="sidenav-item-link" href="{{ route('Comprobante.index') }}">
+                                <span class="nav-text">Subir Comprobante</span>
                                 
                               </a>
                             </li>
                             <li >
-                              <a class="sidenav-item-link" href="analytics.html">
-                                <span class="nav-text">Validación</span>                             
+                              <a class="sidenav-item-link" href="{{ route('ValidarComprobante.index') }}">
+                                <span class="nav-text">Validar Comprobante</span>                             
+                              </a>
+                            </li> 
+                            <li >
+                              <a class="sidenav-item-link" href="{{ route('RegistroComprobante.index') }}">
+                                <span class="nav-text">Estudiantes inscritos</span>                             
                               </a>
                             </li>   
                       </div>
@@ -368,8 +373,8 @@
                   <!-- User Account -->
                   <li class="dropdown user-menu">
                     <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                      <img src="{{ asset('assets/img/counts-img.jpg') }}" class="user-image" alt="User Image" />
-                      <span class="d-none d-lg-inline-block">{{ auth()->user()->name }}</span>
+                      <img src="{{ auth()->user()->per_foto_personal }}" class="user-image" alt="User Image" />
+                      <span class="d-none d-lg-inline-block">{{ auth()->user()->name}}</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
                       <!-- User image -->
