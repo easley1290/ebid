@@ -16,14 +16,19 @@ class SemestreController extends Controller
      */
     public function index()
     {
-        $semestres = Semestre::all();
-        $estados = Subdominios::select('subdominios.*')
-        ->where('subd_dom_id','=',1)
-        ->get();
-        $aux = [$semestres, $estados];
-        return view('ebid-views-administrador.semestre.semestre')->with('aux', $aux);
+        try{
+            $semestres = Semestre::all();
+            $estados = Subdominios::select('subdominios.*')
+            ->where('subd_dom_id','=',1)
+            ->get();
+            $aux = [$semestres, $estados];
+            return view('ebid-views-administrador.semestre.semestre')->with('aux', $aux);
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
-
+ 
     /**
      * Show the form for creating a new resource.
      *
@@ -42,17 +47,22 @@ class SemestreController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'sem_nombre' => 'required',
-            'sem_descripcion' => 'required',
-            'sem_subd_estado' => 'required',
-        ]);
-        $semestre_nuevo = new Semestre;
-        $semestre_nuevo->sem_nombre = $request->input('sem_nombre');
-        $semestre_nuevo->sem_descripcion = $request->input('sem_descripcion');
-        $semestre_nuevo->sem_subd_estado = $request->input('sem_subd_estado');
-        $semestre_nuevo->save();
-        return redirect('/Semestre')->with('success', 'Dato guardado');
+        try{
+            $this->validate($request,[
+                'sem_nombre' => 'required',
+                'sem_descripcion' => 'required',
+                'sem_subd_estado' => 'required',
+            ]);
+            $semestre_nuevo = new Semestre;
+            $semestre_nuevo->sem_nombre = $request->input('sem_nombre');
+            $semestre_nuevo->sem_descripcion = $request->input('sem_descripcion');
+            $semestre_nuevo->sem_subd_estado = $request->input('sem_subd_estado');
+            $semestre_nuevo->save();
+            return redirect()->route('Semestre.index')->with('status', 'Se CREÓ el semestre con exito');
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 
     /**
@@ -86,17 +96,22 @@ class SemestreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'sem_nombre' => 'required',
-            'sem_descripcion' => 'required',
-            'sem_subd_estado' => 'required',
-        ]);
-        $semestre_edit = Semestre::find($id);
-        $semestre_edit->sem_nombre = $request->input('sem_nombre');
-        $semestre_edit->sem_descripcion = $request->input('sem_descripcion');
-        $semestre_edit->sem_subd_estado = $request->input('sem_subd_estado');
-        $semestre_edit->save();
-        return redirect('/Semestre')->with('success', 'Dato guardado');
+        try{
+            $this->validate($request,[
+                'sem_nombre' => 'required',
+                'sem_descripcion' => 'required',
+                'sem_subd_estado' => 'required',
+            ]);
+            $semestre_edit = Semestre::find($id);
+            $semestre_edit->sem_nombre = $request->input('sem_nombre');
+            $semestre_edit->sem_descripcion = $request->input('sem_descripcion');
+            $semestre_edit->sem_subd_estado = $request->input('sem_subd_estado');
+            $semestre_edit->save();
+            return redirect()->route('Semestre.index')->with('status', 'Se MODIFICÓ el semestre con exito');
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 
     /**
@@ -107,8 +122,13 @@ class SemestreController extends Controller
      */
     public function destroy($id)
     {
-        $semestre_delete = Semestre::find($id);
-        $semestre_delete->delete();
-        return redirect('/Semestre')->with('success', 'Dato eliminado');
+        try{
+            $semestre_delete = Semestre::find($id);
+            $semestre_delete->delete();
+            return redirect()->route('Semestre.index')->with('status', 'Se ELIMINÓ el semestre con exito');
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 }

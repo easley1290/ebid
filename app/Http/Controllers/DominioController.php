@@ -15,8 +15,13 @@ class DominioController extends Controller
      */
     public function index()
     {
-        $dominios = Dominios::all();
-        return view("ebid-views-administrador.dominio.dominio")->with('dominios', $dominios);
+        try{
+            $dominios = Dominios::all();
+            return view('ebid-views-administrador.dominio.dominio')->with('dominios', $dominios);
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 
     /**
@@ -37,16 +42,21 @@ class DominioController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'dom_nombre' => 'required',
-            'dom_descripcion' => 'required',
-        ]);
-        $dominio_nuevo = new Dominios;
+        try{
+            $this->validate($request,[
+                'dom_nombre' => 'required',
+                'dom_descripcion' => 'required',
+            ]);
+            $dominio_nuevo = new Dominios;
 
-        $dominio_nuevo->dom_nombre = $request->input('dom_nombre');
-        $dominio_nuevo->dom_descripcion = $request->input('dom_descripcion');
-        $dominio_nuevo->save();
-        return redirect('/Dominio')->with('success', 'Dato guardado');
+            $dominio_nuevo->dom_nombre = $request->input('dom_nombre');
+            $dominio_nuevo->dom_descripcion = $request->input('dom_descripcion');
+            $dominio_nuevo->save();
+            return redirect()->route('Dominio.index')->with('status', 'Se CREÓ el Dominio con exito');
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
 
     }
 
@@ -81,16 +91,21 @@ class DominioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'dom_nombre' => 'required',
-            'dom_descripcion' => 'required',
-        ]);
-        $dominio_edit = Dominios::find($id);
+        try{
+            $this->validate($request,[
+                'dom_nombre' => 'required',
+                'dom_descripcion' => 'required',
+            ]);
+            $dominio_edit = Dominios::find($id);
 
-        $dominio_edit->dom_nombre = $request->input('dom_nombre');
-        $dominio_edit->dom_descripcion = $request->input('dom_descripcion');
-        $dominio_edit->save();
-        return redirect('/Dominio')->with('success', 'Dato actualizado');
+            $dominio_edit->dom_nombre = $request->input('dom_nombre');
+            $dominio_edit->dom_descripcion = $request->input('dom_descripcion');
+            $dominio_edit->save();
+            return redirect()->route('Dominio.index')->with('status', 'Se MODIFICÓ el Dominio con exito');
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 
     /**
@@ -101,9 +116,13 @@ class DominioController extends Controller
      */
     public function destroy($id)
     {
-        $dominio_delete = Dominios::find($id);
-
-        $dominio_delete->delete();
-        return redirect('/Dominio')->with('success', 'Dato eliminado');
+        try{
+            $dominio_delete = Dominios::find($id);
+            $dominio_delete->delete();
+            return redirect()->route('Dominio.index')->with('status', 'Se ELIMINÓ el Dominio con exito');
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 }

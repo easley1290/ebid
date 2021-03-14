@@ -6,17 +6,83 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
                   <!-- Top Statistics -->
             <br>
+            @if (session('status'))
+                <div class="alert alert-success"> 
+                    {{ session('status') }}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="container">
               <div class="row">
-                <div class="col-12">             
+                <div class="col-12">     
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="card text-white mb-3 bg-primary">
+                              <div class="card-header bg-primary" style="font-size: 30px;">PORTAL WEB - ADMINISTRACION DE PENSUMS</div>
+                          </div>
+                      </div>
+                  </div>  
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="card card-table-border-none" id="recent-orders">
+                            <div class="card-header">
+                              <div class="col-md-12">
+                                <div class="card text-white mb-3 bg-primary">
+                                  <div class="bg-primary" style="font-size: 25px;text-align: center;">PENSUMS DE LAS CARRERAS O ESPECIALIDADES</div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="card-body pt-0 pb-5">
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <button class="btn btn-warning btn-lg btn-block" data-bs-toggle="modal" data-bs-target="#cdModal">
+                                  <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Coreografía y dirección</button>
+                                </div>
+                                <div class="col-md-4">
+                                  <button class="btn btn-warning btn-lg btn-block" data-bs-toggle="modal" data-bs-target="#pdModal">
+                                  <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Pedagogía de la danza</button>
+                                </div>
+                                <div class="col-md-4">
+                                  <button class="btn btn-warning btn-lg btn-block" data-bs-toggle="modal" data-bs-target="#dcModal">
+                                  <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Danza clásica</button>
+                                </div>
+                              </div>
+                              <br>
+                              <div class="row">
+                                <div class="col-md-2">
+                                  
+                                </div>
+                                <div class="col-md-4">
+                                  <button class="btn btn-warning btn-lg btn-block" data-bs-toggle="modal" data-bs-target="#dfModal">
+                                  <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Danza folklórica</button>
+                                </div>
+                                <div class="col-md-4">
+                                  <button class="btn btn-warning btn-lg btn-block" data-bs-toggle="modal" data-bs-target="#dmcModal">
+                                  <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Danza moderna-contemporánea</button>
+                                </div>
+                                <div class="col-md-2">
+                                  
+                                </div>
+                              </div>
+                            </div>
+                          </div>                     
+                      </div>
+                  </div>          
                     <!-- Recent Order Table -->
                     <div class="card card-table-border-none" id="recent-orders">
-                      <div class="card-header justify-content-between">
-                        <h2>Tabla de Pensum</h2>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Agregar materia a un Pensum
-                        </button>
+                    <div class="card-header">
+                          <div class="col-md-9"><h4 class="row">Tabla de materias en pensum de todas las carreras de la Intitución</h4></div>
+                          <div class="col-md-3"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                              <span class="mdi mdi-comment-plus"></span>&nbsp;Agregar materia a pensum
+                          </button></div>
                       </div>
                       <div class="card-body pt-0 pb-5">
                         <table id="pensums" class="table card-table table-responsive table-responsive-large" style="width:100%">
@@ -30,7 +96,7 @@
                               <th>Semestre</th>
                               <th style="display:none">Semestre</th>
                               <th style="display:none">pen_subd_estado</th>
-                              <th>Acciones</th>
+                              <th style="width:200px">Acciones</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -59,8 +125,11 @@
                                 @endforeach
                                 <td class="" style="display:none">{{ $pensum->pen_sem_id}}</td>
                                 <td class="" style="display:none">{{ $pensum->pen_subd_estado}}</td>
-                                <td><a href="#" class="btn btn-info edit" >Editar</a>
-                                    <a href="#" class="btn btn-danger text-white delete">Eliminar</a>
+                                <td style="width:200px">
+                                  <button class="btn btn-success edit">
+                                    <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Modificar</button>
+                                  <button class="btn btn-danger delete">
+                                    <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Eliminar</button>
                                 </td>
                             </tr>
                             @endforeach
@@ -73,6 +142,411 @@
                       <h1>{{$dominio->subd_dom_id}}</h1>
                     @endforeach
                     </div> end Prueba-->
+            </div>
+
+            <!-- Modal carrera CD-->
+            <div class="modal fade" id="cdModal" tabindex="-1" aria-labelledby="cdModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <div class="col-md-12">
+                      <div class="card text-white mb-3 bg-primary">
+                        <div class="bg-primary" style="font-size: 25px;text-align: center;">PENSUM ESPECIALIDAD COREOGRAFÍA Y DIRECCIÓN</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="col-md-12">
+                          <div class="card text-white mb-3 bg-primary">
+                            <div class="bg-primary" style="font-size: 20px;text-align: center;">PRIMER AÑO</div>
+                          </div>
+                        </div>
+                        @foreach ($aux[5] as $materias_cd)
+                        @foreach ($aux[3] as $materias)
+                          @if ($materias->mat_id===$materias_cd->pen_mat_id)
+                            <li type="disc">{{$materias->mat_nombre}}</li>
+                          @endif
+                        @endforeach
+                        @endforeach
+                      </div>
+                      <div class="col-md-6">
+                        <div class="col-md-12">
+                          <div class="card text-white mb-3 bg-primary">
+                            <div class="bg-primary" style="font-size: 20px;text-align: center;">SEGUNDO AÑO</div>
+                          </div>
+                        </div>
+                        @foreach ($aux[6] as $materias_cd)
+                        @foreach ($aux[3] as $materias)
+                          @if ($materias->mat_id===$materias_cd->pen_mat_id)
+                            <li type="disc">{{$materias->mat_nombre}}</li>
+                          @endif
+                        @endforeach
+                        @endforeach
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="col-md-12">
+                          <div class="card text-white mb-3 bg-primary">
+                            <div class="bg-primary" style="font-size: 20px;text-align: center;">TERCER AÑO</div>
+                          </div>
+                        </div>
+                        @foreach ($aux[7] as $materias_cd)
+                        @foreach ($aux[3] as $materias)
+                          @if ($materias->mat_id===$materias_cd->pen_mat_id)
+                            <li type="disc">{{$materias->mat_nombre}}</li>
+                          @endif
+                        @endforeach
+                        @endforeach
+                      </div>
+                      <div class="col-md-6">
+                        <div class="col-md-12">
+                          <div class="card text-white mb-3 bg-primary">
+                            <div class="bg-primary" style="font-size: 20px;text-align: center;">CUARTO AÑO</div>
+                          </div>
+                        </div>
+                        @foreach ($aux[8] as $materias_cd)
+                        @foreach ($aux[3] as $materias)
+                          @if ($materias->mat_id===$materias_cd->pen_mat_id)
+                            <li type="disc">{{$materias->mat_nombre}}</li>
+                          @endif
+                        @endforeach
+                        @endforeach
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal carrera DC-->
+            <div class="modal fade" id="dcModal" tabindex="-1" aria-labelledby="dcModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <div class="col-md-12">
+                      <div class="card text-white mb-3 bg-primary">
+                        <div class="bg-primary" style="font-size: 25px;text-align: center;">PENSUM ESPECIALIDAD DANZA CLÁSICA</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="col-md-12">
+                          <div class="card text-white mb-3 bg-primary">
+                            <div class="bg-primary" style="font-size: 20px;text-align: center;">PRIMER AÑO</div>
+                          </div>
+                        </div>
+                        @foreach ($aux[9] as $materias_cd)
+                        @foreach ($aux[3] as $materias)
+                          @if ($materias->mat_id===$materias_cd->pen_mat_id)
+                            <li type="disc">{{$materias->mat_nombre}}</li>
+                          @endif
+                        @endforeach
+                        @endforeach
+                      </div>
+                      <div class="col-md-6">
+                        <div class="col-md-12">
+                          <div class="card text-white mb-3 bg-primary">
+                            <div class="bg-primary" style="font-size: 20px;text-align: center;">SEGUNDO AÑO</div>
+                          </div>
+                        </div>
+                        @foreach ($aux[10] as $materias_cd)
+                        @foreach ($aux[3] as $materias)
+                          @if ($materias->mat_id===$materias_cd->pen_mat_id)
+                            <li type="disc">{{$materias->mat_nombre}}</li>
+                          @endif
+                        @endforeach
+                        @endforeach
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="col-md-12">
+                          <div class="card text-white mb-3 bg-primary">
+                            <div class="bg-primary" style="font-size: 20px;text-align: center;">TERCER AÑO</div>
+                          </div>
+                        </div>
+                        @foreach ($aux[11] as $materias_cd)
+                        @foreach ($aux[3] as $materias)
+                          @if ($materias->mat_id===$materias_cd->pen_mat_id)
+                            <li type="disc">{{$materias->mat_nombre}}</li>
+                          @endif
+                        @endforeach
+                        @endforeach
+                      </div>
+                      <div class="col-md-6">
+                        <div class="col-md-12">
+                          <div class="card text-white mb-3 bg-primary">
+                            <div class="bg-primary" style="font-size: 20px;text-align: center;">CUARTO AÑO</div>
+                          </div>
+                        </div>
+                        @foreach ($aux[12] as $materias_cd)
+                        @foreach ($aux[3] as $materias)
+                          @if ($materias->mat_id===$materias_cd->pen_mat_id)
+                            <li type="disc">{{$materias->mat_nombre}}</li>
+                          @endif
+                        @endforeach
+                        @endforeach
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal carrera DF-->
+            <div class="modal fade" id="dfModal" tabindex="-1" aria-labelledby="dfModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <div class="col-md-12">
+                      <div class="card text-white mb-3 bg-primary">
+                        <div class="bg-primary" style="font-size: 25px;text-align: center;">PENSUM ESPECIALIDAD DANZA FOLKLÓRICA</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="col-md-12">
+                          <div class="card text-white mb-3 bg-primary">
+                            <div class="bg-primary" style="font-size: 20px;text-align: center;">PRIMER AÑO</div>
+                          </div>
+                        </div>
+                        @foreach ($aux[13] as $materias_cd)
+                        @foreach ($aux[3] as $materias)
+                          @if ($materias->mat_id===$materias_cd->pen_mat_id)
+                            <li type="disc">{{$materias->mat_nombre}}</li>
+                          @endif
+                        @endforeach
+                        @endforeach
+                      </div>
+                      <div class="col-md-6">
+                        <div class="col-md-12">
+                          <div class="card text-white mb-3 bg-primary">
+                            <div class="bg-primary" style="font-size: 20px;text-align: center;">SEGUNDO AÑO</div>
+                          </div>
+                        </div>
+                        @foreach ($aux[14] as $materias_cd)
+                        @foreach ($aux[3] as $materias)
+                          @if ($materias->mat_id===$materias_cd->pen_mat_id)
+                            <li type="disc">{{$materias->mat_nombre}}</li>
+                          @endif
+                        @endforeach
+                        @endforeach
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="col-md-12">
+                          <div class="card text-white mb-3 bg-primary">
+                            <div class="bg-primary" style="font-size: 20px;text-align: center;">TERCER AÑO</div>
+                          </div>
+                        </div>
+                        @foreach ($aux[15] as $materias_cd)
+                        @foreach ($aux[3] as $materias)
+                          @if ($materias->mat_id===$materias_cd->pen_mat_id)
+                            <li type="disc">{{$materias->mat_nombre}}</li>
+                          @endif
+                        @endforeach
+                        @endforeach
+                      </div>
+                      <div class="col-md-6">
+                        <div class="col-md-12">
+                          <div class="card text-white mb-3 bg-primary">
+                            <div class="bg-primary" style="font-size: 20px;text-align: center;">CUARTO AÑO</div>
+                          </div>
+                        </div>
+                        @foreach ($aux[16] as $materias_cd)
+                        @foreach ($aux[3] as $materias)
+                          @if ($materias->mat_id===$materias_cd->pen_mat_id)
+                            <li type="disc">{{$materias->mat_nombre}}</li>
+                          @endif
+                        @endforeach
+                        @endforeach
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal carrera DMC-->
+            <div class="modal fade" id="dmcModal" tabindex="-1" aria-labelledby="dmcModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <div class="col-md-12">
+                      <div class="card text-white mb-3 bg-primary">
+                        <div class="bg-primary" style="font-size: 25px;text-align: center;">PENSUM ESPECIALIDAD DANZA MODERNA-CONTEMPORÁNEA</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="col-md-12">
+                          <div class="card text-white mb-3 bg-primary">
+                            <div class="bg-primary" style="font-size: 20px;text-align: center;">PRIMER AÑO</div>
+                          </div>
+                        </div>
+                        @foreach ($aux[17] as $materias_cd)
+                        @foreach ($aux[3] as $materias)
+                          @if ($materias->mat_id===$materias_cd->pen_mat_id)
+                            <li type="disc">{{$materias->mat_nombre}}</li>
+                          @endif
+                        @endforeach
+                        @endforeach
+                      </div>
+                      <div class="col-md-6">
+                        <div class="col-md-12">
+                          <div class="card text-white mb-3 bg-primary">
+                            <div class="bg-primary" style="font-size: 20px;text-align: center;">SEGUNDO AÑO</div>
+                          </div>
+                        </div>
+                        @foreach ($aux[18] as $materias_cd)
+                        @foreach ($aux[3] as $materias)
+                          @if ($materias->mat_id===$materias_cd->pen_mat_id)
+                            <li type="disc">{{$materias->mat_nombre}}</li>
+                          @endif
+                        @endforeach
+                        @endforeach
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="col-md-12">
+                          <div class="card text-white mb-3 bg-primary">
+                            <div class="bg-primary" style="font-size: 20px;text-align: center;">TERCER AÑO</div>
+                          </div>
+                        </div>
+                        @foreach ($aux[19] as $materias_cd)
+                        @foreach ($aux[3] as $materias)
+                          @if ($materias->mat_id===$materias_cd->pen_mat_id)
+                            <li type="disc">{{$materias->mat_nombre}}</li>
+                          @endif
+                        @endforeach
+                        @endforeach
+                      </div>
+                      <div class="col-md-6">
+                        <div class="col-md-12">
+                          <div class="card text-white mb-3 bg-primary">
+                            <div class="bg-primary" style="font-size: 20px;text-align: center;">CUARTO AÑO</div>
+                          </div>
+                        </div>
+                        @foreach ($aux[20] as $materias_cd)
+                        @foreach ($aux[3] as $materias)
+                          @if ($materias->mat_id===$materias_cd->pen_mat_id)
+                            <li type="disc">{{$materias->mat_nombre}}</li>
+                          @endif
+                        @endforeach
+                        @endforeach
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal carrera PD-->
+            <div class="modal fade" id="pdModal" tabindex="-1" aria-labelledby="pdModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <div class="col-md-12">
+                      <div class="card text-white mb-3 bg-primary">
+                        <div class="bg-primary" style="font-size: 25px;text-align: center;">PENSUM ESPECIALIDAD PEDAGOGÍA DE LA DANZA</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="col-md-12">
+                          <div class="card text-white mb-3 bg-primary">
+                            <div class="bg-primary" style="font-size: 20px;text-align: center;">PRIMER AÑO</div>
+                          </div>
+                        </div>
+                        @foreach ($aux[21] as $materias_cd)
+                        @foreach ($aux[3] as $materias)
+                          @if ($materias->mat_id===$materias_cd->pen_mat_id)
+                            <li type="disc">{{$materias->mat_nombre}}</li>
+                          @endif
+                        @endforeach
+                        @endforeach
+                      </div>
+                      <div class="col-md-6">
+                        <div class="col-md-12">
+                          <div class="card text-white mb-3 bg-primary">
+                            <div class="bg-primary" style="font-size: 20px;text-align: center;">SEGUNDO AÑO</div>
+                          </div>
+                        </div>
+                        @foreach ($aux[22] as $materias_cd)
+                        @foreach ($aux[3] as $materias)
+                          @if ($materias->mat_id===$materias_cd->pen_mat_id)
+                            <li type="disc">{{$materias->mat_nombre}}</li>
+                          @endif
+                        @endforeach
+                        @endforeach
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="col-md-12">
+                          <div class="card text-white mb-3 bg-primary">
+                            <div class="bg-primary" style="font-size: 20px;text-align: center;">TERCER AÑO</div>
+                          </div>
+                        </div>
+                        @foreach ($aux[23] as $materias_cd)
+                        @foreach ($aux[3] as $materias)
+                          @if ($materias->mat_id===$materias_cd->pen_mat_id)
+                            <li type="disc">{{$materias->mat_nombre}}</li>
+                          @endif
+                        @endforeach
+                        @endforeach
+                      </div>
+                      <div class="col-md-6">
+                        <div class="col-md-12">
+                          <div class="card text-white mb-3 bg-primary">
+                            <div class="bg-primary" style="font-size: 20px;text-align: center;">CUARTO AÑO</div>
+                          </div>
+                        </div>
+                        @foreach ($aux[24] as $materias_cd)
+                        @foreach ($aux[3] as $materias)
+                          @if ($materias->mat_id===$materias_cd->pen_mat_id)
+                            <li type="disc">{{$materias->mat_nombre}}</li>
+                          @endif
+                        @endforeach
+                        @endforeach
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
             </div>
      
             <!-- Modal crear-->

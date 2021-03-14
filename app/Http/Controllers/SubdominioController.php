@@ -16,10 +16,15 @@ class SubdominioController extends Controller
      */
     public function index()
     {
-        $subdominios = Subdominios::all();
-        $dominios = Dominios::all();
-        $auxiliar = [$subdominios, $dominios];
-        return view('ebid-views-administrador.subdominio.subdominio')->with('auxiliar', $auxiliar);
+        try{
+            $subdominios = Subdominios::all();
+            $dominios = Dominios::all();
+            $auxiliar = [$subdominios, $dominios];
+            return view('ebid-views-administrador.subdominio.subdominio')->with('auxiliar', $auxiliar);
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 
     /**
@@ -38,8 +43,28 @@ class SubdominioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) 
     {
+<<<<<<< HEAD
+        try{
+            $this->validate($request,[
+                'subd_nombre' => 'required',
+                'subd_descripcion' => 'required',
+                'subd_dom_id' => 'required',
+            ]);
+            
+            $subdominio_nuevo = new Subdominios;
+            
+            $subdominio_nuevo->subd_nombre = $request->input('subd_nombre');
+            $subdominio_nuevo->subd_descripcion = $request->input('subd_descripcion');
+            $subdominio_nuevo->subd_dom_id = $request->input('subd_dom_id');
+            $subdominio_nuevo->save();
+            return redirect()->route('Subdominio.index')->with('status', 'Se CREÓ el Subdominio con exito');
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
+=======
         $this->validate($request,[
             'subd_nombre' => 'required',
             'subd_descripcion' => 'required',
@@ -53,6 +78,7 @@ class SubdominioController extends Controller
         $subdominio_nuevo->subd_dom_id = $request->input('subd_dom_id');
         $subdominio_nuevo->save();
         return redirect()->route('subdominio.index')->with('success', 'Dato guardado');
+>>>>>>> d6c885a892256c9b2f743394341bbd8f19c6275f
 
     }
 
@@ -87,18 +113,31 @@ class SubdominioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'subd_nombre' => 'required',
-            'subd_descrip' => 'required',
-            'dom_id' => 'required',
-        ]);
-        $subdominio_edit = Subdominios::find($id);
+        try{
+            $this->validate($request,[
+                'subd_nombre' => 'required',
+                'subd_descrip' => 'required',
+                'dom_id' => 'required',
+            ]);
+            $subdominio_edit = Subdominios::find($id);
 
+<<<<<<< HEAD
+            $subdominio_edit->subd_nombre = $request->input('subd_nombre');
+            $subdominio_edit->subd_descripcion = $request->input('subd_descrip');
+            $subdominio_edit->subd_dom_id = $request->input('dom_id');
+            $subdominio_edit->save();
+            return redirect()->route('Subdominio.index')->with('status', 'Se MODIFICÓ el Subdominio con exito');
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
+=======
         $subdominio_edit->subd_nombre = $request->input('subd_nombre');
         $subdominio_edit->subd_descripcion = $request->input('subd_descrip');
         $subdominio_edit->subd_dom_id = $request->input('dom_id');
         $subdominio_edit->save();
         return redirect()->route('subdominio.index')->with('success', 'Dato actualizado');
+>>>>>>> d6c885a892256c9b2f743394341bbd8f19c6275f
     }
 
     /**
@@ -109,10 +148,21 @@ class SubdominioController extends Controller
      */
     public function destroy($id)
     {
+<<<<<<< HEAD
+        try{
+            $dominio_delete = Subdominios::find($id);
+            $dominio_delete->delete();
+            return redirect()->route('Subdominio.index')->with('status', 'Se ELIMINÓ el Subdominio con exito');
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
+=======
         $dominio_delete = Subdominios::find($id);
 
         $dominio_delete->delete();
         return redirect()->route('subdominio.index')->with('success', 'Dato eliminado');
+>>>>>>> d6c885a892256c9b2f743394341bbd8f19c6275f
     
     }
 

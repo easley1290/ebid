@@ -16,13 +16,18 @@ class CarreraController extends Controller
      */
     public function index()
     {
-        $carreras = Carreras::all();
-        $uas = UnidadAcademica::all();
-        $estados = Subdominios::select('subdominios.*')
-        ->where('subd_dom_id','=',1)
-        ->get();
-        $aux = [$carreras, $uas, $estados];
-        return view('ebid-views-administrador.carrera.carrera')->with('aux', $aux);
+        try{
+            $carreras = Carreras::all();
+            $uas = UnidadAcademica::all();
+            $estados = Subdominios::select('subdominios.*')
+            ->where('subd_dom_id','=',1)
+            ->get();
+            $aux = [$carreras, $uas, $estados];
+            return view('ebid-views-administrador.carrera.carrera')->with('aux', $aux);
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 
     /**
@@ -43,23 +48,28 @@ class CarreraController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'car_id' => 'required',
-            'car_ua_id' => 'required',
-            'car_nombre' => 'required',
-            'car_descripcion' => 'required',
-            'car_fecha_creacion' => 'required',
-            'car_subd_estado' => 'required',
-        ]);
-        $carrera_nueva = new Carreras;
-        $carrera_nueva->car_id = $request->input('car_id');
-        $carrera_nueva->car_ua_id = $request->input('car_ua_id');
-        $carrera_nueva->car_nombre = $request->input('car_nombre');
-        $carrera_nueva->car_descripcion = $request->input('car_descripcion');
-        $carrera_nueva->car_fecha_creacion = $request->input('car_fecha_creacion');
-        $carrera_nueva->car_subd_estado = $request->input('car_subd_estado');
-        $carrera_nueva->save();
-        return redirect('/Carrera')->with('success', 'Dato guardado');
+        try{
+            $this->validate($request,[
+                'car_id' => 'required',
+                'car_ua_id' => 'required',
+                'car_nombre' => 'required',
+                'car_descripcion' => 'required',
+                'car_fecha_creacion' => 'required',
+                'car_subd_estado' => 'required',
+            ]);
+            $carrera_nueva = new Carreras;
+            $carrera_nueva->car_id = $request->input('car_id');
+            $carrera_nueva->car_ua_id = $request->input('car_ua_id');
+            $carrera_nueva->car_nombre = $request->input('car_nombre');
+            $carrera_nueva->car_descripcion = $request->input('car_descripcion');
+            $carrera_nueva->car_fecha_creacion = $request->input('car_fecha_creacion');
+            $carrera_nueva->car_subd_estado = $request->input('car_subd_estado');
+            $carrera_nueva->save();
+            return redirect()->route('Carrera.index')->with('status', 'Se CREÓ la carrera con exito');
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
 
     }
 
@@ -94,23 +104,28 @@ class CarreraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'car_id' => 'required',
-            'car_ua_id' => 'required',
-            'car_nombre' => 'required',
-            'car_descripcion' => 'required',
-            'car_fecha_creacion' => 'required',
-            'car_subd_estado' => 'required',
-        ]);
-        $carrera_edit = Carreras::find($id);
-        $carrera_edit->car_id = $request->input('car_id');
-        $carrera_edit->car_ua_id = $request->input('car_ua_id');
-        $carrera_edit->car_nombre = $request->input('car_nombre');
-        $carrera_edit->car_descripcion = $request->input('car_descripcion');
-        $carrera_edit->car_fecha_creacion = $request->input('car_fecha_creacion');
-        $carrera_edit->car_subd_estado = $request->input('car_subd_estado');
-        $carrera_edit->save();
-        return redirect('/Carrera')->with('success', 'Dato guardado');
+        try{
+            $this->validate($request,[
+                'car_id' => 'required',
+                'car_ua_id' => 'required',
+                'car_nombre' => 'required',
+                'car_descripcion' => 'required',
+                'car_fecha_creacion' => 'required',
+                'car_subd_estado' => 'required',
+            ]);
+            $carrera_edit = Carreras::find($id);
+            $carrera_edit->car_id = $request->input('car_id');
+            $carrera_edit->car_ua_id = $request->input('car_ua_id');
+            $carrera_edit->car_nombre = $request->input('car_nombre');
+            $carrera_edit->car_descripcion = $request->input('car_descripcion');
+            $carrera_edit->car_fecha_creacion = $request->input('car_fecha_creacion');
+            $carrera_edit->car_subd_estado = $request->input('car_subd_estado');
+            $carrera_edit->save();
+            return redirect()->route('Carrera.index')->with('status', 'Se MODIFICÓ la carrera con exito');
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 
     /**
@@ -121,8 +136,13 @@ class CarreraController extends Controller
      */
     public function destroy($id)
     {
-        $carrera_delete = Carreras::find($id);
-        $carrera_delete->delete();
-        return redirect('/Carrera')->with('success', 'Dato eliminado');
+        try{ 
+            $carrera_delete = Carreras::find($id);
+            $carrera_delete->delete();
+            return redirect()->route('Carrera.index')->with('status', 'Se ELIMINÓ la carrera con exito');
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 }
