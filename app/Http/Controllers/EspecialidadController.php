@@ -15,12 +15,17 @@ class EspecialidadController extends Controller
      */
     public function index()
     {
-        $especialidades = Especialidades::all();
-        $estados = Subdominios::select('subdominios.*')
-        ->where('subd_dom_id','=',1)
-        ->get();
-        $aux = [$especialidades, $estados];
-        return view('ebid-views-administrador.especialidad.especialidad')->with('aux', $aux);
+        try{
+            $especialidades = Especialidades::all();
+            $estados = Subdominios::select('subdominios.*')
+            ->where('subd_dom_id','=',1)
+            ->get();
+            $aux = [$especialidades, $estados];
+            return view('ebid-views-administrador.especialidad.especialidad')->with('aux', $aux);
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 
     /**
@@ -41,17 +46,22 @@ class EspecialidadController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'esp_nombre' => 'required',
-            'esp_descripcion' => 'required',
-            'esp_subd_estado' => 'required',
-        ]);
-        $especialidad_nuevo = new Especialidades;
-        $especialidad_nuevo->esp_nombre = $request->input('esp_nombre');
-        $especialidad_nuevo->esp_descripcion = $request->input('esp_descripcion');
-        $especialidad_nuevo->esp_subd_estado = $request->input('esp_subd_estado');
-        $especialidad_nuevo->save();
-        return redirect('/Especialidad')->with('success', 'Dato guardado');
+        try{
+            $this->validate($request,[
+                'esp_nombre' => 'required',
+                'esp_descripcion' => 'required',
+                'esp_subd_estado' => 'required',
+            ]);
+            $especialidad_nuevo = new Especialidades;
+            $especialidad_nuevo->esp_nombre = $request->input('esp_nombre');
+            $especialidad_nuevo->esp_descripcion = $request->input('esp_descripcion');
+            $especialidad_nuevo->esp_subd_estado = $request->input('esp_subd_estado');
+            $especialidad_nuevo->save();
+            return redirect()->route('Especialidad.index')->with('status', 'Se CREÓ la Especialidad con exito');
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 
     /**
@@ -85,17 +95,22 @@ class EspecialidadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'esp_nombre' => 'required',
-            'esp_descripcion' => 'required',
-            'esp_subd_estado' => 'required',
-        ]);
-        $especialidad_edit = Especialidades::find($id);
-        $especialidad_edit->esp_nombre = $request->input('esp_nombre');
-        $especialidad_edit->esp_descripcion = $request->input('esp_descripcion');
-        $especialidad_edit->esp_subd_estado = $request->input('esp_subd_estado');
-        $especialidad_edit->save();
-        return redirect('/Especialidad')->with('success', 'Dato guardado');
+        try{
+            $this->validate($request,[
+                'esp_nombre' => 'required',
+                'esp_descripcion' => 'required',
+                'esp_subd_estado' => 'required',
+            ]);
+            $especialidad_edit = Especialidades::find($id);
+            $especialidad_edit->esp_nombre = $request->input('esp_nombre');
+            $especialidad_edit->esp_descripcion = $request->input('esp_descripcion');
+            $especialidad_edit->esp_subd_estado = $request->input('esp_subd_estado');
+            $especialidad_edit->save();
+            return redirect()->route('Especialidad.index')->with('status', 'Se MODIFICÓ la Especialidad con exito');
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 
     /**
@@ -106,8 +121,13 @@ class EspecialidadController extends Controller
      */
     public function destroy($id)
     {
-        $especialidad_delete = Especialidades::find($id);
-        $especialidad_delete->delete();
-        return redirect('/Especialidad')->with('success', 'Dato eliminado');
+        try{
+            $especialidad_delete = Especialidades::find($id);
+            $especialidad_delete->delete();
+            return redirect()->route('Especialidad.index')->with('status', 'Se ELIMINÓ la Especialidad con exito');
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 }

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DominioController;
 use App\Http\Controllers\SubdominioController;
 use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\PersonaInsController;
+use App\Http\Controllers\ContraseñaController;
 use App\Http\Controllers\PortalAdminQSController;
 use App\Http\Controllers\PortalAdminNoticeController;
 use App\Http\Controllers\PortalAdminContactController;
@@ -17,6 +19,10 @@ use App\Http\Controllers\SemestreController;
 use App\Http\Controllers\EspecialidadController;
 use App\Http\Controllers\MateriaController;
 
+use App\Http\Controllers\PensumController;
+use App\Http\Controllers\SubirComprobanteController;
+use App\Http\Controllers\ValidarComprobanteController;
+use App\Http\Controllers\RegistroComprobanteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +57,7 @@ Route::prefix('administracion')->group(function () {
 /***********Rutas dominio**********/
 Route::resource('/Dominio', DominioController::class);
 /***********Rutas Subdominio**********/
-Route::resource('/subdominio', SubdominioController::class);
+Route::resource('/Subdominio', SubdominioController::class);
 
 
 /***************  LOGIN  ****************** */
@@ -61,6 +67,13 @@ Route::get('/login_', function () {return view('ebid-views-login.login');});
 Route::get('/register_', function () {return view('ebid-views-login.register');});
 /***************  PERFIL  ****************** */
 Route::resource('/Persona', PersonaController::class);
+Route::resource('/PersonaInstitucional', PersonaInsController::class);
+Route::resource('/Contrasenia', ContraseñaController::class);
+/***************  Comprobante  ****************** */
+Route::resource('/Comprobante', SubirComprobanteController::class);
+Route::resource('/ValidarComprobante', ValidarComprobanteController::class);
+Route::resource('/RegistroComprobante', RegistroComprobanteController::class);
+
 /***************  Institucion  ****************** */
 Route::resource('/Institucion', InstitucionController::class);
 /***************  UnidadAcademica  ****************** */
@@ -73,3 +86,5 @@ Route::resource('/Semestre', SemestreController::class);
 Route::resource('/Especialidad', EspecialidadController::class);
 /***************  Materia  ****************** */
 Route::resource('/Materia', MateriaController::class);
+/***************  Pensum  ****************** */
+Route::resource('/Pensum', PensumController::class);

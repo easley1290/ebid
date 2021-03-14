@@ -6,17 +6,37 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
                   <!-- Top Statistics -->
             <br>
+            @if (session('status'))
+                <div class="alert alert-success"> 
+                    {{ session('status') }}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="container">
               <div class="row">
-                <div class="col-12">             
+                <div class="col-12">      
+                  <div class="row">
+                        <div class="col-md-12">
+                            <div class="card text-white mb-3 bg-primary">
+                                <div class="card-header bg-primary" style="font-size: 30px;">PORTAL WEB - ADMINISTRACIÓN DE SUCURSALES </div>
+                            </div>
+                        </div>
+                    </div>        
                     <!-- Recent Order Table -->
                     <div class="card card-table-border-none" id="recent-orders">
-                      <div class="card-header justify-content-between">
-                        <h2>Tabla de Unidades Académicas</h2>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Crear Unidad Académica
-                        </button>
+                    <div class="card-header">
+                          <div class="col-md-9"><h4 class="row">Listado de las sucursales en la Intitución</h4></div>
+                          <div class="col-md-3"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                              <span class="mdi mdi-comment-plus"></span>&nbsp;Crear nueva sucursal
+                          </button></div>
                       </div>
                       <div class="card-body pt-0 pb-5">
                         <table id="unidadAcademicas" class="table card-table table-responsive table-responsive-large" style="width:100%">
@@ -30,7 +50,7 @@
                               <th>Celular</th>
                               <th>Correo Electrónico</th>
                               <th style="display:none">ua_subd_estado</th>
-                              <th>Acciones</th>
+                              <th style="width:200px">Acciones</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -44,9 +64,11 @@
                                 <td class="">{{ $unidadAcademica->ua_celular}}</td>
                                 <td class="">{{ $unidadAcademica->ua_correo_electronico}}</td>
                                 <td class="" style="display:none">{{ $unidadAcademica->ua_subd_estado}}</td>
-
-                                <td><a href="#" class="btn btn-info edit" >Editar</a>
-                                    <a href="#" class="btn btn-danger text-white delete">Eliminar</a>
+                                <td style="width:200px">
+                                  <button class="btn btn-success edit">
+                                    <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Modificar</button>
+                                  <button class="btn btn-danger delete">
+                                    <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Eliminar</button>
                                 </td>
                             </tr>
                           @endforeach
@@ -100,7 +122,7 @@
                       <div class="col-md-4">
                         <label for="exampleInputPassword1" class="form-label">Celular</label>
                         <input name="ua_celular" type="number" class="form-control" id="exampleInputPassword3" required>
-                      </div>
+                      </div> 
                       <div class="col-md-4">
                         <label for="exampleInputPassword1" class="form-label">Correo Electrónico</label>
                         <input name="ua_correo_electronico" type="email" class="form-control" id="exampleInputPassword4" required>

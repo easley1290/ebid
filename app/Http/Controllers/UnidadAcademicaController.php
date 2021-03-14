@@ -16,13 +16,18 @@ class UnidadAcademicaController extends Controller
      */
     public function index()
     {
-        $unidadAcademicas = UnidadAcademica::all();
-        $institucions = Institucion::all();
-        $estados = Subdominios::select('subdominios.*')
-        ->where('subd_dom_id','=',1)
-        ->get();
-        $aux = [$unidadAcademicas, $institucions, $estados];
-        return view('ebid-views-administrador.unidadAcademica.unidadAcademica')->with('aux', $aux);
+        try{
+            $unidadAcademicas = UnidadAcademica::all();
+            $institucions = Institucion::all();
+            $estados = Subdominios::select('subdominios.*')
+            ->where('subd_dom_id','=',1)
+            ->get();
+            $aux = [$unidadAcademicas, $institucions, $estados];
+            return view('ebid-views-administrador.unidadAcademica.unidadAcademica')->with('aux', $aux);
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 
     /**
@@ -43,28 +48,33 @@ class UnidadAcademicaController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'ua_id' => 'required',
-            'ua_ins_id' => 'required',
-            'ua_nombre' => 'required',
-            'ua_direccion' => 'required',
-            'ua_telefono' => 'required',
-            'ua_celular' => 'required',
-            'ua_correo_electronico' => 'required',
-            'ua_subd_estado' => 'required',
-        ]);
-        $ua_nuevo = new UnidadAcademica;
+        try{
+            $this->validate($request,[
+                'ua_id' => 'required',
+                'ua_ins_id' => 'required',
+                'ua_nombre' => 'required',
+                'ua_direccion' => 'required',
+                'ua_telefono' => 'required',
+                'ua_celular' => 'required',
+                'ua_correo_electronico' => 'required',
+                'ua_subd_estado' => 'required',
+            ]);
+            $ua_nuevo = new UnidadAcademica;
 
-        $ua_nuevo->ua_id = $request->input('ua_id');
-        $ua_nuevo->ua_ins_id = $request->input('ua_ins_id');
-        $ua_nuevo->ua_nombre = $request->input('ua_nombre');
-        $ua_nuevo->ua_direccion = $request->input('ua_direccion');
-        $ua_nuevo->ua_telefono = $request->input('ua_telefono');
-        $ua_nuevo->ua_celular = $request->input('ua_celular');
-        $ua_nuevo->ua_correo_electronico = $request->input('ua_correo_electronico');
-        $ua_nuevo->ua_subd_estado = $request->input('ua_subd_estado');
-        $ua_nuevo->save();
-        return redirect('/UnidadAcademica')->with('success', 'Dato guardado');
+            $ua_nuevo->ua_id = $request->input('ua_id');
+            $ua_nuevo->ua_ins_id = $request->input('ua_ins_id');
+            $ua_nuevo->ua_nombre = $request->input('ua_nombre');
+            $ua_nuevo->ua_direccion = $request->input('ua_direccion');
+            $ua_nuevo->ua_telefono = $request->input('ua_telefono');
+            $ua_nuevo->ua_celular = $request->input('ua_celular'); 
+            $ua_nuevo->ua_correo_electronico = $request->input('ua_correo_electronico');
+            $ua_nuevo->ua_subd_estado = $request->input('ua_subd_estado');
+            $ua_nuevo->save();
+            return redirect()->route('UnidadAcademica.index')->with('status', 'Se CREÓ la Unidad Académica con exito');
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 
     /**
@@ -98,28 +108,33 @@ class UnidadAcademicaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'ua_id' => 'required',
-            'ua_ins_id' => 'required',
-            'ua_nombre' => 'required',
-            'ua_direccion' => 'required',
-            'ua_telefono' => 'required',
-            'ua_celular' => 'required',
-            'ua_correo_electronico' => 'required',
-            'ua_subd_estado' => 'required',
-        ]);
-        $ua_nuevo = UnidadAcademica::find($id);
+        try{
+            $this->validate($request,[
+                'ua_id' => 'required',
+                'ua_ins_id' => 'required',
+                'ua_nombre' => 'required',
+                'ua_direccion' => 'required',
+                'ua_telefono' => 'required',
+                'ua_celular' => 'required',
+                'ua_correo_electronico' => 'required',
+                'ua_subd_estado' => 'required',
+            ]);
+            $ua_nuevo = UnidadAcademica::find($id);
 
-        $ua_nuevo->ua_id = $request->input('ua_id');
-        $ua_nuevo->ua_ins_id = $request->input('ua_ins_id');
-        $ua_nuevo->ua_nombre = $request->input('ua_nombre');
-        $ua_nuevo->ua_direccion = $request->input('ua_direccion');
-        $ua_nuevo->ua_telefono = $request->input('ua_telefono');
-        $ua_nuevo->ua_celular = $request->input('ua_celular');
-        $ua_nuevo->ua_correo_electronico = $request->input('ua_correo_electronico');
-        $ua_nuevo->ua_subd_estado = $request->input('ua_subd_estado');
-        $ua_nuevo->save();
-        return redirect('/UnidadAcademica')->with('success', 'Dato guardado');
+            $ua_nuevo->ua_id = $request->input('ua_id');
+            $ua_nuevo->ua_ins_id = $request->input('ua_ins_id');
+            $ua_nuevo->ua_nombre = $request->input('ua_nombre');
+            $ua_nuevo->ua_direccion = $request->input('ua_direccion');
+            $ua_nuevo->ua_telefono = $request->input('ua_telefono');
+            $ua_nuevo->ua_celular = $request->input('ua_celular');
+            $ua_nuevo->ua_correo_electronico = $request->input('ua_correo_electronico');
+            $ua_nuevo->ua_subd_estado = $request->input('ua_subd_estado');
+            $ua_nuevo->save();
+            return redirect()->route('UnidadAcademica.index')->with('status', 'Se MODIFICÓ la Unidad Académica con exito');
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 
     /**
@@ -130,9 +145,13 @@ class UnidadAcademicaController extends Controller
      */
     public function destroy($id)
     {
-        $ua_delete = UnidadAcademica::find($id);
-
-        $ua_delete->delete();
-        return redirect('/UnidadAcademica')->with('success', 'Dato eliminado');
+        try{
+            $ua_delete = UnidadAcademica::find($id);
+            $ua_delete->delete();
+            return redirect()->route('UnidadAcademica.index')->with('status', 'Se ELIMINÓ la Unidad Académica con exito');
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 }

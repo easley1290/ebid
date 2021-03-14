@@ -6,17 +6,37 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
                   <!-- Top Statistics -->
             <br>
+            @if (session('status'))
+                <div class="alert alert-success"> 
+                    {{ session('status') }}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="container">
               <div class="row">
-                <div class="col-12">             
+                <div class="col-12"> 
+                  <div class="row">
+                        <div class="col-md-12">
+                            <div class="card text-white mb-3 bg-primary">
+                                <div class="card-header bg-primary" style="font-size: 30px;">PORTAL WEB - ADMINISTRACION DE PERSONAS</div>
+                            </div>
+                        </div>
+                    </div>             
                     <!-- Recent Order Table -->
                     <div class="card card-table-border-none" id="recent-orders">
-                      <div class="card-header justify-content-between">
-                        <h2>Tabla de Personas</h2>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Crear Persona
-                        </button>
+                    <div class="card-header">
+                          <div class="col-md-9"><h4 class="row">Listado de las personas registradas</h4></div>
+                          <div class="col-md-3"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                              <span class="mdi mdi-comment-plus"></span>&nbsp;Agregar una persona
+                          </button></div>
                       </div>
                       <div class="card-body pt-0 pb-5">
                         <table id="personas" class="table card-table table-responsive table-responsive-large" style="width:100%">
@@ -37,30 +57,27 @@
                               <th style="display:none">per_subd_extension</th>
                               <th style="display:none">per_telefono</th>
                               <th style="display:none">per_domicilio</th>
-                              <th>Acciones</th>
+                              <th style="width:200px">Acciones</th>
                             </tr>
                           </thead>
                           <tbody>
                           @foreach($personas as $persona)
                             <tr>
                                 <td class="" style="display:none">{{ $persona->per_id}}</td>
-                                <td class="">{{ $persona->per_nombres}}
-                                             {{ $persona->per_paterno}}
-                                             {{ $persona->per_materno}}
-                                </td>
+                                <td class="">{{ $persona->name}}</td>
                                 <td class="" style="display:none">{{ $persona->per_nombres}}</td>
                                 <td class="" style="display:none">{{ $persona->per_paterno}}</td>
                                 <td class="" style="display:none">{{ $persona->per_materno}}</td>
                                 <td class="" style="display:none">{{ $persona->per_subd_genero}}</td>
                                 <td class="" style="display:none">{{ $persona->per_fecha_nacimiento}}</td>
                                 
-                                <td class="">{{ $persona->per_correo_personal}}</td>
-                                
-                                @foreach($tipo_docs as $subdominio)
-                                    @if($subdominio->subd_id === $persona->per_subd_documentacion)
-                                    <td class="">{{ $subdominio->subd_nombre}}</td>
-                                    @endif
-                                @endforeach
+                                <td class="">{{ $persona->email}}</td>
+                                <td class="">
+                                  @foreach($tipo_docs as $subdominio)
+                                      @if($subdominio->subd_id === $persona->per_subd_documentacion)
+                                      {{ $subdominio->subd_nombre}}
+                                      @endif
+                                  @endforeach
                                 </td>
                                 <td class="" style="display:none">{{ $persona->per_subd_documentacion}}</td>
                                 <td class="">{{ $persona->per_num_documentacion}}
@@ -74,8 +91,11 @@
                                 <td class="" style="display:none">{{ $persona->per_subd_extension}}</td>
                                 <td class="" style="display:none">{{ $persona->per_telefono}}</td>
                                 <td class="" style="display:none">{{ $persona->per_domicilio}}</td>
-                                <td><a href="#" class="btn btn-info edit" >Editar</a>
-                                    <a href="#" class="btn btn-danger text-white delete">Eliminar</a>
+                                <td style="width:200px">
+                                  <button class="btn btn-success edit">
+                                    <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Modificar</button>
+                                  <button class="btn btn-danger delete">
+                                    <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Eliminar</button>
                                 </td>
                             </tr>
                           @endforeach
@@ -91,9 +111,9 @@
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Creación de Personas</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Creación de Persona</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
+                  </div> 
                   <form action="{{ route('Persona.store') }}" method="POST">
                   {{ csrf_field() }}
                   <div class="modal-body">
@@ -177,7 +197,7 @@
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edición de Personas</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edición de Persona</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <form action="/Persona" method="POST" id="editForm">

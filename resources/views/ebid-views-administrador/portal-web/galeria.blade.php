@@ -156,7 +156,7 @@
 
     <!--**********Modal editar imagen**********-->
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" style="color: #1B223C" id="editModalLabel">MODIFICAR REGISTRO DE GALERIA</h5>

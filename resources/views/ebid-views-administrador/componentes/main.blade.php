@@ -79,7 +79,7 @@
                               </a>
                             </li>
                             <li >
-                              <a class="sidenav-item-link" href="{{ route('subdominio.index') }}">
+                              <a class="sidenav-item-link" href="{{ route('Subdominio.index') }}">
                                 <span class="nav-text">Subdominios</span>                             
                               </a>
                             </li>   
@@ -98,15 +98,20 @@
                       <div class="sub-menu">
                             <li>
                               <a class="sidenav-item-link" href="{{route('Persona.index')}}">
-                                <span class="nav-text">Personal</span>
+                                <span class="nav-text">Personas</span>
                                 
                               </a>
                             </li>
                             <li >
-                              <a class="sidenav-item-link" href="analytics.html">
+                              <a class="sidenav-item-link" href="{{route('PersonaInstitucional.index')}}">
                                 <span class="nav-text">Institucional</span>                             
                               </a>
-                            </li>   
+                            </li> 
+                            <li >
+                              <a class="sidenav-item-link" href="{{route('Contrasenia.index')}}">
+                                <span class="nav-text">Cambiar Contraseña</span>                             
+                              </a>
+                            </li> 
                       </div>
                     </ul>
                   </li>
@@ -159,14 +164,19 @@
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
                             <li>
-                              <a class="sidenav-item-link" href="index.html">
-                                <span class="nav-text">Registro</span>
+                              <a class="sidenav-item-link" href="{{ route('Comprobante.index') }}">
+                                <span class="nav-text">Subir Comprobante</span>
                                 
                               </a>
                             </li>
                             <li >
-                              <a class="sidenav-item-link" href="analytics.html">
-                                <span class="nav-text">Validación</span>                             
+                              <a class="sidenav-item-link" href="{{ route('ValidarComprobante.index') }}">
+                                <span class="nav-text">Validar Comprobantes</span>                             
+                              </a>
+                            </li> 
+                            <li >
+                              <a class="sidenav-item-link" href="{{ route('RegistroComprobante.index') }}">
+                                <span class="nav-text">Comprobantes Validados</span>                             
                               </a>
                             </li>   
                       </div>
@@ -178,7 +188,7 @@
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#materias"
                       aria-expanded="false" aria-controls="materias">
                       <i class="mdi mdi-school"></i>
-                      <span class="nav-text">Materias</span> <b class="caret"></b>
+                      <span class="nav-text">Area Académica</span> <b class="caret"></b>
                     </a>
                     <ul  class="collapse"  id="materias"
                       data-parent="#sidebar-menu">
@@ -208,6 +218,11 @@
                                 <span class="nav-text">Materias</span>                             
                               </a>
                             </li>   
+                            <li >
+                              <a class="sidenav-item-link" href="{{ route('Pensum.index') }}">
+                                <span class="nav-text">Pensum</span>                             
+                              </a>
+                            </li>  
                       </div>
                     </ul>
                   </li>
@@ -358,8 +373,8 @@
                   <!-- User Account -->
                   <li class="dropdown user-menu">
                     <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                      <img src="{{ asset('assets/img/counts-img.jpg') }}" class="user-image" alt="User Image" />
-                      <span class="d-none d-lg-inline-block">{{ auth()->user()->name }}</span>
+                      <img src="{{ auth()->user()->per_foto_personal }}" class="user-image" alt="User Image" />
+                      <span class="d-none d-lg-inline-block">{{ auth()->user()->name}}</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
                       <!-- User image -->

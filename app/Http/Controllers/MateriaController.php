@@ -16,12 +16,17 @@ class MateriaController extends Controller
      */
     public function index()
     {
-        $materias = Materias::all();
-        $estados = Subdominios::select('subdominios.*')
-        ->where('subd_dom_id','=',1)
-        ->get();
-        $aux = [$materias, $estados];
-        return view('ebid-views-administrador.materia.materia')->with('aux', $aux);
+        try{
+            $materias = Materias::all();
+            $estados = Subdominios::select('subdominios.*')
+            ->where('subd_dom_id','=',1)
+            ->get();
+            $aux = [$materias, $estados];
+            return view('ebid-views-administrador.materia.materia')->with('aux', $aux);
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 
     /**
@@ -42,20 +47,25 @@ class MateriaController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'mat_id' => 'required',
-            'mat_nombre' => 'required',
-            'mat_descripcion' => 'required',
-            'mat_subd_estado' => 'required',
-        ]);
-        $materia_nuevo = new Materias;
+        try{
+            $this->validate($request,[
+                'mat_id' => 'required',
+                'mat_nombre' => 'required',
+                'mat_descripcion' => 'required',
+                'mat_subd_estado' => 'required',
+            ]);
+            $materia_nuevo = new Materias;
 
-        $materia_nuevo->mat_id = $request->input('mat_id');
-        $materia_nuevo->mat_nombre = $request->input('mat_nombre');
-        $materia_nuevo->mat_descripcion = $request->input('mat_descripcion');
-        $materia_nuevo->mat_subd_estado = $request->input('mat_subd_estado');
-        $materia_nuevo->save();
-        return redirect('/Materia')->with('success', 'Dato guardado');
+            $materia_nuevo->mat_id = $request->input('mat_id');
+            $materia_nuevo->mat_nombre = $request->input('mat_nombre');
+            $materia_nuevo->mat_descripcion = $request->input('mat_descripcion');
+            $materia_nuevo->mat_subd_estado = $request->input('mat_subd_estado');
+            $materia_nuevo->save();
+            return redirect()->route('Materia.index')->with('status', 'Se CREÓ la Materia con exito');
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 
     /**
@@ -89,20 +99,25 @@ class MateriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'mat_id' => 'required',
-            'mat_nombre' => 'required',
-            'mat_descripcion' => 'required',
-            'mat_subd_estado' => 'required',
-        ]);
-        $materia_edit = Materias::find($id);
-        
-        $materia_edit->mat_id = $request->input('mat_id');
-        $materia_edit->mat_nombre = $request->input('mat_nombre');
-        $materia_edit->mat_descripcion = $request->input('mat_descripcion');
-        $materia_edit->mat_subd_estado = $request->input('mat_subd_estado');
-        $materia_edit->save();
-        return redirect('/Materia')->with('success', 'Dato guardado');
+        try{
+            $this->validate($request,[
+                'mat_id' => 'required',
+                'mat_nombre' => 'required',
+                'mat_descripcion' => 'required',
+                'mat_subd_estado' => 'required',
+            ]);
+            $materia_edit = Materias::find($id);
+            
+            $materia_edit->mat_id = $request->input('mat_id');
+            $materia_edit->mat_nombre = $request->input('mat_nombre');
+            $materia_edit->mat_descripcion = $request->input('mat_descripcion');
+            $materia_edit->mat_subd_estado = $request->input('mat_subd_estado');
+            $materia_edit->save();
+            return redirect()->route('Materia.index')->with('status', 'Se MODIFICÓ la Materia con exito');
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 
     /**
@@ -113,8 +128,13 @@ class MateriaController extends Controller
      */
     public function destroy($id)
     {
-        $materia_delete = Materias::find($id);
-        $materia_delete->delete();
-        return redirect('/Materia')->with('success', 'Dato guardado');
+        try{
+            $materia_delete = Materias::find($id);
+            $materia_delete->delete();
+            return redirect()->route('Materia.index')->with('status', 'Se ELIMINÓ la Materia con exito');
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 }

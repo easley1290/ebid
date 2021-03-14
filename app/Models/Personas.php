@@ -4,6 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
 /**
  * @property int $per_id
  * @property string $per_ua_id
@@ -29,7 +35,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Docente[] $docentes
  * @property Estudiante[] $estudiantes
  */
-class Personas extends Model
+class Personas extends Authenticatable
 {
     /**
      * The table associated with the model.
@@ -48,7 +54,7 @@ class Personas extends Model
     /**
      * @var array
      */
-    protected $fillable = ['per_ua_id', 'per_nombres', 'per_paterno', 'per_materno', 'per_num_documentacion', 'per_fecha_nacimiento', 'per_telefono', 'per_correo_personal', 'per_domicilio', 'per_codigo_institucional', 'per_correo_institucional', 'per_contrasenia', 'per_foto_personal', 'per_verificacion_email', 'per_subd_documentacion', 'per_subd_extension', 'per_subd_genero', 'per_subd_estado'];
+    protected $fillable = ['per_ua_id', 'per_nombres', 'per_paterno', 'per_materno', 'per_num_documentacion', 'per_fecha_nacimiento', 'per_telefono', 'name','email', 'per_domicilio', 'per_codigo_institucional', 'per_correo_institucional', 'password', 'per_foto_personal', 'per_verificacion_email', 'per_subd_documentacion', 'per_subd_extension', 'per_subd_genero', 'per_subd_estado'];
 
     /**
      * Indicates if the model should be timestamped.
