@@ -8,14 +8,20 @@
             <br>
             <div class="container">
               <div class="row">
-                <div class="col-12">             
+                <div class="col-12">   
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div class="card text-white mb-3 bg-primary">
+                            <div class="card-header bg-primary" style="font-size: 30px;">PORTAL WEB - INSCRIPCIONES</div>
+                        </div>
+                    </div>
+                  </div>           
                     <!-- Recent Order Table -->
                     <div class="card card-table-border-none" id="recent-orders">
-                      <div class="card-header justify-content-between">
-                        <h2>Registro Comprobantes</h2>
-                        <!-- Button trigger modal -->
-                        
+                      <div class="card-header">
+                        <div class="col-md-9"><h4 class="row">Listado de comprobantes validados</h4></div>
                       </div>
+                      &nbsp;
                       <div class="card-body pt-0 pb-5">
                         <table id="personas" class="table card-table table-responsive table-responsive-large" style="width:100%">
                           <thead>
@@ -26,6 +32,7 @@
                               <th style="display:none">ap_pat</th>
                               <th style="display:none">ap_m</th>
                               <th style="display:none">estado</th>
+                              <th>Codigo Institucional</th>
                               <th>Estado</th>
                               <th>Comprobante</th>
                               <th>Acciones</th>
@@ -40,7 +47,8 @@
                                 <td class="" style="display:none">{{ $estudiante->per_paterno}}</td>
                                 <td class="" style="display:none">{{ $estudiante->per_materno}}</td>
                                 <td class="" style="display:none">{{ $estudiante->est_subd_estado}}</td>
-                                <td class="" width="20%">
+                                <td class="" width="15%">{{ $estudiante->per_codigo_institucional}}</td>
+                                <td class="" width="15%">
                                   @foreach($estados as $estado)
                                       @if($estado->subd_id === $estudiante->est_subd_estado)
                                       {{ $estado->subd_nombre}}
@@ -48,7 +56,9 @@
                                   @endforeach
                                 </td>
                                 <td class="" width="20%"><a href="{{asset($estudiante->est_comprobante)}}" target="_blank">Comprobante</a></td>
-                                <td width="30%"><a href="#" class="btn btn-info edit" >Editar</a>
+                                <td width="20%">
+                                  <button class="btn btn-success edit">
+                                    <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Modificar</button>
                                 </td>
                             </tr>
                           @endforeach
@@ -89,7 +99,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-4">
-                        <label for="exampleInputPassword1" class="form-label">Extensión</label>
+                        <label for="exampleInputPassword1" class="form-label">Estado del Comprobante</label>
                         <select class="form-select" aria-label="Default select example" id="est_subd_estado" name="est_subd_estado" required>
                         @foreach($estados as $est)               
                           <option value="{{$est->subd_id}}">{{$est->subd_nombre}}</option>

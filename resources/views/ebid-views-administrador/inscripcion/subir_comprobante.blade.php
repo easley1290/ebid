@@ -8,16 +8,24 @@
             <br>
             <div class="container">
               <div class="row">
-                <div class="col-12">             
+                <div class="col-12">   
+                    <div class="row">
+                      <div class="col-md-12">
+                          <div class="card text-white mb-3 bg-primary">
+                              <div class="card-header bg-primary" style="font-size: 30px;">PORTAL WEB - INSCRIPCIONES</div>
+                          </div>
+                      </div>
+                    </div>            
                     <!-- Recent Order Table -->
                     <div class="card card-table-border-none" id="recent-orders">
-                      <div class="card-header justify-content-between">
-                        <h2>Subir Comprobante</h2>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Nuevo Comprobante
-                        </button>
+
+                      <div class="card-header">
+                        <div class="col-md-9"><h4 class="row">Listado de comprobantes cargados</h4></div>
+                        <div class="col-md-3"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <span class="mdi mdi-comment-plus"></span>&nbsp;Nuevo Comprobante
+                        </button></div>
                       </div>
+                      &nbsp;
                       <div class="card-body pt-0 pb-5">
                         <table id="personas" class="table card-table table-responsive table-responsive-large" style="width:100%">
                           <thead>
@@ -48,8 +56,11 @@
                                   @endforeach
                                 </td>
                                 <td class="" width="20%"><a href="{{asset($estudiante->est_comprobante)}}" target="_blank">Comprobante</a></td>
-                                <td width="30%"><a href="#" class="btn btn-info edit" >Editar</a>
-                                    <a href="#" class="btn btn-danger text-white delete">Eliminar</a>
+                                <td width="30%">
+                                    <button class="btn btn-success edit">
+                                      <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Modificar</button>
+                                    <button class="btn btn-danger delete">
+                                      <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Eliminar</button>
                                 </td>
                             </tr>
                           @endforeach
@@ -65,7 +76,7 @@
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Creación de Comprobante</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Subir nuevo comprobante</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <form action="{{ route('Comprobante.store') }}" method="POST" enctype="multipart/form-data">
@@ -105,7 +116,7 @@
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edición de Comprobante</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Editar registro del comprobante</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <form action="/Comprobante" method="POST" id="editForm" enctype="multipart/form-data">
@@ -148,7 +159,7 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Comprobante</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Eliminar registro comprobante</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <form action="/Comprobante" method="POST" id="deleteForm">

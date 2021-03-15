@@ -8,16 +8,22 @@
             <br>
             <div class="container">
               <div class="row">
-                <div class="col-12">             
+                <div class="col-12">   
+                  <div class="row">
+                        <div class="col-md-12">
+                            <div class="card text-white mb-3 bg-primary">
+                                <div class="card-header bg-primary" style="font-size: 30px;">PORTAL WEB - ADMINISTRACION DE USUARIOS INSTITUCIONALES</div>
+                            </div>
+                        </div>
+                    </div>           
                     <!-- Recent Order Table -->
                     <div class="card card-table-border-none" id="recent-orders">
-                      <div class="card-header justify-content-between">
-                        <h2>Tabla de Datos Institucionales</h2>
-                        <!-- Button trigger modal 
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Crear Datos Institucionales
-                        </button>-->
+                      
+                      <div class="card-header">
+                        <div class="col-md-10"><h4 class="row">Listado de las personas registradas en la Intitución</h4></div>
                       </div>
+
+                      
                       <div class="card-body pt-0 pb-5">
                         <table id="personas" class="table card-table table-responsive table-responsive-large" style="width:100%">
                           <thead>
@@ -44,10 +50,16 @@
                                 <td class="" style="display:none">{{ $persona->per_materno}}</td>
                                 <td class="" width="10%">{{ $persona->per_codigo_institucional}}</td>
                                 <td class="" width="10%">{{ $persona->per_correo_institucional}}</td>
-                                <td class="" width="15%"><img src="{{$persona->per_foto_personal}}" width="100%"></td>
+                                <td class="" width="15%"><img href="{{$persona->per_foto_personal}}" src="{{$persona->per_foto_personal}}" width="100%"></td>
                                 <td class="" style="display:none">{{ $persona->per_contrasenia}}</td>
-                                <td width="35%"><a href="#" class="btn btn-info edit" >Editar</a>
-                                    <a href="#" class="btn btn-success text-white edit_con">Cambiar Contraseña</a>
+                                <td width="35%">
+                                  <button class="btn btn-success edit">
+                                    <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Modificar</button>
+                                  <button class="btn btn-info edit_con">
+                                    <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Contraseña</button>
+
+                                    <!--a href="#" class="btn btn-info edit" >Editar</a>
+                                    <a href="#" class="btn btn-success text-white edit_con">Cambiar Contraseña</a-->
                                 </td>
                             </tr>
                           @endforeach
@@ -117,7 +129,7 @@
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edición de Datos</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edición de Contraseña</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <form action="/Contraseña" method="POST" id="editconForm">

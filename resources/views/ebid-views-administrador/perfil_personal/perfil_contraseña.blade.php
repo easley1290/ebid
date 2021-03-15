@@ -8,21 +8,24 @@
             <br>
             <div class="container">
               <div class="row">
-                <div class="col-12">             
+                <div class="col-12"> 
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div class="card text-white mb-3 bg-primary">
+                            <div class="card-header bg-primary" style="font-size: 30px;">PORTAL WEB - CAMBIO DE CONTRASEÑA</div>
+                            </div>
+                        </div>
+                    </div>             
                     <!-- Recent Order Table -->
                     <div class="card card-table-border-none" id="recent-orders">
-                      <div class="card-header justify-content-between">
-                        <h2>Cambio de contraseña</h2>
+                      <div class="card-header">
+                        <div class="col-md-12"><h4 class="row">Estimado(a): {{auth()->user()->name}}, introduzca los siguientes datos:</h4></div>
                       </div>
                       <div class="card-body pt-0 pb-5">
                         <form action="{{route('Contrasenia.update', auth()->user()->per_id)}}" method="POST" id="editForm">
                             @csrf
                             @method('PUT')
                             <div class="">
-                                <div class="">
-                                  <h4>Estimado(a): {{auth()->user()->name}}, introduzca los siguientes datos:</h4>
-                                 
-                                </div>
                                 <hr>
                                 <input id="per_id" name="per_id" type="hidden">
                                 <div class="col-md-6">
@@ -40,8 +43,8 @@
                                   <input id="contraseña_nueva1" name="contraseña_nueva1" type="password" class="form-control" required>
                                 </div>
                                 &nbsp;
-                                <div class="modal-footer">
-                                  <button type="submit" class="btn btn-primary">Guardar</button>
+                                <div class="modal-footer" >
+                                  <button type="submit" class="btn btn-primary"><span class="mdi mdi-circle-edit-outline"></span>&nbsp;Guardar Contraseña</button>
                                 </div>
                               </div>
                           </form> 
