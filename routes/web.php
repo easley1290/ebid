@@ -18,6 +18,7 @@ use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\SemestreController;
 use App\Http\Controllers\EspecialidadController;
 use App\Http\Controllers\MateriaController;
+use App\Http\Controllers\RolController;
 
 use App\Http\Controllers\PensumController;
 use App\Http\Controllers\SubirComprobanteController;
@@ -88,3 +89,5 @@ Route::resource('/Especialidad', EspecialidadController::class);
 Route::resource('/Materia', MateriaController::class);
 /***************  Pensum  ****************** */
 Route::resource('/Pensum', PensumController::class);
+/***************  Rol  ****************** */
+Route::resource('/Rol', RolController::class);

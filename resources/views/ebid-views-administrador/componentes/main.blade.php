@@ -43,13 +43,13 @@
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
                       aria-expanded="false" aria-controls="dashboard">
                       <i class="mdi mdi-key"></i>
-                      <span class="nav-text">Accesos</span> <b class="caret"></b>
+                      <span class="nav-text">Parametros</span> <b class="caret"></b>
                     </a>
                     <ul  class="collapse"  id="dashboard"
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
                             <li>
-                              <a class="sidenav-item-link" href="index.html">
+                              <a class="sidenav-item-link" href="{{ route('Rol.index') }}">
                                 <span class="nav-text">Roles</span>
                                 
                               </a>
@@ -58,11 +58,23 @@
                               <a class="sidenav-item-link" href="analytics.html">
                                 <span class="nav-text">Permisos</span>                             
                               </a>
+                            </li>
+                            <li>
+                              <a class="sidenav-item-link" href="{{ route('Dominio.index') }}">
+                                <span class="nav-text">Dominios</span>
+                                
+                              </a>
+                            </li>
+                            <li >
+                              <a class="sidenav-item-link" href="{{ route('Subdominio.index') }}">
+                                <span class="nav-text">Subdominios</span>                             
+                              </a>
                             </li>   
                       </div>
                     </ul>
                   </li>
                   <!----------------------------PARAMETROS---------------------------------->
+                  <!--
                   <li  class="has-sub" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#parametros"
                       aria-expanded="false" aria-controls="parametros">
@@ -85,7 +97,7 @@
                             </li>   
                       </div>
                     </ul>
-                  </li>
+                  </li>   -->
                   <!----------------------------PERFIL DEL USUARIO---------------------------------->
                   <li  class="has-sub" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#perfil"
@@ -185,10 +197,35 @@
 
                   <!----------------------------ENSEÑANZA---------------------------------->
                   <li  class="has-sub" >
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#cursos"
+                      aria-expanded="false" aria-controls="cursos">
+                      <i class="mdi mdi-book-open-page-variant"></i>
+                      <span class="nav-text">Área académica</span> <b class="caret"></b>
+                    </a>
+                    <ul  class="collapse"  id="cursos"
+                      data-parent="#sidebar-menu">
+                      <div class="sub-menu">
+                            <li>
+                              <a class="sidenav-item-link" href="#">
+                                <span class="nav-text">Seguimiento de estudiantes</span>
+                                
+                              </a>
+                            </li>
+                            <li >
+                              <a class="sidenav-item-link" href="#">
+                                <span class="nav-text">Seguimiento de docentes</span>                             
+                              </a>
+                            </li>  
+                      </div>
+                    </ul>
+                  </li>
+
+                  <!----------------------------ORGANIZACIÓN---------------------------------->
+                  <li  class="has-sub" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#materias"
                       aria-expanded="false" aria-controls="materias">
                       <i class="mdi mdi-school"></i>
-                      <span class="nav-text">Area Académica</span> <b class="caret"></b>
+                      <span class="nav-text">Organización Académica</span> <b class="caret"></b>
                     </a>
                     <ul  class="collapse"  id="materias"
                       data-parent="#sidebar-menu">
@@ -222,7 +259,12 @@
                               <a class="sidenav-item-link" href="{{ route('Pensum.index') }}">
                                 <span class="nav-text">Pensum</span>                             
                               </a>
-                            </li>  
+                            </li>
+                            <li >
+                              <a class="sidenav-item-link" href="#">
+                                <span class="nav-text">Categoría docente</span>                             
+                              </a>
+                            </li>    
                       </div>
                     </ul>
                   </li>

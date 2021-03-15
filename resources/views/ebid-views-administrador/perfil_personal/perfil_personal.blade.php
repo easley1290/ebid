@@ -78,7 +78,8 @@
                                     <td class="">{{ $subdominio->subd_nombre}}</td>
                                     @endif
                                 @endforeach
-                                
+
+                                <td class="">por definir 1</td>
                                 <td class="" style="display:none">{{ $persona->per_subd_documentacion}}</td>
                                 <td class="">{{ $persona->per_num_documentacion}}
                                 @foreach($extensions as $subdominio)
@@ -128,7 +129,7 @@
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputPassword1" class="form-label">Ap.Materno</label>
-                        <input name="materno" type="text" class="form-control" id="exampleInputPassword1" required>
+                        <input name="materno" type="text" class="form-control" id="exampleInputPassword12" required>
                       </div>
                     </div>
                     <div class="row">
@@ -142,7 +143,7 @@
                       </div>
                       <div class="col-md-6">
                         <label for="exampleInputPassword1" class="form-label">Fecha Naciminento</label>
-                        <input name="fec_nac" type="date" class="form-control" id="exampleInputPassword1" required>
+                        <input name="fec_nac" type="date" class="form-control" id="exampleInputPassword13" required>
                       </div>
                     </div>
                     <div class="row">
@@ -156,7 +157,7 @@
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputPassword1" class="form-label">Numero Documento</label>
-                        <input name="num_doc" type="number" class="form-control" id="exampleInputPassword1" required>
+                        <input name="num_doc" type="number" class="form-control" id="exampleInputPassword14" required>
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputPassword1" class="form-label">Extensión</label>
@@ -170,17 +171,17 @@
                     <div class="row">
                       <div class="col-md-6">
                         <label for="exampleInputPassword1" class="form-label">Telefono</label>
-                        <input name="telefono" type="number" class="form-control" id="exampleInputPassword1">
+                        <input name="telefono" type="number" class="form-control" id="exampleInputPassword15">
                       </div>
                       <div class="col-md-6">
                         <label for="exampleInputPassword1" class="form-label">Correo Personal</label>
-                        <input name="correo" type="email" class="form-control" id="exampleInputPassword1" required>
+                        <input name="correo" type="email" class="form-control" id="exampleInputPassword16" required>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <label for="exampleInputPassword1" class="form-label">Domicilio</label>
-                        <input name="domicilio" type="text" class="form-control" id="exampleInputPassword1">
+                        <input name="domicilio" type="text" class="form-control" id="exampleInputPassword17  ">
                       </div>
                     </div>
                       <div class="modal-footer">
