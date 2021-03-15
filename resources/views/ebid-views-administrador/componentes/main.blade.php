@@ -241,11 +241,6 @@
                                 <span class="nav-text">Quienes Somos</span>
                               </a>
                             </li>
-                            <li>
-                              <a class="sidenav-item-link" href="analytics.html">
-                                <span class="nav-text">Programa de enseñanza</span>                             
-                              </a>
-                            </li> 
                               
                             <li>
                               <a class="sidenav-item-link" href="{{ route('noticias.index') }}">

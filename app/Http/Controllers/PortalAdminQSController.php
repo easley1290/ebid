@@ -34,18 +34,11 @@ class PortalAdminQSController extends Controller
             $qsE->ins_vision = (string) $request->get('vision_institucion');
             $qsE->ins_obj = (string) $request->get('objetivo_institucion');
             $qsE->ins_obj_esp1 = (string) $request->get('primer_obj_esp');
-            if($request->get('segundo_obj_esp')==null){
-                $qsE->ins_obj_esp2 = null;
-            }
-            else{
-                $qsE->ins_obj_esp2 = (string) $request->get('segundo_obj_esp');
-            }
-            if($request->get('tercer_obj_esp')==null){
-                $qsE->ins_obj_esp3 = null;
-            }
-            else{
-                $qsE->ins_obj_esp3 = (string) $request->get('tercer_obj_esp');
-            }
+            $qsE->ins_obj_esp2 = (string) $request->get('segundo_obj_esp');
+            $qsE->ins_obj_esp3 = (string) $request->get('tercer_obj_esp');
+            $qsE->ins_obj_esp4 = (string) $request->get('cuarto_obj_esp');
+            $qsE->ins_obj_esp5 = (string) $request->get('quinto_obj_esp');
+
             $qsE->save();
             return redirect()->route('quienessomos.index')->with('status', 'Se MODIFICÓ la informacion con exito');
         } catch(Exception $e){

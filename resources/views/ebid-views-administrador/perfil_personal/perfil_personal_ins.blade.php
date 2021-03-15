@@ -78,7 +78,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Edición de Datos</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="/PersonaInstitucional" method="POST" id="editForm" enctype="multipart/form-data">
+                  <form action="PersonaInstitucional" method="POST" id="editForm" enctype="multipart/form-data">
                   {{ csrf_field() }}
                   {{ method_field('PUT') }}
                   <div class="modal-body">
@@ -219,7 +219,7 @@ $(document).ready(function(){
     $('#per_correo_institucional').val(data[6]);
     //$('#per_foto_personal').val(data[7]);
 
-    $('#editForm').attr('action', '/PersonaInstitucional/'+data[0]);
+    $('#editForm').attr('action', 'PersonaInstitucional/'+data[0]);
     $('#editModal').modal('show');
   })
 });

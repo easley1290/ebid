@@ -111,7 +111,19 @@
                                         placeholder="Tercer objetivo especifico de la institucion"
                                         onKeyPress="if(this.value.length==255) return false;"
                                         style="height: 100px; resize: none;"
-                                        readonly>{{ $institucion->ins_obj_esp3 }}</textarea>
+                                        readonly>{{ $institucion->ins_obj_esp3 }}</textarea><br>
+                                    <textarea name="cuarto_obj_esp" type="text" class="form-control"
+                                        id="cuarto_obj_esp" autocomplete="off" 
+                                        placeholder="Cuarto objetivo especifico de la institucion"
+                                        onKeyPress="if(this.value.length==255) return false;"
+                                        style="height: 100px; resize: none;"
+                                        readonly>{{ $institucion->ins_obj_esp4 }}</textarea><br>
+                                    <textarea name="quinto_obj_esp" type="text" class="form-control"
+                                        id="quinto_obj_esp" autocomplete="off" 
+                                        placeholder="Quinto objetivo especifico de la institucion"
+                                        onKeyPress="if(this.value.length==255) return false;"
+                                        style="height: 100px; resize: none;"
+                                        readonly>{{ $institucion->ins_obj_esp5 }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -203,6 +215,16 @@
                                     placeholder="Tercer objetivo especifico de la institucion"
                                     onKeyPress="if(this.value.length==255) return false;"
                                     style="height: 100px; resize: none;">{{ $institucion->ins_obj_esp3 }}</textarea>
+                                <textarea name="cuarto_obj_esp" type="text" class="form-control"
+                                    id="cuarto_obj_esp" autocomplete="off" 
+                                    placeholder="Cuarto objetivo especifico de la institucion"
+                                    onKeyPress="if(this.value.length==255) return false;"
+                                    style="height: 100px; resize: none;">{{ $institucion->ins_obj_esp4 }}</textarea>
+                                <textarea name="quinto_obj_esp" type="text" class="form-control"
+                                    id="quinto_obj_esp" autocomplete="off" 
+                                    placeholder="Quinto objetivo especifico de la institucion"
+                                    onKeyPress="if(this.value.length==255) return false;"
+                                    style="height: 100px; resize: none;">{{ $institucion->ins_obj_esp5 }}</textarea>
                             </div>
                         </div>
                     </div>
