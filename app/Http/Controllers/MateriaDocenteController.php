@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\CategoriaDocente;
+use App\Models\MateriaDocente;
+use App\Models\Docentes;
+use App\Models\Personas;
+use App\Models\Materias;
 use App\Models\Subdominios;
 
-class CategoriaDocenteController extends Controller
+class MateriaDocenteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +19,16 @@ class CategoriaDocenteController extends Controller
     public function index()
     {
         try{
-            $categorias = CategoriaDocente::all();
+            $materiadocentes = MateriaDocente::all();
+            $docentes = Docentes::all();
+            $personas = Personas::all();
+            $materias = Materias::all();
+            $personas = Personas::all();
             $estados = Subdominios::select('subdominios.*')
             ->where('subd_dom_id','=',1)
             ->get();
-            $aux = [$categorias, $estados];
-            return view('ebid-views-administrador.categoriaDocente.categoriaDocente')->with('aux', $aux);
+            $aux = [$materiadocentes, $docentes, $personas, $materias, $estados];
+            return view('ebid-views-administrador.materiaDocente.materiaDocente')->with('aux', $aux);
         } 
         catch (Throwable $e){
             return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
@@ -48,19 +55,17 @@ class CategoriaDocenteController extends Controller
     {
         try{
             $this->validate($request,[
-                'cat_id' => 'required',
-                'cat_nombre' => 'required',
-                'cat_descripcion' => 'required',
-                'cat_subd_estado' => 'required',
+                'matd_doc_id' => 'required',
+                'matd_mat_id' => 'required',
+                'matd_subd_estado' => 'required',
             ]);
-            $cat_nuevo = new CategoriaDocente;
+            $materia_docente_nuevo = new MateriaDocente;
 
-            $cat_nuevo->cat_id = $request->input('cat_id');
-            $cat_nuevo->cat_nombre = $request->input('cat_nombre');
-            $cat_nuevo->cat_descripcion = $request->input('cat_descripcion');
-            $cat_nuevo->cat_subd_estado = $request->input('cat_subd_estado');
-            $cat_nuevo->save();
-            return redirect()->route('CategoriaDocente.index')->with('status', 'Se CREÓ el Rol con exito');
+            $materia_docente_nuevo->matd_doc_id = $request->input('matd_doc_id');
+            $materia_docente_nuevo->matd_mat_id = $request->input('matd_mat_id');
+            $materia_docente_nuevo->matd_subd_estado = $request->input('matd_subd_estado');
+            $materia_docente_nuevo->save();
+            return redirect()->route('MateriaDocente.index')->with('status', 'Se ASIGNÓ un nuevo Docente con exito');
         } 
         catch (Throwable $e){
             return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
@@ -100,19 +105,17 @@ class CategoriaDocenteController extends Controller
     {
         try{
             $this->validate($request,[
-                'cat_id' => 'required',
-                'cat_nombre' => 'required',
-                'cat_descripcion' => 'required',
-                'cat_subd_estado' => 'required',
+                'matd_doc_id' => 'required',
+                'matd_mat_id' => 'required',
+                'matd_subd_estado' => 'required',
             ]);
-            $cat_edit = CategoriaDocente::find($id);
+            $materia_docente_edit = MateriaDocente::find($id);
 
-            $cat_edit->cat_id = $request->input('cat_id');
-            $cat_edit->cat_nombre = $request->input('cat_nombre');
-            $cat_edit->cat_descripcion = $request->input('cat_descripcion');
-            $cat_edit->cat_subd_estado = $request->input('cat_subd_estado');
-            $cat_edit->save();
-            return redirect()->route('CategoriaDocente.index')->with('status', 'Se MODIFICÓ el Rol con exito');
+            $materia_docente_edit->matd_doc_id = $request->input('matd_doc_id');
+            $materia_docente_edit->matd_mat_id = $request->input('matd_mat_id');
+            $materia_docente_edit->matd_subd_estado = $request->input('matd_subd_estado');
+            $materia_docente_edit->save();
+            return redirect()->route('MateriaDocente.index')->with('status', 'Se MODIFICÓ la asignación de un Docente con exito');
         } 
         catch (Throwable $e){
             return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
@@ -128,9 +131,9 @@ class CategoriaDocenteController extends Controller
     public function destroy($id)
     {
         try{
-            $cat_delete = CategoriaDocente::find($id);
-            $cat_delete->delete();
-            return redirect()->route('CategoriaDocente.index')->with('status', 'Se ELIMINÓ el Rol con exito');
+            $materia_docente_delete = MateriaDocente::find($id);
+            $materia_docente_delete->delete();
+            return redirect()->route('MateriaDocente.index')->with('status', 'Se ELIMINÓ una asignación Docente con exito');
         } 
         catch (Throwable $e){
             return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');

@@ -19,6 +19,9 @@ use App\Http\Controllers\SemestreController;
 use App\Http\Controllers\EspecialidadController;
 use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\RolController;
+use App\Http\Controllers\CategoriaDocenteController;
+use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\MateriaDocenteController;
 
 use App\Http\Controllers\PensumController;
 use App\Http\Controllers\SubirComprobanteController;
@@ -91,3 +94,9 @@ Route::resource('/Materia', MateriaController::class);
 Route::resource('/Pensum', PensumController::class);
 /***************  Rol  ****************** */
 Route::resource('/Rol', RolController::class);
+/***************  CategoriDocente  ****************** */
+Route::resource('/CategoriaDocente', CategoriaDocenteController::class);
+/***************  Docente  ****************** */
+Route::resource('/Docente', DocenteController::class);
+/***************  MateriaDocente  ****************** */
+Route::resource('/MateriaDocente', MateriaDocenteController::class);

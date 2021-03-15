@@ -10,7 +10,7 @@
                 <div class="alert alert-success"> 
                     {{ session('status') }}
                 </div>
-            @endif   
+            @endif
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -22,38 +22,56 @@
             @endif
             <div class="container">
               <div class="row">
-                <div class="col-12">  
+                <div class="col-12">   
                   <div class="row">
                         <div class="col-md-12">
                             <div class="card text-white mb-3 bg-primary">
-                                <div class="card-header bg-primary" style="font-size: 30px;">PORTAL WEB - ADMINISTRACIÓN DE ROLES</div>
+                                <div class="card-header bg-primary" style="font-size: 30px;">PORTAL WEB - ASIGNACIÓN DE DOCENTES POR MATERIA</div>
                             </div>
                         </div>
-                    </div>                 
-                    <!-- Recent Order Table -->
+                    </div>             
+                      <!-- Recent Order Table -->
                     <div class="card card-table-border-none" id="recent-orders">
                       <div class="card-header">
-                            <div class="col-md-9"><h4 class="row">Listado de roles para el ingreso al sistema de la Intitución</h4></div>
+                            <div class="col-md-9"><h4 class="row">Listado de los docentes asignados a las materias de la Intitución</h4></div>
                             <div class="col-md-3"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <span class="mdi mdi-comment-plus"></span>&nbsp;Crear nuevo rol
+                                <span class="mdi mdi-comment-plus"></span>&nbsp;Agregar asignación Docente
                             </button></div>
                         </div>
                       <div class="card-body pt-0 pb-5">
-                        <table id="roles" class="table card-table table-responsive table-responsive-large" style="width:100%">
+                        <table id="materiadocentes" class="table card-table table-responsive table-responsive-large" style="width:100%">
                           <thead>
                             <tr>
-                              <th>ID</th>
+                              <th style="display:none">ID</th>
                               <th>Nombre</th>
-                              <th>Descripción</th>
+                              <th style="display:none">matd_doc_id</th>
+                              <th>Materia</th>
+                              <th style="display:none">matd_mat_id</th>
+                              <th style="display:none">matd_subd_estado</th>
                               <th style="width:200px">Acciones</th>
                             </tr>
                           </thead>
                           <tbody>
-                            @foreach($roles as $rol)
+                          @foreach($aux[0] as $materiadocente)
                             <tr>
-                                <td class="">{{ $rol->rol_id }}</td>
-                                <td class="">{{ $rol->rol_nombre }}</td>
-                                <td class="">{{ $rol->rol_descripcion }}</td>
+                                <td class="" style="display:none">{{ $materiadocente->matd_id}}</td>
+                                @foreach($aux[1] as $docente)
+                                  @if($materiadocente->matd_doc_id === $docente->doc_id)
+                                    @foreach($aux[2] as $persona)
+                                      @if($docente->doc_per_id === $persona->per_id)
+                                        <td class="">{{ $persona->name}}</td>
+                                      @endif
+                                    @endforeach
+                                  @endif
+                                @endforeach
+                                <td class="" style="display:none">{{ $materiadocente->matd_doc_id}}</td>
+                                @foreach($aux[3] as $materia)
+                                  @if($materiadocente->matd_mat_id === $materia->mat_id)
+                                  <td class="">{{ $materia->mat_nombre}}</td>
+                                  @endif
+                                @endforeach
+                                <td class="" style="display:none">{{ $materiadocente->matd_mat_id}}</td>
+                                <td class="" style="display:none">{{ $materiadocente->matd_subd_estado}}</td>
                                 <td style="width:200px">
                                   <button class="btn btn-success edit">
                                     <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Modificar</button>
@@ -66,6 +84,11 @@
                         </table>
                       </div>
                     </div>
+                   <!-- Prueba <div>
+                    @foreach($aux[1] as $dominio)
+                      <h1>{{$dominio->subd_dom_id}}</h1>
+                    @endforeach
+                    </div> end Prueba-->
             </div>
      
             <!-- Modal crear-->
@@ -73,19 +96,39 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Creación de un nuevo Rol</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Creación de Docentes</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="{{ route('Rol.store') }}" method="POST"> <!-- {{route('Dominio.store')}} -->
+                  <form action="{{ route('MateriaDocente.store') }}" method="POST"> <!-- {{route('Dominio.store')}} -->
                   {{ csrf_field() }}
                   <div class="modal-body">
                       <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Nombre del Rol</label>
-                        <input name="rol_nombre" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                        <label for="exampleInputPassword1" class="form-label">Nombre del Docente</label>
+                        <select class="form-select" aria-label="Default select example" name="matd_doc_id" id="mat_subd_estado12">
+                        @foreach($aux[2] as $persona)  
+                          @foreach($aux[1] as $docente)             
+                            @if($persona->per_id === $docente->doc_per_id)
+                            <option value="{{$docente->doc_id}}">{{$persona->name}}</option>
+                            @endif
+                          @endforeach
+                        @endforeach
+                        </select>
                       </div>
                       <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Descripción</label>
-                        <input name="rol_descripcion" type="text" class="form-control" id="exampleInputPassword1">
+                        <label for="exampleInputPassword1" class="form-label">Nombre de la materia</label>
+                        <select class="form-select" aria-label="Default select example" name="matd_mat_id" id="mat_subd_estado13">
+                        @foreach($aux[3] as $materia)               
+                          <option value="{{$materia->mat_id}}">{{$materia->mat_nombre}}</option>
+                        @endforeach
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Estado</label>
+                        <select class="form-select" aria-label="Default select example" name="matd_subd_estado" id="mat_subd_estado1">
+                        @foreach($aux[4] as $subdominio)               
+                          <option value="{{$subdominio->subd_id}}">{{$subdominio->subd_nombre}}</option>
+                        @endforeach
+                        </select>
                       </div>
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -95,27 +138,47 @@
                     </form>
                 </div>
               </div>
-            </div> 
+            </div>
 
             <!-- Modal editar-->
             <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modificación del Rol</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Editar asignación del Docente</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="/Rol" method="POST" id="editForm"> <!-- {{route('Dominio.store')}} -->
+                  <form action="/MateriaDocente" method="POST" id="editForm"> <!-- {{route('Dominio.store')}} -->
                   {{ csrf_field() }}
                   {{ method_field('PUT') }}
                   <div class="modal-body">
                       <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Nombre del Rol</label>
-                        <input name="rol_nombre" id="rol_nombre" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <label for="exampleInputPassword1" class="form-label">Nombre del Docente</label>
+                        <select class="form-select" aria-label="Default select example" name="matd_doc_id" id="matd_doc_id">
+                        @foreach($aux[2] as $persona)  
+                          @foreach($aux[1] as $docente)             
+                            @if($persona->per_id === $docente->doc_per_id)
+                            <option value="{{$docente->doc_id}}">{{$persona->name}}</option>
+                            @endif
+                          @endforeach
+                        @endforeach
+                        </select>
                       </div>
                       <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Descripción</label>
-                        <input name="rol_descripcion" id="rol_descripcion" type="text" class="form-control" id="exampleInputPassword1">
+                        <label for="exampleInputPassword1" class="form-label">Nombre de la materia</label>
+                        <select class="form-select" aria-label="Default select example" name="matd_mat_id" id="matd_mat_id">
+                        @foreach($aux[3] as $materia)               
+                          <option value="{{$materia->mat_id}}">{{$materia->mat_nombre}}</option>
+                        @endforeach
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Estado</label>
+                        <select class="form-select" aria-label="Default select example" name="matd_subd_estado" id="matd_subd_estado">
+                        @foreach($aux[4] as $subdominio)               
+                          <option value="{{$subdominio->subd_id}}">{{$subdominio->subd_nombre}}</option>
+                        @endforeach
+                        </select>
                       </div>
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Guardar</button>
@@ -132,15 +195,15 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Rol</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Docente</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="/Rol" method="POST" id="deleteForm"> <!-- {{route('Dominio.store')}} -->
+                  <form action="/MateriaDocente" method="POST" id="deleteForm"> <!-- {{route('Dominio.store')}} -->
                   {{ csrf_field() }}
                   {{ method_field('DELETE') }}
                   <div class="modal-body">
                       <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Esta seguro de elimiar el rol?</label>
+                        <label for="exampleInputEmail1" class="form-label">Esta seguro de elimiar al docente de la materia?</label>
                       </div>
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Borrar</button>
@@ -162,14 +225,15 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 <script>
 $(document).ready(function() {
-  $('#roles').DataTable({
-        "lengthMenu":[[10, 25, 50, -1], [10, 25, 50, "All"]]
+  $('#materiadocentes').DataTable({
+        "lengthMenu":[[5, 10, 50, -1], [5, 10, 50, "All"]]
     });
 } );
 </script>
+<!-- editar -->
 <script type="text/javascript">
 $(document).ready(function(){
-  var table = $('#roles').DataTable();
+  var table = $('#materiadocentes').DataTable();
   table.on('click', '.edit', function(){
     $tr = $(this).closest('tr');
     if ($($tr).hasClass('child')) {
@@ -177,18 +241,20 @@ $(document).ready(function(){
     }
     var data = table.row($tr).data();
     console.log(data);
-    $('#rol_nombre').val(data[1]);
-    $('#rol_descripcion').val(data[2]);
+    $('#matd_doc_id').val(data[2]);
+    $('#matd_mat_id').val(data[4]);
+    $('#matd_subd_estado').val(data[5]);
 
-    $('#editForm').attr('action', '/Rol/'+data[0]);
+
+    $('#editForm').attr('action', '/MateriaDocente/'+data[0]);
     $('#editModal').modal('show');
   })
 });
 </script>
-
+<!-- eliminar -->
 <script type="text/javascript">
 $(document).ready(function(){
-  var table = $('#roles').DataTable();
+  var table = $('#materiadocentes').DataTable();
   table.on('click', '.delete', function(){
     $tr = $(this).closest('tr');
     if ($($tr).hasClass('child')) {
@@ -196,7 +262,7 @@ $(document).ready(function(){
     }
     var data = table.row($tr).data();
 
-    $('#deleteForm').attr('action', '/Rol/'+data[0]);
+    $('#deleteForm').attr('action', '/MateriaDocente/'+data[0]);
     $('#deleteModal').modal('show');
   })
 });

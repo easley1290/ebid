@@ -72,16 +72,6 @@
                                 <td class="" style="display:none">{{ $persona->per_fecha_nacimiento}}</td>
                                 
                                 <td class="">{{ $persona->email}}</td>
-<<<<<<< HEAD
-                                
-                                @foreach($tipo_docs as $subdominio)
-                                    @if($subdominio->subd_id === $persona->per_subd_documentacion)
-                                    <td class="">{{ $subdominio->subd_nombre}}</td>
-                                    @endif
-                                @endforeach
-
-                                <td class="">por definir 1</td>
-=======
                                 <td class="">
                                   @foreach($tipo_docs as $subdominio)
                                       @if($subdominio->subd_id === $persona->per_subd_documentacion)
@@ -89,7 +79,6 @@
                                       @endif
                                   @endforeach
                                 </td>
->>>>>>> 9ada9453bf2affb3233c1cbe6f0891c601f30c08
                                 <td class="" style="display:none">{{ $persona->per_subd_documentacion}}</td>
                                 <td class="">{{ $persona->per_num_documentacion}}
                                 @foreach($extensions as $subdominio)
