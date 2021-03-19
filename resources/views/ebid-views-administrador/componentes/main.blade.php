@@ -138,7 +138,7 @@
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
                             <li>
-                              <a class="sidenav-item-link" href="index.html">
+                              <a class="sidenav-item-link" href="{{ route('estudiante.index') }}">
                                 <span class="nav-text">Estudiantes</span>
                                 
                               </a>

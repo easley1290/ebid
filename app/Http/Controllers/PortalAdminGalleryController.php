@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\UnidadAcademica;
 use App\Models\Subdominios;
 use App\Models\Galeria;
+use File;
 
 class PortalAdminGalleryController extends Controller
 {
@@ -77,7 +78,9 @@ class PortalAdminGalleryController extends Controller
                 $nombreImagen = 'Galeria'.$galeriaE->gal_id.'_'.time().'.'.$imagen->getClientOriginalExtension();
                 $destinoImagen = public_path('assets\img\galeria');
                 $imagen->move($destinoImagen, $nombreImagen);
-                unlink($rutaImagenAntigua);
+                if(File::exists($rutaImagenAntigua)){
+                    unlink($rutaImagenAntigua);
+                }
             }else{
                 $nombreImagen = $galeriaE->gal_direccion;
             }

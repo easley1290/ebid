@@ -111,7 +111,11 @@
                                         placeholder="Ej. NrTVtRyxfxM"
                                         onKeyPress="if(this.value.length==200) return false;"
                                         required>
-                                    <p> <br> NOTA: Solo se debe agregar la ID del video de YouTube <br>caso contrario no se podra visualizar el video.</p>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <p>NOTA: Solo se debe agregar la ID del video de YouTube <br>caso contrario no se podra visualizar el video.</p>
                                     <img src="{{ asset('assets/img/indicacion-url.png') }}" alt="" width="100%">
                                 </div>
                             </div>
@@ -189,7 +193,11 @@
                                     <iframe width="100%" height="300" src="" frameborder="0" id="e_video_actual"
                                         allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                         allowfullscreen></iframe>
-                                    <p><br><br>NOTA: SOLO SI desea modificar la URL del video mostrada en el portal web 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <p>NOTA: SOLO SI desea modificar la URL del video mostrada en el portal web 
                                         debe subir una nueva URL en el siguiente campo, caso contrario NO debe subir ninguna URL</p>
                                     <input name="e_url_video" type="text" class="form-control"
                                         id="e_url_video" autocomplete="off" 

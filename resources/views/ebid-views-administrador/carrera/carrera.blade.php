@@ -141,7 +141,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Edición de Carrera</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="/Carrera" method="POST" id="editForm">
+                  <form action="Carrera" method="POST" id="editForm">
                   {{ csrf_field() }}
                   {{ method_field('PUT') }}
                   <div class="modal-body">
@@ -253,7 +253,7 @@ $(document).ready(function(){
     $('#car_fecha_creacion').val(data[4]);
     $('#car_subd_estado').val(data[5]);
 
-    $('#editForm').attr('action', '/Carrera/'+data[0]);
+    $('#editForm').attr('action', 'Carrera/'+data[0]);
     $('#editModal').modal('show');
   })
 });
@@ -270,7 +270,7 @@ $(document).ready(function(){
       }
       var data = table.row($tr).data();
   
-      $('#deleteForm').attr('action', '/Carrera/'+data[0]);
+      $('#deleteForm').attr('action', 'Carrera/'+data[0]);
       $('#deleteModal').modal('show');
     })
   });

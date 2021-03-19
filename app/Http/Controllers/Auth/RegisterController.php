@@ -50,11 +50,13 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'per_nombres' => ['required', 'string', 'max:255'],
-            'per_paterno' => ['required', 'string', 'max:255'],
-            'per_materno' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:personas'],
+            'per_nombres' => ['required', 'string', 'max:50'],
+            'per_paterno' => ['required', 'string', 'max:50'],
+            'per_materno' => ['required', 'string', 'max:50'],
+            'email' => ['required', 'string', 'email', 'max:50', 'unique:personas'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'per_subd_extension' => ['required', 'string'],
+            'per_num_documentacion' => ['required', 'max:11'],
         ]);
     }
 
@@ -73,8 +75,11 @@ class RegisterController extends Controller
             'per_materno' => $data['per_materno'],
             'name' => $data['per_nombres'].' '.$data['per_paterno'].' '.$data['per_materno'],
             'email' => $data['email'],
+            'per_correo_personal' => $data['email'],
             'password' => Hash::make($data['password']),
-            'per_subd_estado' => '7',
+            'per_subd_estado' => '2',
+            'per_subd_extension' => $data['per_subd_extension'],
+            'per_num_documentacion' => $data['per_num_documentacion'].$data['per_alfanumerico'],
         ]);
     }
 }

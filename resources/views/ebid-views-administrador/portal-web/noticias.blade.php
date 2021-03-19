@@ -191,8 +191,16 @@
                             <div class="form-group row">
                                 <div class="col-md-12">
                                     <label for="e_imagen_noticia" class="form-label">Imagen actual de la noticia</label><br>
-                                    <a href="" id="e_imagen_noticia" target="_blank"></a><br><br><br>
+                                    <a href="" id="e_imagen_noticia" target="_blank"></a>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
                                     <img src="" alt="" id="img_imagen_noticia" width="100%">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
                                     <p>NOTA: Si desea modificar la imagen mostrada en el portal web, debe subir una nueva imagen en el siguiente campo
                                         caso contrario no debe subir ninguna imagen</p><br>
                                     <input name="em_imagen_noticia" type="file" class="form-control"

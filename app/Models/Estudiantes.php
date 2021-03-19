@@ -30,23 +30,9 @@ class Estudiantes extends Model
     protected $primaryKey = 'est_id';
 
     /**
-     * The "type" of the auto-incrementing ID.
-     * 
-     * @var string
-     */
-    protected $keyType = 'string';
-
-    /**
-     * Indicates if the IDs are auto-incrementing.
-     * 
-     * @var bool
-     */
-    public $incrementing = false;
-
-    /**
      * @var array
      */
-    protected $fillable = ['est_per_id', 'est_comprobante', 'est_subd_verificacion', 'est_subd_estado'];
+    protected $fillable = ['est_per_id', 'est_comprobante', 'est_sem_id', 'est_subd_verificacion', 'est_subd_estado'];
 
     /**
      * Indicates if the model should be timestamped.

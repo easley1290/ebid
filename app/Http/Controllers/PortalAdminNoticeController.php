@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\UnidadAcademica;
 use App\Models\Subdominios;
 use App\Models\Noticias;
+use File;
 
 class PortalAdminNoticeController extends Controller
 {
@@ -39,9 +40,7 @@ class PortalAdminNoticeController extends Controller
                 $noticiaId = $noticias -> not_id;
                 $noticiaId = $noticiaId + 1;
             }   
-            
-            
-
+        
             $noticiaC = new Noticias;
 
             $imagen = $request->file('c_imagen_noticia');
@@ -77,7 +76,9 @@ class PortalAdminNoticeController extends Controller
                 $destinoImagen = public_path('assets\img\noticias');
                 $imagen->move($destinoImagen, $nombreImagen);
 
-                unlink($rutaImagenAntigua);
+                if(File::exists($rutaImagenAntigua)){
+                    unlink($rutaImagenAntigua);
+                }
             }else{
                 $nombreImagen = $noticiasE->not_imagen;
             }

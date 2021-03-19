@@ -66,14 +66,34 @@
               </div>
               <div class="form-group col-md-4 mb-4">
                 <input type="text" class="form-control input-lg" id="materno" aria-describedby="maternoHelp" placeholder="Tipo de Documento">
-              </div>
+              </div-->
               <div class="form-group col-md-5 mb-4">
-                <input type="text" class="form-control input-lg" id="materno" aria-describedby="maternoHelp" placeholder="Numero de documento">
+                <input id="per_num_documentacion" type="number" class="form-control input-lg @error('per_num_documentacion') is-invalid @enderror" 
+                name="per_num_documentacion" value="{{ old('per_num_documentacion') }}" placeholder="Numero de documento" required autocomplete="per_num_documentacion">
+                @error('per_num_documentacion')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+              </div>
+              <div class="form-group col-md-4 mb-4">
+                <input id="per_alfanumerico" type="text" class="form-control input-lg @error('per_alfanumerico') is-invalid @enderror" 
+                name="per_alfanumerico" value="{{ old('per_alfanumerico') }}" placeholder="Alfanumerico de C.I." autocomplete="per_alfanumerico">
+                @error('per_alfanumerico')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
               </div>
               <div class="form-group col-md-3 mb-4">
-                <input type="text" class="form-control input-lg" id="materno" aria-describedby="maternoHelp" placeholder="Extensión">
+                <select class="form-select form-control" name="per_subd_extension" id="per_subd_extension" required>
+                  <option value="" disabled selected>-- Seleccione la extension del carnet --</option>
+                  @foreach($extension as $ext)               
+                    <option value="{{$ext->subd_id}}">{{$ext->subd_nombre}}</option>
+                  @endforeach
+                </select>
               </div>
-              <div class="form-group col-md-6 mb-4">
+              <!--div class="form-group col-md-6 mb-4">
                 <input type="number" class="form-control input-lg" id="materno" aria-describedby="maternoHelp" placeholder="Celular">
               </div>
               <div class="form-group col-md-6 mb-4">

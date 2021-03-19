@@ -180,7 +180,7 @@ $(document).ready(function(){
     $('#dom_nombre').val(data[1]);
     $('#dom_descripcion').val(data[2]);
 
-    $('#editForm').attr('action', '/Dominio/'+data[0]);
+    $('#editForm').attr('action', 'Dominio/'+data[0]);
     $('#editModal').modal('show');
   })
 });

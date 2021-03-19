@@ -24,6 +24,9 @@ use App\Http\Controllers\PensumController;
 use App\Http\Controllers\SubirComprobanteController;
 use App\Http\Controllers\ValidarComprobanteController;
 use App\Http\Controllers\RegistroComprobanteController;
+use App\Http\Controllers\EstudianteController;
+
+use App\Models\Subdominios;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +58,15 @@ Route::prefix('administracion')->group(function () {
     Route::resource('/videos', PortalAdminVideosController::class);
 });
 
+/***********Rutas Creacion del estudiante**********/
+Route::prefix('administracion')->group(function () {
+    Route::resource('/estudiante', EstudianteController::class);
+    Route::get('/estudiante-nuevo', [EstudianteController::class, 'indexNuevo'])->name('indexNuevo');
+    Route::post('/estudiante-buscar', [EstudianteController::class, 'busquedaEstudiante'])->name('busquedaEstudiante');
+    Route::post('/estudiante-nuevo', [EstudianteController::class, 'storeNuevo'])->name('storeNuevo');
+    Route::put('/estudiante-nuevo/{id}', [EstudianteController::class, 'updateNuevo'])->name('updateNuevo');
+});
+
 /***********Rutas dominio**********/
 Route::resource('/Dominio', DominioController::class);
 /***********Rutas Subdominio**********/
@@ -65,7 +77,12 @@ Route::resource('/Subdominio', SubdominioController::class);
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/login_', function () {return view('ebid-views-login.login');});
-Route::get('/register_', function () {return view('ebid-views-login.register');});
+Route::get('/register_', function () {
+    $extension = Subdominios::select('subdominios.*')
+                        ->where('subd_dom_id','=',9)
+                        ->get();
+    return view('ebid-views-login.register')->with('extension', $extension);
+});
 /***************  PERFIL  ****************** */
 Route::resource('/Persona', PersonaController::class);
 Route::resource('/PersonaInstitucional', PersonaInsController::class);
