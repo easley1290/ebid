@@ -59,34 +59,34 @@
       <div class="col-lg-6 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
         <div class="icon-box">
           <div class="danza-miniaturas"><img src="{{ asset('assets/img/d-clasica.jpg') }}" width="500"></div>
-          <h4>Danza clasica</h4>
+          <h4>Danza clásica</h4>
           <p>es una forma de danza cuyos movimientos se basan en el control total 
           y absoluto del cuerpo, el cual se debe enseñar desde temprana edad.</p>
         </div>
       </div>
 
-      <div class="col-lg-6 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+      <div class="col-lg-6 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
         <div class="icon-box">
           <div class="danza-miniaturas"><img src="{{ asset('assets/img/d-contemporanea.jpg') }}" width="500"></div>
-          <h4>Danza contemporanea</h4>
+          <h4>Danza moderna-contemporanea</h4>
           <p>Aprendizaje que parte desde el centro corporal, hacia el manejo de las
           extremidades, la fuerza de la gravedad, los equilibrios y desequilibrios, 
           las contracciones, las suspensiones y las caídas</p>
         </div>
       </div>
 
-      <div class="col-lg-6 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+      <div class="col-lg-6 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="100">
         <div class="icon-box">
           <div class="danza-miniaturas"><img src="{{ asset('assets/img/d-moderna.jpg') }}" width="500"></div>
-          <h4>Danza moderna</h4>
+          <h4>Danza folklórica</h4>
           <p>Sus movimientos son una expresión libre y fluida de estados, emociones, metáforas o ideas abstractas</p>
         </div>
       </div>
 
-      <div class="col-lg-6 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+      <div class="col-lg-6 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="100">
         <div class="icon-box">
           <div class="danza-miniaturas"><img src="{{ asset('assets/img/d-Ballet.jpg') }}" width="500"></div>
-          <h4>Ballet</h4>
+          <h4>Coreografía y direccion</h4>
           <p>El ballet moderno o ballet contemporáneo es una forma de danza influenciada
           tanto por el ballet clásico como por la danza moderna. Si bien adopta la 
           técnica del ballet clásico, permite un mayor rango de movimiento.</p>

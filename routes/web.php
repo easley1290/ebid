@@ -22,6 +22,7 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\CategoriaDocenteController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\MateriaDocenteController;
+use App\Http\Controllers\NotaController;
 
 use App\Http\Controllers\PensumController;
 use App\Http\Controllers\SubirComprobanteController;
@@ -100,3 +101,5 @@ Route::resource('/CategoriaDocente', CategoriaDocenteController::class);
 Route::resource('/Docente', DocenteController::class);
 /***************  MateriaDocente  ****************** */
 Route::resource('/MateriaDocente', MateriaDocenteController::class);
+/***************  Nota  ****************** */
+Route::resource('/Nota', NotaController::class);

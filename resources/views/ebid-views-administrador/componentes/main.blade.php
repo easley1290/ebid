@@ -159,7 +159,7 @@
 
                   <!----------------------------NOTAS---------------------------------->
                   <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="index.html">
+                    <a class="sidenav-item-link" href="{{ route('Nota.index') }}">
                       <i class="mdi mdi-notebook"></i>
                       <span class="nav-text">Notas</span>
                     </a>
