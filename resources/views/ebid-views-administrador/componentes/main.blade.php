@@ -144,7 +144,7 @@
                               </a>
                             </li>
                             <li >
-                              <a class="sidenav-item-link" href="analytics.html">
+                              <a class="sidenav-item-link" href="{{ route('Docente.index') }}">
                                 <span class="nav-text">Docentes</span>                             
                               </a>
                             </li> 
@@ -159,7 +159,7 @@
 
                   <!----------------------------NOTAS---------------------------------->
                   <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="index.html">
+                    <a class="sidenav-item-link" href="{{ route('Nota.index') }}">
                       <i class="mdi mdi-notebook"></i>
                       <span class="nav-text">Notas</span>
                     </a>
@@ -212,7 +212,7 @@
                               </a>
                             </li>
                             <li >
-                              <a class="sidenav-item-link" href="#">
+                              <a class="sidenav-item-link" href="{{ route('MateriaDocente.index') }}">
                                 <span class="nav-text">Seguimiento de docentes</span>                             
                               </a>
                             </li>  
@@ -261,7 +261,7 @@
                               </a>
                             </li>
                             <li >
-                              <a class="sidenav-item-link" href="#">
+                              <a class="sidenav-item-link" href="{{ route('CategoriaDocente.index') }}">
                                 <span class="nav-text">Categoría docente</span>                             
                               </a>
                             </li>    
