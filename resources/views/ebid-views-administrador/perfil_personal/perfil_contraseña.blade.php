@@ -18,6 +18,15 @@
                     </div>             
                     <!-- Recent Order Table -->
                     <div class="card card-table-border-none" id="recent-orders">
+                      @if (session('danger'))
+                        <div class="alert alert-danger">
+                            {{ session('danger') }}
+                        </div>
+                      @elseif(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                      @endif
                       <div class="card-header">
                         <div class="col-md-12"><h4 class="row">Estimado(a): {{auth()->user()->name}}, introduzca los siguientes datos:</h4></div>
                       </div>

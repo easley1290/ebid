@@ -81,7 +81,7 @@ class RegisterController extends Controller
             'per_telefono' => trim($data['per_telefono']),
             'per_subd_extension' => trim($data['per_subd_extension']),
             'per_num_documentacion' => trim($data['per_num_documentacion']).trim($data['per_alfanumerico']),
-            'per_rol' => 'estudiante',
+            'per_rol' => '1', //revisar si el 1 2 3 4 .... corresponde a per_rol = estudiante y cambiarlo si corresponde
         ]);
     }
 }

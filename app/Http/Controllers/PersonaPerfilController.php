@@ -7,34 +7,18 @@ use App\Models\User;
 use App\Models\Personas;
 use App\Models\Subdominios;
 
-class PersonaController extends Controller
+class PersonaPerfilController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() 
+    public function index()
     {
-        try{
-            $personas = Personas::all();
-            $generos = Subdominios::select('subdominios.*')
-            ->where('subd_dom_id','=',2)
-            ->get();
-            $tipo_docs = Subdominios::select('subdominios.*')
-            ->where('subd_dom_id','=',10)
-            ->get();
-            $extensions = Subdominios::select('subdominios.*')
-            ->where('subd_dom_id','=',11)
-            ->get();
-            return  view('ebid-views-administrador.perfil_personal.perfil_personal',
-                    compact('personas','generos','tipo_docs','extensions'));
-        } 
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
-        }
+        //
     }
- 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -53,39 +37,7 @@ class PersonaController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'nombres' => 'required',
-            'paterno' => 'required',
-            'materno' => 'required',
-            'tipo_doc' => 'required',
-            'num_doc' => 'required',
-            'extension' => 'required',
-            'extension' => 'required',
-            'fec_nac' => 'required',
-            'correo' => 'required'
-        ]);
-        
-        $persona_nuevo = new Personas;
-
-        $persona_nuevo->per_ua_id =             'UA-EA0001';
-        $persona_nuevo->per_nombres =           $request->nombres;
-        $persona_nuevo->per_paterno =           $request->paterno;
-        $persona_nuevo->per_materno =           $request->materno;
-        $persona_nuevo->per_num_documentacion = $request->num_doc;
-        $persona_nuevo->per_fecha_nacimiento =  $request->fec_nac;
-        $persona_nuevo->per_telefono =          $request->telefono;
-        $persona_nuevo->name = $request->input('nombres').' '.$request->input('paterno').' '.$request->input('materno');
-        $persona_nuevo->email =                 $request->correo;
-        $persona_nuevo->per_domicilio =         $request->domicilio;
-        $persona_nuevo->per_subd_documentacion =$request->tipo_doc;
-        $persona_nuevo->per_subd_extension =    $request->extension;
-        $persona_nuevo->per_subd_genero =       $request->genero;
-        $persona_nuevo->per_subd_estado =       '1';
-
-        //$persona_nuevo->per_rol =       '1';
-        $persona_nuevo->save();
-
-        return redirect()->route('Persona.index');
+        //
     }
 
     /**
@@ -96,7 +48,23 @@ class PersonaController extends Controller
      */
     public function show($id)
     {
-        //
+        try{
+            $personas = Personas::find($id);
+            $generos = Subdominios::select('subdominios.*')
+            ->where('subd_dom_id','=',2)
+            ->get();
+            $tipo_docs = Subdominios::select('subdominios.*')
+            ->where('subd_dom_id','=',10)
+            ->get();
+            $extensions = Subdominios::select('subdominios.*')
+            ->where('subd_dom_id','=',11)
+            ->get();
+            return  view('ebid-views-administrador.perfil_personal.perfil_datos',
+                    compact('personas','generos','tipo_docs','extensions'));
+        } 
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 
     /**
@@ -107,7 +75,7 @@ class PersonaController extends Controller
      */
     public function edit($id)
     {
-        ///
+        //
     }
 
     /**
@@ -148,15 +116,25 @@ class PersonaController extends Controller
             $persona_edit->per_subd_documentacion = $request->input('per_subd_documentacion');
             $persona_edit->per_subd_extension = $request->input('per_subd_extension');
             $persona_edit->per_subd_genero = $request->input('per_subd_genero');
-            $persona_edit->per_subd_estado = '7';
 
+            if ($request->hasFile('per_foto_personal')) 
+        {
+            $ldate = date('YmdHis_');
+
+            $file = $request->file('per_foto_personal');
+            $name=$file->getClientOriginalName();
+            $originalname = $ldate.$file->getClientOriginalName();
+            $place = $file->storeAs('public/Foto', $originalname);
+            $path = '/storage/Foto/'.$originalname;
+            $persona_edit->per_foto_personal      = $path;
+        }
+        
             $persona_edit->save();
-            return redirect()->route('Persona.index');
+            return redirect()->route('PersonaPerfil.show',auth()->user()->per_id);
         }
         catch (Throwable $e){
             return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
         }
-
     }
 
     /**
@@ -167,9 +145,6 @@ class PersonaController extends Controller
      */
     public function destroy($id)
     {
-        $persona_delete = Personas::find($id);
-
-        $persona_delete->delete();
-        return redirect()->route('Persona.index');
+        //
     }
 }
