@@ -54,7 +54,7 @@ class Personas extends Authenticatable
     /**
      * @var array
      */
-    protected $fillable = ['per_ua_id', 'per_nombres', 'per_paterno', 'per_materno', 'per_num_documentacion', 'per_fecha_nacimiento', 'per_telefono', 'name','email', 'per_domicilio', 'per_codigo_institucional', 'per_correo_institucional', 'password', 'per_foto_personal', 'per_verificacion_email', 'per_subd_documentacion', 'per_subd_extension', 'per_subd_genero', 'per_subd_estado'];
+    protected $fillable = ['per_ua_id', 'per_nombres', 'per_paterno', 'per_materno', 'per_num_documentacion', 'per_fecha_nacimiento', 'per_telefono', 'name','email', 'per_domicilio', 'per_codigo_institucional', 'per_correo_institucional', 'password', 'per_foto_personal', 'per_verificacion_email', 'per_subd_documentacion', 'per_subd_extension', 'per_subd_genero', 'per_subd_estado','per_rol'];
 
     /**
      * Indicates if the model should be timestamped.

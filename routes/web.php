@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DominioController;
 use App\Http\Controllers\SubdominioController;
 use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\PersonaPerfilController;
 use App\Http\Controllers\PersonaInsController;
 use App\Http\Controllers\ContraseñaController;
 use App\Http\Controllers\PortalAdminQSController;
@@ -73,6 +74,7 @@ Route::get('/register_', function () {return view('ebid-views-login.register');}
 /***************  PERFIL  ****************** */
 Route::resource('/Persona', PersonaController::class);
 Route::resource('/PersonaInstitucional', PersonaInsController::class);
+Route::resource('/PersonaPerfil', PersonaPerfilController::class);
 Route::resource('/Contrasenia', ContraseñaController::class);
 /***************  Comprobante  ****************** */
 Route::resource('/Comprobante', SubirComprobanteController::class);

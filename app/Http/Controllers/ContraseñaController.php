@@ -104,16 +104,16 @@ class ContraseñaController extends Controller
                 }
                 else
                 {
-                    return redirect()->route('Contrasenia.index')->with('danger', 'Contraseña no coincide');
+                    return redirect()->route('Contrasenia.index')->with('danger', 'Las contraseñas no coinciden');
                 }
             }
             else
             {
-                return redirect()->route('Contrasenia.index')->with('danger', 'Contraseña incorrecta');
+                return redirect()->route('Contrasenia.index')->with('danger', 'La contraseña antigua no corresponde');
             }
 
         }
-        if(!isset($request->per_contraseña_antigua))
+        else
         {
             if($request->input('contraseña_nueva') == $request->input('contraseña_nueva1'))
             {
@@ -124,7 +124,7 @@ class ContraseñaController extends Controller
             }
             else
             {
-                return redirect()->route('PersonaInstitucional.index')->with('danger', 'Contraseña no coincide');;
+                return redirect()->route('PersonaInstitucional.index')->with('danger', 'Las contraseñas no coinciden');;
             }
         }
     
