@@ -53,10 +53,21 @@ class EstudianteController extends Controller
     {
         try{
             if($request->ajax()){
-                $estudiante = Personas::select('personas.*')
-                            ->where('per_num_documentacion', '=', $request->get('busqueda_estudiante'))
-                            ->where('per_subd_estado', '=', 2)
+                $nombre = ucwords($request->get('busqueda_nombre'));
+                /*--------------------------------------CAMBIER PER_ROL-----------------------------*/
+                // $estudiante = Personas::select('personas.*')
+                //             ->where('per_rol', '=', 'estudiante')
+                //             ->where('personas.name', 'LIKE', '%'.$nombre.'%')
+                //             ->orWhere('personas.per_num_documentacion', 'LIKE', '%'.$nombre.'%')
+                //             ->get();
+                $estudiante = DB::table('personas')
+                            ->join('estudiantes', 'estudiantes.est_per_id', '=', 'personas.per_id')
+                            ->select('personas.*', 'estudiantes.est_id')
+                            ->where('personas.per_rol', '=', 'estudiante')
+                            ->where('personas.name', 'LIKE', '%'.$nombre.'%')
+                            ->orWhere('personas.per_num_documentacion', 'LIKE', '%'.$nombre.'%')
                             ->get();
+
                 return response(json_encode($estudiante), 200)->header('Content-type', 'text/plain');
             }
         } catch (Exception $e){

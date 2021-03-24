@@ -25,7 +25,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card text-white mb-3 bg-primary">
-                            <div class="card-header bg-primary" style="font-size: 30px;">INSCRIPCION - LISTA DE COMPROBANTES</div>
+                            <div class="card-header bg-primary" style="font-size: 30px;">INSCRIPCION - LISTA DE POSTULANTES</div>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,39 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                @foreach($arrayAux[0] as $postulante)
+                                    <tr>
+                                        <td class="">{{ $postulante->per_id}}</td>
+                                        <td class="">{{ $postulante->name }}</td>
+                                        <td class="">{{ $postulante->per_telefono }}</td>
+                                        @if ($arrayAux[4]==0)
+                                            <td class="">No se registro fecha de examen</td>
+                                        @else
+                                            @foreach($arrayAux[3] as $examen)
+                                                @if($examen->exa_per_id === $postulante->per_id)
+                                                    <td class="">{{ $examen->exa_fecha }}</td>
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                        @foreach($arrayAux[2] as $subd)
+                                            @if($subd->subd_id === $postulante->est_subd_estado)
+                                                <td class="">{{ $subd->subd_nombre }}</td>
+                                            @endif
+                                        @endforeach
+                                        <td style="display: none;">{{ $postulante->per_nombres }}</td>
+                                        <td style="display: none;">{{ $postulante->per_paterno }}</td>
+                                        <td style="display: none;">{{ $postulante->per_materno }}</td>
+                                        <td style="display: none;">{{ $postulante->per_num_documentacion }}</td>
+                                        <td style="display: none;">{{ $postulante->per_subd_extension }}</td>
+                                        <td style="display: none;">{{ $postulante->email }}</td>
+                                        <td class="">
+                                            <button class="btn btn-success edit">
+                                                <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Modificar</button>
+                                            <button class="btn btn-danger delete">
+                                                <span class="mdi mdi-delete"></span>&nbsp;Eliminar</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -62,7 +94,7 @@
     </div>
 
     <!--**********Modal editar postulante**********-->
-    {{-- <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -171,7 +203,7 @@
                 </form>
             </div>
         </div>
-    </div> --}}
+    </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js" defer></script>

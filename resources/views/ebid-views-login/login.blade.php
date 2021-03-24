@@ -1,5 +1,18 @@
 @extends('ebid-views-login.componentes.link')
-
+@if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 <body class="" id="body">
   <div class="container d-flex flex-column justify-content-between vh-100">
   <div class="row justify-content-center mt-5">
@@ -30,7 +43,7 @@
             <div class="form-group row">
                 <div class="form-group col-md-12 mb-4">
                     <input id="email" type="email" class="form-control input-lg @error('email') is-invalid @enderror" 
-                    name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
+                    name="email" value="{{ old('email') }}" required autocomplete="off" autofocus
                     placeholder="ejemplo@usuario.com">
                     @error('email')
                         <span class="invalid-feedback" role="alert">

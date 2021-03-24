@@ -70,16 +70,18 @@ class RegisterController extends Controller
     {
         return Personas::create([
             'per_ua_id' =>'UA-EA0001',
-            'per_nombres' => $data['per_nombres'],
-            'per_paterno' => $data['per_paterno'],
-            'per_materno' => $data['per_materno'],
-            'name' => $data['per_nombres'].' '.$data['per_paterno'].' '.$data['per_materno'],
-            'email' => $data['email'],
-            'per_correo_personal' => $data['email'],
+            'per_nombres' => trim($data['per_nombres']),
+            'per_paterno' => trim($data['per_paterno']),
+            'per_materno' => trim($data['per_materno']),
+            'name' => trim($data['per_nombres']).' '.trim($data['per_paterno']).' '.trim($data['per_materno']),
+            'email' => trim($data['email']),
+            'per_correo_personal' => trim($data['email']),
             'password' => Hash::make($data['password']),
-            'per_subd_estado' => '2',
-            'per_subd_extension' => $data['per_subd_extension'],
-            'per_num_documentacion' => $data['per_num_documentacion'].$data['per_alfanumerico'],
+            'per_subd_estado' => 1,
+            'per_telefono' => trim($data['per_telefono']),
+            'per_subd_extension' => trim($data['per_subd_extension']),
+            'per_num_documentacion' => trim($data['per_num_documentacion']).trim($data['per_alfanumerico']),
+            'per_rol' => 'estudiante',
         ]);
     }
 }

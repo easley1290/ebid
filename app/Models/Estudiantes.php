@@ -32,7 +32,7 @@ class Estudiantes extends Model
     /**
      * @var array
      */
-    protected $fillable = ['est_per_id', 'est_comprobante', 'est_sem_id', 'est_subd_verificacion', 'est_subd_estado'];
+    protected $fillable = ['est_per_id', 'est_comprobante_examen', 'est_comprobante_inscripcion', 'est_sem_id', 'est_subd_estado'];
 
     /**
      * Indicates if the model should be timestamped.

@@ -25,10 +25,12 @@ use App\Http\Controllers\MateriaDocenteController;
 use App\Http\Controllers\NotaController;
 
 use App\Http\Controllers\PensumController;
-use App\Http\Controllers\SubirComprobanteController;
+
 use App\Http\Controllers\ValidarComprobanteController;
 use App\Http\Controllers\RegistroComprobanteController;
 use App\Http\Controllers\EstudianteController;
+use App\Http\Controllers\PostulantesController;
+use App\Http\Controllers\ComprobanteController;
 
 use App\Models\Subdominios;
 
@@ -62,9 +64,11 @@ Route::prefix('administracion')->group(function () {
     Route::resource('/videos', PortalAdminVideosController::class);
 });
 
-/***********Rutas Creacion del estudiante**********/
-Route::prefix('administracion')->group(function () {
+/***********Rutas inscripcion del estudiante**********/
+Route::prefix('administracion/inscripcion')->group(function () {
     Route::resource('/estudiante', EstudianteController::class);
+    Route::resource('/postulante', PostulantesController::class);
+    Route::resource('/comprobante', ComprobanteController::class);
     Route::get('/estudiante-nuevo', [EstudianteController::class, 'indexNuevo'])->name('indexNuevo');
     Route::post('/estudiante-buscar', [EstudianteController::class, 'busquedaEstudiante'])->name('busquedaEstudiante');
     Route::post('/estudiante-nuevo', [EstudianteController::class, 'storeNuevo'])->name('storeNuevo');
@@ -91,10 +95,6 @@ Route::get('/register_', function () {
 Route::resource('/Persona', PersonaController::class);
 Route::resource('/PersonaInstitucional', PersonaInsController::class);
 Route::resource('/Contrasenia', ContraseñaController::class);
-/***************  Comprobante  ****************** */
-Route::resource('/Comprobante', SubirComprobanteController::class);
-Route::resource('/ValidarComprobante', ValidarComprobanteController::class);
-Route::resource('/RegistroComprobante', RegistroComprobanteController::class);
 
 /***************  Institucion  ****************** */
 Route::resource('/Institucion', InstitucionController::class);
