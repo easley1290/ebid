@@ -8,7 +8,7 @@ use App\Models\Especialidades;
 use App\Models\Semestre;
 use App\Models\Materias;
 use App\Models\Subdominios;
-
+use App\Models\Carreras;
 
 class PensumController extends Controller
 {
@@ -24,90 +24,55 @@ class PensumController extends Controller
             $especialidades = Especialidades::all();
             $semestre = Semestre::all();
             $materias = Materias::all();
+            $carreras = Carreras::all();
+
             $estados = Subdominios::select('subdominios.*')
                         ->where('subd_dom_id','=',1)
                         ->get();
-            $pensum_cd_1 = Pensum::select('pensum.*')
-                        ->where('pen_car_id','=',"E-CD-01")
-                        ->where('pen_sem_id','=',1)
+
+            $pensum_basicas_1 = Pensum::select('pensum.*')
+                            ->where('pen_esp_id','=',1)
+                            ->where('pen_sem_id','=',1)
+                            ->where('pen_subd_estado', '=', 1)
+                            ->get();
+            $pensum_basicas_2 = Pensum::select('pensum.*')
+                        ->where('pen_esp_id','=',1)
+                        ->where('pen_sem_id','=',2)
+                        ->where('pen_subd_estado', '=', 1)
                         ->get();
-            $pensum_cd_2 = Pensum::select('pensum.*')
-            ->where('pen_car_id','=',"E-CD-01")
-            ->where('pen_sem_id','=',2)
-            ->get();
-            $pensum_cd_3 = Pensum::select('pensum.*')
-            ->where('pen_car_id','=',"E-CD-01")
-            ->where('pen_sem_id','=',3)
-            ->get();
-            $pensum_cd_4 = Pensum::select('pensum.*')
-            ->where('pen_car_id','=',"E-CD-01")
-            ->where('pen_sem_id','=',4)
-            ->get();
-            $pensum_dc_1 = Pensum::select('pensum.*')
-            ->where('pen_car_id','=',"E-DC-01")
-            ->where('pen_sem_id','=',1)
-            ->get();
-            $pensum_dc_2 = Pensum::select('pensum.*')
-            ->where('pen_car_id','=',"E-DC-01")
-            ->where('pen_sem_id','=',2)
-            ->get();
-            $pensum_dc_3 = Pensum::select('pensum.*')
-            ->where('pen_car_id','=',"E-DC-01")
-            ->where('pen_sem_id','=',3)
-            ->get();
-            $pensum_dc_4 = Pensum::select('pensum.*')
-            ->where('pen_car_id','=',"E-DC-01")
-            ->where('pen_sem_id','=',4)
-            ->get();
-            $pensum_df_1 = Pensum::select('pensum.*')
-            ->where('pen_car_id','=',"E-DF-01")
-            ->where('pen_sem_id','=',1)
-            ->get();
-            $pensum_df_2 = Pensum::select('pensum.*')
-            ->where('pen_car_id','=',"E-DF-01")
-            ->where('pen_sem_id','=',2)
-            ->get();
-            $pensum_df_3 = Pensum::select('pensum.*')
-            ->where('pen_car_id','=',"E-DF-01")
-            ->where('pen_sem_id','=',3)
-            ->get();
-            $pensum_df_4 = Pensum::select('pensum.*')
-            ->where('pen_car_id','=',"E-DF-01")
-            ->where('pen_sem_id','=',4)
-            ->get();
-            $pensum_dmc_1 = Pensum::select('pensum.*')
-            ->where('pen_car_id','=',"E-DMC-01")
-            ->where('pen_sem_id','=',1)
-            ->get();
-            $pensum_dmc_2 = Pensum::select('pensum.*')
-            ->where('pen_car_id','=',"E-DMC-01")
-            ->where('pen_sem_id','=',2)
-            ->get();
-            $pensum_dmc_3 = Pensum::select('pensum.*')
-            ->where('pen_car_id','=',"E-DMC-01")
-            ->where('pen_sem_id','=',3)
-            ->get();
-            $pensum_dmc_4 = Pensum::select('pensum.*')
-            ->where('pen_car_id','=',"E-DMC-01")
-            ->where('pen_sem_id','=',4)
-            ->get();
-            $pensum_pd_1 = Pensum::select('pensum.*')
-            ->where('pen_car_id','=',"E-PD-01")
-            ->where('pen_sem_id','=',1)
-            ->get();
-            $pensum_pd_2 = Pensum::select('pensum.*')
-            ->where('pen_car_id','=',"E-PD-01")
-            ->where('pen_sem_id','=',2)
-            ->get();
-            $pensum_pd_3 = Pensum::select('pensum.*')
-            ->where('pen_car_id','=',"E-PD-01")
-            ->where('pen_sem_id','=',3)
-            ->get();
-            $pensum_pd_4 = Pensum::select('pensum.*')
-            ->where('pen_car_id','=',"E-PD-01")
-            ->where('pen_sem_id','=',4)
-            ->get();
-            $aux = [$pensum, $estados, $carreras, $materias, $semestre, $pensum_cd_1, $pensum_cd_2, $pensum_cd_3, $pensum_cd_4, $pensum_dc_1, $pensum_dc_2, $pensum_dc_3, $pensum_dc_4, $pensum_df_1, $pensum_df_2, $pensum_df_3, $pensum_df_4, $pensum_dmc_1, $pensum_dmc_2, $pensum_dmc_3, $pensum_dmc_4, $pensum_pd_1, $pensum_pd_2, $pensum_pd_3, $pensum_pd_4];
+            $pensum_basicas_3 = Pensum::select('pensum.*')
+                        ->where('pen_esp_id','=',1)
+                        ->where('pen_sem_id','=',3)
+                        ->where('pen_subd_estado', '=', 1)
+                        ->get();
+            
+            $pensum_cd = Pensum::select('pensum.*')
+                        ->where('pen_esp_id','=',2)
+                        ->where('pen_sem_id','=',4)
+                        ->where('pen_subd_estado', '=', 1)
+                        ->get();
+            $pensum_dc = Pensum::select('pensum.*')
+                        ->where('pen_esp_id','=',3)
+                        ->where('pen_sem_id','=',4)
+                        ->where('pen_subd_estado', '=', 1)
+                        ->get();
+            $pensum_df = Pensum::select('pensum.*')
+                        ->where('pen_esp_id','=',4)
+                        ->where('pen_sem_id','=',4)
+                        ->where('pen_subd_estado', '=', 1)
+                        ->get();
+            $pensum_dmc = Pensum::select('pensum.*')
+                        ->where('pen_esp_id','=',5)
+                        ->where('pen_sem_id','=',4)
+                        ->where('pen_subd_estado', '=', 1)
+                        ->get();
+            $pensum_pd = Pensum::select('pensum.*')
+                        ->where('pen_esp_id','=',6)
+                        ->where('pen_sem_id','=',4)
+                        ->where('pen_subd_estado', '=', 1)
+                        ->get();
+
+            $aux = [$pensum, $estados, $especialidades, $materias, $semestre, $carreras, $pensum_basicas_1, $pensum_basicas_2, $pensum_basicas_3, $pensum_cd, $pensum_dc, $pensum_df, $pensum_dmc, $pensum_pd];
             return view('ebid-views-administrador.pensum.pensum')->with('aux', $aux);
         } 
         catch (Throwable $e){
@@ -135,16 +100,18 @@ class PensumController extends Controller
     {
         try{
             $this->validate($request,[
-                'pen_car_id' => 'required',
+                'pen_esp_id' => 'required',
                 'pen_mat_id' => 'required',
                 'pen_sem_id' => 'required',
                 'pen_subd_estado' => 'required',
             ]);
             $pensum_nueva = new Pensum;
+            $pensum_nueva->pen_esp_id = $request->input('pen_esp_id');
             $pensum_nueva->pen_car_id = $request->input('pen_car_id');
             $pensum_nueva->pen_mat_id = $request->input('pen_mat_id');
             $pensum_nueva->pen_sem_id = $request->input('pen_sem_id');
             $pensum_nueva->pen_subd_estado = $request->input('pen_subd_estado');
+
             $pensum_nueva->save();
             return redirect()->route('Pensum.index')->with('status', 'Se AGREGÓ una materia al pensum con exito');
         } 
