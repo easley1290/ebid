@@ -181,7 +181,7 @@
                                 <span class="nav-text">Estudiantes</span>
                               </a>
                             </li>
-                          <li >
+                          <li>
                             <a class="sidenav-item-link" href="analytics.html">
                               <span class="nav-text">Administrativo</span>                             
                             </a>
@@ -312,38 +312,43 @@
                     <ul  class="collapse"  id="inscripcion"
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
-                            <li>
-                              <a class="sidenav-item-link" href="{{ route('postulante.index') }}">
-                                <span class="nav-text">Lista de postulantes</span>
-                              </a>
-                            </li>
-                            <li>
-                              <a class="sidenav-item-link" href="{{ route('postulante.create') }}">
-                                <span class="nav-text">Preinscripcion de postulantes</span>
-                              </a>
-                            </li>
-                            <li>
-                              <a class="sidenav-item-link" href="{{ route('comprobante.create') }}">
-                                <span class="nav-text">Subir Comprobante</span>
-                              </a>
-                            </li>
-                            <li>
-                              <a class="sidenav-item-link" href="{{ route('comprobante.index') }}">
-                                <span class="nav-text">Ver comprobantes</span>                             
-                              </a>
-                            </li>                  
-                            @if (auth()->user()->per_rol ==1)
-                            <li >
-                              <a class="sidenav-item-link" href="{{ route('ValidarComprobante.index') }}">
-                                <span class="nav-text">Validar Comprobantes</span>                             
-                              </a>
-                            </li> 
-                            <li >
-                              <a class="sidenav-item-link" href="{{ route('RegistroComprobante.index') }}">
-                                <span class="nav-text">Comprobantes Validados</span>                             
-                              </a>
-                            </li> 
-                            @endif  
+                        <li>
+                          <a class="sidenav-item-link" href="{{ route('postulante.index') }}">
+                            <span class="nav-text">Lista de postulantes</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a class="sidenav-item-link" href="{{ route('postulante.create') }}">
+                            <span class="nav-text">Preinscripcion de postulantes</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a class="sidenav-item-link" href="{{ route('subir-comprobante.index') }}">
+                            <span class="nav-text">Subir Comprobante</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a class="sidenav-item-link" href="{{ route('comprobante.index') }}">
+                            <span class="nav-text">Validar comprobantes</span>                             
+                          </a>
+                        </li>      
+                        <li>
+                          <a class="sidenav-item-link" href="{{ route('calendario-ingreso.index') }}">
+                            <span class="nav-text">Examenes de ingreso</span>                             
+                          </a>
+                        </li>              
+                        @if (auth()->user()->per_rol ==1)
+                        {{-- <li >
+                          <a class="sidenav-item-link" href="{{ route('ValidarComprobante.index') }}">
+                            <span class="nav-text">Validar Comprobantes</span>                             
+                          </a>
+                        </li> 
+                        <li >
+                          <a class="sidenav-item-link" href="{{ route('RegistroComprobante.index') }}">
+                            <span class="nav-text">Comprobantes Validados</span>                             
+                          </a>
+                        </li>  --}}
+                        @endif  
                       </div>
                     </ul>
                   </li>

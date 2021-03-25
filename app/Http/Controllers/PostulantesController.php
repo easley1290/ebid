@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Personas;
 use App\Models\Estudiantes;
 use App\Models\Subdominios;
-use App\Models\ExamenIngreso;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,38 +13,48 @@ class PostulantesController extends Controller
 {
     public function index()
     {
+         /*-----------Se llama a la vista del listado de postulantes con estado pre examen(8) y per_rol = 1---------------------------*/
         try{
             $postulante = DB::table('personas')
                             ->join('estudiantes', 'estudiantes.est_per_id', '=', 'personas.per_id')
-                            ->select('personas.*', 'estudiantes.est_subd_estado')
+                            ->select('personas.*', 'estudiantes.*')
                             ->where('estudiantes.est_subd_estado', '=', 8)
+                            ->where('personas.per_subd_estado', '=', 1)
+                            ->where('personas.per_rol', '=', 1)
                             ->get();
 
             $subdominiosExamen = Subdominios::select('subdominios.*')
                         ->where('subdominios.subd_dom_id', '=', 7)
                         ->get();
+
             $subdominiosEst = Subdominios::select('subdominios.*')
                         ->where('subdominios.subd_dom_id', '=', 3)
                         ->get();
-            $examenIngreso = ExamenIngreso::all();
-            $contador = count($examenIngreso);
+           
             $extension = Subdominios::select('subdominios.*')
                         ->where('subdominios.subd_dom_id', '=', 9)
                         ->get();
-            $arrayAux = [$postulante, $subdominiosExamen, $subdominiosEst, $examenIngreso, $contador, $extension];
+
+            $arrayAux = [$postulante, $subdominiosExamen, $subdominiosEst, $extension];
             return view('ebid-views-administrador.inscripcion.lista-postulante')->with('arrayAux', $arrayAux);
         }catch(Exception $e){
             return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
         }
     }
     public function create(){
-        $extension = Subdominios::select('subdominios.*')
+        /*-----------Se llama a la vista del resgitro del postulante---------------------------*/
+        try{
+            $extension = Subdominios::select('subdominios.*')
                         ->where('subd_dom_id','=',9)
                         ->get();
-        return view ('ebid-views-administrador.inscripcion.pre-inscripcion')->with('extension', $extension);
+            return view ('ebid-views-administrador.inscripcion.pre-inscripcion')->with('extension', $extension);
+        }catch(Exception $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
     public function store(Request $request)
     {
+        /*-----------Se registra al estudiante nuevo como postulante y una id de subdomnio 8 = Pre examen-------------*/
         try{
             $this->validate($request,[
                 'nombres_estudiante' => 'required|min:2|max:50',
@@ -67,9 +76,9 @@ class PostulantesController extends Controller
                 $alfa = $request->get('per_alfanumerico');
             }
 
-            $personaC->per_nombres = (string) $request->get('nombres_estudiante');
-            $personaC->per_paterno = (string) $request->get('paterno_estudiante');
-            $personaC->per_materno = (string) $request->get('materno_estudiante');
+            $personaC->per_nombres = (string) ucwords(strtolower($request->get('nombres_estudiante')));
+            $personaC->per_paterno = (string) ucwords(strtolower($request->get('paterno_estudiante')));
+            $personaC->per_materno = (string) ucwords(strtolower($request->get('materno_estudiante')));
             $personaC->per_num_documentacion = trim($request->get('numero_ci_estudiante').$alfa);
             $personaC->per_subd_extension = $request->get('extension_ci_estudiante');
             $personaC->per_telefono = (int) $request->get('numero_telefono_estudiante');
@@ -79,7 +88,7 @@ class PostulantesController extends Controller
             $personaC->password = Hash::make($request->get('numero_ci_estudiante'));
             $personaC->per_ua_id = 'UA-EA0001';
             $personaC->per_subd_estado = 1;
-            $personaC->per_rol = 'estudiante';
+            $personaC->per_rol = '1';
             $personaC->save();
 
             $estudianteC = new Estudiantes;
@@ -120,7 +129,6 @@ class PostulantesController extends Controller
             $personaE->name = $request->get('nombres_estudiante').' '.$request->get('paterno_estudiante').' '. $request->get('materno_estudiante');
             $personaE->email = (string) $request->get('email');
             $personaE->per_correo_personal = (string) $request->get('email');
-            $personaE->per_subd_estado = 1;
             $personaE->save();
 
             return redirect()->route('postulante.index')->with('status', 'Se modifico el registro del postulante '.$request->get('nombres_estudiante').' '.$request->get('paterno_estudiante').' '. $request->get('materno_estudiante'));

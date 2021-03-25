@@ -34,7 +34,7 @@
                         <h2>Asegurese de seleccionar el tipo de comprobante</h2>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('busquedaEstudiante') }}" method="POST" id="formBusqueda">
+                        <form action="estudiante-buscar" method="POST" id="formBusqueda">
                             @csrf
                             <div class="form-group row" style="justify-content: center;">
                                 <div class="col-md-6">
@@ -49,7 +49,7 @@
                                             name="busqueda_nombre" class="form-control"
                                             onKeyPress="if(this.value.length==100) return false;"
                                             placeholder="Ingrese apellidos/nombres/CI" autocomplete="off">
-                                        <button type="submit" class="btn btn-primary"><span class="mdi mdi-check"></span>&nbsp;Buscar</button>
+                                        <button type="submit" class="btn btn-primary"><span class="mdi mdi-account-search"></span>&nbsp;Buscar</button>
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
     <div class="modal fade" id="create" tabindex="-1" aria-labelledby="crearLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <form action="comprobante" method="POST" enctype="multipart/form-data" id="createForm">
+                <form action="subir-comprobante" method="POST" enctype="multipart/form-data" id="createForm">
                     @csrf
                     @method('PUT')
                     <div class="modal-header">
@@ -122,8 +122,8 @@
                             <div class="col-md-12">
                             <label for="tipo_comprobante">Tipo de comprobante</label>
                             <select class="form-select form-control" name="tipo_comprobante" id="tipo_comprobante" required>
-                                <option value="examen" selected>Comprobante de examen</option>
-                                <option value="inscripcion" >Comprobante de inscripcion</option>
+                                <option value="examen">Comprobante de EXAMEN</option>
+                                <option value="inscripcion" selected>Comprobante de INSCRIPCION</option>
                             </select>
                             </div>
                         </div>
@@ -131,7 +131,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cerrar</button>
                         <button type="submit" class="btn btn-primary">
-                            <span class="mdi mdi-account-plus"></span>&nbsp;Confirmar cambios
+                            <span class="mdi mdi-folder-upload"></span>&nbsp;Subir comprobante
                         </button>
                     </div>
                 </form>
@@ -196,7 +196,7 @@
             $('#paterno_estudiante').val($tr[0].children[4].innerText);
             $('#materno_estudiante').val($tr[0].children[5].innerText);
             $('#create').modal('show');
-            $('#createForm').attr('action', 'comprobante/'+$tr[0].children[0].innerText);
+            $('#createForm').attr('action', 'subir-comprobante/'+$tr[0].children[0].innerText);
       })
     });
 </script>

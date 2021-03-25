@@ -57,14 +57,10 @@
                                         <td class="">{{ $postulante->per_id}}</td>
                                         <td class="">{{ $postulante->name }}</td>
                                         <td class="">{{ $postulante->per_telefono }}</td>
-                                        @if ($arrayAux[4]==0)
+                                        @if ($postulante->est_examen_ingreso_fecha=="")
                                             <td class="">No se registro fecha de examen</td>
                                         @else
-                                            @foreach($arrayAux[3] as $examen)
-                                                @if($examen->exa_per_id === $postulante->per_id)
-                                                    <td class="">{{ $examen->exa_fecha }}</td>
-                                                @endif
-                                            @endforeach
+                                            <td class="">{{ $postulante->est_examen_ingreso_fecha }}</td>
                                         @endif
                                         @foreach($arrayAux[2] as $subd)
                                             @if($subd->subd_id === $postulante->est_subd_estado)
@@ -145,7 +141,7 @@
                             <div class="form-group col-md-5 mb-4">
                                 <label for="extension_ci_estudiante">Extension</label>
                                 <select class="form-select form-control" name="extension_ci_estudiante" id="extension_ci_estudiante" required>
-                                    @foreach($arrayAux[5] as $ext)               
+                                    @foreach($arrayAux[3] as $ext)               
                                         <option value="{{$ext->subd_id}}">{{$ext->subd_nombre}}</option>
                                     @endforeach
                                 </select>
@@ -197,7 +193,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cancelar</button>
-                            <button type="submit" class="btn btn-primary"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
+                            <button type="submit" class="btn btn-primary"><span class="mdi mdi-check"></span>&nbsp;CONFIRMAR</button>
                         </div>
                     </div>
                 </form>
@@ -210,13 +206,13 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
         $(document).ready(function() {
-        $('#postulante').DataTable({
+            $('#postulante').DataTable({
                 "lengthMenu":[[10, 25, 50, -1], [10, 25, 50, "All"]],
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
                 },
             });
-        } );
+        });
     </script>
     <script type="text/javascript">
         $(document).ready(function(){

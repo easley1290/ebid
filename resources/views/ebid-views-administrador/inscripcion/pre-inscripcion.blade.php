@@ -128,7 +128,7 @@
                                         required autocomplete="off">
                                 </div>
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-lg btn-primary btn-block mb-4">Registrar est. pre inscrito</button>
+                                    <button type="submit" class="btn btn-lg btn-primary btn-block mb-4" id="btnAgregar">Registrar est. pre inscrito</button>
                                 </div>
                             </div>
                         </form>
@@ -140,5 +140,12 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
+    <script>
+        $('#btnAgregar').click(function(){
+            $mensaje = "Postulante "+$('#nombres_estudiante').val()+" "+$('#paterno_estudiante').val()+" "+$('#materno_estudiante').val()+" su registro ha sido completado";
+            $mensaje+= "por el personal de EBID, el paso siguiente es realizar el deposito de Bs. 1 en el numero de cuenta XXXXXXXXXXXXXXXXXXX";
+            $url = 'https://web.whatsapp.com/send?phone=591'+$('#numero_telefono_estudiante').val()+'&text='+$mensaje+'&app_absent=0';
+            window.open($url, "_blank");
+        });
+    </script>
 @endsection

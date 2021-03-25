@@ -33,7 +33,7 @@ class Pensum extends Model
     /**
      * @var array
      */
-    protected $fillable = ['pen_car_id', 'pen_mat_id', 'pen_sem_id', 'pen_subd_estado'];
+    protected $fillable = ['pen_esp_id', 'pen_mat_id', 'pen_sem_id', 'pen_subd_estado'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -45,9 +45,9 @@ class Pensum extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function carreras()
+    public function especialidades()
     {
-        return $this->belongsTo('App\Models\Carreras', 'pen_car_id', 'car_id');
+        return $this->belongsTo('App\Models\Especialidades', 'pen_esp_id', 'esp_id');
     }
 
     /**

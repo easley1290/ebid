@@ -27,12 +27,12 @@ use App\Http\Controllers\NotaController;
 
 use App\Http\Controllers\PensumController;
 
-use App\Http\Controllers\ValidarComprobanteController;
-use App\Http\Controllers\RegistroComprobanteController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\PostulantesController;
 use App\Http\Controllers\ComprobanteController;
-
+use App\Http\Controllers\SubirComprobanteController;
+use App\Http\Controllers\ValidarComprobanteController;
+use App\Http\Controllers\CalendarioExamenIngresoController;
 use App\Models\Subdominios;
 
 /*
@@ -70,8 +70,12 @@ Route::prefix('administracion/inscripcion')->group(function () {
     Route::resource('/estudiante', EstudianteController::class);
     Route::resource('/postulante', PostulantesController::class);
     Route::resource('/comprobante', ComprobanteController::class);
-    Route::get('/estudiante-nuevo', [EstudianteController::class, 'indexNuevo'])->name('indexNuevo');
+    Route::resource('/subir-comprobante', SubirComprobanteController::class);
+    Route::resource('/valida-comprobante', ValidarComprobanteController::class);
+    Route::resource('/calendario-ingreso', CalendarioExamenIngresoController::class);
+
     Route::post('/estudiante-buscar', [EstudianteController::class, 'busquedaEstudiante'])->name('busquedaEstudiante');
+    Route::get('/estudiante-nuevo', [EstudianteController::class, 'indexNuevo'])->name('indexNuevo');
     Route::post('/estudiante-nuevo', [EstudianteController::class, 'storeNuevo'])->name('storeNuevo');
     Route::put('/estudiante-nuevo/{id}', [EstudianteController::class, 'updateNuevo'])->name('updateNuevo');
 });

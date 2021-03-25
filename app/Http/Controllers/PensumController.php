@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pensum;
-use App\Models\Carreras;
+use App\Models\Especialidades;
 use App\Models\Semestre;
 use App\Models\Materias;
 use App\Models\Subdominios;
@@ -21,16 +21,16 @@ class PensumController extends Controller
     {
         try{
             $pensum = Pensum::all();
-            $carreras = Carreras::all();
+            $especialidades = Especialidades::all();
             $semestre = Semestre::all();
             $materias = Materias::all();
             $estados = Subdominios::select('subdominios.*')
-            ->where('subd_dom_id','=',1)
-            ->get();
+                        ->where('subd_dom_id','=',1)
+                        ->get();
             $pensum_cd_1 = Pensum::select('pensum.*')
-            ->where('pen_car_id','=',"E-CD-01")
-            ->where('pen_sem_id','=',1)
-            ->get();
+                        ->where('pen_car_id','=',"E-CD-01")
+                        ->where('pen_sem_id','=',1)
+                        ->get();
             $pensum_cd_2 = Pensum::select('pensum.*')
             ->where('pen_car_id','=',"E-CD-01")
             ->where('pen_sem_id','=',2)
