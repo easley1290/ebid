@@ -134,12 +134,14 @@ class EstudianteNuevoController extends Controller
                 $nombreExt = Subdominios::select('subdominios.*')
                         ->where('subd_id', '=', $datos->per_subd_extension)
                         ->get()->first();
+
                 $nombreGenero = Subdominios::select('subdominios.*')
                                 ->where('subd_id', '=', $datos->per_subd_genero)
                                 ->get()->first();
                 $genero = Subdominios::select('subdominios.*')
                         ->where('subd_dom_id', '=', 2)
                         ->get();
+                        
                 $extension = Subdominios::select('subdominios.*')
                         ->where('subd_dom_id', '=', 9)
                         ->get();
