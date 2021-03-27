@@ -12,6 +12,7 @@ use App\Http\Controllers\PortalAdminNoticeController;
 use App\Http\Controllers\PortalAdminContactController;
 use App\Http\Controllers\PortalAdminGalleryController;
 use App\Http\Controllers\PortalAdminVideosController;
+use App\Http\Controllers\AdministracionController;
 
 use App\Http\Controllers\InstitucionController;
 use App\Http\Controllers\UnidadAcademicaController;
@@ -31,8 +32,10 @@ use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\PostulantesController;
 use App\Http\Controllers\ComprobanteController;
 use App\Http\Controllers\SubirComprobanteController;
+use App\Http\Controllers\SubirComprobante2Controller;
 use App\Http\Controllers\ValidarComprobanteController;
 use App\Http\Controllers\CalendarioExamenIngresoController;
+use App\Http\Controllers\EstudianteNuevoController;
 use App\Models\Subdominios;
 
 /*
@@ -52,9 +55,7 @@ Route::get('/', function () {
 Route::get('/contactos', function () {
     return view('ebid-views-portal.contactos');
 });
-Route::get('/administracion', function () {
-    return view('ebid-views-administrador.home');
-});
+Route::resource('/administracion', AdministracionController::class);
 
 /***********Rutas Administracion de Portal Web**********/
 Route::prefix('administracion')->group(function () {
@@ -71,13 +72,11 @@ Route::prefix('administracion/inscripcion')->group(function () {
     Route::resource('/postulante', PostulantesController::class);
     Route::resource('/comprobante', ComprobanteController::class);
     Route::resource('/subir-comprobante', SubirComprobanteController::class);
+    Route::resource('/subir-comprobantes', SubirComprobante2Controller::class);
     Route::resource('/valida-comprobante', ValidarComprobanteController::class);
     Route::resource('/calendario-ingreso', CalendarioExamenIngresoController::class);
-
+    Route::resource('/estudiante-nuevo', EstudianteNuevoController::class);
     Route::post('/estudiante-buscar', [EstudianteController::class, 'busquedaEstudiante'])->name('busquedaEstudiante');
-    Route::get('/estudiante-nuevo', [EstudianteController::class, 'indexNuevo'])->name('indexNuevo');
-    Route::post('/estudiante-nuevo', [EstudianteController::class, 'storeNuevo'])->name('storeNuevo');
-    Route::put('/estudiante-nuevo/{id}', [EstudianteController::class, 'updateNuevo'])->name('updateNuevo');
 });
 
 /***********Rutas dominio**********/
