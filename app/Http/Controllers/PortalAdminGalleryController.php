@@ -43,15 +43,15 @@ class PortalAdminGalleryController extends Controller
                 $galeriaId = $galeriaId + 1;
             }
             
+            $imagen = $request->file('c_imagen_galeria');
+            $nombreImagen = 'Galeria'.$galeriaId.'_'.date('YmdHis').'.'.$imagen->getClientOriginalExtension();
+            $destinoImagen = $imagen->storeAs('public/Galeria', $nombreImagen);
+            $rutaImagen = '/storage/Galeria/'.$nombreImagen;
+
             $galeriaC = new Galeria;
 
-            $imagen = $request->file('c_imagen_galeria');
-            $nombreImagen = 'Galeria'.$galeriaId.'_'.time().'.'.$imagen->getClientOriginalExtension();
-            $destinoImagen = public_path('assets\img\galeria');
-            $imagen->move($destinoImagen, $nombreImagen);
-
             $galeriaC->gal_titulo = (string) $request->get('c_nombre_galeria');
-            $galeriaC->gal_direccion = (string) $nombreImagen;
+            $galeriaC->gal_direccion = (string) $rutaImagen;
             $galeriaC->gal_ua_id = (string) $request->get('c_ua_galeria');
             $galeriaC->gal_subd_estado = (int) $request->get('c_estado_galeria');
             $galeriaC->save();
@@ -74,19 +74,21 @@ class PortalAdminGalleryController extends Controller
             
             if($request->file('em_imagen_galeria')){
                 $imagen = $request->file('em_imagen_galeria');
-                $rutaImagenAntigua = public_path().'\\assets\img\galeria\\'.$galeriaE->gal_direccion;
-                $nombreImagen = 'Galeria'.$galeriaE->gal_id.'_'.time().'.'.$imagen->getClientOriginalExtension();
-                $destinoImagen = public_path('assets\img\galeria');
-                $imagen->move($destinoImagen, $nombreImagen);
+                $rutaImagenAntigua = public_path().$galeriaE->gal_direccion;
+                $nombreImagen = 'Galeria'.$galeriaE->gal_id.'_'.date('YmdHis').'.'.$imagen->getClientOriginalExtension();
+                $destinoImagen = $imagen->storeAs('public/Galeria', $nombreImagen);
+                $rutaImagen = '/storage/Galeria/'.$nombreImagen;
+
                 if(File::exists($rutaImagenAntigua)){
                     unlink($rutaImagenAntigua);
                 }
+
             }else{
-                $nombreImagen = $galeriaE->gal_direccion;
+                $rutaImagen = $galeriaE->gal_direccion;
             }
 
             $galeriaE->gal_titulo = (string) $request->get('e_nombre_galeria');
-            $galeriaE->gal_direccion = (string) $nombreImagen;
+            $galeriaE->gal_direccion = (string) $rutaImagen;
             $galeriaE->gal_ua_id = (string) $request->get('e_ua_galeria');
             $galeriaE->gal_subd_estado = (int) $request->get('e_estado_galeria');
             $galeriaE->save();
@@ -101,7 +103,10 @@ class PortalAdminGalleryController extends Controller
     {
         try{
             $galeriaD = Galeria::find((int)$id);
-            unlink(public_path().'\\assets\img\galeria\\'.$galeriaD->gal_direccion);
+            $rutaImagenAntigua = public_path().$galeriaD->gal_direccion;
+            if(File::exists($rutaImagenAntigua)){
+                unlink($rutaImagenAntigua);
+            }
             $galeriaD->delete();
             return redirect()->route('galeria.index')->with('status', 'Se ELIMINÓ el registro de la galeria con éxito.');
         } catch(Throwable $e){

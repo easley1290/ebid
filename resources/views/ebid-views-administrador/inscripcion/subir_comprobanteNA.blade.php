@@ -184,9 +184,11 @@
             if($tr[0].children[6].innerText == '8'){
                 $('#tipo_comprobante1').css('display', 'none');
                 $('#tipo_comprobante2').css('display', 'block');
+                $('#tipo_comprobante2').attr('selected', 'selected');
             }
             if(parseInt($tr[0].children[6].innerText) < 8){
                 $('#tipo_comprobante1').css('display', 'block');
+                $('#tipo_comprobante1').attr('selected', 'selected');
                 $('#tipo_comprobante2').css('display', 'none');
             }
             $('#create').modal('show');

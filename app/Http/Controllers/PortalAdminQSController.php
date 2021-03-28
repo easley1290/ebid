@@ -11,6 +11,7 @@ class PortalAdminQSController extends Controller
     {
         try{
             $institucion = Institucion::all();
+            
             return view('ebid-views-administrador.portal-web.quienes-somos')->with('institucion', $institucion[0]);
         } catch (Throwable $e){
             return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');

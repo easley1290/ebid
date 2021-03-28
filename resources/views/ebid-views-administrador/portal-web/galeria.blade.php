@@ -180,7 +180,6 @@
                             <div class="form-group row">
                                 <div class="col-md-12">
                                     <label for="e_imagen_galeria" class="form-label">Imagen para la galeria</label><br>
-                                    <a href="" id="e_imagen_galeria" target="_blank"></a>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -290,8 +289,9 @@
                 }
                 var data = table.row($tr).data();
                 $('#e_nombre_galeria').val(data[1]);
-                $("#e_imagen_galeria").attr("href", "\\ebid\\public\\assets\\img\\galeria\\" + data[4]);
-                $("#img_imagen_galeria").attr("src", "\\ebid\\public\\assets\\img\\galeria\\" + data[4]);
+                $("#e_imagen_galeria").attr("href", data[4]);
+
+                $("#img_imagen_galeria").attr("src", data[4]);
                 $("#e_imagen_galeria").text(data[4]);
                 $('#editModal').modal('show');
                 if(data[3]=='Imagen Activo'){
@@ -314,7 +314,7 @@
                     $tr = $tr.prev('.parent');
                 }
                 var data = table.row($tr).data();
-                $("#imgd_imagen_galeria").attr("src", "\\ebid\\public\\assets\\img\\galeria\\" + data[4]);
+                $("#imgd_imagen_galeria").attr("src", data[4]);
                 $('#deleteModal').modal('show');
                 $('#deleteForm').attr('action', 'galeria/'+data[0]);
             })

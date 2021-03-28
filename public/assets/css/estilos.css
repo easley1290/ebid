@@ -102,6 +102,11 @@
     background: url('../img/cabecera-home.jpg') top center;
 }
 
+.hero-fondo-contact{
+    background-size: cover;
+    background: url('../img/cabecera-contacto.jpg') top center;
+}
+
 /* Seccion de botones*/
 .btn-oferta{
     color: #fff;

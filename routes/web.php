@@ -38,6 +38,10 @@ use App\Http\Controllers\CalendarioExamenIngresoController;
 use App\Http\Controllers\EstudianteNuevoController;
 use App\Models\Subdominios;
 
+
+/*---------------- Portal web controllers---------------- */
+use App\Http\Controllers\PortalWeb\PWContactoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,13 +56,14 @@ use App\Models\Subdominios;
 Route::get('/', function () {
     return view('ebid-views-portal.home');
 });
-Route::get('/contactos', function () {
-    return view('ebid-views-portal.contactos');
-});
+Route::get('/pcontactos', [PWContactoController::class, 'indexContactos'])->name('indexContactos');
+Route::get('/pnoticias', [PWContactoController::class, 'indexNoticias'])->name('indexNoticias');
+Route::get('/pgaleria', [PWContactoController::class, 'indexGaleria'])->name('indexGaleria');
+Route::get('/pvideo', [PWContactoController::class, 'indexVideo'])->name('indexVideo');
 Route::resource('/administracion', AdministracionController::class);
 
 /***********Rutas Administracion de Portal Web**********/
-Route::prefix('administracion')->group(function () {
+Route::prefix('administracion/portal-web')->group(function () {
     Route::resource('/quienessomos', PortalAdminQSController::class);
     Route::resource('/contactos', PortalAdminContactController::class);
     Route::resource('/noticias', PortalAdminNoticeController::class);

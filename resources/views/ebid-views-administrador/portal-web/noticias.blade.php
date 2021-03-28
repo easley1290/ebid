@@ -308,8 +308,8 @@
                 var data = table.row($tr).data();
                 $('#e_nombre_noticia').val(data[1]);
                 $('#e_historia_noticia').val(data[5]);
-                $("#e_imagen_noticia").attr("href", "\\ebid\\public\\assets\\img\\noticias\\" + data[4]);
-                $("#img_imagen_noticia").attr("src", "\\ebid\\public\\assets\\img\\noticias\\" + data[4]);
+                $("#e_imagen_noticia").attr("href", data[4]);
+                $("#img_imagen_noticia").attr("src", data[4]);
                 $("#e_imagen_noticia").text(data[4]);
                 if(data[3]=='Noticia Activo'){
                     $("#radio1").attr("checked", "checked");

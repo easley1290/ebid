@@ -8,14 +8,14 @@
             <p>
               Ciudad Satelite<br>
               El Alto, La Paz<br><br>
-              <strong>Telefono:</strong> +591 (2) 2457897<br>
-              <strong>Email:</strong> easley.gc@gmail.com<br>
+              <strong>Telefono:</strong><br>
+              <strong>Email:</strong><br>
             </p>
             <div class="social-links mt-3">
               <a href="https://www.twitter.com" class="twitter"><i class="bx bxl-twitter"></i></a>
               <a href="https://www.facebook.com" class="facebook"><i class="bx bxl-facebook"></i></a>
               <a href="https://www.instagram.com" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="https;//www.youtube.com" class="youtube"><i class="bx bxl-youtube"></i></a>
+              <a href="https://www.youtube.com" class="youtube"><i class="bx bxl-youtube"></i></a>
             </div>
           </div>
         </div>
@@ -26,11 +26,12 @@
             <li><i class="bx bx-chevron-right"></i> <a href="/">Inicio</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="#">Nosotros</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="#">Oferta academica</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Galeria</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Noticias</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="/contactos">Contactos</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="{{ route('indexGaleria') }}">Galeria</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="{{ route('indexVideo') }}">Videos</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="{{ route('indexNoticias') }}">Noticias</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="{{ route('indexContactos') }}">Contactos</a></li>
             <br><br>
-            <li><a href="#">ERES MIEMBRO? INGRESA A NUESTRO SISTEMA</a></li>
+            <li><a href="@if (Auth::check()) /administracion @else login_ @endif">ERES MIEMBRO? INGRESA A NUESTRO SISTEMA</a></li>
           </ul>
         </div>
 
@@ -39,11 +40,10 @@
           <h4>Ingresa tu email</h4>
           <p>Para suscribirte en nuestras noticias</p>
           <form action="" method="post">
-            <input type="email" name="email" autocomplete="off"><input type="submit" value="Suscribirse">
+            <input type="email" name="email" autocomplete="off"><input type="submit" value="Suscribirse" style="color: white">
           </form>
-
         </div>
-
+        
       </div>
     </div>
   </div>

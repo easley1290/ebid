@@ -36,10 +36,10 @@ class SubirComprobante2Controller extends Controller
                 $comprobanteId = $comprobanteId + 1;
             }   
             if($request->get('tipo_comprobante1')=="inscripcion"){
-                $tipo_comp = "examen";
+                $tipo_comp = "inscripcion";
             }
             else{
-                $tipo_comp = "inscripcion";
+                $tipo_comp = "examen";
             }
             $comprobanteC = new Comprobantes;
 

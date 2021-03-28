@@ -40,20 +40,21 @@ class PortalAdminNoticeController extends Controller
                 $noticiaId = $noticias -> not_id;
                 $noticiaId = $noticiaId + 1;
             }   
-        
+            
+            $imagen = $request->file('c_imagen_noticia');
+            $nombreImagen = 'Noticia'.$noticiaId.'_'.date('YmdHis_').'.'.$imagen->getClientOriginalExtension();
+            $destinoImagen = $imagen->storeAs('public/Noticias', $nombreImagen);
+            $rutaImagen = '/storage/Noticias/'.$nombreImagen;
+
             $noticiaC = new Noticias;
 
-            $imagen = $request->file('c_imagen_noticia');
-            $nombreImagen = 'Noticia'.$noticiaId.'_'.time().'.'.$imagen->getClientOriginalExtension();
-            $destinoImagen = public_path('assets\img\noticias');
-            $imagen->move($destinoImagen, $nombreImagen);
-
             $noticiaC->not_titulo = (string) $request->get('c_nombre_noticia');
-            $noticiaC->not_imagen = (string) $nombreImagen;
+            $noticiaC->not_imagen = (string) $rutaImagen;
             $noticiaC->not_historia = (string) $request->get('c_historia_noticia');
             $noticiaC->not_ua_id = (string) $request->get('c_ua_noticia');
             $noticiaC->not_subd_estado = (int) $request->get('c_estado_noticia');
             $noticiaC->save();
+
             return redirect()->route('noticias.index')->with('status', 'Se CREÓ la noticia con exito');
         } catch(Throwable $e){
             return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
@@ -70,21 +71,22 @@ class PortalAdminNoticeController extends Controller
             $noticiasE = Noticias::find((int)$id);
             
             if($request->file('em_imagen_noticia')){
+
                 $imagen = $request->file('em_imagen_noticia');
-                $rutaImagenAntigua = public_path().'\\assets\img\noticias\\'.$noticiasE->not_imagen;
-                $nombreImagen = 'Noticia'.$noticiasE->not_id.'_'.time().'.'.$imagen->getClientOriginalExtension();
-                $destinoImagen = public_path('assets\img\noticias');
-                $imagen->move($destinoImagen, $nombreImagen);
+                $rutaImagenAntigua = public_path().$noticiasE->not_imagen;
+                $nombreImagen = 'Noticia'.$noticiasE->not_id.'_'.date('YmdHis_').'.'.$imagen->getClientOriginalExtension();
+                $destinoImagen = $imagen->storeAs('public/Noticias', $nombreImagen);
+                $rutaImagen = '/storage/Noticias/'.$nombreImagen;
 
                 if(File::exists($rutaImagenAntigua)){
                     unlink($rutaImagenAntigua);
                 }
             }else{
-                $nombreImagen = $noticiasE->not_imagen;
+                $rutaImagen = $noticiasE->not_imagen;
             }
 
             $noticiasE->not_titulo = (string) $request->get('e_nombre_noticia');
-            $noticiasE->not_imagen = (string) $nombreImagen;
+            $noticiasE->not_imagen = (string) $rutaImagen;
             $noticiasE->not_historia = (string) $request->get('e_historia_noticia');
             $noticiasE->not_ua_id = (string) $request->get('e_ua_noticia');
             $noticiasE->not_subd_estado = (int) $request->get('e_estado_noticia');
@@ -99,7 +101,10 @@ class PortalAdminNoticeController extends Controller
     {
         try{
             $noticiasD = Noticias::find((int)$id);
-            unlink(public_path().'\\assets\img\noticias\\'.$noticiasD->not_imagen);
+            $rutaImagenAntigua = public_path().$noticiasD->not_imagen;
+            if(File::exists($rutaImagenAntigua)){
+                unlink($rutaImagenAntigua);
+            }
             $noticiasD->delete();
             return redirect()->route('noticias.index')->with('status', 'Se ELIMINÓ la noticia con exito');
         } catch(Throwable $e){
