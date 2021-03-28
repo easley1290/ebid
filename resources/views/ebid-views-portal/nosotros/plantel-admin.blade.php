@@ -1,18 +1,22 @@
 @extends('ebid-views-portal.componentes.main')
-@section('title', 'Inicio')
+@section('title', 'PlantelAdm')
 @section('content')
+@section('nosotros', 'drop-down')
+@section('oferta', 'drop-down')
 <section id="hero" class="d-flex align-items-center justify-content-center hero-fondo-home">
   <div class="container" data-aos="fade-up">
         <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
             <div class="col-xl-10 col-lg-8">
-                <h1>{{$instituciones ->ins_nombre}}</h1>
+                <h1>{{$instituciones ->ins_nombree}}</h1>
                 <h2>{{$instituciones ->ins_frasee}}</h2>
+                <h1> PLANTEL ADMINISTRATIVO</h1>
+                <h2>Conozca al personal administrativo de la Escuela Boliviana de Danza Boliviana.</h2>
             </div>
         </div>
         &nbsp;
         <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
             <div class="col-xl-6 col-lg-8">
-                <h1> PLANTEL ADMINISTRATIVO </h1>
+                <h1></h1>
             </div>
         </div>
   </div>
@@ -21,7 +25,7 @@
     <div class="container" data-aos="fade-up">
       <div class="section-title alinear-centro">
         <h2></h2>
-        <p>ACERCA DE NOSOTROS</p>
+        <p>CONOCE A NUESTRO PERSONAL ADMINISTRATIVO</p>
       </div>
       
       <div class="row">

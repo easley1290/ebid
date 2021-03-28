@@ -14,9 +14,9 @@
                 <ul><li class="@yield('inicio')"><a href="/">Inicio</a></li>
                 <li class="@yield('nosotros')"><a href="">Nosotros</a>
                     <ul>
-                        <li><a href="{{ route('MisionVision') }}">Mision y vision</a></li>
-                        <li><a href="{{ route('PlantelAdm') }}">Rectoria y direccion academica</a></li>
-                        <li><a href="{{ route('PlantelDoc') }}">Plantel docente</a></li>
+                        <li class="@yield('MisionVision')"><a href="{{ route('MisionVision') }}">Mision y vision</a></li>
+                        <li class="@yield('PlantelAdm')"><a href="{{ route('PlantelAdm') }}">Rectoria y direccion academica</a></li>
+                        <li class="@yield('PlantelDoc')"><a href="{{ route('PlantelDoc') }}">Plantel docente</a></li>
                     </ul>
                 </li>
                 <li class="@yield('oferta')"><a href="">Oferta académica</a>
