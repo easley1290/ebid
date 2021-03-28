@@ -38,9 +38,19 @@ use App\Http\Controllers\CalendarioExamenIngresoController;
 use App\Http\Controllers\EstudianteNuevoController;
 use App\Models\Subdominios;
 
+<<<<<<< HEAD
 
 /*---------------- Portal web controllers---------------- */
 use App\Http\Controllers\PortalWeb\PWContactoController;
+=======
+use App\Http\Controllers\PortalVistaController;
+use App\Http\Controllers\PortalVistaPerfilController;
+use App\Http\Controllers\PortalVistaProcesoController;
+use App\Http\Controllers\PortalVistaMallaController;
+use App\Http\Controllers\PortalVistaInscripcionController;
+
+
+>>>>>>> 9484d6c4f80c15baa2f3cdea4c1c95ce21258f9e
 
 /*
 |--------------------------------------------------------------------------
@@ -130,3 +140,21 @@ Route::resource('/Docente', DocenteController::class);
 Route::resource('/MateriaDocente', MateriaDocenteController::class);
 /***************  Nota  ****************** */
 Route::resource('/Nota', NotaController::class);
+
+/***************  oferta academica  ****************** */
+Route::resource('/portal-vista', PortalVistaController::class);
+
+Route::prefix('portal-vista/oferta-academica')->group(function () {
+    Route::resource('/perfilProfesional', PortalVistaPerfilController::class);
+    Route::resource('/procesoAdmision', PortalVistaProcesoController::class);
+    Route::resource('/malla', PortalVistaMallaController::class);
+    Route::resource('/inscripcion', PortalVistaInscripcionController::class);
+    Auth::routes();
+    Route::get('/login_', function () {return view('ebid-views-login.login');});
+    Route::get('/register_', function () {
+    $extension = Subdominios::select('subdominios.*')
+                        ->where('subd_dom_id','=',9)
+                        ->get();
+    return view('ebid-views-login.register')->with('extension', $extension);
+});
+});

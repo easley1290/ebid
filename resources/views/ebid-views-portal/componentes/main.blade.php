@@ -21,10 +21,10 @@
                 </li>
                 <li class="@yield('oferta')"><a href="">Oferta académica</a>
                     <ul>
-                        <li><a href="#">Perfil profesional</a></li>
-                        <li><a href="#">Proceso de admision</a></li>
-                        <li><a href="#">Malla curricular</a></li>
-                        <li><a href="#">Inscripciones</a></li>
+                        <li><a href="{{ route('perfilProfesional.index') }}">Perfil profesional</a></li>
+                        <li><a href="{{ route('procesoAdmision.index') }}">Proceso de admision</a></li>
+                        <li><a href="{{ route('malla.index') }}">Malla curricular</a></li>
+                        <li><a href="{{ route('inscripcion.index') }}">Inscripciones</a></li>
                     </ul>
                 </li>
                 <li class="@yield('galeria')"><a href="{{ route('indexGaleria') }}">Galeria</a></li>
