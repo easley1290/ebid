@@ -7,7 +7,7 @@
     @extends('ebid-views-portal.componentes.link')
 </head>
 <body>
-    <header id="header" class="fixed-top ">
+    <header id="header" class="fixed-top header-inner-pages">
         <div class="container d-flex align-items-center justify-content-between">
             <a href="/" class="logo"><img src="{{ asset('assets/img/logo1.jpg') }}" alt="" class="img-fluid"></a>
             <nav class="nav-menu d-none d-lg-block">
@@ -21,10 +21,10 @@
                 </li>
                 <li class="drop-down"><a href="">Oferta académica</a>
                     <ul>
-                        <li><a href="#">Perfil profesional</a></li>
-                        <li><a href="#">Proceso de admision</a></li>
-                        <li><a href="#">Malla curricular</a></li>
-                        <li><a href="#">Inscripciones</a></li>
+                        <li><a href="{{ route('perfilProfesional.index') }}">Perfil profesional</a></li>
+                        <li><a href="{{ route('procesoAdmision.index') }}">Proceso de admision</a></li>
+                        <li><a href="{{ route('malla.index') }}">Malla curricular</a></li>
+                        <li><a href="{{ route('inscripcion.index') }}">Inscripciones</a></li>
                     </ul>
                 </li>
                 <li><a href="">Galeria</a></li>

@@ -38,6 +38,14 @@ use App\Http\Controllers\CalendarioExamenIngresoController;
 use App\Http\Controllers\EstudianteNuevoController;
 use App\Models\Subdominios;
 
+use App\Http\Controllers\PortalVistaController;
+use App\Http\Controllers\PortalVistaPerfilController;
+use App\Http\Controllers\PortalVistaProcesoController;
+use App\Http\Controllers\PortalVistaMallaController;
+use App\Http\Controllers\PortalVistaInscripcionController;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,7 +66,7 @@ Route::get('/contactos', function () {
 Route::resource('/administracion', AdministracionController::class);
 
 /***********Rutas Administracion de Portal Web**********/
-Route::prefix('administracion')->group(function () {
+Route::prefix('administracion/portal-web')->group(function () {
     Route::resource('/quienessomos', PortalAdminQSController::class);
     Route::resource('/contactos', PortalAdminContactController::class);
     Route::resource('/noticias', PortalAdminNoticeController::class);
@@ -125,3 +133,21 @@ Route::resource('/Docente', DocenteController::class);
 Route::resource('/MateriaDocente', MateriaDocenteController::class);
 /***************  Nota  ****************** */
 Route::resource('/Nota', NotaController::class);
+
+/***************  oferta academica  ****************** */
+Route::resource('/portal-vista', PortalVistaController::class);
+
+Route::prefix('portal-vista/oferta-academica')->group(function () {
+    Route::resource('/perfilProfesional', PortalVistaPerfilController::class);
+    Route::resource('/procesoAdmision', PortalVistaProcesoController::class);
+    Route::resource('/malla', PortalVistaMallaController::class);
+    Route::resource('/inscripcion', PortalVistaInscripcionController::class);
+    Auth::routes();
+    Route::get('/login_', function () {return view('ebid-views-login.login');});
+    Route::get('/register_', function () {
+    $extension = Subdominios::select('subdominios.*')
+                        ->where('subd_dom_id','=',9)
+                        ->get();
+    return view('ebid-views-login.register')->with('extension', $extension);
+});
+});
