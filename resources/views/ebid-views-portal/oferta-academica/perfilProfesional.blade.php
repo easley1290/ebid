@@ -1,5 +1,10 @@
 @extends('ebid-views-portal.componentes.main')
-@section('title', 'Inicio')
+
+@section('title', 'Perfil profesional')
+@section('nosotros', 'drop-down')
+@section('oferta', 'drop-down active')
+
+
 @section('content')
 <section id="hero" class="d-flex align-items-center justify-content-center hero-fondo-home">
   <div class="container" data-aos="fade-up">
@@ -18,14 +23,8 @@
         <h2>En el marco del Diseño Curricular Base de la Formación en Artes:</h2>
         @foreach ($perfiles as $perfil)
         <p class="font-italic">
-        Las o los Egresados/as de Danza serán conscientes de la realidad boliviana, reflexivos/as
-        y comprometidos/as con su área, conocedores/as de las técnicas más depuradas de la 
-        expresión artística, preparados/as en la historia y su relación dentro del contexto 
-        universal, capaces de realizar presentaciones de alto nivel interpretativo, capaces de llevar 
-        adelante procesos prácticos en el escenario y comprometidos/as con la realidad Boliviana, 
-        críticos/as y generadores/as de nuevas políticas culturales en beneficio de nuestro Estado 
-        Plurinacional. 
-        <span style="color: #e45512;">{{$perfil->ins_frase}}</span>
+          {{ $perfil->ins_perfil_profesional }} 
+          <span style="color: #e45512;">{{$perfil->ins_frase}}</span>
         </p>
         @endforeach
         <h4 class="font-italic">No dejes que tus sueños se apaguen</h4>

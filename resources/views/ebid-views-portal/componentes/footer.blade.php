@@ -17,6 +17,13 @@
               <a href="https://www.instagram.com" class="instagram"><i class="bx bxl-instagram"></i></a>
               <a href="https://www.youtube.com" class="youtube"><i class="bx bxl-youtube"></i></a>
             </div>
+            <div class="mt-3">
+              <p>
+                
+                <strong>Institucion avalada por:</strong><br>
+              </p>
+              <a href="/" class="" style="width: 55px;"><img src="{{ asset('assets/img/logo2.png') }}" alt="" class="img-fluid"></a>
+            </div>
           </div>
         </div>
 

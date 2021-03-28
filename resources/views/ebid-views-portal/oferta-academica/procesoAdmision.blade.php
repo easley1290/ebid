@@ -1,5 +1,10 @@
 @extends('ebid-views-portal.componentes.main')
-@section('title', 'Inicio')
+
+@section('title', 'Proceso de admision')
+@section('nosotros', 'drop-down')
+@section('oferta', 'drop-down active')
+
+
 @section('content')
 <section id="hero" class="d-flex align-items-center justify-content-center hero-fondo-home">
   <div class="container" data-aos="fade-up">

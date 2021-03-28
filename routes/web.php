@@ -38,11 +38,9 @@ use App\Http\Controllers\CalendarioExamenIngresoController;
 use App\Http\Controllers\EstudianteNuevoController;
 use App\Models\Subdominios;
 
-<<<<<<< HEAD
 
 /*---------------- Portal web controllers---------------- */
 use App\Http\Controllers\PortalWeb\PWContactoController;
-=======
 use App\Http\Controllers\PortalVistaController;
 use App\Http\Controllers\PortalVistaPerfilController;
 use App\Http\Controllers\PortalVistaProcesoController;
@@ -50,7 +48,6 @@ use App\Http\Controllers\PortalVistaMallaController;
 use App\Http\Controllers\PortalVistaInscripcionController;
 
 
->>>>>>> 9484d6c4f80c15baa2f3cdea4c1c95ce21258f9e
 
 /*
 |--------------------------------------------------------------------------

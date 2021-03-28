@@ -93,6 +93,17 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-12">
+                                    <label for="inputPerfil" class="form-label">Perfil profesional</label>
+                                    <textarea name="inputPerfil" type="text" class="form-control"
+                                        id="inputPerfil" autocomplete="off" 
+                                        placeholder="Objetivo de la institucion"
+                                        onKeyPress="if(this.value.length==255) return false;"
+                                        style="height: 150px; resize: none;"
+                                        readonly>{{ $institucion->ins_perfil_profesional }}</textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
                                     <label for="inputObjetivo1" class="form-label">Objetivos especificos de la instituci&oacute;n</label>
                                     <textarea name="inputObjetivo1" type="text" class="form-control"
                                         id="inputObjetivo1" autocomplete="off" 
@@ -125,6 +136,7 @@
                                         style="height: 100px; resize: none;"
                                         readonly>{{ $institucion->ins_obj_esp5 }}</textarea>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -195,6 +207,17 @@
                                     onKeyPress="if(this.value.length==255) return false;"
                                     style="height: 100px; resize: none;"
                                     required>{{ $institucion->ins_obj }}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <label for="perfil_profesional" class="form-label">Perfil profesional</label>
+                                <textarea name="perfil_profesional" type="text" class="form-control"
+                                    id="perfil_profesional" autocomplete="off" 
+                                    placeholder="Objetivo de la institucion"
+                                    onKeyPress="if(this.value.length==255) return false;"
+                                    style="height: 150px; resize: none;"
+                                    required>{{ $institucion->ins_perfil_profesional }}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">
