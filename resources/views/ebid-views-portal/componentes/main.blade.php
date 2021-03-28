@@ -14,9 +14,9 @@
                 <ul><li class="{{ asset('deberia enviar active con una variable') }}"><a href="/">Inicio</a></li>
                 <li class="drop-down"><a href="">Nosotros</a>
                     <ul>
-                        <li><a href="#">Mision y vision</a></li>
-                        <li><a href="#">Rectoria y direccion academica</a></li>
-                        <li><a href="#">Plantel docente</a></li>
+                        <li><a href="/MisionVision">Mision y vision</a></li>
+                        <li><a href="/PlantelAdministrativo">Rectoria y direccion academica</a></li>
+                        <li><a href="/PlantelDocente">Plantel docente</a></li>
                     </ul>
                 </li>
                 <li class="drop-down"><a href="">Oferta académica</a>

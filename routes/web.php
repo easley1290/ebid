@@ -12,6 +12,7 @@ use App\Http\Controllers\PortalAdminNoticeController;
 use App\Http\Controllers\PortalAdminContactController;
 use App\Http\Controllers\PortalAdminGalleryController;
 use App\Http\Controllers\PortalAdminVideosController;
+use App\Http\Controllers\NosotrosController;
 
 use App\Http\Controllers\InstitucionController;
 use App\Http\Controllers\UnidadAcademicaController;
@@ -35,6 +36,9 @@ use App\Http\Controllers\ValidarComprobanteController;
 use App\Http\Controllers\CalendarioExamenIngresoController;
 use App\Models\Subdominios;
 
+use App\Http\Controllers\MailController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,6 +59,9 @@ Route::get('/contactos', function () {
 Route::get('/administracion', function () {
     return view('ebid-views-administrador.home');
 });
+Route::get('/MisionVision', [NosotrosController::class, 'MisionVision'])->name('MisionVision');
+Route::get('/PlantelAdministrativo', [NosotrosController::class, 'PlantelAdm'])->name('PlantelAdm');
+Route::get('/PlantelDocente', [NosotrosController::class, 'PlantelDoc'])->name('PlantelDocs');
 
 /***********Rutas Administracion de Portal Web**********/
 Route::prefix('administracion')->group(function () {
@@ -96,6 +103,8 @@ Route::get('/register_', function () {
                         ->get();
     return view('ebid-views-login.register')->with('extension', $extension);
 });
+Route::get('/MailContraseña',[MailController::class,'index']);
+Route::post('/CambioContraseña',[MailController::class,'sendEmail'])->name('CambioContraseña');
 /***************  PERFIL  ****************** */
 Route::resource('/Persona', PersonaController::class);
 Route::resource('/PersonaInstitucional', PersonaInsController::class);

@@ -49,12 +49,15 @@
                                 <div class="row">
                                   <div class="col-md-6">
                                     <label for="exampleInputPassword1" class="form-label">Género</label>
-                                    @foreach($generos as $subdominio)   
-                                      @if($subdominio->subd_id === $personas->per_subd_genero)            
-                                        <input id="per_genero" name="per_genero" type="text" class="form-control" readonly="readonly" value="{{$subdominio->subd_nombre}}">
-                                        <input id="per_subd_genero_" name="per_subd_genero" value="{{$personas->per_subd_genero}}" type="hidden">
-                                      @endif
-                                    @endforeach
+                                        @foreach($generos as $subdominio)   
+                                          @if($subdominio->subd_id === $personas->per_subd_genero)            
+                                            <input id="per_genero" name="per_genero" type="text" class="form-control" readonly="readonly" value="{{$subdominio->subd_nombre}}">
+                                            <input id="per_subd_genero_" name="per_subd_genero" value="{{$personas->per_subd_genero}}" type="hidden">
+                                          @endif
+                                        @endforeach  
+                                        @if($personas->per_subd_genero === null)
+                                            <input type="text" class="form-control" readonly="readonly" placeholder="Sin especificar">
+                                        @endif
                                   </div>
                                   <div class="col-md-6">
                                     <label for="exampleInputPassword1" class="form-label">Fecha Naciminento</label>
@@ -70,10 +73,13 @@
                                         <input id="per_subd_documentacion_" name="per_subd_documentacion" value="{{$personas->per_subd_documentacion}}" type="hidden">
                                         @endif
                                     @endforeach
+                                    @if($personas->per_subd_documentacion === null)
+                                      <input type="text" class="form-control" readonly="readonly" placeholder="Sin especificar">
+                                    @endif
                                   </div>
                                   <div class="col-md-4">
                                     <label for="exampleInputPassword1" class="form-label">Numero Documento</label>
-                                    <input id="per_num_documentacion_" name="per_num_documentacion" type="number" class="form-control" readonly="readonly" value="{{$personas->per_num_documentacion}}">
+                                    <input id="per_num_documentacion_" name="per_num_documentacion" type="number" class="form-control" readonly="readonly" value="{{$personas->per_num_documentacion}}" placeholder="Sin especificar">
                                   </div>
                                   <div class="col-md-4">
                                     <label for="exampleInputPassword1" class="form-label">Extensión</label>
@@ -83,23 +89,25 @@
                                       <input id="per_subd_extension_" name="per_subd_extension" value="{{$personas->per_subd_extension}}" type="hidden">
                                       @endif
                                     @endforeach
-
+                                    @if($personas->per_subd_extension === null)
+                                      <input type="text" class="form-control" readonly="readonly" placeholder="Sin especificar">
+                                    @endif
                                   </div>
                                 </div>
                                 <div class="row">
                                   <div class="col-md-6">
                                     <label for="exampleInputPassword1" class="form-label">Telefono</label>
-                                    <input id="per_telefono_" name="per_telefono" type="number" class="form-control" readonly="readonly" value="{{$personas->per_telefono}}">
+                                    <input id="per_telefono_" name="per_telefono" type="number" class="form-control" readonly="readonly" value="{{$personas->per_telefono}}" placeholder="Sin especificar">
                                   </div>
                                   <div class="col-md-6">
                                     <label for="exampleInputPassword1" class="form-label">Correo Personal</label>
-                                    <input id="per_correo_personal_" name="per_correo_personal" type="email" class="form-control" readonly="readonly" value="{{$personas->email}}">
+                                    <input id="per_correo_personal_" name="per_correo_personal" type="email" class="form-control" readonly="readonly" value="{{$personas->email}}" placeholder="Sin especificar">
                                   </div>
                                 </div>
                                 <div class="row">
                                   <div class="col-md-12">
                                     <label for="exampleInputPassword1" class="form-label">Domicilio</label>
-                                    <input id="per_domicilio_" name="per_domicilio" type="text" class="form-control" readonly="readonly" value="{{$personas->per_domicilio}}">
+                                    <input id="per_domicilio_" name="per_domicilio" type="text" class="form-control" readonly="readonly" value="{{$personas->per_domicilio}}" placeholder="Sin especificar">
                                   </div>
                                 </div>
                                 <div class="modal-footer">
@@ -167,7 +175,7 @@
                               </div>
                               <div class="col-md-4">
                                 <label for="exampleInputPassword1" class="form-label">Numero Documento</label>
-                                <input id="per_num_documentacion" name="per_num_documentacion" type="number" class="form-control" id="exampleInputPassword1" required>
+                                <input id="per_num_documentacion" name="per_num_documentacion" type="number" class="form-control" id="exampleInputPassword1" onKeyPress="if(this.value.length==10) return false;" min="1" required>
                               </div>
                               <div class="col-md-4">
                                 <label for="exampleInputPassword1" class="form-label">Extensión</label>
@@ -181,7 +189,7 @@
                             <div class="row">
                               <div class="col-md-6">
                                 <label for="exampleInputPassword1" class="form-label">Telefono</label>
-                                <input id="per_telefono" name="per_telefono" type="number" class="form-control" id="exampleInputPassword1">
+                                <input id="per_telefono" name="per_telefono" type="number" class="form-control" id="exampleInputPassword1" onKeyPress="if(this.value.length==10) return false;" min="1" required>
                               </div>
                               <div class="col-md-6">
                                 <label for="exampleInputPassword1" class="form-label">Correo Personal</label>
@@ -196,7 +204,7 @@
                             </div>
                             <div class="row">
                               <div class="col-md-6">
-                                <label for="exampleInputPassword1" class="form-label">Foto</label>
+                                <label for="exampleInputPassword1" class="form-label">Foto (Opcional)</label>
                                 <input id="per_foto_personal" name="per_foto_personal" type="file" class="form-control">
                               </div>
                             </div>

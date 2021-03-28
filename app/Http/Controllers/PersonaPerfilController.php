@@ -54,10 +54,10 @@ class PersonaPerfilController extends Controller
             ->where('subd_dom_id','=',2)
             ->get();
             $tipo_docs = Subdominios::select('subdominios.*')
-            ->where('subd_dom_id','=',10)
+            ->where('subd_dom_id','=',13)
             ->get();
             $extensions = Subdominios::select('subdominios.*')
-            ->where('subd_dom_id','=',11)
+            ->where('subd_dom_id','=',9)
             ->get();
             return  view('ebid-views-administrador.perfil_personal.perfil_datos',
                     compact('personas','generos','tipo_docs','extensions'));

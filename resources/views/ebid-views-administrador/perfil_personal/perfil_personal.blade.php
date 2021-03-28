@@ -156,7 +156,7 @@
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputPassword1" class="form-label">Numero Documento</label>
-                        <input name="num_doc" type="number" class="form-control" id="exampleInputPassword14" required>
+                        <input name="num_doc" type="number" class="form-control" id="exampleInputPassword14" onKeyPress="if(this.value.length==10) return false;" min="1" required>
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputPassword1" class="form-label">Extensión</label>
@@ -170,7 +170,7 @@
                     <div class="row">
                       <div class="col-md-6">
                         <label for="exampleInputPassword1" class="form-label">Telefono</label>
-                        <input name="telefono" type="number" class="form-control" id="exampleInputPassword15">
+                        <input name="telefono" type="number" class="form-control" id="exampleInputPassword15" onKeyPress="if(this.value.length==10) return false;" min="1" required>
                       </div>
                       <div class="col-md-6">
                         <label for="exampleInputPassword1" class="form-label">Correo Personal</label>
@@ -244,7 +244,7 @@
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputPassword1" class="form-label">Numero Documento</label>
-                        <input id="per_num_documentacion" name="per_num_documentacion" type="number" class="form-control" id="exampleInputPassword1" required>
+                        <input id="per_num_documentacion" name="per_num_documentacion" type="number" class="form-control" id="exampleInputPassword1" onKeyPress="if(this.value.length==10) return false;" min="1" required>
                       </div>
                       <div class="col-md-4">
                         <label for="exampleInputPassword1" class="form-label">Extensión</label>
@@ -258,7 +258,7 @@
                     <div class="row">
                       <div class="col-md-6">
                         <label for="exampleInputPassword1" class="form-label">Telefono</label>
-                        <input id="per_telefono" name="per_telefono" type="number" class="form-control" id="exampleInputPassword1">
+                        <input id="per_telefono" name="per_telefono" type="number" class="form-control" id="exampleInputPassword1" onKeyPress="if(this.value.length==10) return false;" min="1" required>
                       </div>
                       <div class="col-md-6">
                         <label for="exampleInputPassword1" class="form-label">Correo Personal</label>

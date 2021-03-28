@@ -7,24 +7,9 @@
           <div id="sidebar" class="sidebar">
             <!-- Aplication Brand -->
             <div class="app-brand">
-              <a href="/" title="Sleek Dashboard">
-                <svg
-                  class="brand-icon"
-                  preserveAspectRatio="xMidYMid"
-                  width="30"
-                  height="33"
-                  viewBox="0 0 30 33"
-                >
-                  <g fill="none" fill-rule="evenodd">
-                    <path
-                      class="logo-fill-blue"
-                      fill="#7DBCFF"
-                      d="M0 4v25l8 4V0zM22 4v25l8 4V0z"
-                    />
-                    <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
-                  </g>
-                </svg>
-                <span class="brand-name text-truncate">Ebid</span>
+              <a href="/" >
+                <img src="{{ asset('assets/img/logo.jpg') }}" alt="" class="img-fluid">
+                
               </a>
             </div>
             <!-- begin sidebar scrollbar -->

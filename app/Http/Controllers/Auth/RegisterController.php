@@ -9,6 +9,10 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+/**/
+use App\Mail\ValidacionRegistro;
+use Illuminate\Support\Facades\Mail;
+
 class RegisterController extends Controller
 {
     /*
@@ -29,7 +33,8 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    //protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/login_';
 
     /**
      * Create a new controller instance.
@@ -54,7 +59,7 @@ class RegisterController extends Controller
             'per_paterno' => ['required', 'string', 'max:50'],
             'per_materno' => ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'email', 'max:50', 'unique:personas'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            //'password' => ['required', 'string', 'min:8', 'confirmed'],
             'per_subd_extension' => ['required', 'string'],
             'per_num_documentacion' => ['required', 'max:11'],
         ]);
@@ -68,7 +73,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return Personas::create([
+        
+        $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-";
+        $password = "";
+        for($i=0;$i<8;$i++) {
+        $password .= substr($str,rand(0,62),1);
+        }
+        /******************************************* */
+        $crear_persona= Personas::create([
             'per_ua_id' =>'UA-EA0001',
             'per_nombres' => trim($data['per_nombres']),
             'per_paterno' => trim($data['per_paterno']),
@@ -76,12 +88,23 @@ class RegisterController extends Controller
             'name' => trim($data['per_nombres']).' '.trim($data['per_paterno']).' '.trim($data['per_materno']),
             'email' => trim($data['email']),
             'per_correo_personal' => trim($data['email']),
-            'password' => Hash::make($data['password']),
+            //'password' => Hash::make($data['password']),
+            'password' => Hash::make($password),
             'per_subd_estado' => 1,
             'per_telefono' => trim($data['per_telefono']),
             'per_subd_extension' => trim($data['per_subd_extension']),
             'per_num_documentacion' => trim($data['per_num_documentacion']).trim($data['per_alfanumerico']),
             'per_rol' => '1', //revisar si el 1 2 3 4 .... corresponde a per_rol = estudiante y cambiarlo si corresponde
+            'per_foto_personal' => '/assets/img/usuario.ico',
         ]);
+        /******************************************* */
+
+        $details = [
+            'password'=> $password,
+            'name'=>trim($data['per_nombres']).' '.trim($data['per_paterno']).' '.trim($data['per_materno'])
+        ];
+        Mail::to($data['email'])->send(new ValidacionRegistro($details));
+
+        return $crear_persona;
     }
 }
