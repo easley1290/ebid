@@ -11,6 +11,7 @@ class PortalAdminQSController extends Controller
     {
         try{
             $institucion = Institucion::all();
+            
             return view('ebid-views-administrador.portal-web.quienes-somos')->with('institucion', $institucion[0]);
         } catch (Throwable $e){
             return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
@@ -25,13 +26,15 @@ class PortalAdminQSController extends Controller
                 'frase_institucion' => 'required',
                 'mision_institucion' => 'required',
                 'vision_institucion' => 'required',
-                'objetivo_institucion' => 'required'
+                'objetivo_institucion' => 'required',
+                'perfil_profesional' => 'required'
             ]);
             $qsE = Institucion::where('ins_id', $id)->firstOrFail();
             $qsE->ins_nombre = (string) $request->get('nombre_institucion');
             $qsE->ins_frase = (string) $request->get('frase_institucion');
             $qsE->ins_mision = (string) $request->get('mision_institucion');
             $qsE->ins_vision = (string) $request->get('vision_institucion');
+            $qsE->ins_perfil_profesional = (string) $request->get('perfil_profesional');
             $qsE->ins_obj = (string) $request->get('objetivo_institucion');
             $qsE->ins_obj_esp1 = (string) $request->get('primer_obj_esp');
             $qsE->ins_obj_esp2 = (string) $request->get('segundo_obj_esp');

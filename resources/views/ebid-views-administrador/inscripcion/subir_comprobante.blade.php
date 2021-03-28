@@ -122,7 +122,7 @@
                             <div class="col-md-12">
                             <label for="tipo_comprobante">Tipo de comprobante</label>
                             <select class="form-select form-control" name="tipo_comprobante" id="tipo_comprobante" required>
-                                <option value="examen">Comprobante de EXAMEN</option>
+                                <option value="examen">Comprobante de EXAMEN DE INGRESO</option>
                                 <option value="inscripcion" selected>Comprobante de INSCRIPCION</option>
                             </select>
                             </div>

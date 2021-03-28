@@ -99,8 +99,9 @@ class PostulantesController extends Controller
             $estudianteC->est_per_id = $persona[0]->per_id;
             $estudianteC->est_subd_estado = 8;
             $estudianteC->save();
-
+            
             return redirect()->route('postulante.index')->with('status', 'Se creo un nuevo registro del postulante.');
+            
         } catch(Exception $e){
             return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
         }

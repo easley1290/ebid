@@ -10,7 +10,6 @@ use App\Models\MateriaEstudiante;
 use App\Models\Personas;
 use App\Models\UnidadAcademica;
 use App\Models\Pensum;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
 class EstudianteController extends Controller
@@ -30,56 +29,22 @@ class EstudianteController extends Controller
             return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
         }
     }
-    public function indexNuevo()
-    {
-        try{
-            $estudiante = Estudiantes::all();
-            $extension = Subdominios::select('subdominios.*')
-                        ->where('subd_dom_id','=',9)
-                        ->get();
-            $genero = Subdominios::select('subdominios.*')
-                        ->where('subd_dom_id','=',2)
-                        ->get();
-            $semestre = Semestre::all();
-            $unidadAcademica = UnidadAcademica::all();
-            $arrayAux = [$extension, $estudiante, $genero, $semestre, $unidadAcademica];
-            return view('ebid-views-administrador.estudiante.anadir-nuevo')->with('arrayAux', $arrayAux);
-        } catch (Exception $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
-        }
-    }
 
     public function busquedaEstudiante(Request $request)
     {
-        try{
-            if($request->ajax()){
+        if($request->ajax()){
+            $nombre = ucwords(strtolower($request->get('busqueda_nombre')));
 
-                $nombre = ucwords(strtolower($request->get('busqueda_nombre')));
-                /*--------------------------------------CAMBIER PER_ROL-----------------------------*/
-                // $estudiante = Personas::select('personas.*')
-                //             ->where('per_rol', '=', 'estudiante')
-                //             ->where('personas.name', 'LIKE', '%'.$nombre.'%')
-                //             ->orWhere('personas.per_num_documentacion', 'LIKE', '%'.$nombre.'%')
-                //             ->get();
-
-                $estudiante = DB::table('personas')
-                            ->join('estudiantes', 'estudiantes.est_per_id', '=', 'personas.per_id')
-                            ->select('personas.*', 'estudiantes.est_id')
-                            ->where('personas.per_rol', '=', '1')
-                            ->where('personas.name', 'LIKE', '%'.$nombre.'%')
-                            ->orWhere('personas.per_num_documentacion', 'LIKE', '%'.$nombre.'%')
-                            ->get();
-
-                return response(json_encode($estudiante), 200)->header('Content-type', 'text/plain');
-            }
-        } catch (Exception $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            $estudiante = DB::table('personas')
+                        ->join('estudiantes', 'estudiantes.est_per_id', '=', 'personas.per_id')
+                        ->select('personas.*', 'estudiantes.*')
+                        ->where('personas.per_rol', '>=', '4')
+                        ->where('personas.name', 'LIKE', '%'.$nombre.'%')
+                        ->orWhere('personas.per_num_documentacion', 'LIKE', '%'.$nombre.'%')
+                        ->get();
+            
+            return response(json_encode($estudiante), 200)->header('Content-type', 'text/plain');
         }
-    }
-
-    public function storeNuevo(Request $request)
-    {
-        
     }
     public function updateNuevo(Request $request, $id){
         try{

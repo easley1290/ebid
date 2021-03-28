@@ -36,13 +36,12 @@ class SubirComprobanteController extends Controller
             }   
 
             $comprobanteC = new Comprobantes;
-
             $imagen = $request->file('comprobante');
-            $nombreImagen = 'Comprobante - ID'.$id.'_'.time().$request->get('tipo_comprobante').'.'.$imagen->getClientOriginalExtension();
-            $destinoImagen = public_path('assets\img\comprobantes');
-            $imagen->move($destinoImagen, $nombreImagen);
+            $nombreImagen = 'ID'.$id."-".date('YmdHis_').$request->get('tipo_comprobante').'.'.$imagen->getClientOriginalExtension();
+            $destinoImagen = $imagen->storeAs('public/Comprobante', $nombreImagen);
+            $rutaImagen = '/storage/Comprobante/'.$nombreImagen;
 
-            $comprobanteC->com_url = (string) $nombreImagen;
+            $comprobanteC->com_url = (string) $rutaImagen;
             $comprobanteC->com_tipo = $request->get('tipo_comprobante');
             $comprobanteC->com_est_id = (int)$id;
             $comprobanteC->com_estado = 0;

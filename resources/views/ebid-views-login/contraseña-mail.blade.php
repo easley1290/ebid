@@ -7,7 +7,7 @@
         <div class="card-header bg-purple">
           <div class="app-brand">
             <a href="/">
-              <img src="{{ asset('assets/img/logo.jpg') }}" alt="" class="img-fluid">
+              <img src="{{ asset('assets/img/logo.png') }}" alt="" class="img-fluid">
               <span class="brand-name"><h3>Cambio Contraseña</h3></span>
             </a>
           </div>

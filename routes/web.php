@@ -13,6 +13,7 @@ use App\Http\Controllers\PortalAdminContactController;
 use App\Http\Controllers\PortalAdminGalleryController;
 use App\Http\Controllers\PortalAdminVideosController;
 use App\Http\Controllers\NosotrosController;
+use App\Http\Controllers\AdministracionController;
 
 use App\Http\Controllers\InstitucionController;
 use App\Http\Controllers\UnidadAcademicaController;
@@ -32,11 +33,22 @@ use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\PostulantesController;
 use App\Http\Controllers\ComprobanteController;
 use App\Http\Controllers\SubirComprobanteController;
+use App\Http\Controllers\SubirComprobante2Controller;
 use App\Http\Controllers\ValidarComprobanteController;
 use App\Http\Controllers\CalendarioExamenIngresoController;
+use App\Http\Controllers\EstudianteNuevoController;
 use App\Models\Subdominios;
 
 use App\Http\Controllers\MailController;
+
+/*---------------- Portal web controllers---------------- */
+use App\Http\Controllers\PortalWeb\PWContactoController;
+use App\Http\Controllers\PortalVistaController;
+use App\Http\Controllers\PortalVistaPerfilController;
+use App\Http\Controllers\PortalVistaProcesoController;
+use App\Http\Controllers\PortalVistaMallaController;
+use App\Http\Controllers\PortalVistaInscripcionController;
+
 
 
 /*
@@ -61,10 +73,15 @@ Route::get('/administracion', function () {
 });
 Route::get('/MisionVision', [NosotrosController::class, 'MisionVision'])->name('MisionVision');
 Route::get('/PlantelAdministrativo', [NosotrosController::class, 'PlantelAdm'])->name('PlantelAdm');
-Route::get('/PlantelDocente', [NosotrosController::class, 'PlantelDoc'])->name('PlantelDocs');
+Route::get('/PlantelDocente', [NosotrosController::class, 'PlantelDoc'])->name('PlantelDoc');
+Route::get('/pcontactos', [PWContactoController::class, 'indexContactos'])->name('indexContactos');
+Route::get('/pnoticias', [PWContactoController::class, 'indexNoticias'])->name('indexNoticias');
+Route::get('/pgaleria', [PWContactoController::class, 'indexGaleria'])->name('indexGaleria');
+Route::get('/pvideo', [PWContactoController::class, 'indexVideo'])->name('indexVideo');
+Route::resource('/administracion', AdministracionController::class);
 
 /***********Rutas Administracion de Portal Web**********/
-Route::prefix('administracion')->group(function () {
+Route::prefix('administracion/portal-web')->group(function () {
     Route::resource('/quienessomos', PortalAdminQSController::class);
     Route::resource('/contactos', PortalAdminContactController::class);
     Route::resource('/noticias', PortalAdminNoticeController::class);
@@ -78,13 +95,11 @@ Route::prefix('administracion/inscripcion')->group(function () {
     Route::resource('/postulante', PostulantesController::class);
     Route::resource('/comprobante', ComprobanteController::class);
     Route::resource('/subir-comprobante', SubirComprobanteController::class);
+    Route::resource('/subir-comprobantes', SubirComprobante2Controller::class);
     Route::resource('/valida-comprobante', ValidarComprobanteController::class);
     Route::resource('/calendario-ingreso', CalendarioExamenIngresoController::class);
-
+    Route::resource('/estudiante-nuevo', EstudianteNuevoController::class);
     Route::post('/estudiante-buscar', [EstudianteController::class, 'busquedaEstudiante'])->name('busquedaEstudiante');
-    Route::get('/estudiante-nuevo', [EstudianteController::class, 'indexNuevo'])->name('indexNuevo');
-    Route::post('/estudiante-nuevo', [EstudianteController::class, 'storeNuevo'])->name('storeNuevo');
-    Route::put('/estudiante-nuevo/{id}', [EstudianteController::class, 'updateNuevo'])->name('updateNuevo');
 });
 
 /***********Rutas dominio**********/
@@ -135,3 +150,21 @@ Route::resource('/Docente', DocenteController::class);
 Route::resource('/MateriaDocente', MateriaDocenteController::class);
 /***************  Nota  ****************** */
 Route::resource('/Nota', NotaController::class);
+
+/***************  oferta academica  ****************** */
+Route::resource('/portal-vista', PortalVistaController::class);
+
+Route::prefix('portal-vista/oferta-academica')->group(function () {
+    Route::resource('/perfilProfesional', PortalVistaPerfilController::class);
+    Route::resource('/procesoAdmision', PortalVistaProcesoController::class);
+    Route::resource('/malla', PortalVistaMallaController::class);
+    Route::resource('/inscripcion', PortalVistaInscripcionController::class);
+    Auth::routes();
+    Route::get('/login_', function () {return view('ebid-views-login.login');});
+    Route::get('/register_', function () {
+    $extension = Subdominios::select('subdominios.*')
+                        ->where('subd_dom_id','=',9)
+                        ->get();
+    return view('ebid-views-login.register')->with('extension', $extension);
+});
+});

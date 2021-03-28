@@ -33,7 +33,7 @@ class Institucion extends Model
     /**
      * @var array
      */
-    protected $fillable = ['ins_nombre', 'ins_mision', 'ins_vision', 'ins_obj', 'ins_obj_esp1', 'ins_obj_esp2', 'ins_obj_esp3', 'ins_obj_esp4', 'ins_obj_esp5'];
+    protected $fillable = ['ins_nombre', 'ins_mision', 'ins_vision', 'ins_obj', 'ins_obj_esp1', 'ins_obj_esp2', 'ins_obj_esp3', 'ins_obj_esp4', 'ins_obj_esp5', 'ins_perfil_profesional'];
 
     /**
      * Indicates if the model should be timestamped.
