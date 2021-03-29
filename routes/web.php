@@ -148,7 +148,7 @@ Route::resource('/CategoriaDocente', CategoriaDocenteController::class);
 Route::resource('/Docente', DocenteController::class);
 
 
-Route::resource('/estudiante', EstudianteUsuarioController::class);
+Route::resource('/estudiante-usuario', EstudianteUsuarioController::class);
 /***************  MateriaDocente  ****************** */
 Route::resource('/MateriaDocente', MateriaDocenteController::class);
 /***************  Nota  ****************** */

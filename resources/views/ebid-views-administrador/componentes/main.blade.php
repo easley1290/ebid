@@ -153,7 +153,7 @@
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
                             <li>
-                              <a class="sidenav-item-link" href="{{ route('estudiante.index') }}">
+                              <a class="sidenav-item-link" href="{{ route('estudiante-usuario.index') }}">
                                 <span class="nav-text">Estudiantes</span>
                               </a>
                             </li>
@@ -290,7 +290,7 @@
                     </li>
                   @endif
 
-                  @if (auth()->user()->per_rol <= 3)
+                  {{-- @if (auth()->user()->per_rol <= 3)
                     <!----------------------------NOTAS---------------------------------->
                     <li  class="has-sub" >
                       <a class="sidenav-item-link" href="{{ route('Nota.index') }}">
@@ -298,7 +298,7 @@
                         <span class="nav-text">Notas</span>
                       </a>
                     </li>
-                  @endif
+                  @endif --}}
                   @if (auth()->user()->per_rol <= 5)
                     <!----------------------------INSCRIPCION---------------------------------->
                     <li  class="has-sub" >
