@@ -47,7 +47,7 @@
             <li type="disc" class="ml-4" style="font-size: 16px;">Dominar el área de especialidad.</li>
       </div>
       <div class="col-lg-5 order-2 order-lg-1" data-aos="fade-right" data-aos-delay="100">
-        <img src="{{ asset('assets/img/oferta2.jpg') }}" class="img-fluid" alt="">
+        <img src="{{ asset('assets/img/p-prof.jpg') }}" class="img-fluid" alt="">
       </div>
     </div>
   </div><br><br>
@@ -57,25 +57,24 @@
         <h2>La o el Profesional de Danza interpreta una cultura y su identidad como artista:</h2>
         @foreach ($perfiles as $perfil)
         <p class="font-italic">
-            • Con conocimientos técnicos, prácticos y teóricos de la interpretación y ejecución 
-                de la danza en cualquiera de sus géneros y estilos.
-            • Puede seguir estudios superiores.
-            • Desarrollarse como solista o miembro de compañías de danzas nacionales e 
-                internacionales.
-            • Utiliza creativamente el lenguaje corporal en la interpretación de la obra 
-                dancística.
-            • Investiga y analiza las manifestaciones de la danza en la sociedad.
-            • Crea una composición coreográfica para la construcción de una obra. 
-            • Interpreta danzas teatrales en comedias musicales y otras.
-            • Interpreta ballet clásico tradicional o de repertorio.
-            • Interpreta las danzas folklóricas bolivianas y latinoamericanas.
-            • Interpreta danza moderna o de espectáculo.
-            • Dirige un espectáculo dancístico.
-            • Desarrolla procesos pedagógicos en la interpretación de la danza.
-            • Participa en la creación de montajes escénicos teatrales y musicales.
-            • Participa en el diseño, gestión y realización de proyectos de espectáculos de 
-            danza.
-        <span style="color: #e45512;">{{$perfil->ins_frase}}</span>
+           <ul>• Con conocimientos técnicos, prácticos y teóricos de la interpretación y ejecución 
+                de la danza en cualquiera de sus géneros y estilos.</ul>
+           <ul>• Puede seguir estudios superiores.</ul>
+           <ul>• Desarrollarse como solista o miembro de compañías de danzas nacionales e 
+                internacionales.</ul>
+            <ul>• Utiliza creativamente el lenguaje corporal en la interpretación de la obra 
+                dancística.</ul>
+            <ul>• Investiga y analiza las manifestaciones de la danza en la sociedad.</ul>
+            <ul>• Crea una composición coreográfica para la construcción de una obra.</ul> 
+            <ul>• Interpreta danzas teatrales en comedias musicales y otras.</ul>
+            <ul>• Interpreta ballet clásico tradicional o de repertorio.</ul>
+            <ul>• Interpreta las danzas folklóricas bolivianas y latinoamericanas.</ul>
+            <ul>• Interpreta danza moderna o de espectáculo.</ul>
+            <ul>• Dirige un espectáculo dancístico.</ul>
+            <ul>• Desarrolla procesos pedagógicos en la interpretación de la danza.</ul>
+            <ul>• Participa en la creación de montajes escénicos teatrales y musicales.</ul>
+            <ul>• Participa en el diseño, gestión y realización de proyectos de espectáculos de 
+            danza.</ul>
         </p>
         @endforeach
         <!--<a href="" class="btn-oferta">NUESTRA OFERTA PARA TI<i class="ri-arrow-right-s-line"></i></i></a>-->
