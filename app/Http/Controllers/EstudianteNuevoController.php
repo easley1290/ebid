@@ -42,6 +42,7 @@ class EstudianteNuevoController extends Controller
      */
     public function store(Request $request)
     {
+        /**----------------------------------- Guardar formulario de registro de estudiantes ---------------------- */
         try{
             $this->validate($request,[
                 'nombre_estudiante' => 'required|min:2|max:50',
@@ -61,9 +62,12 @@ class EstudianteNuevoController extends Controller
                 'ua_estudiante' => 'required'
             ]);
             $mateC = new MateriaEstudiante;
+
             $personaE = Personas::select('personas.*')
                         ->where('personas.per_num_documentacion', '=', $request->get('numero_ci_estudiante'))
-                        ->get()->first();
+                        ->get()
+                        ->first();
+
             $personaE->per_nombres = (string) $request->get('nombre_estudiante');
             $personaE->per_paterno = (string) $request->get('paterno_estudiante');
             $personaE->per_materno = (string) $request->get('materno_estudiante');
@@ -83,21 +87,26 @@ class EstudianteNuevoController extends Controller
                             ->get()->first();
 
             $estudianteE->est_sem_id = $request->get('anio_estudiante');
-            $estudianteE->est_subd_estado = 7;
+            $estudianteE->est_subd_estado = 6;
             $estudianteE->est_nombre_tutor =  $request->get('nombre_tutor');
             $estudianteE->est_telefono_tutor =  $request->get('telefono_tutor');
             $estudianteE->est_domicilio_tutor =  $request->get('domicilio_tutor');
             $estudianteE->est_ocupacion_tutor =  $request->get('ocupacion_tutor');
-            $estudianteE->est_bachiller =  $request->get('bachiller');
-            $estudianteE->est_cert_nac =  $request->get('nacimiento');
-            $estudianteE->est_fot_ci =  $request->get('ciEst');
-            $estudianteE->est_fot_tutor =  $request->get('ciTutor');
-            $estudianteE->est_certificaciones =  $request->get('certificaciones');
-            $estudianteE->est_experiencia =  $request->get('experiencia');
+            
+            if($request->get('bachiller') || $request->get('nacimiento') || $request->get('ciEst')){
+                $estudianteE->est_bachiller =  $request->get('bachiller');
+                $estudianteE->est_cert_nac =  $request->get('nacimiento');
+                $estudianteE->est_fot_ci =  $request->get('ciEst');
+                $estudianteE->est_fot_tutor =  $request->get('ciTutor');
+                $estudianteE->est_certificaciones =  $request->get('certificaciones');
+                $estudianteE->est_experiencia =  $request->get('experiencia');
+            }
+            
             $estudianteE->est_examen_ingreso_estado =  13;
             $personaE->save();
             $estudianteE->save();
             return redirect()->route('administracion.index')->with('status', 'Se completo el registro del estudiante.');
+
         } catch(Exception $e){
             return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
         }
@@ -111,33 +120,33 @@ class EstudianteNuevoController extends Controller
      */
     public function show($id)
     {
+        /** ------------------- mostrar formulario de registro de datos de estudiantes --------------------- */
         try{
-            $personas = Personas::find($id);
-            if($personas == null){
-                $datos = DB::table('personas')
-                    ->join('estudiantes', 'estudiantes.est_per_id', '=', 'personas.per_id')
-                    ->where('estudiantes.est_id', '=', $id)
-                    ->where('estudiantes.est_subd_estado', '=', 8)
-                    ->get()
-                    ->first();
-            }
-            else if($personas != null){
-                $datos = DB::table('personas')
-                    ->join('estudiantes', 'estudiantes.est_per_id', '=', 'personas.per_id')
-                    ->where('personas.per_id', '=', $id)
-                    ->where('estudiantes.est_per_id', '=', $id)
-                    ->get()
-                    ->first();
-            }
-            
-            if($datos!= null){
+            $idnumero = (int) $id;
+            $datos = DB::table('personas')
+                ->join('estudiantes', 'estudiantes.est_per_id', '=', 'personas.per_id')
+                ->where('personas.per_id', '=', (int)$idnumero)
+                ->where('estudiantes.est_subd_estado', '<=', 7)
+                ->where('personas.per_rol', '<=', 5)
+                ->get()
+                ->first();
+            if($datos != null){
+
                 $nombreExt = Subdominios::select('subdominios.*')
                         ->where('subd_id', '=', $datos->per_subd_extension)
-                        ->get()->first();
+                        ->get()
+                        ->first();
 
                 $nombreGenero = Subdominios::select('subdominios.*')
                                 ->where('subd_id', '=', $datos->per_subd_genero)
-                                ->get()->first();
+                                ->get()
+                                ->first();
+
+                $nombreSem = Semestre::select('semestre.*')
+                                ->where('sem_id', '=', $datos->est_sem_id)
+                                ->get()
+                                ->first();
+
                 $genero = Subdominios::select('subdominios.*')
                         ->where('subd_dom_id', '=', 2)
                         ->get();
@@ -145,18 +154,25 @@ class EstudianteNuevoController extends Controller
                 $extension = Subdominios::select('subdominios.*')
                         ->where('subd_dom_id', '=', 9)
                         ->get();
+
                 $anio = Semestre::select('semestre.*')
                         ->get();
+
                 $ua = UnidadAcademica::select('unidad_academica.*')
                         ->get();
+
                 return view('ebid-views-administrador.estudiante.estudiante-nuevo', [
                     'datos'=>$datos, 
                     'genero'=>$genero, 
                     'extension'=>$extension, 
-                    'anio'=>$anio, 'uacad'=>$ua, 'nombreExt'=>$nombreExt,
-                    'nombreGen'=>$nombreGenero]);
+                    'anio'=>$anio, 
+                    'uacad'=>$ua, 
+                    'nombreExt'=>$nombreExt,
+                    'nombreGen'=>$nombreGenero,
+                    'nombreSem' => $nombreSem]);
+
             }else if($datos == null){
-                return redirect()->route('administracion.index')->with('status', 'No se encontro ningun registro correspondiente a su usuario');
+                return redirect()->route('administracion.index')->with('status', 'No puede ingresar a esta pagina');
             }
             
         } catch(Exception $e){
@@ -167,7 +183,31 @@ class EstudianteNuevoController extends Controller
 
     public function edit($id)
     {
-        dd("Reprobo");
+        /** ------------------ funcion de aprobar estudiante desde el calendario de examenes de ingreso --------------------------*/
+        try{
+            $estudiante = Estudiantes::find($id);
+
+            $datos = Personas::select('*')
+                    ->where('personas.per_id', '=', $estudiante->est_per_id)
+                    ->get()
+                    ->first();
+
+            if($datos!= null){
+                /** se lo aprueba con per_rol = 5 que equivale a un estado auxiliar para resgitar datos de inscripcion solo una vez */
+                $datos->per_rol = 5;
+                $estudiante->est_examen_ingreso_estado =  13;
+                $estudiante->est_subd_estado = 7;
+                $estudiante->save();
+                $datos->save();
+                return redirect()->route('calendario-ingreso.index')->with('status', 'El estudiante aprobo el examen de ingreso, AHORA el estudiante debe completar sus datos');
+
+            }else if($datos == null){
+                return redirect()->route('administracion.index')->with('status', 'No se encontro ningun registro correspondiente a su usuario');
+            }
+            
+        } catch(Exception $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 
     /**
@@ -190,6 +230,5 @@ class EstudianteNuevoController extends Controller
      */
     public function destroy($id)
     {
-        //
     }
 }

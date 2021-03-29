@@ -21,8 +21,8 @@
         <div class="card-header bg-purple">
           <div class="app-brand">
             <a href="/">
-              <img src="{{ asset('assets/img/logo.png') }}" alt="" class="img-fluid">
-              <span class="brand-name"><h3>Acceso</h3></span>
+              <img src="{{ asset('assets/img/logo.png') }}" alt="" style="height: 70px" class="img-fluid">
+              <span class="brand-name"><h3>LOGIN</h3></span>
             </a>
           </div>
         </div>

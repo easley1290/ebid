@@ -7,8 +7,10 @@ use App\Models\Estudiantes;
 use App\Models\Subdominios;
 use App\Models\Comprobantes;
 use App\Models\Pensum;
+use App\Models\Semestre;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+
 
 class SubirComprobante2Controller extends Controller
 {
@@ -17,8 +19,9 @@ class SubirComprobante2Controller extends Controller
         $estudiantes = Estudiantes::select('estudiantes.*', 'personas.*')
                         ->join('personas', 'personas.per_id', '=', 'estudiantes.est_per_id')
                         ->get();
+        $semestres = Semestre::all();
                 
-        return view('ebid-views-administrador.inscripcion.subir_comprobanteNA')->with('estudiantes', $estudiantes);
+        return view('ebid-views-administrador.inscripcion.subir_comprobanteNA', ['estudiantes' => $estudiantes, 'semestre' => $semestres]);
     }
 
     public function update(Request $request, $id)
@@ -27,20 +30,22 @@ class SubirComprobante2Controller extends Controller
             $this->validate($request,[
                 'comprobante' => 'required|image|mimes:png,jpg,jpeg|max:8192'
             ]);
-            
+
             $comprobante = Comprobantes::all() -> last();
             if($comprobante == null){
                 $comprobanteId = 1;
-            }else{
+            }
+            else{
                 $comprobanteId = $comprobante -> com_id;
                 $comprobanteId = $comprobanteId + 1;
             }   
             if($request->get('tipo_comprobante1')=="inscripcion"){
-                $tipo_comp = "inscripcion";
+                $tipo_comp = "inscripcion ".$request->get('tipo_comprobante2');
             }
             else{
                 $tipo_comp = "examen";
             }
+
             $comprobanteC = new Comprobantes;
 
             $imagen = $request->file('comprobante');

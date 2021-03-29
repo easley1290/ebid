@@ -103,14 +103,11 @@
                                         onKeyPress="if(this.value.length==50) return false;"
                                         tabindex="5" required>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 mb-3">
                                 <label for="tipo_comprobante1">Tipo de comprobante</label>
-                                <select class="form-select form-control" name="tipo_comprobante1" id="tipo_comprobante1" required>
-                                    <option value="inscripcion">Comprobante de INSCRIPCION</option>
-                                </select>
-                                <select class="form-select form-control" name="tipo_comprobante2" id="tipo_comprobante2" required>
-                                    <option value="examen">Comprobante de EXAMEN INGRESO</option>
-                                </select>
+                                <div id="tipoComprobante">
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -125,20 +122,21 @@
         </div>
     </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
-  <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js" defer></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-  <script>
-      $(document).ready(function() {
-          $('#estudiante').DataTable({
-              "lengthMenu":[[10, 25, 50, -1], [10, 25, 50, "All"]],
-              "language": {
-                  "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
-              },
-          });
-      });
-  </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#estudiante').DataTable({
+                "lengthMenu":[[10, 25, 50, -1], [10, 25, 50, "All"]],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+                },
+            });
+        });
+    </script>
+
   <script type="text/javascript">
     $(document).ready(function(){
         $.ajax({  
@@ -147,7 +145,6 @@
             data    : $('#formBusqueda').serialize(),
             success : function(res){
                 var array = JSON.parse(res);
-                console.log(res);
                 if(array.length>0){
                     for(var i=0; i< array.length; i++){
                         var fila = '<tr><td>'+array[i].est_id+'</td>'
@@ -173,27 +170,35 @@
         return false;
     });
   </script>
-  <script type="text/javascript">
-    $(document).ready(function(){
-        var table = $('#estudiante').DataTable();
-        table.on('click', '.create', function(){
-            $tr = $(this).closest('tr');
-            $('#nombre_estudiante').val($tr[0].children[3].innerText);
-            $('#paterno_estudiante').val($tr[0].children[4].innerText);
-            $('#materno_estudiante').val($tr[0].children[5].innerText);
-            if($tr[0].children[6].innerText == '8'){
-                $('#tipo_comprobante1').css('display', 'none');
-                $('#tipo_comprobante2').css('display', 'block');
-                $('#tipo_comprobante2').attr('selected', 'selected');
-            }
-            if(parseInt($tr[0].children[6].innerText) < 8){
-                $('#tipo_comprobante1').css('display', 'block');
-                $('#tipo_comprobante1').attr('selected', 'selected');
-                $('#tipo_comprobante2').css('display', 'none');
-            }
-            $('#create').modal('show');
-            $('#createForm').attr('action', 'subir-comprobantes/'+$tr[0].children[0].innerText);
-      })
-    });
-</script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var table = $('#estudiante').DataTable();
+            table.on('click', '.create', function(){
+                $tr = $(this).closest('tr');
+                $('#nombre_estudiante').val($tr[0].children[3].innerText);
+                $('#paterno_estudiante').val($tr[0].children[4].innerText);
+                $('#materno_estudiante').val($tr[0].children[5].innerText);
+                if(parseInt($tr[0].children[6].innerText) == 8){
+                    $('#tipoComprobante').html('');
+                    var contenido = '<select class="form-select form-control" name="tipo_comprobante1" id="tipo_comprobante1" required>';
+                    contenido+='<option value="examen">Comprobante de EXAMEN DE INGRESO</option></select>';
+                    $('#tipoComprobante').html(contenido);
+                }
+                if(parseInt($tr[0].children[6].innerText) < 8){
+                    $('#tipoComprobante').html('');
+
+                    var contenido = '<select class="form-select form-control col-md-12 mb-2" name="tipo_comprobante1" id="tipo_comprobante1" required>';
+                    contenido+='<option value="inscripcion">Comprobante de INSCRIPCION</option></select>';
+
+                    contenido+='<select class="form-select form-control col-md-12" name="tipo_comprobante2" id="tipo_comprobante2" required>@foreach ($semestre as $sem)';
+                    contenido+='<option value="{{ $sem->sem_nombre }}">{{ $sem->sem_nombre }}</option>@endforeach';
+                    
+                    $('#tipoComprobante').html(contenido);
+                }
+                $('#create').modal('show');
+                $('#createForm').attr('action', 'subir-comprobantes/'+$tr[0].children[0].innerText);
+            })
+        });
+    </script>
 @endsection

@@ -20,7 +20,7 @@ class PostulantesController extends Controller
                             ->select('personas.*', 'estudiantes.*')
                             ->where('estudiantes.est_subd_estado', '=', 8)
                             ->where('personas.per_subd_estado', '=', 1)
-                            ->where('personas.per_rol', '=', 1)
+                            ->where('personas.per_rol', '=', 4)
                             ->get();
 
             $subdominiosExamen = Subdominios::select('subdominios.*')

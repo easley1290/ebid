@@ -34,6 +34,7 @@
             </ul>
         </div>
     @endif
+
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -72,9 +73,9 @@
                 </div>
                 <div class="modal-body px-4">
                     <div class="form-group">
-                        <label for="estudiante" class="form-label">Estudiante que brindara su examen:</label>
+                        <label for="estudiante" class="form-label">Postulante que brindara su examen:</label>
                         <select class="form-select" name="estudiante" id="estudiante" required tabindex="1">
-                            <option value="a" selected disabled>-- Seleccione el estudiante que brindará su examen --</option>
+                            <option value="a" selected disabled>-- Seleccione el postulante que brindará su examen --</option>
                             @foreach($estudiantes as $est)               
                             <option value="{{$est->est_id}}">{{ $est->name.' '.$est->per_num_documentacion }}</option>
                             @endforeach
@@ -199,6 +200,7 @@
                             var hora = [d.getHours(), (d.getMinutes())].join(':');
                         }
                     }
+                    
                     $('#fecha').val(fecha);
                     $('#hora').val(hora);
                     $('#estudiante').val(info.event.id);
@@ -210,9 +212,9 @@
                     $('#cestudiante').html(fila);
                     $('#btnAprobar').click(function(){
                         var valorId = $('#estudiante').val();
-                        var url = "{{ route('estudiante-nuevo.show', 'temp') }}";
+                        var url = "{{ route('estudiante-nuevo.edit', 'temp') }}";
                         url = url.replace('temp', valorId);
-                        window.open(url, "_blank");
+                        window.open(url, '_self');
                     });
                 },
                 events: "{{ route('calendario-ingreso.show', 'b') }}"
