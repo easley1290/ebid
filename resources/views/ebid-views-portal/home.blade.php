@@ -10,8 +10,7 @@
   <div class="container" data-aos="fade-up">
       <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
           <div class="col-xl-6 col-lg-8">
-          <h1>ENSEÑANZA DE DANZA EN <span>BOLIVIA</span></h1>
-          <h2>Profesionalismo y arte </h2>
+          <h1>ESCUELA BOLIVIANA INTERCULTURAL DE DANZA</h1>
           </div>
       </div>
   </div>
@@ -32,7 +31,6 @@
           a traves de la titulacion en <span style="color: #e45512;">DANZA</span>
         </p>
         <h4 class="font-italic">No dejes que tus sueños se apaguen</h4>
-        <a href="" class="btn-oferta">NUESTRA OFERTA PARA TI<i class="ri-arrow-right-s-line"></i></i></a>
       </div>
     </div>
   </div>
@@ -46,7 +44,7 @@
           en esta modalidad podras aprender, como si estuvieses en nuestros espacios.
         </p>
         <h4 class="font-italic">No tengas miedo al exito</h4>
-        <a href="" class="btn-miembro">LO QUE OFRECEMOS<i class="ri-arrow-right-s-line"></i></i></a>
+        <a href="{{ route('malla.index') }}" class="btn-miembro">LO QUE OFRECEMOS<i class="ri-arrow-right-s-line"></i></i></a>
       </div>
       <div class="col-lg-6 order-2 order-lg-1" data-aos="fade-right" data-aos-delay="100">
         <img src="{{ asset('assets/img/oferta2.jpg') }}" class="img-fluid" alt="">
@@ -61,41 +59,33 @@
       <p>TENEMOS MUCHO POR ENSEÑARTE</p>
     </div>
     <div class="row">
-      <div class="col-lg-6 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-        <div class="icon-box">
-          <div class="danza-miniaturas"><img src="{{ asset('assets/img/d-clasica.jpg') }}" width="500"></div>
-          <h4>Danza clásica</h4>
-          <p>es una forma de danza cuyos movimientos se basan en el control total 
-          y absoluto del cuerpo, el cual se debe enseñar desde temprana edad.</p>
-        </div>
-      </div>
-
-      <div class="col-lg-6 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
-        <div class="icon-box">
-          <div class="danza-miniaturas"><img src="{{ asset('assets/img/d-contemporanea.jpg') }}" width="500"></div>
-          <h4>Danza moderna-contemporanea</h4>
-          <p>Aprendizaje que parte desde el centro corporal, hacia el manejo de las
-          extremidades, la fuerza de la gravedad, los equilibrios y desequilibrios, 
-          las contracciones, las suspensiones y las caídas</p>
-        </div>
-      </div>
-
-      <div class="col-lg-6 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="100">
-        <div class="icon-box">
-          <div class="danza-miniaturas"><img src="{{ asset('assets/img/d-moderna.jpg') }}" width="500"></div>
+      <div class="col-lg-6 col-md-4" data-aos="zoom-in" data-aos-delay="100">
+          <div class="danza-miniaturas"><img src="{{ asset('assets/img/d-moderna.jpg') }}" width="400"></div>
           <h4>Danza folklórica</h4>
-          <p>Sus movimientos son una expresión libre y fluida de estados, emociones, metáforas o ideas abstractas</p>
-        </div>
       </div>
-
-      <div class="col-lg-6 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="100">
-        <div class="icon-box">
-          <div class="danza-miniaturas"><img src="{{ asset('assets/img/d-Ballet.jpg') }}" width="500"></div>
-          <h4>Coreografía y direccion</h4>
-          <p>El ballet moderno o ballet contemporáneo es una forma de danza influenciada
-          tanto por el ballet clásico como por la danza moderna. Si bien adopta la 
-          técnica del ballet clásico, permite un mayor rango de movimiento.</p>
-        </div>
+      <div class="col-lg-6 ">
+          <div class="danza-miniaturas"><img src="{{ asset('assets/img/d-contemporanea.jpg') }}" width="400"></div>
+          <h4>Danza moderna-contemporanea</h4>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-6 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+          <div class="danza-miniaturas"><img src="{{ asset('assets/img/d-Ballet.jpg') }}" width="400"></div>
+          <h4>Pedagogía de la Danza</h4>
+      </div>
+      <div class="col-lg-6 col-md-4" data-aos="zoom-in" data-aos-delay="100">
+          <div class="danza-miniaturas"><img src="{{ asset('assets/img/d-Ballet.jpg') }}" width="400"></div>
+          <h4>Coreografía y dirección</h4>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6">
+          <div class="danza-miniaturas"><img src="{{ asset('assets/img/d-clasica.jpg') }}" width="400"></div>
+          <h4>Danza clásica</h4>
       </div>
     </div>
   </div>
@@ -104,56 +94,32 @@
   <div class="container" data-aos="zoom-in">
     <div class="owl-carousel testimonials-carousel alinear-centro">
       <div class="testimonial-item ">
-        <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-        <h3>Saul Goodman</h3>
-        <h4>Ceo &amp; Founder</h4>
+        <!--<img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">-->
+        <h3>Yuri Grigorovich</h3>
+        <h4>Mensaje del Día internacional de la Danza 1984</h4>
         <p>
           <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-          Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+            Este arte puede y debe actuar como un medio de comunicación, de paz y amistad, acercando a los seres humanos.
           <i class="bx bxs-quote-alt-right quote-icon-right"></i>
         </p>
       </div>
 
       <div class="testimonial-item">
-        <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-        <h3>Sara Wilsson</h3>
-        <h4>Designer</h4>
+        <h3>Maurice Béjart</h3>
+        <h4>Mensaje del Día internacional de la Danza 1997</h4>
         <p>
           <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-          Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+          La danza , como el cine, cos ofrece imágenes rápidas, emotivas, móviles, plásticas, abstractas o dinámicas que ponen movimiento en nuestro ser.
           <i class="bx bxs-quote-alt-right quote-icon-right"></i>
         </p>
       </div>
 
       <div class="testimonial-item">
-        <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-        <h3>Jena Karlis</h3>
-        <h4>Store Owner</h4>
+        <h3>Alicia Alonso</h3>
+        <h4>Mensaje del Día internacional de la Danza 2018</h4>
         <p>
           <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-          Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-          <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-        </p>
-      </div>
-
-      <div class="testimonial-item">
-        <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-        <h3>Matt Brandon</h3>
-        <h4>Freelancer</h4>
-        <p>
-          <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-          Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-          <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-        </p>
-      </div>
-
-      <div class="testimonial-item">
-        <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-        <h3>John Larson</h3>
-        <h4>Entrepreneur</h4>
-        <p>
-          <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-          Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+          La danza ha sido, es y será... una expresión natural y espontánea que brota desde lo más profundo de su espiritu y de su realidad corporal.
           <i class="bx bxs-quote-alt-right quote-icon-right"></i>
         </p>
       </div>
@@ -163,7 +129,7 @@
   </div>
 </section>
 
-<section class="portfolio">
+<!--<section class="portfolio">
   <div class="container" data-aos="fade-up">
     <div class="section-title alinear-centro">
       <p>NUESTRAS ULTIMAS FOTOGRAFIAS</p>
@@ -176,18 +142,17 @@
             <h4>Enseñando a adultos</h4>
             <div class="portfolio-links">
               <a href="{{ asset('assets/img/galeria-home/galeria-1.jpg') }}" data-gall="portfolioGallery" class="venobox"></a>
-              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
         </div>
       </div>
       <div class="col-lg-4 col-md-6 portfolio-item">
         <div class="portfolio-wrap">
-          <img src="{{ asset('assets/img/galeria-home/galeria-2.png') }}" class="img-fluid">
+          <img src="{{  asset('assets/img/d-moderna.jpg') }}" class="img-fluid">
           <div class="portfolio-info">
             <h4>Uno de nuestros cursos</h4>
             <div class="portfolio-links">
-              <a href="{{ asset('assets/img/galeria-home/galeria-2.png') }}" data-gall="portfolioGallery" class="venobox"></a>
+              <a href="{{ asset('assets/img/d-moderna.jpg') }}" data-gall="portfolioGallery" class="venobox"></a>
             </div>
           </div>
         </div>
@@ -204,7 +169,7 @@
         </div>
       </div>
   </div>
-</section>
+</section>-->
 
 <section class="team">
   <div class="container" data-aos="fade-up">
