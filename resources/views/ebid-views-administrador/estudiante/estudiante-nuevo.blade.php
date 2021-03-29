@@ -164,7 +164,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-4 mb-3">
                                     <label for="anio_estudiante">Año en el que cursará el estudiante</label>
                                     <select class="form-select" name="anio_estudiante" id="anio_estudiante" required tabindex="15">
                                         @if ($nombreGen != null)
@@ -177,9 +177,19 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-6 mb-3">
+
+                                <div class="col-md-4 mb-3">
+                                    <label for="especialidad">Especialidad del estudiante</label>
+                                    <select class="form-select" name="especialidad" id="especialidad" required tabindex="16">
+                                        @foreach($especialidad as $esp)               
+                                            <option value="{{$esp->esp_id}}">{{$esp->esp_nombre}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
                                     <label for="ua_estudiante">Unidad academica en la que se inscribirá</label>
-                                    <select class="form-select" name="ua_estudiante" id="ua_estudiante" required tabindex="16">
+                                    <select class="form-select" name="ua_estudiante" id="ua_estudiante" required tabindex="17s">
                                         @foreach($uacad as $ua)               
                                             <option value="{{$ua->ua_id}}">{{$ua->ua_nombre}}</option>
                                         @endforeach

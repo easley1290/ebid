@@ -214,7 +214,7 @@
                         var valorId = $('#estudiante').val();
                         var url = "{{ route('estudiante-nuevo.edit', 'temp') }}";
                         url = url.replace('temp', valorId);
-                        window.open(url, '_self');
+                        window.open(url, '_blank');
                     });
                 },
                 events: "{{ route('calendario-ingreso.show', 'b') }}"

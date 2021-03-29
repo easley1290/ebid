@@ -10,6 +10,7 @@ use App\Models\MateriaEstudiante;
 use App\Models\Personas;
 use App\Models\UnidadAcademica;
 use App\Models\Pensum;
+use App\Models\Especialidades;
 use Illuminate\Support\Facades\DB;
 
 class EstudianteNuevoController extends Controller
@@ -59,10 +60,10 @@ class EstudianteNuevoController extends Controller
                 'telefono_tutor' => 'required|min:8|max:11',
                 'domicilio_tutor' => 'required|max:100',
                 'anio_estudiante' => 'required',
-                'ua_estudiante' => 'required'
+                'ua_estudiante' => 'required',
+                'especialidad' => 'required'
             ]);
-            $mateC = new MateriaEstudiante;
-
+           
             $personaE = Personas::select('personas.*')
                         ->where('personas.per_num_documentacion', '=', $request->get('numero_ci_estudiante'))
                         ->get()
@@ -84,7 +85,8 @@ class EstudianteNuevoController extends Controller
 
             $estudianteE = Estudiantes::select('estudiantes.*')
                             ->where('estudiantes.est_per_id', '=', $personaE->per_id)
-                            ->get()->first();
+                            ->get()
+                            ->first();
 
             $estudianteE->est_sem_id = $request->get('anio_estudiante');
             $estudianteE->est_subd_estado = 6;
@@ -103,6 +105,29 @@ class EstudianteNuevoController extends Controller
             }
             
             $estudianteE->est_examen_ingreso_estado =  13;
+
+            $pensum = Pensum::select('*')
+                        ->where('pen_sem_id', '=', $request->get('anio_estudiante'))
+                        ->where('pen_esp_id', '=', $request->get('especialidad'))
+                        ->get();
+            
+            $tamanio = count($pensum);
+            $indicador = MateriaEstudiante::select('*')
+                        ->where('mate_est_id', '=', $estudianteE->est_id)
+                        ->get();
+            $tamanio2 = count($indicador);
+            if($tamanio2 == 0){
+                for($i = 0; $i < $tamanio; $i++){
+                    $me =  MateriaEstudiante::create([
+                        'mate_mat_id' => $pensum[$i]->pen_mat_id,
+                        'mate_esp_id' => $pensum[$i]->pen_esp_id,
+                        'mate_sem_id' => $pensum[$i]->pen_sem_id,
+                        'mate_est_id' => $estudianteE->est_id,
+                        'mate_subd_id' => 9
+                    ]);
+                }
+            }
+            
             $personaE->save();
             $estudianteE->save();
             return redirect()->route('administracion.index')->with('status', 'Se completo el registro del estudiante.');
@@ -161,6 +186,8 @@ class EstudianteNuevoController extends Controller
                 $ua = UnidadAcademica::select('unidad_academica.*')
                         ->get();
 
+                $especialidades = Especialidades::select('especialidades.*')
+                                    ->get();
                 return view('ebid-views-administrador.estudiante.estudiante-nuevo', [
                     'datos'=>$datos, 
                     'genero'=>$genero, 
@@ -169,7 +196,8 @@ class EstudianteNuevoController extends Controller
                     'uacad'=>$ua, 
                     'nombreExt'=>$nombreExt,
                     'nombreGen'=>$nombreGenero,
-                    'nombreSem' => $nombreSem]);
+                    'nombreSem' => $nombreSem,
+                    'especialidad' => $especialidades]);
 
             }else if($datos == null){
                 return redirect()->route('administracion.index')->with('status', 'No puede ingresar a esta pagina');
