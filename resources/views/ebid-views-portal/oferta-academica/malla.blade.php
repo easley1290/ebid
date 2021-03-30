@@ -27,14 +27,28 @@
             {{$institucion->ins_obj}}
         </p>
         @endforeach
-        <a href="" class="btn-oferta">INSCRIPCION<i class="ri-arrow-right-s-line"></i></i></a>
+        <a href="{{ route('inscripcion.index') }}" class="btn-oferta">INSCRIPCION<i class="ri-arrow-right-s-line"></i></i></a>
       </div>
     </div>
 </div>
 </section>
-<div class="container">
-    <div class="row">
-        <img src="{{ asset('assets/img/MALLA CURRICULAR.jpg') }}" class="img-fluid" alt="">
+<section id="portfolio" class="portfolio">
+    <div class="container" data-aos="fade-up">
+        <div class="row" data-aos="fade-up" data-aos-delay="200">
+                    <div class="col-md-12 mb-5">
+                        <div class="portfolio-item">
+                            <div class="portfolio-wrap">
+                                <img src="{{ asset('assets/img/MALLA CURRICULAR.jpg') }}" class="img-fluid" alt="">
+                                <div class="portfolio-info">
+                                            <h4>MALLA CURRICULAR</h4>
+                                            <div class="portfolio-links">
+                                                <a href="{{ asset('assets/img/MALLA CURRICULAR.jpg') }}" data-gall="portfolioGallery" class="venobox" title="MALLA CURRICULAR"><i class="bx bx-link"></i></a>
+                                            </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
     </div>
-</div>
+</section>
 @endsection

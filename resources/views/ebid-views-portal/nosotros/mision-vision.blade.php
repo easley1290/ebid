@@ -1,7 +1,8 @@
 @extends('ebid-views-portal.componentes.main')
-@section('title', 'MisionVision')
-@section('nosotros', 'drop-down')
+@section('title', 'Mision - Vision')
+@section('nosotros', 'active drop-down')
 @section('oferta', 'drop-down')
+
 @section('content')
 <section id="hero" class="d-flex align-items-center justify-content-center hero-fondo-home">
   <div class="container" data-aos="fade-up">
@@ -24,10 +25,10 @@
 <section class="inicio">
   <div class="container" data-aos="fade-up">
     <div class="row">
-      <div class="col-lg-7 order-2 order-lg-1" data-aos="fade-left" data-aos-delay="100">
-        <img src="{{ asset('assets/img/d-clasica1.jpg') }}" class="img-fluid" alt="">
+      <div class="col-md-6">
+        <img src="{{ asset('assets/img/m-v.jpg') }}" class="img-fluid" alt="">
       </div>
-      <div class="col-lg-5 pt-4 pt-lg-0 order-1 order-lg-2 content" data-aos="fade-right" data-aos-delay="100">
+      <div class="col-md-6">
         <h2>NUESTRA MISIÓN</h2>
         <p class="font-italic">{{$instituciones ->ins_mision}}</p>
         &nbsp;
@@ -38,11 +39,11 @@
         <p class="font-italic">{{$instituciones ->ins_obj}}</p>
         &nbsp;
         <h2>QUEREMOS</h2>
-        <p class="font-italic">{{$instituciones ->ins_obj_esp1}}</p>
-        <p class="font-italic">{{$instituciones ->ins_obj_esp2}}</p>
-        <p class="font-italic">{{$instituciones ->ins_obj_esp3}}</p>
-        <p class="font-italic">{{$instituciones ->ins_obj_esp4}}</p>
-        <p class="font-italic">{{$instituciones ->ins_obj_esp5}}</p>
+        <li class="font-italic">{{$instituciones ->ins_obj_esp1}}</li>
+        <li class="font-italic">{{$instituciones ->ins_obj_esp2}}</li>
+        <li class="font-italic">{{$instituciones ->ins_obj_esp3}}</li>
+        <li class="font-italic">{{$instituciones ->ins_obj_esp4}}</li>
+        <li class="font-italic">{{$instituciones ->ins_obj_esp5}}</li>
       </div>
     </div>
   </div>

@@ -7,9 +7,9 @@
           <div id="sidebar" class="sidebar">
             <!-- Aplication Brand -->
             <div class="app-brand">
-              <a href="/" >
-                <img src="{{ asset('assets/img/logo.png') }}" alt="" class="img-fluid">
-                
+              <a href="/administracion" >
+                <img src="{{ asset('assets/img/logo.png') }}" alt="" style="height: 50px;" class="img-fluid">
+                <span class="brand-name text-truncate">EBID</span>
               </a>
             </div>
             <!-- begin sidebar scrollbar -->
@@ -153,7 +153,7 @@
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
                             <li>
-                              <a class="sidenav-item-link" href="{{ route('estudiante.index') }}">
+                              <a class="sidenav-item-link" href="{{ route('estudiante-usuario.index') }}">
                                 <span class="nav-text">Estudiantes</span>
                               </a>
                             </li>
@@ -165,12 +165,6 @@
                             <li >
                               <a class="sidenav-item-link" href="{{ route('Docente.index') }}">
                                 <span class="nav-text">Docentes</span>                             
-                              </a>
-                            </li> 
-                            <li>
-                              <a class="sidenav-item-link" href="index.html">
-                                <span class="nav-text">Estudiantes</span>
-                                
                               </a>
                             </li>
                       </div>
@@ -296,7 +290,7 @@
                     </li>
                   @endif
 
-                  @if (auth()->user()->per_rol <= 3)
+                  {{-- @if (auth()->user()->per_rol <= 3)
                     <!----------------------------NOTAS---------------------------------->
                     <li  class="has-sub" >
                       <a class="sidenav-item-link" href="{{ route('Nota.index') }}">
@@ -304,8 +298,8 @@
                         <span class="nav-text">Notas</span>
                       </a>
                     </li>
-                  @endif
-                  @if (auth()->user()->per_rol <= 4)
+                  @endif --}}
+                  @if (auth()->user()->per_rol <= 5)
                     <!----------------------------INSCRIPCION---------------------------------->
                     <li  class="has-sub" >
                       <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#inscripcion"
@@ -328,29 +322,29 @@
                             </a>
                           </li> 
                           @endif
-                          @if (auth()->user()->per_rol == 3)
+                          @if (auth()->user()->per_rol == 5)
                             <li>
                               <a class="sidenav-item-link" href="{{ route('estudiante-nuevo.show', auth()->user()->per_id) }}">
-                                <span class="nav-text">Mi perfil de estudiante</span>
+                                <span class="nav-text">Registrar perfil de estudiante</span>
                               </a>
                             </li>
                           @endif
                           @if (auth()->user()->per_rol == 1)
                             <li>
-                              <a class="sidenav-item-link" href="{{ route('subir-comprobante.index') }}">
-                                <span class="nav-text">Subir Comprobante</span>
+                              <a class="sidenav-item-link" href="{{ route('estudiante.index') }}">
+                                <span class="nav-text">Inscribir estudiantes</span>                             
                               </a>
                             </li>
                             <li>
                               <a class="sidenav-item-link" href="{{ route('comprobante.index') }}">
                                 <span class="nav-text">Validar comprobantes</span>                             
                               </a>
-                            </li>      
+                            </li>  
                             <li>
-                              <a class="sidenav-item-link" href="{{ route('calendario-ingreso.index') }}">
-                                <span class="nav-text">Inscribir estudiantes</span>                             
+                              <a class="sidenav-item-link" href="{{ route('subir-comprobante.index') }}">
+                                <span class="nav-text">Subir Comprobante</span>
                               </a>
-                            </li> 
+                            </li>
                           @endif  
                         </div>
                       </ul>

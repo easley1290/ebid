@@ -32,6 +32,7 @@ class CalendarioExamenIngresoController extends Controller
             return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
         }
     }
+    
     public function store(Request $request)
     {
         try{
@@ -60,6 +61,7 @@ class CalendarioExamenIngresoController extends Controller
                             ->where('estudiantes.est_subd_estado', '=', 8)
                             ->where('estudiantes.est_examen_ingreso_fecha', '!=', "")
                             ->get();
+
             foreach($datos['eventos'] as $resultado){
                 $title = $resultado->name;
                 $start = $resultado->est_examen_ingreso_fecha;
@@ -73,39 +75,5 @@ class CalendarioExamenIngresoController extends Controller
         }catch(Exception $e){
             return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
         }
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

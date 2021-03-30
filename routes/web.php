@@ -38,7 +38,7 @@ use App\Http\Controllers\ValidarComprobanteController;
 use App\Http\Controllers\CalendarioExamenIngresoController;
 use App\Http\Controllers\EstudianteNuevoController;
 use App\Models\Subdominios;
-
+use App\Http\Controllers\EstudianteUsuarioController;
 use App\Http\Controllers\MailController;
 
 /*---------------- Portal web controllers---------------- */
@@ -146,6 +146,9 @@ Route::resource('/Rol', RolController::class);
 Route::resource('/CategoriaDocente', CategoriaDocenteController::class);
 /***************  Docente  ****************** */
 Route::resource('/Docente', DocenteController::class);
+
+
+Route::resource('/estudiante-usuario', EstudianteUsuarioController::class);
 /***************  MateriaDocente  ****************** */
 Route::resource('/MateriaDocente', MateriaDocenteController::class);
 /***************  Nota  ****************** */
