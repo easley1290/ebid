@@ -112,6 +112,14 @@
                                         tabindex="3" autocomplete="off"  required disabled>
                             </div>
                             <div class="col-md-12 mb-3">
+                                <label for="numero_comprobante">Numero de comprobante</label>
+                                <input type="number" class="form-control" 
+                                        id="numero_comprobante" name="numero_comprobante" 
+                                        placeholder="Numero de comprobante" value="{{ old('numero_comprobante') }}"
+                                        onKeyPress="if(this.value.length==25) return false;"
+                                        tabindex="4" autocomplete="off"  required>
+                            </div>
+                            <div class="col-md-12 mb-3">
                                 <label for="comprobante">Comprobante</label>
                                 <input type="file" class="form-control" 
                                         id="comprobante" name="comprobante" 
@@ -123,7 +131,10 @@
                             <label for="tipo_comprobante">Tipo de comprobante</label>
                             <select class="form-select form-control" name="tipo_comprobante" id="tipo_comprobante" required>
                                 <option value="examen">Comprobante de EXAMEN DE INGRESO</option>
-                                <option value="inscripcion" selected>Comprobante de INSCRIPCION</option>
+                                <option value="inscripcion PRIMER AÑO" selected>Comprobante de INSCRIPCION PRIMER AÑO</option>
+                                <option value="inscripcion SEGUNDO AÑO" selected>Comprobante de INSCRIPCION SEGUNDO AÑO</option>
+                                <option value="inscripcion TERCER AÑO" selected>Comprobante de INSCRIPCION TERCER AÑO</option>
+                                <option value="inscripcion CUARTO AÑO" selected>Comprobante de INSCRIPCION CUARTO AÑO</option>
                             </select>
                             </div>
                         </div>
@@ -196,7 +207,7 @@
             $('#paterno_estudiante').val($tr[0].children[4].innerText);
             $('#materno_estudiante').val($tr[0].children[5].innerText);
             $('#create').modal('show');
-            $('#createForm').attr('action', 'subir-comprobante/'+$tr[0].children[0].innerText);
+            $('#createForm').attr('action', 'subir-comprobantes/'+$tr[0].children[0].innerText);
       })
     });
 </script>

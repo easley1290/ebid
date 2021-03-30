@@ -55,12 +55,12 @@
                                     <td class="">{{ $galeria->gal_id}}</td>
                                     <td class="">{{ $galeria->gal_titulo }}</td>
                                     @foreach($arrayAux[0] as $ua)
-                                        @if($ua->ua_id === $galeria->gal_ua_id)
+                                        @if($ua->ua_id == $galeria->gal_ua_id)
                                             <td class="">{{ $ua->ua_nombre}}</td>
                                         @endif
                                     @endforeach
                                     @foreach($arrayAux[1] as $subd)
-                                        @if($subd->subd_id === $galeria->gal_subd_estado)
+                                        @if($subd->subd_id == $galeria->gal_subd_estado)
                                             <td class="">Imagen {{ $subd->subd_nombre}}</td>
                                         @endif
                                     @endforeach
@@ -289,9 +289,10 @@
                 }
                 var data = table.row($tr).data();
                 $('#e_nombre_galeria').val(data[1]);
-                $("#e_imagen_galeria").attr("href", data[4]);
-
-                $("#img_imagen_galeria").attr("src", data[4]);
+                // $("#e_imagen_galeria").attr("href", data[4]);
+                // $("#img_imagen_galeria").attr("src", data[4]);
+                $("#e_imagen_galeria").attr("href", "http://ebid.edu.bo/public"+data[4]);
+                $("#img_imagen_galeria").attr("src", "http://ebid.edu.bo/public"+data[4]);
                 $("#e_imagen_galeria").text(data[4]);
                 $('#editModal').modal('show');
                 if(data[3]=='Imagen Activo'){
@@ -314,7 +315,8 @@
                     $tr = $tr.prev('.parent');
                 }
                 var data = table.row($tr).data();
-                $("#imgd_imagen_galeria").attr("src", data[4]);
+                //$("#imgd_imagen_galeria").attr("src", data[4]);
+                $("#imgd_imagen_galeria").attr("src","http://ebid.edu.bo/public"+ data[4]);
                 $('#deleteModal').modal('show');
                 $('#deleteForm').attr('action', 'galeria/'+data[0]);
             })

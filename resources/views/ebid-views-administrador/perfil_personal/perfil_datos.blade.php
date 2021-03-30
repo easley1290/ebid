@@ -50,12 +50,12 @@
                                   <div class="col-md-6">
                                     <label for="exampleInputPassword1" class="form-label">Género</label>
                                         @foreach($generos as $subdominio)   
-                                          @if($subdominio->subd_id === $personas->per_subd_genero)            
+                                          @if($subdominio->subd_id == $personas->per_subd_genero)            
                                             <input id="per_genero" name="per_genero" type="text" class="form-control" readonly="readonly" value="{{$subdominio->subd_nombre}}">
                                             <input id="per_subd_genero_" name="per_subd_genero" value="{{$personas->per_subd_genero}}" type="hidden">
                                           @endif
                                         @endforeach  
-                                        @if($personas->per_subd_genero === null)
+                                        @if($personas->per_subd_genero == null)
                                             <input type="text" class="form-control" readonly="readonly" placeholder="Sin especificar">
                                         @endif
                                   </div>
@@ -68,12 +68,12 @@
                                   <div class="col-md-4">
                                     <label for="exampleInputPassword1" class="form-label">Tipo Documento</label>
                                     @foreach($tipo_docs as $subdominio)
-                                        @if($subdominio->subd_id === $personas->per_subd_documentacion)
+                                        @if($subdominio->subd_id == $personas->per_subd_documentacion)
                                         <input id="per_documentacion" name="per_documentacion" type="text" class="form-control" readonly="readonly" value="{{ $subdominio->subd_nombre}}">
                                         <input id="per_subd_documentacion_" name="per_subd_documentacion" value="{{$personas->per_subd_documentacion}}" type="hidden">
                                         @endif
                                     @endforeach
-                                    @if($personas->per_subd_documentacion === null)
+                                    @if($personas->per_subd_documentacion == null)
                                       <input type="text" class="form-control" readonly="readonly" placeholder="Sin especificar">
                                     @endif
                                   </div>
@@ -84,12 +84,12 @@
                                   <div class="col-md-4">
                                     <label for="exampleInputPassword1" class="form-label">Extensión</label>
                                     @foreach($extensions as $subdominio)
-                                      @if($subdominio->subd_id === $personas->per_subd_extension)
+                                      @if($subdominio->subd_id == $personas->per_subd_extension)
                                       <input id="per_extension" name="per_extension" type="text" class="form-control"  readonly="readonly" value="{{ $subdominio->subd_nombre}}">
                                       <input id="per_subd_extension_" name="per_subd_extension" value="{{$personas->per_subd_extension}}" type="hidden">
                                       @endif
                                     @endforeach
-                                    @if($personas->per_subd_extension === null)
+                                    @if($personas->per_subd_extension == null)
                                       <input type="text" class="form-control" readonly="readonly" placeholder="Sin especificar">
                                     @endif
                                   </div>

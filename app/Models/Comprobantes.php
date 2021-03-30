@@ -30,7 +30,7 @@ class Comprobantes extends Model
     /**
      * @var array
      */
-    protected $fillable = ['com_est_id', 'com_url', 'com_tipo', 'com_estado'];
+    protected $fillable = ['com_est_id', 'com_url', 'com_tipo', 'com_estado', 'com_numero'];
 
     /**
      * Indicates if the model should be timestamped.

@@ -58,13 +58,13 @@
                             <tr>
                                 <td class="" style="display:none">{{ $docente->doc_id}}</td>
                                 @foreach($aux[1] as $persona)
-                                  @if($docente->doc_per_id === $persona->per_id)
+                                  @if($docente->doc_per_id == $persona->per_id)
                                   <td class="">{{ $persona->name}}</td>
                                   @endif
                                 @endforeach
                                 <td class="" style="display:none">{{ $docente->doc_per_id}}</td>
                                 @foreach($aux[2] as $categoria)
-                                  @if($docente->doc_cat_id === $categoria->cat_id)
+                                  @if($docente->doc_cat_id == $categoria->cat_id)
                                   <td class="">{{ $categoria->cat_nombre}}</td>
                                   @endif
                                 @endforeach

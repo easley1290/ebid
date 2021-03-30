@@ -55,12 +55,12 @@
                                     <td class="">{{ $video->vid_id}}</td>
                                     <td class="">{{ $video->vid_titulo }}</td>
                                     @foreach($arrayAux[0] as $ua)
-                                        @if($ua->ua_id === $video->vid_ua_id)
+                                        @if($ua->ua_id == $video->vid_ua_id)
                                             <td class="">{{ $ua->ua_nombre}}</td>
                                         @endif
                                     @endforeach
                                     @foreach($arrayAux[1] as $subd)
-                                        @if($subd->subd_id === $video->vid_subd_estado)
+                                        @if($subd->subd_id == $video->vid_subd_estado)
                                             <td class="">Video {{ $subd->subd_nombre}}</td>
                                         @endif
                                     @endforeach

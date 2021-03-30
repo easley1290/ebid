@@ -88,7 +88,7 @@ class PostulantesController extends Controller
             $personaC->password = Hash::make($request->get('numero_ci_estudiante'));
             $personaC->per_ua_id = 'UA-EA0001';
             $personaC->per_subd_estado = 1;
-            $personaC->per_rol = '1';
+            $personaC->per_rol = 4;
             $personaC->save();
 
             $estudianteC = new Estudiantes;
@@ -98,6 +98,7 @@ class PostulantesController extends Controller
                     
             $estudianteC->est_per_id = $persona[0]->per_id;
             $estudianteC->est_subd_estado = 8;
+            
             $estudianteC->save();
             
             return redirect()->route('postulante.index')->with('status', 'Se creo un nuevo registro del postulante.');

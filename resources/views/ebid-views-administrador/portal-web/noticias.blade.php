@@ -55,12 +55,12 @@
                                     <td class="">{{ $noticia->not_id}}</td>
                                     <td class="">{{ $noticia->not_titulo }}</td>
                                     @foreach($arrayAux[0] as $ua)
-                                        @if($ua->ua_id === $noticia->not_ua_id)
+                                        @if($ua->ua_id == $noticia->not_ua_id)
                                             <td class="">{{ $ua->ua_nombre}}</td>
                                         @endif
                                     @endforeach
                                     @foreach($arrayAux[1] as $subd)
-                                        @if($subd->subd_id === $noticia->not_subd_estado)
+                                        @if($subd->subd_id == $noticia->not_subd_estado)
                                             <td class="">Noticia {{ $subd->subd_nombre}}</td>
                                         @endif
                                     @endforeach
@@ -308,9 +308,13 @@
                 var data = table.row($tr).data();
                 $('#e_nombre_noticia').val(data[1]);
                 $('#e_historia_noticia').val(data[5]);
-                $("#e_imagen_noticia").attr("href", data[4]);
-                $("#img_imagen_noticia").attr("src", data[4]);
-                $("#e_imagen_noticia").text(data[4]);
+                // $("#e_imagen_noticia").attr("href", data[4]);
+                // $("#img_imagen_noticia").attr("src", data[4]);
+                $("#e_imagen_noticia").attr("href", "http://ebid.edu.bo/public"+data[4]);
+                $("#img_imagen_noticia").attr("src","http://ebid.edu.bo/public"+ data[4]);
+
+                $("#e_imagen_noticia").text("http://ebid.edu.bo/public"+data[4]);
+                
                 if(data[3]=='Noticia Activo'){
                     $("#radio1").attr("checked", "checked");
                 }

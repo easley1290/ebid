@@ -94,8 +94,8 @@ Route::prefix('administracion/inscripcion')->group(function () {
     Route::resource('/estudiante', EstudianteController::class);
     Route::resource('/postulante', PostulantesController::class);
     Route::resource('/comprobante', ComprobanteController::class);
-    Route::resource('/subir-comprobante', SubirComprobanteController::class);
-    Route::resource('/subir-comprobantes', SubirComprobante2Controller::class);
+    Route::resource('/subir-comprobantes', SubirComprobanteController::class);
+    Route::resource('/subir-comprobante', SubirComprobante2Controller::class);
     Route::resource('/valida-comprobante', ValidarComprobanteController::class);
     Route::resource('/calendario-ingreso', CalendarioExamenIngresoController::class);
     Route::resource('/estudiante-nuevo', EstudianteNuevoController::class);
