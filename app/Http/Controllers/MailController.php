@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Mail\ValidacionRegistro;
-use App\Mail\ContraseñaCambio;
+use App\Mail\ContrasenaCambio;
 use Illuminate\Support\Facades\Mail;
 
 use App\Models\User;
@@ -18,7 +18,7 @@ class MailController extends Controller
     public function index()
     {
         try{
-            return view('ebid-views-login.contraseña-mail');
+            return view('ebid-views-login.contrasena-mail');
         } 
         catch (Throwable $e){
             return view('ebid-views-portal.home');
@@ -38,7 +38,7 @@ class MailController extends Controller
             'hora'=> date('h:i:s a', time()),
             'password'=> $password
         ];
-        Mail::to($email)->send(new ContraseñaCambio($details));
+        Mail::to($email)->send(new ContrasenaCambio($details));
         //return "Email Sent_".$password;
 
         $persona_edit = Personas::select('*')

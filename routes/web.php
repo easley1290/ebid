@@ -6,7 +6,7 @@ use App\Http\Controllers\SubdominioController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\PersonaPerfilController;
 use App\Http\Controllers\PersonaInsController;
-use App\Http\Controllers\ContraseñaController;
+use App\Http\Controllers\ContrasenaController;
 use App\Http\Controllers\PortalAdminQSController;
 use App\Http\Controllers\PortalAdminNoticeController;
 use App\Http\Controllers\PortalAdminContactController;
@@ -118,13 +118,13 @@ Route::get('/register_', function () {
                         ->get();
     return view('ebid-views-login.register')->with('extension', $extension);
 });
-Route::get('/MailContraseña',[MailController::class,'index']);
-Route::post('/CambioContraseña',[MailController::class,'sendEmail'])->name('CambioContraseña');
+Route::get('/MailContrasena',[MailController::class,'index']);
+Route::post('/CambioContrasena',[MailController::class,'sendEmail'])->name('CambioContrasena');
 /***************  PERFIL  ****************** */
 Route::resource('/Persona', PersonaController::class);
 Route::resource('/PersonaInstitucional', PersonaInsController::class);
 Route::resource('/PersonaPerfil', PersonaPerfilController::class);
-Route::resource('/Contrasenia', ContraseñaController::class);
+Route::resource('/Contrasena', ContrasenaController::class);
 
 /***************  Institucion  ****************** */
 Route::resource('/Institucion', InstitucionController::class);

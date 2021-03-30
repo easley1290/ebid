@@ -134,7 +134,7 @@
                               </a>
                             </li> 
                             <!--li >
-                              <a class="sidenav-item-link" href="{{route('Contrasenia.index')}}">
+                              <a class="sidenav-item-link" href="{{route('Contrasena.index')}}">
                                 <span class="nav-text">Cambiar Contraseña</span>                             
                               </a>
                             </li--> 
@@ -435,7 +435,7 @@
                       </li>
 
                       <li>
-                        <a class="sidenav-item-link" href="{{route('Contrasenia.index')}}">
+                        <a class="sidenav-item-link" href="{{route('Contrasena.index')}}">
                           <i class="mdi mdi-lock"></i> Cambiar contraseña                           
                         </a>
                       </li>

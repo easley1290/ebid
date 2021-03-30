@@ -18,7 +18,15 @@
                     </div>           
                     <!-- Recent Order Table -->
                     <div class="card card-table-border-none" id="recent-orders">
-                      
+                      @if (session('danger'))
+                        <div class="alert alert-danger">
+                            {{ session('danger') }}
+                        </div>
+                      @elseif(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                      @endif
                       <div class="card-header">
                         <div class="col-md-10"><h4 class="row">Listado de las personas registradas en la Intitución</h4></div>
                       </div>
@@ -132,20 +140,20 @@
                     <h5 class="modal-title" id="exampleModalLabel">Edición de Contraseña</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="/Contraseña" method="POST" id="editconForm">
+                  <form action="/Contrasena" method="POST" id="editconForm">
                   {{ csrf_field() }}
                   {{ method_field('PUT') }}
                   <div class="modal-body">
                     <div class="row">
                       <div class="col-md-12">
                         <label for="exampleInputPassword1" class="form-label">Contraseña Nueva</label>
-                        <input id="contraseña_nueva" name="contraseña_nueva" type="password" class="form-control" required>
+                        <input id="contrasena_nueva" name="contrasena_nueva" type="password" class="form-control" required>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <label for="exampleInputPassword1" class="form-label">Repetir Contraseña</label>
-                        <input id="contraseña_nueva1" name="contraseña_nueva1" type="password" class="form-control" required>
+                        <input id="contrasena_nueva1" name="contrasena_nueva1" type="password" class="form-control" required>
                       </div>
                     </div>
                       <div class="modal-footer">
@@ -238,7 +246,7 @@ $(document).ready(function(){
       console.log(data);
       //$('#contraseña_nueva').val(data[8]);
   
-      $('#editconForm').attr('action', '/Contrasenia/'+data[0]);
+      $('#editconForm').attr('action', '/Contrasena/'+data[0]);
       $('#editconModal').modal('show');
     })
   });

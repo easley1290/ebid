@@ -26,6 +26,7 @@ class NosotrosController extends Controller
             $instituciones = Institucion::select('*')
             ->first(); 
             $admin = Personas::select('*')
+            ->whereIn('per_rol',[1, 2])
             ->get();  
         return view('ebid-views-portal/nosotros/plantel-admin', compact('instituciones','admin'));
         } 
@@ -40,6 +41,7 @@ class NosotrosController extends Controller
             $instituciones = Institucion::select('*')
             ->first(); 
             $doc = Personas::select('*')
+            ->where('per_rol', '=',6)
             ->get();  
         return view('ebid-views-portal/nosotros/plantel-doc',compact('instituciones','doc'));
         } 

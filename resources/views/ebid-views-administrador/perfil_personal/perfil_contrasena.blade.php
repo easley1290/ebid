@@ -31,7 +31,7 @@
                         <div class="col-md-12"><h4 class="row">Estimado(a): {{auth()->user()->name}}, introduzca los siguientes datos:</h4></div>
                       </div>
                       <div class="card-body pt-0 pb-5">
-                        <form action="{{route('Contrasenia.update', auth()->user()->per_id)}}" method="POST" id="editForm">
+                        <form action="{{route('Contrasena.update', auth()->user()->per_id)}}" method="POST" id="editForm">
                             @csrf
                             @method('PUT')
                             <div class="">
@@ -39,17 +39,17 @@
                                 <input id="per_id" name="per_id" type="hidden">
                                 <div class="col-md-6">
                                   <label for="exampleInputEmail1" class="form-label">Contraseña Antigua</label>
-                                  <input id="per_contraseña_antigua" name="per_contraseña_antigua" type="password" class="form-control" required>
+                                  <input id="per_contrasena_antigua" name="per_contrasena_antigua" type="password" class="form-control" required>
                                 </div>
                                 &nbsp;
                                 <div class="col-md-6">
                                   <label for="exampleInputPassword1" class="form-label">Nueva Contraseña</label>
-                                  <input id="contraseña_nueva" name="contraseña_nueva" type="password" class="form-control" required>
+                                  <input id="contrasena_nueva" name="contrasena_nueva" type="password" class="form-control" required>
                                 </div>
                                 &nbsp;
                                 <div class="col-md-6">
                                   <label for="exampleInputPassword1" class="form-label">Repetir Contraseña</label>
-                                  <input id="contraseña_nueva1" name="contraseña_nueva1" type="password" class="form-control" required>
+                                  <input id="contrasena_nueva1" name="contrasena_nueva1" type="password" class="form-control" required>
                                 </div>
                                 &nbsp;
                                 <div class="modal-footer" >

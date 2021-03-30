@@ -16,7 +16,7 @@
 
         <h5 class="mb-5">Introduzca el email con el que se registró, para enviarle su nueva contraseña</h5>
         
-        <form method="POST" action="{{ route('CambioContraseña') }}">
+        <form method="POST" action="{{ route('CambioContrasena') }}">
             @csrf
             <div class="form-group row">
                 <div class="form-group col-md-12 mb-4">

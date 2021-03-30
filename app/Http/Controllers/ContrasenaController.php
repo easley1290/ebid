@@ -8,7 +8,7 @@ use App\Models\Personas;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Crypt;
 
-class ContraseñaController extends Controller
+class ContrasenaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +21,7 @@ class ContraseñaController extends Controller
                 ->where('per_id','=',auth()->user()->id)
                 ->get();
         
-        return  view('ebid-views-administrador.perfil_personal.perfil_contraseña',
+        return  view('ebid-views-administrador.perfil_personal.perfil_contrasena',
                 //compact('personas','generos','tipo_docs','extensions'));
                 compact('personas'));
     }
@@ -80,45 +80,45 @@ class ContraseñaController extends Controller
     {
         
         $this->validate($request,[
-            'contraseña_nueva' => 'required',
-            'contraseña_nueva1' => 'required'
+            'contrasena_nueva' => 'required',
+            'contrasena_nueva1' => 'required'
         ]);
         
 
-        $contraseña = Personas::select('*')
+        $contrasena = Personas::select('*')
                     ->where('per_id','=',$id)
                     ->first();
-        $texto_hashed= $contraseña->password;
-        $texto_normal= $request->input('per_contraseña_antigua');
+        $texto_hashed= $contrasena->password;
+        $texto_normal= $request->input('per_contrasena_antigua');
     
-        if(isset($request->per_contraseña_antigua))
+        if(isset($request->per_contrasena_antigua))
         {
             if(Hash::check($texto_normal,$texto_hashed))
             {
-                if($request->input('contraseña_nueva') == $request->input('contraseña_nueva1'))
+                if($request->input('contrasena_nueva') == $request->input('contrasena_nueva1'))
                 {
                     $persona_edit = Personas::find($id);
-                    $persona_edit->password = Hash::make($request->input('contraseña_nueva'));
+                    $persona_edit->password = Hash::make($request->input('contrasena_nueva'));
                     $persona_edit->save();
-                    return redirect()->route('Contrasenia.index')->with('success', 'Contraseña Guardada');
+                    return redirect()->route('Contrasena.index')->with('success', 'Contraseña Guardada');
                 }
                 else
                 {
-                    return redirect()->route('Contrasenia.index')->with('danger', 'Las contraseñas no coinciden');
+                    return redirect()->route('Contrasena.index')->with('danger', 'Las contraseñas no coinciden');
                 }
             }
             else
             {
-                return redirect()->route('Contrasenia.index')->with('danger', 'La contraseña antigua no corresponde');
+                return redirect()->route('Contrasena.index')->with('danger', 'La contraseña antigua no corresponde');
             }
 
         }
         else
         {
-            if($request->input('contraseña_nueva') == $request->input('contraseña_nueva1'))
+            if($request->input('contrasena_nueva') == $request->input('contrasena_nueva1'))
             {
                 $persona_edit = Personas::find($id);
-                $persona_edit->password = Hash::make($request->input('contraseña_nueva'));
+                $persona_edit->password = Hash::make($request->input('contrasena_nueva'));
                 $persona_edit->save();
                 return redirect()->route('PersonaInstitucional.index')->with('success', 'Contraseña Guardada');
             }

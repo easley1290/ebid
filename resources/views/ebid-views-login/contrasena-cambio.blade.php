@@ -16,7 +16,7 @@
             <p style="font-size:160%;"><b>{{$details['password']}}</b></p>
         </DIV>
         
-    <p>Recordarle que la presente contraseña puede ser cambiada cuando desee. Cuando ingrese al sistema se dirige a la pestaña "Cambiar Contraseña"
+    <p>Cabe mencionar que la presente contraseña puede ser cambiada cuando desee. Cuando ingrese al sistema se dirige a la pestaña "Cambiar Contraseña"
         que se encuentra en la barra superior.
     </p>
     <p>El siguiente link lo redirigira al portal:</p>

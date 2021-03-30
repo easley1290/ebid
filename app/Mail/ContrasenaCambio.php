@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ContraseñaCambio extends Mailable
+class ContrasenaCambio extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,6 +29,6 @@ class ContraseñaCambio extends Mailable
      */
     public function build()
     {
-        return $this->subject('Solicitud de Cambio de Contraseña')->view('ebid-views-login.contraseña-cambio');
+        return $this->subject('Solicitud de Cambio de Contraseña')->view('ebid-views-login.contrasena-cambio');
     }
 }

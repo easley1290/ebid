@@ -67,7 +67,7 @@
               <div class="d-flex my-2 justify-content-between">
                
                 @if (Route::has('password.request'))
-                      <a class="text-blue" href="/MailContraseña">
+                      <a class="text-blue" href="/MailContrasena">
                         Olvidaste tu contraseña?
                       </a>
                 @endif

@@ -37,8 +37,8 @@
                                           align-items: center;">
             <img src="{{$adm->per_foto_personal}}" class="img-fluid" alt="" width="100%">
             <div class="social">
-              <p style="font-size: 15px;">{{$adm->name}}</p>
-              <a href=""><i class="icofont-facebook"></i></a>
+              <p style="font-size: 18px;">{{$adm->name}}</p>
+              <!--a href=""><i class="icofont-facebook"></i></a-->
             </div>
           </div>
           <div class="member-info">
