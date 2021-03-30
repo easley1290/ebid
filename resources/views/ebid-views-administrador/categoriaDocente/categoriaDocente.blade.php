@@ -42,13 +42,13 @@
                         <table id="categorias" class="table card-table table-responsive table-responsive-large" style="width:100%">
                           <thead>
                             <tr>
-                              <th>Código</th>
+                              <th>ID</th>
                               <th>Nombre</th>
                               <th>Descripción</th>
                               <th style="display:none">cat_subd_estado</th>
                               <th style="width:200px">Acciones</th>
                             </tr>
-                          </thead>
+                          </thead> 
                           <tbody>
                             @foreach($aux[0] as $categoria)
                             <tr>
@@ -82,7 +82,7 @@
                   {{ csrf_field() }}
                   <div class="modal-body">
                       <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Códgo</label>
+                        <label for="exampleInputEmail1" class="form-label">ID</label>
                         <input name="cat_id" type="text" class="form-control" id="exampleInputEmail12" aria-describedby="emailHelp" required>
                       </div>
                       <div class="mb-3">
@@ -119,13 +119,13 @@
                     <h5 class="modal-title" id="exampleModalLabel">Modificación de la categoría</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="/CategoriaDocente" method="POST" id="editForm"> <!-- {{route('Dominio.store')}} -->
+                  <form action="CategoriaDocente" method="POST" id="editForm"> <!-- {{route('Dominio.store')}} -->
                   {{ csrf_field() }}
                   {{ method_field('PUT') }}
                   <div class="modal-body">
                       <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Códgo</label>
-                        <input name="cat_id" type="text" class="form-control" id="cat_id" aria-describedby="emailHelp" required>
+                        <label for="exampleInputEmail1" class="form-label">ID</label>
+                        <input name="cat_id" type="text" class="form-control" id="cat_id" aria-describedby="emailHelp" readonly="readonly" required>
                       </div>
                       <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Nombre de la categoría</label>
@@ -161,7 +161,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Eliminar Rol</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="/CategoriaDocente" method="POST" id="deleteForm"> <!-- {{route('Dominio.store')}} -->
+                  <form action="CategoriaDocente" method="POST" id="deleteForm"> <!-- {{route('Dominio.store')}} -->
                   {{ csrf_field() }}
                   {{ method_field('DELETE') }}
                   <div class="modal-body">
@@ -208,7 +208,7 @@ $(document).ready(function(){
     $('#cat_descripcion').val(data[2]);
     $('#cat_subd_estado').val(data[3]);
 
-    $('#editForm').attr('action', '/CategoriaDocente/'+data[0]);
+    $('#editForm').attr('action', 'CategoriaDocente/'+data[0]);
     $('#editModal').modal('show');
   })
 });
@@ -224,7 +224,7 @@ $(document).ready(function(){
     }
     var data = table.row($tr).data();
 
-    $('#deleteForm').attr('action', '/CategoriaDocente/'+data[0]);
+    $('#deleteForm').attr('action', 'CategoriaDocente/'+data[0]);
     $('#deleteModal').modal('show');
   })
 });

@@ -24,6 +24,7 @@ use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\CategoriaDocenteController;
 use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\MateriaDocenteController;
 use App\Http\Controllers\NotaController;
 
@@ -42,6 +43,7 @@ use App\Http\Controllers\EstudianteUsuarioController;
 use App\Http\Controllers\MailController;
 
 /*---------------- Portal web controllers---------------- */
+use App\Http\Controllers\HomePortalController;
 use App\Http\Controllers\PortalWeb\PWContactoController;
 use App\Http\Controllers\PortalVistaController;
 use App\Http\Controllers\PortalVistaPerfilController;
@@ -63,9 +65,9 @@ use App\Http\Controllers\PortalVistaInscripcionController;
 */
 
 /*PORTAL*/ 
-Route::get('/', function () {
-    return view('ebid-views-portal.home');
-});
+Route::resource('/', HomePortalController::class);
+   //return view('ebid-views-portal .home');
+
 Route::get('/contactos', function () {
     return view('ebid-views-portal.contactos');
 });
@@ -151,6 +153,8 @@ Route::resource('/Rol', RolController::class);
 Route::resource('/CategoriaDocente', CategoriaDocenteController::class);
 /***************  Docente  ****************** */
 Route::resource('/Docente', DocenteController::class);
+/***************  Administrador  ****************** */
+Route::resource('/Administrador', AdministradorController::class);
 
 
 Route::resource('/estudiante-usuario', EstudianteUsuarioController::class);

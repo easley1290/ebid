@@ -51,19 +51,22 @@ class DocenteController extends Controller
                 'doc_id' => 'required',
                 'doc_per_id' => 'required',
                 'doc_cat_id' => 'required',
-                'doc_salario' => 'required',
-                'doc_cargo' => 'required',
-                'doc_descripcion' => 'required',
+                'doc_titulo' => 'required',
             ]);
             $docente_nuevo = new Docentes;
 
             $docente_nuevo->doc_id = $request->input('doc_id');
             $docente_nuevo->doc_per_id = $request->input('doc_per_id');
             $docente_nuevo->doc_cat_id = $request->input('doc_cat_id');
-            $docente_nuevo->doc_salario = $request->input('doc_salario');
-            $docente_nuevo->doc_cargo = $request->input('doc_cargo');
-            $docente_nuevo->doc_descripcion = $request->input('doc_descripcion');
+            $docente_nuevo->doc_titulo = $request->input('doc_titulo');
             $docente_nuevo->save();
+
+            $personas = Personas::find($request->input('doc_per_id'));
+            /*->where('per_id','=',$request->input('adm_per_id'))
+            ->get();*/
+            $personas->per_rol = 6;
+            $personas->save();
+
             return redirect()->route('Docente.index')->with('status', 'Se AGREGÓ un nuevo Docente con exito');
         } 
         catch (Throwable $e){
@@ -107,18 +110,15 @@ class DocenteController extends Controller
                 'doc_id' => 'required',
                 'doc_per_id' => 'required',
                 'doc_cat_id' => 'required',
-                'doc_salario' => 'required',
-                'doc_cargo' => 'required',
-                'doc_descripcion' => 'required',
+                'doc_titulo' => 'required',
+
             ]);
             $docente_edit = Docentes::find($id);
 
             $docente_edit->doc_id = $request->input('doc_id');
             $docente_edit->doc_per_id = $request->input('doc_per_id');
             $docente_edit->doc_cat_id = $request->input('doc_cat_id');
-            $docente_edit->doc_salario = $request->input('doc_salario');
-            $docente_edit->doc_cargo = $request->input('doc_cargo');
-            $docente_edit->doc_descripcion = $request->input('doc_descripcion');
+            $docente_edit->doc_titulo = $request->input('doc_titulo');
             $docente_edit->save();
             return redirect()->route('Docente.index')->with('status', 'Se MODIFICÓ el Docente con exito');
         } 
@@ -137,7 +137,15 @@ class DocenteController extends Controller
     {
         try{
             $docente_delete = Docentes::find($id);
+            $persona = $docente_delete->doc_per_id;
             $docente_delete->delete();
+
+            $personas = Personas::find($persona);
+            /*->where('per_id','=',$request->input('adm_per_id'))
+            ->get();*/
+            $personas->per_rol = 7;
+            $personas->save();
+
             return redirect()->route('Docente.index')->with('status', 'Se ELIMINÓ el Docente con exito');
         } 
         catch (Throwable $e){

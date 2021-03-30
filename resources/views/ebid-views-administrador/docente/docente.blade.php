@@ -42,21 +42,19 @@
                         <table id="docentes" class="table card-table table-responsive table-responsive-large" style="width:100%">
                           <thead>
                             <tr>
-                              <th style="display:none">Código</th>
+                              <th>Código</th>
                               <th>Nombre</th>
                               <th style="display:none">doc_per_id</th>
                               <th>Categoría</th>
                               <th style="display:none">doc_cat_id</th>
-                              <th style="display:none">Salario</th>
-                              <th>Cargo</th>
-                              <th style="display:none">Descripción</th>
+                              <th style="display:none">doc_titulo</th>
                               <th style="width:200px">Acciones</th>
                             </tr>
                           </thead>
                           <tbody>
                           @foreach($aux[0] as $docente)
                             <tr>
-                                <td class="" style="display:none">{{ $docente->doc_id}}</td>
+                                <td class="">{{ $docente->doc_id}}</td>
                                 @foreach($aux[1] as $persona)
                                   @if($docente->doc_per_id == $persona->per_id)
                                   <td class="">{{ $persona->name}}</td>
@@ -69,9 +67,7 @@
                                   @endif
                                 @endforeach
                                 <td class="" style="display:none">{{ $docente->doc_cat_id}}</td>
-                                <td class="" style="display:none">{{ $docente->doc_salario}}</td>
-                                <td class="">{{ $docente->doc_cargo}}</td>
-                                <td class="" style="display:none">{{ $docente->doc_descripcion}}</td>
+                                <td class="" style="display:none">{{ $docente->doc_titulo}}</td>
                                 <td style="width:200px">
                                   <button class="btn btn-success edit">
                                     <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Modificar</button>
@@ -123,16 +119,8 @@
                         </select>
                       </div>
                       <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Salario</label>
-                        <input name="doc_salario" type="numeric" class="form-control" id="exampleInputEmail12" aria-describedby="emailHelp">
-                      </div>
-                      <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Cargo</label>
-                        <input name="doc_cargo" type="text" class="form-control" id="exampleInputPassword12">
-                      </div>
-                      <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Descripción</label>
-                        <input name="doc_descripcion" type="text" class="form-control" id="exampleInputPassword1">
+                        <label for="exampleInputPassword1" class="form-label">Título o licenciatura</label>
+                        <input name="doc_titulo" type="text" class="form-control" id="exampleInputPassword1">
                       </div>
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -158,7 +146,7 @@
                   <div class="modal-body">
                   <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Código</label>
-                        <input name="doc_id" type="text" class="form-control" id="doc_id" aria-describedby="emailHelp">
+                        <input name="doc_id" type="text" class="form-control" id="doc_id" aria-describedby="emailHelp" readonly="readonly">
                       </div>
                       <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Nombre</label>
@@ -177,16 +165,8 @@
                         </select>
                       </div>
                       <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Salario</label>
-                        <input name="doc_salario" type="numeric" class="form-control" id="doc_salario" aria-describedby="emailHelp">
-                      </div>
-                      <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Cargo</label>
-                        <input name="doc_cargo" type="text" class="form-control" id="doc_cargo">
-                      </div>
-                      <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Descripción</label>
-                        <input name="doc_descripcion" type="text" class="form-control" id="doc_descripcion">
+                        <label for="exampleInputPassword1" class="form-label">Título o licenciatura</label>
+                        <input name="doc_titulo" type="text" class="form-control" id="doc_titulo">
                       </div>
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Guardar</button>
@@ -252,9 +232,7 @@ $(document).ready(function(){
     $('#doc_id').val(data[0]);
     $('#doc_per_id').val(data[2]);
     $('#doc_cat_id').val(data[4]);
-    $('#doc_salario').val(data[5]);
-    $('#doc_cargo').val(data[6]);
-    $('#doc_descripcion').val(data[7]);
+    $('#doc_titulo').val(data[5]);
 
     $('#editForm').attr('action', '/Docente/'+data[0]);
     $('#editModal').modal('show');

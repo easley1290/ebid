@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Institucion;
+use App\Models\Personas;
 
 class HomePortalController extends Controller
 {
@@ -14,8 +15,16 @@ class HomePortalController extends Controller
      */
     public function index()
     {
-        $perfiles = Institucion::all();
-        return view('ebid-views-portal.home')->with('perfiles', $perfiles);
+        $perfiles = Institucion::select('institucion.*')
+            ->where('ins_id','=',1)
+            ->get();
+        $instituciones = Institucion::select('*')
+            ->first(); 
+        $doc = Personas::select('*')
+            ->where('per_rol', '=',6)
+            ->get();
+        $aux = [$perfiles, $instituciones, $doc];
+        return view('ebid-views-portal.home')->with('aux', $aux);
     }
 
     /**
