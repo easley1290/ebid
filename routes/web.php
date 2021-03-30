@@ -61,6 +61,7 @@ use App\Http\Controllers\PortalVistaInscripcionController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 /*PORTAL*/ 
 Route::get('/', function () {
     return view('ebid-views-portal.home');
@@ -71,6 +72,7 @@ Route::get('/contactos', function () {
 Route::get('/administracion', function () {
     return view('ebid-views-administrador.home');
 });
+
 Route::get('/MisionVision', [NosotrosController::class, 'MisionVision'])->name('MisionVision');
 Route::get('/PlantelAdministrativo', [NosotrosController::class, 'PlantelAdm'])->name('PlantelAdm');
 Route::get('/PlantelDocente', [NosotrosController::class, 'PlantelDoc'])->name('PlantelDoc');
@@ -78,6 +80,7 @@ Route::get('/pcontactos', [PWContactoController::class, 'indexContactos'])->name
 Route::get('/pnoticias', [PWContactoController::class, 'indexNoticias'])->name('indexNoticias');
 Route::get('/pgaleria', [PWContactoController::class, 'indexGaleria'])->name('indexGaleria');
 Route::get('/pvideo', [PWContactoController::class, 'indexVideo'])->name('indexVideo');
+
 Route::resource('/administracion', AdministracionController::class);
 
 /***********Rutas Administracion de Portal Web**********/
@@ -118,6 +121,8 @@ Route::get('/register_', function () {
                         ->get();
     return view('ebid-views-login.register')->with('extension', $extension);
 });
+
+
 Route::get('/MailContrasena',[MailController::class,'index']);
 Route::post('/CambioContrasena',[MailController::class,'sendEmail'])->name('CambioContrasena');
 /***************  PERFIL  ****************** */
