@@ -11,6 +11,9 @@
       <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
           <div class="col-xl-6 col-lg-8">
           <h1>ESCUELA BOLIVIANA INTERCULTURAL DE DANZA</h1>
+          @foreach ($aux[0] as $perfil)
+            <h2>{{$perfil->ins_frase}}</h2>
+          @endforeach
           </div>
       </div>
   </div>
@@ -99,7 +102,8 @@
         <h4>Mensaje del Día internacional de la Danza 1984</h4>
         <p>
           <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-            Este arte puede y debe actuar como un medio de comunicación, de paz y amistad, acercando a los seres humanos.
+            Este arte puede y debe actuar como un medio de comunicación, de paz y amistad, 
+            acercando a los seres humanos.
           <i class="bx bxs-quote-alt-right quote-icon-right"></i>
         </p>
       </div>
@@ -109,7 +113,8 @@
         <h4>Mensaje del Día internacional de la Danza 1997</h4>
         <p>
           <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-          La danza , como el cine, cos ofrece imágenes rápidas, emotivas, móviles, plásticas, abstractas o dinámicas que ponen movimiento en nuestro ser.
+          La danza , como el cine, cos ofrece imágenes rápidas, emotivas, móviles, plásticas, 
+          abstractas o dinámicas que ponen movimiento en nuestro ser.
           <i class="bx bxs-quote-alt-right quote-icon-right"></i>
         </p>
       </div>
@@ -119,7 +124,8 @@
         <h4>Mensaje del Día internacional de la Danza 2018</h4>
         <p>
           <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-          La danza ha sido, es y será... una expresión natural y espontánea que brota desde lo más profundo de su espiritu y de su realidad corporal.
+          La danza ha sido, es y será... una expresión natural y espontánea que brota desde 
+          lo más profundo de su espiritu y de su realidad corporal.
           <i class="bx bxs-quote-alt-right quote-icon-right"></i>
         </p>
       </div>
@@ -178,71 +184,25 @@
       <p>NUESTROS INSTRUCTORES DE BAILE</p>
     </div>
     <div class="row">
+    @foreach($aux[2] as $docente)
       <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
         <div class="member" data-aos="fade-up" data-aos-delay="100">
-          <div class="member-img">
-            <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
-            <div class="social">
-              <p style="font-size: 15px;">Director creativo de presentaciones.</p>
-              <a href=""><i class="icofont-facebook"></i></a>
-            </div>
+          <div class="member-img" style=" height: 80%; display: flex;justify-content: center; align-items: center;">
+            <img src="http://ebid.edu.bo/public{{$docente->per_foto_personal}}" class="img-fluid" alt="">
           </div>
-          <div class="member-info">
-            <h4>Walter White</h4>
-            <h4>DIRECCION GENERAL Y PROFESOR DE BALLET</h4>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="member-info" alaing="center">
+              <h4>{{$docente->name}}</h4>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-      <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-        <div class="member" data-aos="fade-up" data-aos-delay="200">
-          <div class="member-img">
-            <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
-            <div class="social">
-              <p style="font-size: 15px;">Coreografa y bailarina profesional.</p>
-              <a href=""><i class="icofont-facebook"></i></a>
-            </div>
-          </div>
-          <div class="member-info">
-            <h4>Sarah Jhonson</h4>
-            <h4>DIRECCION ARTISTICA Y PROGRAMA DE CONTEMPORANEO</h4>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-        <div class="member" data-aos="fade-up" data-aos-delay="300">
-          <div class="member-img">
-            <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
-            <div class="social">
-              <p style="font-size: 15px;">Bailarin profesional, se graduo en las escuela de danza de La Habana.</p>
-              <a href=""><i class="icofont-facebook"></i></a>
-            </div>
-          </div>
-          <div class="member-info">
-            <h4>William Anderson</h4>
-            <h4>DIRECCION ARTISTICA Y PROGRAMA DE MODERNO</h4>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-        <div class="member" data-aos="fade-up" data-aos-delay="400">
-          <div class="member-img">
-            <img src="assets/img/team/team-4.jpg" class="img-fluid" alt="">
-            <div class="social">
-              <p style="font-size: 15px;">Profesora de ballet, expresión corporal y teatro. Bailarina clásica profesional titulada por la Escuela del Ballet Oficial de Bolivia,</p>
-              <a href=""><i class="icofont-facebook"></i></a>
-            </div>
-          </div>
-          <div class="member-info">
-            <h4>Amanda Jepson</h4>
-            <h4>PROFESORA DE BALLET</h4>
-          </div>
-        </div>
-      </div>
+    @endforeach
     </div>
   </div>
 </section>
 @endsection
 
+      

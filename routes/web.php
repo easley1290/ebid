@@ -65,7 +65,7 @@ use App\Http\Controllers\PortalVistaInscripcionController;
 */
 /*PORTAL*/ 
 Route::resource('/', HomePortalController::class);
-   //return view('ebid-views-portal.home');
+   //return view('ebid-views-portal .home');
 
 Route::get('/contactos', function () {
     return view('ebid-views-portal.contactos');
