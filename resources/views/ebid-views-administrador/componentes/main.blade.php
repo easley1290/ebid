@@ -410,7 +410,7 @@
                   <!-- User Account -->
                   <li class="dropdown user-menu">
                     <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                      <img src="{{ auth()->user()->per_foto_personal }}" class="user-image" alt="User Image" />
+                      <img src="http://ebid.edu.bo/public{{ auth()->user()->per_foto_personal }}" class="user-image" alt="User Image" />
                       <span class="d-none d-lg-inline-block">{{ auth()->user()->name}}</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">

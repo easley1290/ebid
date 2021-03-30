@@ -26,7 +26,7 @@
                             top: 40%;
                             left: 20%;
                             transform: translate(-20%, -40%);">
-                              <img src="{{ auth()->user()->per_foto_personal }}" width="100%" />
+                              <img src="http://ebid.edu.bo/public{{ auth()->user()->per_foto_personal }}" width="100%" />
                             </div>
                           </div>
                           <div class="col-md-8">
