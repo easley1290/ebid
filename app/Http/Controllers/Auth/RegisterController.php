@@ -67,7 +67,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:50', 'unique:personas'],
             //'password' => ['required', 'string', 'min:8', 'confirmed'],
             'per_subd_extension' => ['required', 'string'],
-            'per_num_documentacion' => ['required', 'max:11'],
+            'per_num_documentacion' => ['required', 'max:11', 'unique:personas'],
         ]);
     }
 
