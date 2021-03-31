@@ -34,7 +34,13 @@ class RegisterController extends Controller
      * @var string
      */
     //protected $redirectTo = RouteServiceProvider::HOME;
-    protected $redirectTo = '/login_';
+    //protected $redirectTo = '/login_';
+
+    protected function redirectTo()
+    {
+        session()->flash('contrasena', 'Por favor revise su correo, la conotraseña fue enviada'); 
+        return '/login_';
+    }
 
     /**
      * Create a new controller instance.

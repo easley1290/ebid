@@ -23,7 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //return view('home');
-        return redirect('/administracion')->with('success', 'Registro Creado, Bienvenido');
+        return redirect('/administracion')->with('success', 'Bienvenido');
     }
 }

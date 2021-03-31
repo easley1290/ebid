@@ -18,7 +18,7 @@
               <ul class="nav sidebar-inner" id="sidebar-menu">
                   <!----------------------------INICIO---------------------------------->
                   <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="/administracion">
+                    <a class="sidenav-item-link" href="/public/administracion">
                       <i class="mdi mdi-home"></i>
                       <span class="nav-text">Inicio</span>
                     </a>
