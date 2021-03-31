@@ -1,7 +1,7 @@
 @extends('ebid-views-login.componentes.link')
-@if (session('status'))
+@if (session('contrasena'))
         <div class="alert alert-success">
-            {{ session('status') }}
+            {{ session('contrasena') }}
         </div>
     @endif
     @if ($errors->any())

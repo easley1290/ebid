@@ -34,7 +34,13 @@ class RegisterController extends Controller
      * @var string
      */
     //protected $redirectTo = RouteServiceProvider::HOME;
-    protected $redirectTo = '/login_';
+    //protected $redirectTo = '/login_';
+
+    protected function redirectTo()
+    {
+        session()->flash('contrasena', 'Por favor revise su correo, la conotraseña fue enviada'); 
+        return '/login_';
+    }
 
     /**
      * Create a new controller instance.
@@ -61,7 +67,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:50', 'unique:personas'],
             //'password' => ['required', 'string', 'min:8', 'confirmed'],
             'per_subd_extension' => ['required', 'string'],
-            'per_num_documentacion' => ['required', 'max:11'],
+            'per_num_documentacion' => ['required', 'max:11', 'unique:personas'],
         ]);
     }
 
