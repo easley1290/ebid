@@ -66,14 +66,6 @@ use App\Http\Controllers\PortalVistaInscripcionController;
 
 /*PORTAL*/ 
 Route::resource('/', HomePortalController::class);
-   //return view('ebid-views-portal .home');
-
-Route::get('/contactos', function () {
-    return view('ebid-views-portal.contactos');
-});
-Route::get('/administracion', function () {
-    return view('ebid-views-administrador.home');
-});
 
 Route::get('/MisionVision', [NosotrosController::class, 'MisionVision'])->name('MisionVision');
 Route::get('/PlantelAdministrativo', [NosotrosController::class, 'PlantelAdm'])->name('PlantelAdm');

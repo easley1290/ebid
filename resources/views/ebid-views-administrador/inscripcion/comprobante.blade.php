@@ -170,7 +170,7 @@
                                     id="e2_numero_comprobante" name="e2_numero_comprobante" 
                                     placeholder="Numero de comprobante" 
                                     onKeyPress="if(this.value.length==25) return false;"
-                                    tabindex="4" autocomplete="off"  required>
+                                    tabindex="4" autocomplete="off"  required disabled>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -215,6 +215,15 @@
                         <div class="form-group row">
                             <div class="col-md-12">
                             <p id="tip_comp"></p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <label for="num_comp">Numero de comprobante</label>
+                                <input type="number" class="form-control" 
+                                        id="num_comp" name="num_comp" 
+                                        placeholder="Numero de comprobante"
+                                        autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -366,6 +375,7 @@
                 var data = table.row($tr).data();
                     //("#d_image_comprobante").attr("href", data[4]);
                     $("#d_image_comprobante").attr("href", "http://ebid.edu.bo/public"+data[4]);
+
                     $("#d_tipo_comp").val(data[3]);
                     $("#d_telefono").val(data[6]);
                     $("#d_name").val(data[1]);
@@ -440,17 +450,19 @@
                 $("#image_comprobante").attr("href", "http://ebid.edu.bo/public"+data[4]);
                 
                 $("#tipo_comp").val(data[3]);
-                $("#telefono").val(data[6]);
+                $("#telefono").val(data[7]);
+                $("#num_comp").val(data[6]);
                 $("#name").val(data[1]);
                 $("#tip_comp").text("Esta seguro de validar el comprobante de '"+data[3]+"' del estudiante '"+data[1]+"'");
-                $("#img_image_comprobante").attr("src", data[4]);
+                //$("#img_image_comprobante").attr("src", data[4]);
+                $("#img_image_comprobante").attr("src", "http://ebid.edu.bo/public"+data[4]);
 
                 $('#validate').modal('show');
                 
                 $('#validateForm').attr('action', 'valida-comprobante/'+data[5]);
 
                 $('#validarComp').click(function() {
-                    $mensaje = "Postulante "+data[1]+" su comprobante ha sido validado, en unos momentos se le asignara una fecha de examen";
+                    $mensaje = "Postulante "+data[1]+" su comprobante de ".data[3]." ha sido validado";
                     $url = 'https://web.whatsapp.com/send?phone=591'+data[6]+'&text='+$mensaje+'&app_absent=0';
                     window.open($url, "_blank");
                 });
