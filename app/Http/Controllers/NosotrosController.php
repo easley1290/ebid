@@ -28,6 +28,7 @@ class NosotrosController extends Controller
             $admin = Personas::select('*')
             ->whereIn('per_rol',[10])
             ->where('per_subd_estado','=',1)
+            ->join('administrativos', 'adm_per_id', '=', 'per_id')
             ->get();  
         return view('ebid-views-portal/nosotros/plantel-admin', compact('instituciones','admin'));
         } 
@@ -44,6 +45,7 @@ class NosotrosController extends Controller
             $doc = Personas::select('*')
             ->where('per_rol', '=',6)
             ->where('per_subd_estado','=',1)
+            ->join('docentes', 'doc_per_id', '=', 'per_id')
             ->get();  
         return view('ebid-views-portal/nosotros/plantel-doc',compact('instituciones','doc'));
         } 

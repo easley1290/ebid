@@ -28,6 +28,7 @@
       <h2></h2>
       <P>CONOCE A NUESTRO EQUIPO DE DOCENTES</P>
     </div>
+
     <div class="row">
       @foreach($doc as $adm)
       <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
@@ -38,13 +39,13 @@
                                           align-items: center;">
             <img src="http://ebid.edu.bo/public{{$adm->per_foto_personal}}" class="img-fluid" alt="" width="100%">
             <div class="social">
-              <p style="font-size: 18px;">{{$adm->name}}</p>
+              <p style="font-size: 12px; color:black;">{{$adm->doc_descripcion}}</p>
               <!--a href=""><i class="icofont-facebook"></i></a-->
             </div>
           </div>
           <div class="member-info">
             <h4>{{$adm->name}}</h4>
-            <h4>{{$adm->email}}</h4>
+            <h5>{{$adm->doc_titulo}}</h5>
           </div>
         </div>
       </div>
