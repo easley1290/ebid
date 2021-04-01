@@ -22,7 +22,8 @@ class HomePortalController extends Controller
             ->first(); 
         $doc = Personas::select('*')
             ->where('per_rol', '=',6)
-            ->get();
+            ->where('per_subd_estado','=',1)
+            ->get(); 
         $aux = [$perfiles, $instituciones, $doc];
         return view('ebid-views-portal.home')->with('aux', $aux);
     }
