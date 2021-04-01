@@ -20,7 +20,10 @@ class DocenteController extends Controller
             $docentes = Docentes::all();
             $personas = Personas::all();
             $categorias = CategoriaDocente::all();
-            $aux = [$docentes, $personas, $categorias];
+            $personas_habilitadas = Personas::select('*')
+            ->where('per_rol','=',7)
+            ->get();
+            $aux = [$docentes, $personas, $categorias, $personas_habilitadas];
             return view('ebid-views-administrador.docente.docente')->with('aux', $aux);
         } 
         catch (Throwable $e){
@@ -108,7 +111,6 @@ class DocenteController extends Controller
         try{
             $this->validate($request,[
                 'doc_id' => 'required',
-                'doc_per_id' => 'required',
                 'doc_cat_id' => 'required',
                 'doc_titulo' => 'required',
 
@@ -116,7 +118,6 @@ class DocenteController extends Controller
             $docente_edit = Docentes::find($id);
 
             $docente_edit->doc_id = $request->input('doc_id');
-            $docente_edit->doc_per_id = $request->input('doc_per_id');
             $docente_edit->doc_cat_id = $request->input('doc_cat_id');
             $docente_edit->doc_titulo = $request->input('doc_titulo');
             $docente_edit->save();

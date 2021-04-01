@@ -34,9 +34,9 @@
                     <div class="card card-table-border-none" id="recent-orders">
                       <div class="card-header">
                             <div class="col-md-9"><h4 class="row">Listado de notas de todos los estudiantes de la Intitución</h4></div>
-                            <div class="col-md-3"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <!--<div class="col-md-3"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <span class="mdi mdi-comment-plus"></span>&nbsp;Agregar nueva nota
-                            </button></div>
+                            </button></div>-->
                         </div>
                       <div class="card-body pt-0 pb-5">
                       <table id="notas" class="table card-table table-responsive table-responsive-large" style="width:100%">
@@ -46,11 +46,8 @@
                               <th>Nombre del estudiante</th>
                               <th>Materia cursada</th>
                               <th style="display:none">nota_mat_id</th>
-                              <th style="display:none">nota_practica1</th>
                               <th style="display:none">nota_examen1</th>
-                              <th style="display:none">nota_practica2</th>
                               <th style="display:none">nota_examen2</th>
-                              <th style="display:none">nota_practica3</th>
                               <th style="display:none">nota_examen3</th>
                               <th>Nota final</th>
                               <th style="width:200px">Acciones</th>
@@ -79,19 +76,13 @@
                                   @endif
                                 @endforeach
                                 <td class="" style="display:none">{{ $nota->nota_mate_id}}</td>
-                                <td class="" style="display:none">{{ $nota->nota_practica1}}</td>
                                 <td class="" style="display:none">{{ $nota->nota_examen1}}</td>
-                                <td class="" style="display:none">{{ $nota->nota_practica2}}</td>
                                 <td class="" style="display:none">{{ $nota->nota_examen2}}</td>
-                                <td class="" style="display:none">{{ $nota->nota_practica3}}</td>
                                 <td class="" style="display:none">{{ $nota->nota_examen3}}</td>
                                 <td class="text-center">{{ $nota->nota_final}}</td>
                                 <td style="width:200px">
-                                  @if($nota->nota_practica1 == 0.10 || $nota->nota_examen1 == 0.10 ||$nota->nota_practica2 == 0.10
-                                      || $nota->nota_examen2 == 0.10 || $nota->nota_practica3 == 0.10 || $nota->nota_examen3 == 0.10)
-                                    <button class="btn btn-success edit">
+                                  <button class="btn btn-success edit">
                                       <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Calificar</button>
-                                  @endif
                                   <button class="btn btn-info delete">
                                     <span class="mdi mdi-eye"></span>&nbsp;Observar</button>
                               </td>
@@ -103,7 +94,7 @@
                     </div>
             </div>
      
-            <!-- Modal crear-->
+            <!-- Modal crear
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -111,7 +102,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Creación de Nota</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="{{ route('Nota.store') }}" method="POST"> <!-- {{route('Dominio.store')}} -->
+                  <form action="{{ route('Nota.store') }}" method="POST">
                   {{ csrf_field() }}
                   <div class="modal-body">
                     <div class="row">
@@ -168,17 +159,17 @@
                     </form>
                 </div>
               </div>
-            </div>
+            </div>-->
 
             <!-- Modal editar-->
             <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Creación del Dominio</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Nota </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="/Nota" method="POST" id="editForm"> <!-- {{route('Dominio.store')}} -->
+                  <form action="Nota" method="POST" id="editForm"> <!-- {{route('Dominio.store')}} -->
                   {{ csrf_field() }}
                   {{ method_field('PUT') }}
                   <div class="modal-body">
@@ -194,31 +185,19 @@
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-md-6">
-                          <label for="exampleInputPassword1" class="form-label">Nota practicas 1er pacial</label>
-                          <input name="nota_practica1" type="text" class="form-control" id="nota_practica1" required>
-                        </div>
-                        <div class="col-md-6">
-                          <label for="exampleInputPassword1" class="form-label">Nota examen 1er parcial</label>
+                        <div class="col-md-12">
+                          <label for="exampleInputPassword1" class="form-label">Nota 1er parcial</label>
                           <input name="nota_examen1" type="text" class="form-control" id="nota_examen1" required>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-md-6">
-                          <label for="exampleInputPassword1" class="form-label">Nota practicas 2do pacial</label>
-                          <input name="nota_practica2" type="text" class="form-control" id="nota_practica2" required>
-                        </div>
-                        <div class="col-md-6">
-                          <label for="exampleInputPassword1" class="form-label">Nota examen 2do parcial</label>
+                        <div class="col-md-12">
+                          <label for="exampleInputPassword1" class="form-label">Nota 2do parcial</label>
                           <input name="nota_examen2" type="text" class="form-control" id="nota_examen2" required>
                         </div>
                       </div>                    
                       <div class="row">
-                        <div class="col-md-6">
-                          <label for="exampleInputPassword1" class="form-label">Nota practicas 3er pacial</label>
-                          <input name="nota_practica3" type="text" class="form-control" id="nota_practica3" required>
-                        </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                           <label for="exampleInputPassword1" class="form-label">Nota examen 3er parcial</label>
                           <input name="nota_examen3" type="text" class="form-control" id="nota_examen3" required>
                         </div>
@@ -247,7 +226,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Eliminar Dominio</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="/Dominio" method="POST" id="deleteForm"> <!-- {{route('Dominio.store')}} -->
+                  <form action="Nota" method="POST" id="deleteForm"> <!-- {{route('Dominio.store')}} -->
                   {{ csrf_field() }}
                   <div class="modal-body">
                   <div class="row">
@@ -262,32 +241,20 @@
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-md-6">
-                          <label for="exampleInputPassword1" class="form-label">Nota practicas 1er pacial</label>
-                          <input name="nota_practica11" type="text" class="form-control" id="nota_practica11" readonly="readonly" required>
-                        </div>
-                        <div class="col-md-6">
-                          <label for="exampleInputPassword1" class="form-label">Nota examen 1er parcial</label>
+                        <div class="col-md-12">
+                          <label for="exampleInputPassword1" class="form-label">Nota 1er parcial</label>
                           <input name="nota_examen11" type="text" class="form-control" id="nota_examen11" readonly="readonly" required>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-md-6">
-                          <label for="exampleInputPassword1" class="form-label">Nota practicas 2do pacial</label>
-                          <input name="nota_practica21" type="text" class="form-control" id="nota_practica21" readonly="readonly" required>
-                        </div>
-                        <div class="col-md-6">
-                          <label for="exampleInputPassword1" class="form-label">Nota examen 2do parcial</label>
+                        <div class="col-md-12">
+                          <label for="exampleInputPassword1" class="form-label">Nota 2do parcial</label>
                           <input name="nota_examen21" type="text" class="form-control" id="nota_examen21" readonly="readonly" required>
                         </div>
                       </div>                    
                       <div class="row">
-                        <div class="col-md-6">
-                          <label for="exampleInputPassword1" class="form-label">Nota practicas 3er pacial</label>
-                          <input name="nota_practica31" type="text" class="form-control" id="nota_practica31" readonly="readonly" required>
-                        </div>
-                        <div class="col-md-6">
-                          <label for="exampleInputPassword1" class="form-label">Nota examen 3er parcial</label>
+                        <div class="col-md-12">
+                          <label for="exampleInputPassword1" class="form-label">Nota 3er parcial</label>
                           <input name="nota_examen31" type="text" class="form-control" id="nota_examen31" readonly="readonly" required>
                         </div>
                       </div> 
@@ -334,15 +301,12 @@ $(document).ready(function(){
     $('#est_id').val(data[1]);
     $('#mat_id').val(data[2]);
     $('#nota_mate_id').val(data[3]);
-    $('#nota_practica1').val(data[4]);
     $('#nota_examen1').val(data[5]);
-    $('#nota_practica2').val(data[6]);
     $('#nota_examen2').val(data[7]);
-    $('#nota_practica3').val(data[8]);
     $('#nota_examen3').val(data[9]);
     $('#nota_final').val(data[10]);
 
-    $('#editForm').attr('action', '/Nota/'+data[0]);
+    $('#editForm').attr('action', 'Nota/'+data[0]);
     $('#editModal').modal('show');
   })
 });
@@ -361,15 +325,12 @@ $(document).ready(function(){
     $('#est_id1').val(data[1]);
     $('#mat_id1').val(data[2]);
     $('#nota_mate_id1').val(data[3]);
-    $('#nota_practica11').val(data[4]);
     $('#nota_examen11').val(data[5]);
-    $('#nota_practica21').val(data[6]);
     $('#nota_examen21').val(data[7]);
-    $('#nota_practica31').val(data[8]);
     $('#nota_examen31').val(data[9]);
     $('#nota_final1').val(data[10]);
 
-    $('#deleteForm').attr('action', '/Nota/'+data[0]);
+    $('#deleteForm').attr('action', 'Nota/'+data[0]);
     $('#deleteModal').modal('show');
   })
 });

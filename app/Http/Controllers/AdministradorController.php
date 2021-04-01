@@ -27,7 +27,10 @@ class AdministradorController extends Controller
             $roles = Roles::select('roles.*')
             ->where('rol_id','<',3)
             ->get();
-            $aux = [$administrativos, $personas, $estados, $roles];
+            $personas_habilitadas = Personas::select('*')
+            ->where('per_rol','=',7)
+            ->get();
+            $aux = [$administrativos, $personas, $estados, $roles, $personas_habilitadas];
             return view('ebid-views-administrador.administrador.administrador')->with('aux', $aux);
         } 
         catch (Throwable $e){
@@ -117,7 +120,6 @@ class AdministradorController extends Controller
         try{
             $this->validate($request,[
                 'adm_id' => 'required',
-                'adm_per_id' => 'required',
                 'adm_cargo' => 'required',
                 'adm_area_pertenece' => 'required',
                 'adm_subd_estado' => 'required',
@@ -125,7 +127,6 @@ class AdministradorController extends Controller
             ]);
             $administrativo_nuevo = Administrativos::find($id);            
             $administrativo_nuevo->adm_id = $request->input('adm_id');
-            $administrativo_nuevo->adm_per_id = $request->input('adm_per_id');
             $administrativo_nuevo->adm_cargo = $request->input('adm_cargo');
             $administrativo_nuevo->adm_area_pertenece = $request->input('adm_area_pertenece');
             $administrativo_nuevo->adm_subd_estado = $request->input('adm_subd_estado');

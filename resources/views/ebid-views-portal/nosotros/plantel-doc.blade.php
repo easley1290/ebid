@@ -26,7 +26,7 @@
   <div class="container" data-aos="fade-up">
     <div class="section-title alinear-centro">
       <h2></h2>
-      <P>CONOCE A NUESTRO EQUIPO DE INSTRUCTORES</P>
+      <P>CONOCE A NUESTRO EQUIPO DE DOCENTES</P>
     </div>
     <div class="row">
       @foreach($doc as $adm)

@@ -101,7 +101,7 @@
                       <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Nombre</label>
                         <select class="form-select" aria-label="Default select example" name="adm_per_id" id="mat_subd_estado1">
-                        @foreach($aux[1] as $persona)               
+                        @foreach($aux[4] as $persona)               
                           <option value="{{$persona->per_id}}">{{$persona->name}}</option>
                         @endforeach
                         </select>
@@ -158,11 +158,7 @@
                       </div>
                       <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Nombre</label>
-                        <select class="form-select" aria-label="Default select example" name="adm_per_id" id="adm_per_id">
-                        @foreach($aux[1] as $persona)               
-                          <option value="{{$persona->per_id}}">{{$persona->name}}</option>
-                        @endforeach
-                        </select>
+                        <input name="adm_per_id" type="text" class="form-control" id="adm_per_id" aria-describedby="emailHelp" readonly="readonly">
                       </div>
                       <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Cargo</label>
@@ -250,7 +246,7 @@ $(document).ready(function(){
     var data = table.row($tr).data();
     console.log(data);
     $('#adm_id').val(data[0]);
-    $('#adm_per_id').val(data[2]);
+    $('#adm_per_id').val(data[1]);
     $('#adm_cargo').val(data[3]);
     $('#adm_area_pertenece').val(data[4]);
     $('#adm_subd_estado').val(data[5]);
