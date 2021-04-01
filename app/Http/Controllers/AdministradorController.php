@@ -71,6 +71,7 @@ class AdministradorController extends Controller
             $administrativo_nuevo->adm_cargo = $request->input('adm_cargo');
             $administrativo_nuevo->adm_area_pertenece = $request->input('adm_area_pertenece');
             $administrativo_nuevo->adm_subd_estado = $request->input('adm_subd_estado');
+            $administrativo_nuevo->adm_descripcion = $request->input('adm_descripcion');
             $administrativo_nuevo->save();
 
             $personas = Personas::find($request->input('adm_per_id'));
@@ -130,6 +131,7 @@ class AdministradorController extends Controller
             $administrativo_nuevo->adm_cargo = $request->input('adm_cargo');
             $administrativo_nuevo->adm_area_pertenece = $request->input('adm_area_pertenece');
             $administrativo_nuevo->adm_subd_estado = $request->input('adm_subd_estado');
+            $administrativo_nuevo->adm_descripcion = $request->input('adm_descripcion');
             $administrativo_nuevo->save();
 
             $personas = Personas::find($request->input('adm_per_id'));

@@ -48,6 +48,7 @@
                               <th>Categoría</th>
                               <th style="display:none">doc_cat_id</th>
                               <th style="display:none">doc_titulo</th>
+                              <th style="display:none">doc_desc</th>
                               <th style="width:200px">Acciones</th>
                             </tr>
                           </thead>
@@ -68,6 +69,7 @@
                                 @endforeach
                                 <td class="" style="display:none">{{ $docente->doc_cat_id}}</td>
                                 <td class="" style="display:none">{{ $docente->doc_titulo}}</td>
+                                <td class="" style="display:none">{{ $docente->doc_descripcion}}</td>
                                 <td style="width:200px">
                                   <button class="btn btn-success edit">
                                     <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Modificar</button>
@@ -122,6 +124,11 @@
                         <label for="exampleInputPassword1" class="form-label">Título o licenciatura</label>
                         <input name="doc_titulo" type="text" class="form-control" id="exampleInputPassword1">
                       </div>
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Presentacion</label>
+                        <textarea id="exampleInputPassword12" name="doc_descripcion" rows="4" cols="55" class="form-control">
+                        </textarea>
+                      </div>
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -163,6 +170,11 @@
                       <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Título o licenciatura</label>
                         <input name="doc_titulo" type="text" class="form-control" id="doc_titulo">
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Presentacion</label>
+                        <textarea id="doc_descripcion" name="doc_descripcion" rows="4" cols="55" class="form-control">
+                        </textarea>
                       </div>
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Guardar</button>
@@ -229,6 +241,7 @@ $(document).ready(function(){
     $('#doc_per_id').val(data[1]);
     $('#doc_cat_id').val(data[4]);
     $('#doc_titulo').val(data[5]);
+    $('#doc_descripcion').val(data[6]);
 
     $('#editForm').attr('action', '/Docente/'+data[0]);
     $('#editModal').modal('show');

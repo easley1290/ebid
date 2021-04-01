@@ -62,6 +62,7 @@ class DocenteController extends Controller
             $docente_nuevo->doc_per_id = $request->input('doc_per_id');
             $docente_nuevo->doc_cat_id = $request->input('doc_cat_id');
             $docente_nuevo->doc_titulo = $request->input('doc_titulo');
+            $docente_nuevo->doc_descripcion = $request->input('doc_descripcion');
             $docente_nuevo->save();
 
             $personas = Personas::find($request->input('doc_per_id'));
@@ -120,6 +121,7 @@ class DocenteController extends Controller
             $docente_edit->doc_id = $request->input('doc_id');
             $docente_edit->doc_cat_id = $request->input('doc_cat_id');
             $docente_edit->doc_titulo = $request->input('doc_titulo');
+            $docente_edit->doc_descripcion = $request->input('doc_descripcion');
             $docente_edit->save();
             return redirect()->route('Docente.index')->with('status', 'Se MODIFICÓ el Docente con exito');
         } 
