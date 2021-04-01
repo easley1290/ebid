@@ -63,16 +63,10 @@ use App\Http\Controllers\PortalVistaInscripcionController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 /*PORTAL*/ 
 Route::resource('/', HomePortalController::class);
-   //return view('ebid-views-portal .home');
 
-Route::get('/contactos', function () {
-    return view('ebid-views-portal.contactos');
-});
-Route::get('/administracion', function () {
-    return view('ebid-views-administrador.home');
-});
 Route::get('/MisionVision', [NosotrosController::class, 'MisionVision'])->name('MisionVision');
 Route::get('/PlantelAdministrativo', [NosotrosController::class, 'PlantelAdm'])->name('PlantelAdm');
 Route::get('/PlantelDocente', [NosotrosController::class, 'PlantelDoc'])->name('PlantelDoc');
@@ -80,6 +74,7 @@ Route::get('/pcontactos', [PWContactoController::class, 'indexContactos'])->name
 Route::get('/pnoticias', [PWContactoController::class, 'indexNoticias'])->name('indexNoticias');
 Route::get('/pgaleria', [PWContactoController::class, 'indexGaleria'])->name('indexGaleria');
 Route::get('/pvideo', [PWContactoController::class, 'indexVideo'])->name('indexVideo');
+
 Route::resource('/administracion', AdministracionController::class);
 
 /***********Rutas Administracion de Portal Web**********/
@@ -96,8 +91,8 @@ Route::prefix('administracion/inscripcion')->group(function () {
     Route::resource('/estudiante', EstudianteController::class);
     Route::resource('/postulante', PostulantesController::class);
     Route::resource('/comprobante', ComprobanteController::class);
-    Route::resource('/subir-comprobante', SubirComprobanteController::class);
-    Route::resource('/subir-comprobantes', SubirComprobante2Controller::class);
+    Route::resource('/subir-comprobantes', SubirComprobanteController::class);
+    Route::resource('/subir-comprobante', SubirComprobante2Controller::class);
     Route::resource('/valida-comprobante', ValidarComprobanteController::class);
     Route::resource('/calendario-ingreso', CalendarioExamenIngresoController::class);
     Route::resource('/estudiante-nuevo', EstudianteNuevoController::class);
@@ -120,6 +115,8 @@ Route::get('/register_', function () {
                         ->get();
     return view('ebid-views-login.register')->with('extension', $extension);
 });
+
+
 Route::get('/MailContrasena',[MailController::class,'index']);
 Route::post('/CambioContrasena',[MailController::class,'sendEmail'])->name('CambioContrasena');
 /***************  PERFIL  ****************** */

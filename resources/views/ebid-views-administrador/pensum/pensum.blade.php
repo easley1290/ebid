@@ -105,25 +105,25 @@
                             <tr>
                                 <td class="">{{ $pensum->pen_id}}</td>
                                 @foreach ($aux[2] as $esp)
-                                  @if ($esp->esp_id === $pensum->pen_esp_id)
+                                  @if ($esp->esp_id == $pensum->pen_esp_id)
                                     <td class="">{{ $esp->esp_nombre}}</td>
                                     @break
                                   @endif
                                 @endforeach
                                 @foreach ($aux[5] as $car)
-                                  @if ($car->car_id === $pensum->pen_car_id)
+                                  @if ($car->car_id == $pensum->pen_car_id)
                                     <td class="" >{{ $car->car_nombre}}</td>
                                     @break
                                   @endif
                                 @endforeach
                                 @foreach ($aux[3] as $materia)
-                                  @if ($materia->mat_id === $pensum->pen_mat_id)
+                                  @if ($materia->mat_id == $pensum->pen_mat_id)
                                     <td class="">{{ $materia->mat_nombre }}</td>
                                     @break
                                   @endif
                                 @endforeach
                                 @foreach ($aux[4] as $semestre)
-                                  @if ($semestre->sem_id === $pensum->pen_sem_id)
+                                  @if ($semestre->sem_id == $pensum->pen_sem_id)
                                     <td class="">{{ $semestre->sem_nombre}}</td>
                                     @break
                                   @endif
@@ -165,7 +165,7 @@
                         </div>
                         @foreach ($aux[6] as $materiasBas)
                           @foreach ($aux[3] as $materias)
-                            @if ($materias->mat_id===$materiasBas->pen_mat_id)
+                            @if ($materias->mat_id==$materiasBas->pen_mat_id)
                               <li type="disc" class="ml-4" style="font-size: 16px;">{{$materias->mat_nombre}}</li>
                             @endif
                           @endforeach
@@ -179,7 +179,7 @@
                         </div>
                         @foreach ($aux[7] as $materiasBas)
                           @foreach ($aux[3] as $materias)
-                            @if ($materias->mat_id===$materiasBas->pen_mat_id)
+                            @if ($materias->mat_id==$materiasBas->pen_mat_id)
                               <li type="disc" class="ml-4" style="font-size: 16px;">{{$materias->mat_nombre}}</li>
                             @endif
                           @endforeach
@@ -196,7 +196,7 @@
                         </div>
                         @foreach ($aux[8] as $materiasBas)
                         @foreach ($aux[3] as $materias)
-                          @if ($materias->mat_id===$materiasBas->pen_mat_id)
+                          @if ($materias->mat_id==$materiasBas->pen_mat_id)
                             <li type="disc" class="ml-4" style="font-size: 16px;">{{$materias->mat_nombre}}</li>
                           @endif
                         @endforeach
@@ -232,7 +232,7 @@
                         </div>
                         @foreach ($aux[9] as $materias_cd)
                           @foreach ($aux[3] as $materias)
-                            @if ($materias->mat_id===$materias_cd->pen_mat_id)
+                            @if ($materias->mat_id==$materias_cd->pen_mat_id)
                               <li type="disc" class="ml-4" style="font-size: 20px;">{{$materias->mat_nombre}}</li>
                             @endif
                           @endforeach
@@ -269,7 +269,7 @@
                         </div>
                         @foreach ($aux[10] as $materias_dc)
                           @foreach ($aux[3] as $materias)
-                            @if ($materias->mat_id===$materias_dc->pen_mat_id)
+                            @if ($materias->mat_id==$materias_dc->pen_mat_id)
                               <li type="disc" class="ml-4" style="font-size: 20px;">{{$materias->mat_nombre}}</li>
                             @endif
                           @endforeach
@@ -305,7 +305,7 @@
                         </div>
                         @foreach ($aux[11] as $materias_df)
                           @foreach ($aux[3] as $materias)
-                            @if ($materias->mat_id===$materias_df->pen_mat_id)
+                            @if ($materias->mat_id==$materias_df->pen_mat_id)
                               <li type="disc" class="ml-4" style="font-size: 20px;">{{$materias->mat_nombre}}</li>
                             @endif
                           @endforeach
@@ -341,7 +341,7 @@
                         </div>
                         @foreach ($aux[12] as $materias_dmc)
                           @foreach ($aux[3] as $materias)
-                            @if ($materias->mat_id===$materias_dmc->pen_mat_id)
+                            @if ($materias->mat_id==$materias_dmc->pen_mat_id)
                               <li type="disc" class="ml-4" style="font-size: 20px;">{{$materias->mat_nombre}}</li>
                             @endif
                           @endforeach
@@ -377,7 +377,7 @@
                         </div>
                         @foreach ($aux[13] as $materias_pd)
                           @foreach ($aux[3] as $materias)
-                            @if ($materias->mat_id === $materias_pd->pen_mat_id)
+                            @if ($materias->mat_id == $materias_pd->pen_mat_id)
                               <li type="disc" class="ml-4" style="font-size: 20px;">{{$materias->mat_nombre}}</li>
                             @endif
                           @endforeach

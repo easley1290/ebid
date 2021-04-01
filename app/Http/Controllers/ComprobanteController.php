@@ -66,6 +66,7 @@ class ComprobanteController extends Controller
             }
             $comprobanteE->com_url = (string) $rutaImagen;
             $comprobanteE->com_tipo = $request->get('e_tipo_comprobante');
+            $comprobanteE->com_numero = $request->get('e_numero_comprobante');
             $comprobanteE->com_estado = 0;
             $comprobanteE->save();
 

@@ -96,10 +96,18 @@
                                         tabindex="3" autocomplete="off"  required disabled>
                             </div>
                             <div class="col-md-12 mb-3">
+                                <label for="numero_comprobante">Numero de comprobante</label>
+                                <input type="number" class="form-control" 
+                                        id="numero_comprobante" name="numero_comprobante" 
+                                        placeholder="Numero de comprobante" value="{{ old('numero_comprobante') }}"
+                                        onKeyPress="if(this.value.length==25) return false;"
+                                        tabindex="4" autocomplete="off"  required>
+                            </div>
+                            <div class="col-md-12 mb-3">
                                 <label for="comprobante">Comprobante</label>
                                 <input type="file" class="form-control" 
                                         id="comprobante" name="comprobante" 
-                                        placeholder="Apellido materno del estudiante" value="{{ old('comprobante') }}"
+                                        placeholder="" value="{{ old('comprobante') }}"
                                         onKeyPress="if(this.value.length==50) return false;"
                                         tabindex="5" required>
                             </div>
@@ -197,7 +205,7 @@
                     $('#tipoComprobante').html(contenido);
                 }
                 $('#create').modal('show');
-                $('#createForm').attr('action', 'subir-comprobantes/'+$tr[0].children[0].innerText);
+                $('#createForm').attr('action', 'subir-comprobante/'+$tr[0].children[0].innerText);
             })
         });
     </script>

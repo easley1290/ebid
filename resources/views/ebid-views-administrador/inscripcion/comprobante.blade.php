@@ -34,7 +34,7 @@
                     @if (auth()->user()->per_rol == 1)
                         <div class="card-header">
                             <div class="col-md-9"><h4 class="row">Se esta mostrando la lista de comprobantes </h4></div>
-                            <div class="col-md-3"><a href="{{ route('subir-comprobante.index') }}"><button type="button" class="btn btn-primary">
+                            <div class="col-md-3"><a href="{{ route('subir-comprobantes.index') }}"><button type="button" class="btn btn-primary">
                                 <span class="mdi mdi-comment-plus"></span>&nbsp;Subir comprobante
                             </button></a></div>
                         </div>
@@ -47,7 +47,7 @@
                                         <th>C.I.</th>
                                         <th>Comprobante Tipo</th>
                                         <th>Comprobante Estado</th>
-                                        <th style="display:none;" colspan="3"></th>
+                                        <th style="display:none;" colspan="4"></th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -61,6 +61,7 @@
                                             <td style="display: none">{{ $comp->com_url }}</td>
                                             <td style="display: none">{{ $comp->com_id }}</td>
                                             <td style="display: none">{{ $comp->per_telefono }}</td>
+                                            <td style="display: none">{{ $comp->com_numero }}</td>
                                             @if ($comp->com_estado==0)
                                                 <td class="">No validado</td>
                                                 <td class="">
@@ -101,13 +102,13 @@
                                         <th>Nombre completo</th>
                                         <th>Comprobante Tipo</th>
                                         <th>Comprobante Estado</th>
-                                        <th style="display:none;" colspan="3"></th>
+                                        <th style="display:none;" colspan="4"></th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($comprobante as $comp)
-                                    @if ($comp->est_per_id === auth()->user()->per_id)
+                                    @if ($comp->est_per_id == auth()->user()->per_id)
                                         <tr>
                                             <td class="">{{ $comp->est_id}}</td>
                                             <td class="">{{ $comp->name }}</td>
@@ -115,6 +116,8 @@
                                             <td style="display: none">{{ $comp->com_url }}</td>
                                             <td style="display: none">{{ $comp->com_id }}</td>
                                             <td style="display: none">{{ $comp->per_telefono }}</td>
+                                            <td style="display: none">{{ $comp->com_numero }}</td>
+
                                             @if ($comp->com_estado==0)
                                                 <td class="">No validado</td>
                                                 <td class="">
@@ -162,6 +165,16 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
+                            <label for="e2_numero_comprobante">Numero de comprobante</label>
+                            <input type="number" class="form-control" 
+                                    id="e2_numero_comprobante" name="e2_numero_comprobante" 
+                                    placeholder="Numero de comprobante" 
+                                    onKeyPress="if(this.value.length==25) return false;"
+                                    tabindex="4" autocomplete="off"  required disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
                             <label for="e2_image_comprobante">Comprobante actual</label>
                             <a href="" id="e2_image_comprobante" target="_blank"><img src="" alt="" id="e2_img_image_comprobante" width="100%"></a>
                         </div>
@@ -202,6 +215,15 @@
                         <div class="form-group row">
                             <div class="col-md-12">
                             <p id="tip_comp"></p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <label for="num_comp">Numero de comprobante</label>
+                                <input type="number" class="form-control" 
+                                        id="num_comp" name="num_comp" 
+                                        placeholder="Numero de comprobante"
+                                        autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -281,6 +303,16 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-md-12">
+                                <label for="e_numero_comprobante">Numero de comprobante</label>
+                                <input type="number" class="form-control" 
+                                        id="e_numero_comprobante" name="e_numero_comprobante" 
+                                        placeholder="Numero de comprobante" 
+                                        onKeyPress="if(this.value.length==25) return false;"
+                                        tabindex="4" autocomplete="off"  required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
                             <label for="e_image_comprobante">Comprobante actual</label>
                             <a href="" id="e_image_comprobante" target="_blank"><img src="" alt="" id="e_img_image_comprobante" width="100%"></a>
                             </div>
@@ -341,7 +373,9 @@
                     $tr = $tr.prev('.parent');
                 }
                 var data = table.row($tr).data();
-                    $("#d_image_comprobante").attr("href", data[4]);
+                    //("#d_image_comprobante").attr("href", data[4]);
+                    $("#d_image_comprobante").attr("href", "http://ebid.edu.bo/public"+data[4]);
+
                     $("#d_tipo_comp").val(data[3]);
                     $("#d_telefono").val(data[6]);
                     $("#d_name").val(data[1]);
@@ -365,8 +399,13 @@
                 }
                 var data = table.row($tr).data();
                 $("#e_nombre_estudiante").val(data[1]);
-                $("#e_image_comprobante").attr("href", data[4]);
-                $("#e_img_image_comprobante").attr("src", data[4]);
+                // $("#e_image_comprobante").attr("href", data[4]);
+                // $("#e_img_image_comprobante").attr("src", data[4]);
+
+                $("#e_image_comprobante").attr("href","http://ebid.edu.bo/public"+ data[4]);
+                $("#e_img_image_comprobante").attr("src", "http://ebid.edu.bo/public"+data[4]);
+                $("#e_numero_comprobante").val(data[7]);
+
                 $("#e_tipo_comprobante option[value='"+data[3]+"']").attr("selected", true);
                 $('#edit').modal('show');
                 $('#editForm').attr('action', 'comprobante/'+data[5]);
@@ -384,8 +423,13 @@
                 }
                 var data = table.row($tr).data();
                 $("#e2_nombre_estudiante").val(data[1]);
-                $("#e2_image_comprobante").attr("href", data[3]);
-                $("#e2_img_image_comprobante").attr("src", data[3]);
+                // $("#e2_image_comprobante").attr("href", data[3]);
+                // $("#e2_img_image_comprobante").attr("src", data[3]);
+
+                $("#e2_image_comprobante").attr("href", "http://ebid.edu.bo/public"+data[3]);
+                $("#e2_img_image_comprobante").attr("src", "http://ebid.edu.bo/public"+data[3]);
+                $("#e2_numero_comprobante").val(data[6]);
+                
                 $("#e2_tipo_comprobante option[value='"+data[2]+"']").attr("selected", true);
                 $('#edit2').modal('show');
             })
@@ -401,19 +445,24 @@
                     $tr = $tr.prev('.parent');
                 }
                 var data = table.row($tr).data();
-                $("#image_comprobante").attr("href", data[4]);
+                // $("#image_comprobante").attr("href", data[4]);
+
+                $("#image_comprobante").attr("href", "http://ebid.edu.bo/public"+data[4]);
+                
                 $("#tipo_comp").val(data[3]);
-                $("#telefono").val(data[6]);
+                $("#telefono").val(data[7]);
+                $("#num_comp").val(data[6]);
                 $("#name").val(data[1]);
                 $("#tip_comp").text("Esta seguro de validar el comprobante de '"+data[3]+"' del estudiante '"+data[1]+"'");
-                $("#img_image_comprobante").attr("src", data[4]);
+                //$("#img_image_comprobante").attr("src", data[4]);
+                $("#img_image_comprobante").attr("src", "http://ebid.edu.bo/public"+data[4]);
 
                 $('#validate').modal('show');
                 
                 $('#validateForm').attr('action', 'valida-comprobante/'+data[5]);
 
                 $('#validarComp').click(function() {
-                    $mensaje = "Postulante "+data[1]+" su comprobante ha sido validado, en unos momentos se le asignara una fecha de examen";
+                    $mensaje = "Postulante "+data[1]+" su comprobante de ".data[3]." ha sido validado";
                     $url = 'https://web.whatsapp.com/send?phone=591'+data[6]+'&text='+$mensaje+'&app_absent=0';
                     window.open($url, "_blank");
                 });

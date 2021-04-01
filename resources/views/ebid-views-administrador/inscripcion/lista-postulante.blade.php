@@ -63,7 +63,7 @@
                                             <td class="">{{ $postulante->est_examen_ingreso_fecha }}</td>
                                         @endif
                                         @foreach($arrayAux[2] as $subd)
-                                            @if($subd->subd_id === $postulante->est_subd_estado)
+                                            @if($subd->subd_id == $postulante->est_subd_estado)
                                                 <td class="">{{ $subd->subd_nombre }}</td>
                                             @endif
                                         @endforeach

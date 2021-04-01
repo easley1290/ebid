@@ -49,7 +49,7 @@ class MailController extends Controller
         $persona_edit->save();
         
 
-        return redirect('/login_')->with('status', 'Se cambio la contraseña, verifique su correo electronico');
+        return redirect('/login_')->with('contrasena', 'Se cambio la contraseña, verifique su correo electronico');
 
     }
 }

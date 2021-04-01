@@ -56,7 +56,7 @@
                             <tr>
                                 <td class="" style="display:none">{{ $administrativo->adm_id}}</td>
                                 @foreach($aux[1] as $persona)
-                                  @if($administrativo->adm_per_id === $persona->per_id)
+                                  @if($administrativo->adm_per_id == $persona->per_id)
                                   <td class="">{{ $persona->name}}</td>
                                   @endif
                                 @endforeach

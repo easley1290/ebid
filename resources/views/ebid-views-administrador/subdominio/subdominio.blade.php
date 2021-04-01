@@ -57,7 +57,7 @@
                                 <td class="">{{ $subdominio->subd_nombre}}</td>
                                 <td class="">{{ $subdominio->subd_descripcion}}</td>
                                 @foreach($auxiliar[1] as $dominio)
-                                  @if($dominio->dom_id === $subdominio->subd_dom_id)
+                                  @if($dominio->dom_id == $subdominio->subd_dom_id)
                                   <td class="">{{ $dominio->dom_nombre}}</td>
                                   @endif
                                 @endforeach

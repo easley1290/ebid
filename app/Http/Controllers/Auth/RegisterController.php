@@ -34,7 +34,13 @@ class RegisterController extends Controller
      * @var string
      */
     //protected $redirectTo = RouteServiceProvider::HOME;
-    protected $redirectTo = '/login_';
+    //protected $redirectTo = '/login_';
+
+    protected function redirectTo()
+    {
+        session()->flash('contrasena', 'Por favor revise su correo, la conotraseña fue enviada'); 
+        return '/login_';
+    }
 
     /**
      * Create a new controller instance.
@@ -61,7 +67,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:50', 'unique:personas'],
             //'password' => ['required', 'string', 'min:8', 'confirmed'],
             'per_subd_extension' => ['required', 'string'],
-            'per_num_documentacion' => ['required', 'max:11'],
+            'per_num_documentacion' => ['required', 'max:11', 'unique:personas'],
         ]);
     }
 
@@ -94,7 +100,7 @@ class RegisterController extends Controller
             'per_telefono' => trim($data['per_telefono']),
             'per_subd_extension' => trim($data['per_subd_extension']),
             'per_num_documentacion' => trim($data['per_num_documentacion']).trim($data['per_alfanumerico']),
-            'per_rol' => '7', //revisar si el 1 2 3 4 .... corresponde a per_rol = estudiante y cambiarlo si corresponde
+            'per_rol' => '4', 
             'per_foto_personal' => '/assets/img/usuario.ico',
         ]);
         /******************************************* */

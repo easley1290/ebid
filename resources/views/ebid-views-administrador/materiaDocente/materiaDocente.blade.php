@@ -56,9 +56,9 @@
                             <tr>
                                 <td class="" style="display:none">{{ $materiadocente->matd_id}}</td>
                                 @foreach($aux[1] as $docente)
-                                  @if($materiadocente->matd_doc_id === $docente->doc_id)
+                                  @if($materiadocente->matd_doc_id == $docente->doc_id)
                                     @foreach($aux[2] as $persona)
-                                      @if($docente->doc_per_id === $persona->per_id)
+                                      @if($docente->doc_per_id == $persona->per_id)
                                         <td class="">{{ $persona->name}}</td>
                                       @endif
                                     @endforeach
@@ -66,7 +66,7 @@
                                 @endforeach
                                 <td class="" style="display:none">{{ $materiadocente->matd_doc_id}}</td>
                                 @foreach($aux[3] as $materia)
-                                  @if($materiadocente->matd_mat_id === $materia->mat_id)
+                                  @if($materiadocente->matd_mat_id == $materia->mat_id)
                                   <td class="">{{ $materia->mat_nombre}}</td>
                                   @endif
                                 @endforeach
@@ -107,7 +107,7 @@
                         <select class="form-select" aria-label="Default select example" name="matd_doc_id" id="mat_subd_estado12">
                         @foreach($aux[2] as $persona)  
                           @foreach($aux[1] as $docente)             
-                            @if($persona->per_id === $docente->doc_per_id)
+                            @if($persona->per_id == $docente->doc_per_id)
                             <option value="{{$docente->doc_id}}">{{$persona->name}}</option>
                             @endif
                           @endforeach
@@ -157,7 +157,7 @@
                         <select class="form-select" aria-label="Default select example" name="matd_doc_id" id="matd_doc_id">
                         @foreach($aux[2] as $persona)  
                           @foreach($aux[1] as $docente)             
-                            @if($persona->per_id === $docente->doc_per_id)
+                            @if($persona->per_id == $docente->doc_per_id)
                             <option value="{{$docente->doc_id}}">{{$persona->name}}</option>
                             @endif
                           @endforeach

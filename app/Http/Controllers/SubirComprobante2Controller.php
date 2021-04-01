@@ -28,7 +28,8 @@ class SubirComprobante2Controller extends Controller
     {
         try{
             $this->validate($request,[
-                'comprobante' => 'required|image|mimes:png,jpg,jpeg|max:8192'
+                'comprobante' => 'required|image|mimes:png,jpg,jpeg|max:8192',
+                'numero_comprobante' => 'required'
             ]);
 
             $comprobante = Comprobantes::all() -> last();
@@ -56,10 +57,11 @@ class SubirComprobante2Controller extends Controller
             $comprobanteC->com_url = (string) $rutaImagen;
             $comprobanteC->com_tipo = $tipo_comp;
             $comprobanteC->com_est_id = (int)$id;
+            $comprobanteC->com_numero = $request->get('numero_comprobante');
             $comprobanteC->com_estado = 0;
             $comprobanteC->save();
 
-            return redirect()->route('subir-comprobantes.index')->with('status', 'Se subio el comprobante con exito');
+            return redirect()->route('subir-comprobante.index')->with('status', 'Se subio el comprobante con exito');
         } catch(Throwable $e){
             return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
         }

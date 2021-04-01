@@ -18,7 +18,7 @@
               <ul class="nav sidebar-inner" id="sidebar-menu">
                   <!----------------------------INICIO---------------------------------->
                   <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="/administracion">
+                    <a class="sidenav-item-link" href="/public/administracion">
                       <i class="mdi mdi-home"></i>
                       <span class="nav-text">Inicio</span>
                     </a>
@@ -312,7 +312,7 @@
                         <div class="sub-menu">
                           @if (auth()->user()->per_rol >= 3)
                           <li>
-                            <a class="sidenav-item-link" href="{{ route('subir-comprobantes.index') }}">
+                            <a class="sidenav-item-link" href="{{ route('subir-comprobante.index') }}">
                               <span class="nav-text">Subir Comprobante</span>
                             </a>
                           </li>
@@ -341,7 +341,7 @@
                               </a>
                             </li>  
                             <li>
-                              <a class="sidenav-item-link" href="{{ route('subir-comprobante.index') }}">
+                              <a class="sidenav-item-link" href="{{ route('subir-comprobantes.index') }}">
                                 <span class="nav-text">Subir Comprobante</span>
                               </a>
                             </li>

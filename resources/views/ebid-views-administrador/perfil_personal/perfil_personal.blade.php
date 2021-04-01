@@ -74,7 +74,7 @@
                                 <td class="">{{ $persona->email}}</td>
                                 <td class="">
                                   @foreach($tipo_docs as $subdominio)
-                                      @if($subdominio->subd_id === $persona->per_subd_documentacion)
+                                      @if($subdominio->subd_id == $persona->per_subd_documentacion)
                                       {{ $subdominio->subd_nombre}}
                                       @endif
                                   @endforeach
@@ -82,7 +82,7 @@
                                 <td class="" style="display:none">{{ $persona->per_subd_documentacion}}</td>
                                 <td class="">{{ $persona->per_num_documentacion}}
                                 @foreach($extensions as $subdominio)
-                                    @if($subdominio->subd_id === $persona->per_subd_extension)
+                                    @if($subdominio->subd_id == $persona->per_subd_extension)
                                     {{ $subdominio->subd_nombre}}
                                     @endif
                                 @endforeach

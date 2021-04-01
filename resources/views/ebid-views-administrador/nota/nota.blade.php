@@ -58,18 +58,18 @@
                             <tr>
                                 <td class="" style="display:none">{{ $nota->nota_id}}</td>
                                 @foreach($aux[1] as $materiaEst)
-                                  @if($materiaEst->mate_id === $nota->nota_mate_id)
+                                  @if($materiaEst->mate_id == $nota->nota_mate_id)
                                     @foreach($aux[3] as $estudiante)
-                                      @if($estudiante->est_id === $materiaEst->mate_est_id)
+                                      @if($estudiante->est_id == $materiaEst->mate_est_id)
                                         @foreach($aux[4] as $persona)
-                                          @if($persona->per_id === $estudiante->est_per_id)
+                                          @if($persona->per_id == $estudiante->est_per_id)
                                             <td class="">{{ $persona->name}}</td>
                                           @endif
                                         @endforeach
                                       @endif
                                     @endforeach
                                     @foreach($aux[2] as $materia)
-                                      @if($materia->mat_id === $materiaEst->mate_mat_id)
+                                      @if($materia->mat_id == $materiaEst->mate_mat_id)
                                         <td class="">{{ $materia->mat_nombre}}</td>
                                       @endif
                                     @endforeach
