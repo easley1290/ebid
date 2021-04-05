@@ -22,33 +22,55 @@
         <img src="{{ asset('assets/img/oferta1.jpg') }}" class="img-fluid" alt="">
       </div>
       <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right" data-aos-delay="100">
-        <h2>APRENDE O PRACTICA TU ARTE...</h3>
-        <h3>Nuestra enseñanza te llevará mas allá</h2>
+        <h2>ESTUDIANTES INGRESANTES</h3>
+        <h3>EXAMEN DE ADMISION  2021</h2>
         <p class="font-italic">
-          Abierto a personas que realizan el arte de la danza, 
-          desde artistas emergentes hasta artistas semiprofesionales.<br>
-          Ingresa y al finalizar te daremos la oportunidad de llegar a elencos profesionales internacionales
-          a traves de la titulacion en <span style="color: #e45512;">DANZA</span>
+        En el presente año por temas de pandemia covid-19, se procederá a la evaluación directa de los y las estudiantes postulantes a la Licenciatura en Danza de la Escuela Boliviana Intercultural de la Danza “EBID”.
+        La evaluación se realizará de manera presencial en instalaciones de la “EBID” previa revisión de la documentación de inscripción que habilitan a dicha instancia.     
+        La evaluación consta de las siguientes materias:
+        <li>FUNDAMENTOS DE LA DANZA CLÁSICA.</li>
+        <li>FUNDAMENTOS DE LA DANZA CONTEMPORÁNEA.</li>
+        <li>FUNDAMENTOS DE LA DANZA FOLCLÓRICA.</li>
+        <li>PARÁMETROS MUSICALES.</li>
+        <li>DEFENSA CARTA MOTIVACIONAL.</li>
         </p>
-        <h4 class="font-italic">No dejes que tus sueños se apaguen</h4>
-        <a href="" class="btn-oferta">NUESTRA OFERTA PARA TI<i class="ri-arrow-right-s-line"></i></i></a>
       </div>
     </div>
   </div>
   <div class="container" data-aos="fade-up">
     <div class="row" style="margin-top: 50px;">
-      <div class="col-lg-6 pt-4 pt-lg-0 order-1 order-lg-2 content" data-aos="fade-left" data-aos-delay="100">
-        <h2>PREOCUPADO POR TU TIEMPO Y SALUD</h3>
-        <h3>Nosotros nos adaptamos</h2>
+      <div class="col-lg-12 pt-4 pt-lg-0 order-1 order-lg-2 content" data-aos="fade-left" data-aos-delay="100">
+        <h2>REQUERIMIENTOS</h2>
         <p class="font-italic">
-          Ofrecemos aprendizaje en linea con profesionales preparados para impartir esa modalidad.
-          en esta modalidad podras aprender, como si estuvieses en nuestros espacios.
+        Los y las estudiantes deberán asistir a clase con los elementos necesarios para cada actividad 
+        (por ejemplo, para Danza clásica: zapatillas de media punta y ropa holgada / para Danza Contemporánea: 
+        medias o pie descalzo/ para Danza Folclórica: zapatillas de media punta o zapatos deportivos livianos/ 
+        para Materia Teórica: un cuaderno de notas)
         </p>
-        <h4 class="font-italic">No tengas miedo al exito</h4>
-        <a href="" class="btn-miembro">LO QUE OFRECEMOS<i class="ri-arrow-right-s-line"></i></i></a>
       </div>
-      <div class="col-lg-6 order-2 order-lg-1" data-aos="fade-right" data-aos-delay="100">
-        <img src="{{ asset('assets/img/oferta2.jpg') }}" class="img-fluid" alt="">
+    </div>
+  </div>
+  <div class="container" data-aos="fade-up">
+    <div class="row" style="margin-top: 50px;">
+      <div class="col-lg-12 pt-4 pt-lg-0 order-1 order-lg-2 content" data-aos="fade-left" data-aos-delay="100">
+        <h2>PASOS PARA EL REGISTRO</h2>
+        <p class="font-italic">
+        Deberas registrarte en el siguiente enlace y llenar los datos correspondientes, una vez llenado el formulario 
+        se le enviara la contraseña a su correo personal con la que podra ingresar al sistema.
+        <a href="register_" class="btn-miembro">REGISTRATE AQUÍ<i class="ri-arrow-right-s-line"></i></i></a>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="{{ asset('assets/img/ejemplo_est.png') }}" class="img-fluid" alt="">
+            </div>
+            <div class="col-md-6">
+              Una vez en el sistema podra visualizar una vista similar a la imagen y seguir los siguientes pasos los cuales se ecuentran
+              en el siguiente enlace
+              <li>Ingresar a inscripción estudiante</li> 
+            </div>
+          </div>
+        </div>
+        </p>
       </div>
     </div>
   </div>

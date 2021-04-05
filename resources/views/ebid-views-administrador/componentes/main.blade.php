@@ -9,7 +9,7 @@
             <div class="app-brand">
               <a href="/administracion" >
                 <img src="{{ asset('assets/img/logo.png') }}" alt="" style="height: 50px;" class="img-fluid">
-                <span class="brand-name text-truncate">EBID</span>
+                
               </a>
             </div>
             <!-- begin sidebar scrollbar -->

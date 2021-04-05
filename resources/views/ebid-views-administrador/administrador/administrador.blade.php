@@ -134,7 +134,7 @@
                       </div>
                       <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Presentacion</label>
-                        <textarea id="exampleInputPassword12" name="adm_descripcion" rows="4" cols="55" class="form-control">
+                        <textarea id="adm_descripcion" name="adm_descripcion" rows="4" cols="55" class="form-control">
                         </textarea>
                       </div>
                       <div class="modal-footer">

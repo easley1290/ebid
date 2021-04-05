@@ -23,6 +23,7 @@ class HomePortalController extends Controller
         $doc = Personas::select('*')
             ->where('per_rol', '=',6)
             ->where('per_subd_estado','=',1)
+            ->join('docentes', 'doc_per_id', '=', 'per_id')
             ->get(); 
         $aux = [$perfiles, $instituciones, $doc];
         return view('ebid-views-portal.home')->with('aux', $aux);

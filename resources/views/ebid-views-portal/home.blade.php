@@ -68,17 +68,17 @@
       </div>
       <div class="col-lg-6 ">
           <div class="danza-miniaturas"><img src="{{ asset('assets/img/d-contemporanea.jpg') }}" width="400"></div>
-          <h4>Danza moderna-contemporanea</h4>
+          <h4>Danza clásica</h4>
       </div>
     </div>
     <br>
     <div class="row">
       <div class="col-lg-6 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-          <div class="danza-miniaturas"><img src="{{ asset('assets/img/d-Ballet.jpg') }}" width="400"></div>
+          <div class="danza-miniaturas"><img src="{{ asset('assets/img/d-pe.jpg') }}" width="400"></div>
           <h4>Pedagogía de la Danza</h4>
       </div>
       <div class="col-lg-6 col-md-4" data-aos="zoom-in" data-aos-delay="100">
-          <div class="danza-miniaturas"><img src="{{ asset('assets/img/d-Ballet.jpg') }}" width="400"></div>
+          <div class="danza-miniaturas"><img src="{{ asset('assets/img/d-ballet.jpg') }}" width="400"></div>
           <h4>Coreografía y dirección</h4>
       </div>
     </div>
@@ -88,7 +88,7 @@
       </div>
       <div class="col-md-6">
           <div class="danza-miniaturas"><img src="{{ asset('assets/img/d-clasica.jpg') }}" width="400"></div>
-          <h4>Danza clásica</h4>
+          <h4>Danza moderna-contemporanea</h4>
       </div>
     </div>
   </div>
@@ -181,7 +181,7 @@
   <div class="container" data-aos="fade-up">
     <div class="section-title alinear-centro">
       <h2>CONOCE EL EQUIPO</h2>
-      <p>NUESTROS INSTRUCTORES DE BAILE</p>
+      <p>NUESTROS DOCENTES DE BAILE</p>
     </div>
     <div class="row">
     @foreach($aux[2] as $docente)
@@ -189,14 +189,15 @@
         <div class="member" data-aos="fade-up" data-aos-delay="100">
           <div class="member-img" style=" height: 80%; display: flex;justify-content: center; align-items: center;">
             <img src="http://ebid.edu.bo/public{{$docente->per_foto_personal}}" class="img-fluid" alt="">
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="member-info" alaing="center">
-              <h4>{{$docente->name}}</h4>
-              </div>
+            <div class="social">
+              <p style="font-size: 12px; color:black;">{{$docente->doc_titulo}}</p>
+              <!--a href=""><i class="icofont-facebook"></i></a-->
             </div>
           </div>
+              <div class="member-info">
+                <h4>{{$docente->name}}</h4>
+                <h5></h5>
+              </div>
         </div>
       </div>
     @endforeach
