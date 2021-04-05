@@ -63,6 +63,7 @@
         i.next('.validate').html((ierror ? (i.attr('data-msg') !== undefined ? i.attr('data-msg') : 'wrong Input') : '')).show('blind');
       }
     });
+
     f.children('textarea').each(function() { // run all inputs
 
       var i = $(this); // current input
@@ -119,7 +120,6 @@
     } else {
       php_email_form_submit(this_form,action,this_form.serialize());
     }
-    
     return true;
   });
 
@@ -129,36 +129,13 @@
       url: action,
       data: data,
       timeout: 40000
-    }).done( function(msg){
-      if (msg.trim() == 'OK') {
-        this_form.find('.loading').slideUp();
-        this_form.find('.sent-message').slideDown();
-        this_form.find("input:not(input[type=submit]), textarea").val('');
-      } else {
-        this_form.find('.loading').slideUp();
-        if(!msg) {
-          msg = 'Form submission failed and no error message returned from: ' + action + '<br>';
-        }
-        this_form.find('.error-message').slideDown().html(msg);
-      }
+    }).done(function(msg){
+      alert('Su mensaje ha sido enviado correctamente');
+      this_form.find("textarea").val('');
+      this_form.find("input").val('');
     }).fail( function(data){
       console.log(data);
-      var error_msg = "Form submission failed!<br>";
-      if(data.statusText || data.status) {
-        error_msg += 'Status:';
-        if(data.statusText) {
-          error_msg += ' ' + data.statusText;
-        }
-        if(data.status) {
-          error_msg += ' ' + data.status;
-        }
-        error_msg += '<br>';
-      }
-      if(data.responseText) {
-        error_msg += data.responseText;
-      }
-      this_form.find('.loading').slideUp();
-      this_form.find('.error-message').slideDown().html(error_msg);
+      alert("Algo salio mal!");
     });
   }
 

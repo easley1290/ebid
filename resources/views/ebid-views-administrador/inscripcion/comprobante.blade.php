@@ -45,9 +45,9 @@
                                         <th>Id Est.</th>
                                         <th>Nombre completo</th>
                                         <th>C.I.</th>
-                                        <th>Comprobante Tipo</th>
+                                        <th>Comprobante Tipo</th>   
+                                        <th style="display: none;" colspan="4"></th>
                                         <th>Comprobante Estado</th>
-                                        <th style="display:none;" colspan="4"></th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -58,26 +58,26 @@
                                             <td class="">{{ $comp->name }}</td>
                                             <td class="">{{ $comp->per_num_documentacion }}</td>
                                             <td class="">{{ $comp->com_tipo }}</td>
-                                            <td style="display: none">{{ $comp->com_url }}</td>
-                                            <td style="display: none">{{ $comp->com_id }}</td>
-                                            <td style="display: none">{{ $comp->per_telefono }}</td>
-                                            <td style="display: none">{{ $comp->com_numero }}</td>
+                                            <td style="display:none ">{{ $comp->com_url }}</td>
+                                            <td style="display:none ">{{ $comp->com_id }}</td>
+                                            <td style="display:none ">{{ $comp->per_telefono }}</td>
+                                            <td style="display:none ">{{ $comp->com_numero }}</td>
                                             @if ($comp->com_estado==0)
                                                 <td class="">No validado</td>
                                                 <td class="">
                                                     <button class="btn btn-warning validate">
                                                         <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Validar</button>
                                                     <button class="btn btn-success edit">
-                                                    <span class="mdi mdi-circle-edit-outline"></span></button>
+                                                        <span class="mdi mdi-circle-edit-outline"></span></button>
                                                     <button class="btn btn-danger delete">
                                                         <span class="mdi mdi-delete"></span></button>
                                                 </td>
                                             @else
                                                 <td class="">Validado</td>
                                                 <td class="">
-                                                <button class="btn btn-secondary">&nbsp;Ya validado</button>
-                                                <button class="btn btn-success edit">
-                                                    <span class="mdi mdi-circle-edit-outline"></span></button>
+                                                    <button class="btn btn-secondary">&nbsp;Ya validado</button>
+                                                    <button class="btn btn-success edit">
+                                                        <span class="mdi mdi-circle-edit-outline"></span></button>
                                                 </td>
                                             @endif
                                         </tr>
@@ -101,8 +101,8 @@
                                         <th>Id de estudiante</th>
                                         <th>Nombre completo</th>
                                         <th>Comprobante Tipo</th>
-                                        <th>Comprobante Estado</th>
                                         <th style="display:none;" colspan="4"></th>
+                                        <th>Comprobante Estado</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -380,9 +380,10 @@
                     $("#d_telefono").val(data[6]);
                     $("#d_name").val(data[1]);
 
-                    $("#d_tip_comp").text("Esta seguro de eliminar el comprobante de '"+data[2]+"' del estudiante '"+data[1]+"'");
+                    $("#d_tip_comp").text("Esta seguro de eliminar el comprobante de '"+data[3]+"' del estudiante '"+data[1]+"'");
 
-                    $("#d_img_image_comprobante").attr("src", data[4]);
+                    $("#d_img_image_comprobante").attr("src", "http://ebid.edu.bo/public"+data[4]);
+
                     $('#delete').modal('show');
                     $('#deleteForm').attr('action', 'comprobante/'+data[5]);
             })
@@ -445,13 +446,13 @@
                     $tr = $tr.prev('.parent');
                 }
                 var data = table.row($tr).data();
-                // $("#image_comprobante").attr("href", data[4]);
+                //$("#image_comprobante").attr("href", data[4]);
 
                 $("#image_comprobante").attr("href", "http://ebid.edu.bo/public"+data[4]);
                 
                 $("#tipo_comp").val(data[3]);
-                $("#telefono").val(data[7]);
-                $("#num_comp").val(data[6]);
+                $("#telefono").val(data[6]);
+                $("#num_comp").val(data[7]);
                 $("#name").val(data[1]);
                 $("#tip_comp").text("Esta seguro de validar el comprobante de '"+data[3]+"' del estudiante '"+data[1]+"'");
                 //$("#img_image_comprobante").attr("src", data[4]);
@@ -462,7 +463,7 @@
                 $('#validateForm').attr('action', 'valida-comprobante/'+data[5]);
 
                 $('#validarComp').click(function() {
-                    $mensaje = "Postulante "+data[1]+" su comprobante de ".data[3]." ha sido validado";
+                    $mensaje = "Postulante "+data[1]+" su comprobante de "+data[3]+" ha sido validado";
                     $url = 'https://web.whatsapp.com/send?phone=591'+data[6]+'&text='+$mensaje+'&app_absent=0';
                     window.open($url, "_blank");
                 });

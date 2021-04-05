@@ -55,24 +55,44 @@
       <p>Contactanos te responderemos pronto</p>
     </div>
     <div class="col-lg-8 mt-5 mt-lg-0">
-      <form action="" method="POST" class="php-email-form">
+      <form action="{{ route('contactus') }}" method="POST" class="php-email-form">
         @csrf
         <div class="form-row">
           <div class="col-md-6 form-group">
-            <input type="text" name="name" class="form-control" id="name" placeholder="Tu nombre" data-rule="minlen:10" data-msg="Por favor minimo 10 caracteres" />
+            <input type="text" name="name" class="form-control" 
+                  id="name" placeholder="Ingresa tu nombre" data-rule="minlen:10" 
+                  data-msg="Por favor minimo 10 caracteres" autocomplete="off"
+                  onKeyPress="if(this.value.length==50) return false;"/>
             <div class="validate"></div>
           </div>
           <div class="col-md-6 form-group">
-            <input type="email" class="form-control" name="email" id="email" placeholder="Tu correo electronico" data-rule="email" data-msg="Porfavor ingresa un email valido" />
+            <input type="email" class="form-control" name="email" id="email" 
+                  placeholder="Ingresa tu correo electronico" data-rule="email"
+                  data-msg="Porfavor ingresa un email valido" autocomplete="off"
+                  onKeyPress="if(this.value.length==40) return false;"/>
             <div class="validate"></div>
           </div>
         </div>
-        <div class="form-group">
-          <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto de tu consulta" data-rule="minlen:8" data-msg="Por favor ingresa 8 caracteres como minimo" />
+        <div class="form-row">
+          <div class="col-md-6 form-group">
+            <input type="number" name="phone" class="form-control" id="phone" 
+                  placeholder="Ingresa tu numero de celular" data-rule="minlen:8" 
+                  data-msg="Por favor ingresa correctamente tu celular caracteres" autocomplete="off"
+                  onKeyPress="if(this.value.length==10) return false;"/>
+            <div class="validate"></div>
+          </div>
+          <div class="col-md-6 form-group">
+            <input type="text" class="form-control" name="subject" id="subject" 
+                  placeholder="Cual es el asunto de tu consulta?" data-rule="minlen:8" 
+                  data-msg="Por favor ingresa 8 caracteres como minimo" autocomplete="off" 
+                  onKeyPress="if(this.value.length==30) return false;"/>
           <div class="validate"></div>
+          </div>
         </div>
         <div class="form-group">
-          <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Cual es tu mensaje?" placeholder="Mensaje"></textarea>
+          <textarea class="form-control" name="message" rows="5" data-rule="required" 
+                    data-msg="Cual es tu mensaje?" placeholder="Mensaje" autocomplete="off"
+                    onKeyPress="if(this.value.length==300) return false;" style="resize: none"></textarea>
           <div class="validate"></div>
         </div>
         <div class="text-center">

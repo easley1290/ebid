@@ -66,6 +66,7 @@ use App\Http\Controllers\PortalVistaInscripcionController;
 
 /*PORTAL*/ 
 Route::resource('/', HomePortalController::class);
+Route::post('/contactanos', [HomePortalController::class, 'store'])->name('contactus');
 
 Route::get('/MisionVision', [NosotrosController::class, 'MisionVision'])->name('MisionVision');
 Route::get('/PlantelAdministrativo', [NosotrosController::class, 'PlantelAdm'])->name('PlantelAdm');
@@ -119,6 +120,7 @@ Route::get('/register_', function () {
 
 Route::get('/MailContrasena',[MailController::class,'index']);
 Route::post('/CambioContrasena',[MailController::class,'sendEmail'])->name('CambioContrasena');
+
 /***************  PERFIL  ****************** */
 Route::resource('/Persona', PersonaController::class);
 Route::resource('/PersonaInstitucional', PersonaInsController::class);
@@ -147,8 +149,6 @@ Route::resource('/CategoriaDocente', CategoriaDocenteController::class);
 Route::resource('/Docente', DocenteController::class);
 /***************  Administrador  ****************** */
 Route::resource('/Administrador', AdministradorController::class);
-
-
 Route::resource('/estudiante-usuario', EstudianteUsuarioController::class);
 /***************  MateriaDocente  ****************** */
 Route::resource('/MateriaDocente', MateriaDocenteController::class);

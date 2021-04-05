@@ -24,24 +24,24 @@
             </div>
             <div class="row" data-aos="fade-up" data-aos-delay="200">
             @foreach ($galeria as $gal)
-                    <div class="col-md-6 mb-5">
-                        <div class="portfolio-item">
-                            <div class="portfolio-wrap">
-                                <img src="{{ "http://ebid.edu.bo/public"+$gal->gal_direccion }}" class="img-fluid" alt="">
-                                <div class="portfolio-info">
-                                    @foreach ($uacad as $ua)
-                                        @if ($ua->ua_id == $gal->gal_ua_id)
-                                            <h4>{{ $gal->gal_titulo.' _ '.$ua->ua_nombre }}</h4>
-                                            <div class="portfolio-links">
-                                                <a href="{{ "http://ebid.edu.bo/public"+gal->gal_direccion }}" data-gall="portfolioGallery" class="venobox" title="{{ $gal->gal_titulo.' _ '.$ua->ua_nombre }}"><i class="bx bx-link"></i></a>
-                                            </div>
-                                            @break
-                                        @endif
-                                    @endforeach
-                                </div>
+                <div class="col-md-6 mb-5">
+                    <div class="portfolio-item">
+                        <div class="portfolio-wrap">
+                            <img src="{{ "http://ebid.edu.bo/public".$gal->gal_direccion }}" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                @foreach ($uacad as $ua)
+                                    @if ($ua->ua_id == $gal->gal_ua_id)
+                                        <h4>{{ $gal->gal_titulo.' _ '.$ua->ua_nombre }}</h4>
+                                        <div class="portfolio-links">
+                                            <a href="{{ "http://ebid.edu.bo/public".$gal->gal_direccion }}" data-gall="portfolioGallery" class="venobox" title="{{ $gal->gal_titulo.' _ '.$ua->ua_nombre }}"><i class="bx bx-link"></i></a>
+                                        </div>
+                                        @break
+                                    @endif
+                                @endforeach
                             </div>
                         </div>
                     </div>
+                </div>
                 
             @endforeach
             </div>
