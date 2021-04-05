@@ -17,11 +17,11 @@
 
 <section id="portfolio" class="portfolio">
     <div class="container" data-aos="fade-up">
-        <div class="section-title">
-            <p>Mira nuestros videos</p>
-        </div>
-        <div class="row" data-aos="fade-up" data-aos-delay="200">
-            @if ($video != null)
+        @if ($video != null)
+            <div class="section-title">
+                <p>Mira nuestros videos</p>
+            </div>
+            <div class="row" data-aos="fade-up" data-aos-delay="200">
             @foreach ($video as $vid)
                 <div class="col-md-6 mb-5">
                     <div class="d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
@@ -36,21 +36,22 @@
                     </div>
                 </div>
             @endforeach
-            @else
-                <div class="col-12" style="justify-items: center; text-align:center;" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="member" data-aos="fade-up" data-aos-delay="100">
-                        <div class="member-info">
-                            <h4>Ups!!!! no hay nada que mostrar</h4>
-                        </div>
+            </div>
+            <div class="row">
+                <div class="mt-5">
+                    <div style="justify-content: space-between; display:inline-block; float:right;">{{ $video->onEachSide(10)->links() }}</div>
+                </div>
+            </div>
+        @else
+            <div class="col-12" style="justify-items: center; text-align:center;" data-aos="zoom-in" data-aos-delay="200">
+                <div class="member" data-aos="fade-up" data-aos-delay="100">
+                    <div class="member-info">
+                        <h4>Ups!!!! no hay nada que mostrar</h4>
                     </div>
                 </div>
-            @endif  
-        </div>
-        <div class="row">
-            <div class="mt-5">
-                <div style="justify-content: space-between; display:inline-block; float:right;">{{ $video->onEachSide(10)->links() }}</div>
             </div>
-        </div>
+        @endif  
+        
     </div>
 </section>
 @endsection
