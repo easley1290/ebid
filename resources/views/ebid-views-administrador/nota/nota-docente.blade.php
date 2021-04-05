@@ -41,9 +41,17 @@
                         <div class="card-body pt-0 pb-5">
 
                         <div class="accordion" id="accordionExample">
+                          <?php 
+                          $posicion = 0;  
+                            ?>
                             @foreach ($aux[5] as $materia_docente)
                             @foreach ($aux[2] as $materia1)
                                     @if ($materia1->mat_id == $materia_docente->matd_mat_id)
+                                    <?php 
+                                    $aux1[$posicion] = $aux[9][$posicion];
+                                    echo $aux1[$posicion];
+                                    $posicion = $posicion + 1;
+                                    ?>
                             <div class="row">                              
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     <span class="mdi mdi-comment-plus"></span>&nbsp;{{$materia1->mat_nombre}}
@@ -51,7 +59,7 @@
                             </div>
                             <br>
                             @endif
-                                @endforeach
+                            @endforeach
                             @endforeach
                         </div>
                         </div>
@@ -87,18 +95,20 @@
                                               @foreach($aux[0] as $nota)
                                                 <tr>
                                                     <td class="" style="display:none">{{ $nota->nota_id}}</td>
-                                                    @foreach($aux[1] as $materiaEst)
-                                                        @if($materiaEst->mate_id === $nota->nota_mate_id)
+                                                    @for each($aux[1] as $materiaEst)
+                                                      
+                                                        @if($materiaEst->mate_id == $nota->nota_mate_id)
                                                             @foreach($aux[3] as $estudiante)
-                                                            @if($estudiante->est_id === $materiaEst->mate_est_id)
+                                                            @if($estudiante->est_id == $materiaEst->mate_est_id)
                                                                 @foreach($aux[4] as $persona)
-                                                                @if($persona->per_id === $estudiante->est_per_id)
+                                                                @if($persona->per_id == $estudiante->est_per_id)
                                                                     <td class="">{{ $persona->name}}</td>
                                                                 @endif
                                                                 @endforeach
                                                             @endif
                                                             @endforeach
                                                         @endif
+                                                     
                                                     @endforeach
                                                     <td class="" style="display:none">{{ $nota->nota_mate_id}}</td>
                                                     <td>{{ $nota->nota_examen1}}</td>
@@ -224,6 +234,11 @@
                     </div>
                 </div>
               </div>
+            </div>
+            <div class="container">
+            @foreach ($aux[6][$aux[7] ][$aux[8][1]] as $nota1)s
+              <p>{{$nota1->nota_mate_id}}</p>
+            @endforeach
             </div>
 
             

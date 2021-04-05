@@ -31,12 +31,40 @@ class NotaController extends Controller
                 $materia_docente = MateriaDocente::select('materias_docente.*')
                 ->where('matd_doc_id','=',$docente_id)
                 ->get();
+                $aux_cantidad = count($materia_docente);
+                $contador_x = count($materia_docente) - 1;
+                $aux_posicion = 0;
+                $aux_array_est = [];
+                $aux_array_nota = [];
+                while($aux_cantidad != 0){
+                    $materia_id = $materia_docente[$aux_posicion]['matd_mat_id'];
+                    $materia1[$aux_posicion] = $materia_docente[$aux_posicion]['matd_mat_id'];
+                    $materia_estudiante = MateriaEstudiante::select('materia_estudiante.*')
+                    ->where('mate_mat_id','=',$materia_id)
+                    ->get();
+                    $aux_cantidad_est = count($materia_estudiante);
+                    $contador_y = count($materia_estudiante) - 1;
+                    $aux_posicion_1 = 0;
+                    while($aux_cantidad_est != 0){
+                        $aux_nota = $materia_estudiante[$aux_posicion_1]['mate_id'];
+                        $nota = Notas::select('notas.*')
+                        ->where('nota_mate_id','=',$aux_nota)
+                        ->get();
+                        $aux_array_nota[$aux_posicion][$aux_posicion_1] = $nota;
+                        $aux_cantidad_est = $aux_cantidad_est - 1;
+                        $aux_posicion_1 = $aux_posicion_1 + 1;
+                    }
+                    $aux_array_y[$aux_posicion] = $contador_y;
+
+                    $aux_cantidad = $aux_cantidad - 1; 
+                    $aux_posicion = $aux_posicion + 1;
+                }
                 $notas = Notas::all();
                 $materias_est = MateriaEstudiante::all();
                 $materias = Materias::all();
                 $estudiantes = Estudiantes::all();
                 $personas = Personas::all();
-                $aux = [$notas, $materias_est, $materias, $estudiantes, $personas, $materia_docente];
+                $aux = [$notas, $materias_est, $materias, $estudiantes, $personas, $materia_docente, $aux_array_nota, $contador_x, $aux_array_y, $materia1];
                 return view('ebid-views-administrador.nota.nota-docente')->with('aux', $aux);
             } 
             catch (Throwable $e){
