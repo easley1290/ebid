@@ -40,9 +40,9 @@ class LoginController extends Controller
     }
 
     public function redirectPath(){
-        if(Auth::user()->tipo_usuario){ 
+        if(Auth::user()->per_rol){ 
             return '/administracion';
         }
-        return '/administracion';
+        return '/';
     }
 }

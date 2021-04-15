@@ -51,7 +51,7 @@ use App\Http\Controllers\PortalVistaProcesoController;
 use App\Http\Controllers\PortalVistaMallaController;
 use App\Http\Controllers\PortalVistaInscripcionController;
 
-
+use App\Http\Controllers\Zoom;
 
 /*
 |--------------------------------------------------------------------------
@@ -172,3 +172,12 @@ Route::prefix('portal-vista/oferta-academica')->group(function () {
     return view('ebid-views-login.register')->with('extension', $extension);
 });
 });
+/******************ZOOM********************** */
+// Get list of meetings.
+Route::get('/meetings', [Zoom\MeetingController::class,'list'])->name('listZoom');
+// Create meeting room using topic, agenda, start_time.
+Route::post('/meetings', [Zoom\MeetingController::class,'create'])->name('createZoom');
+// Get information of the meeting room by ID.
+Route::get('/meetings/{id}', [Zoom\MeetingController::class,'get'])->where('id', '[0-9]+')->name('showZoom');
+Route::patch('/meetings/{id}', [Zoom\MeetingController::class,'update'])->where('id', '[0-9]+')->name('updateZoom');
+Route::delete('/meetings/{id}', [Zoom\MeetingController::class,'delete'])->where('id', '[0-9]+')->name('deleteZoom');

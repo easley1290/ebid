@@ -236,33 +236,6 @@
                     </ul>
                   </li>
                  @endif
-                  
-                  <!----------------------------PARAMETROS---------------------------------->
-                  <!--
-                  <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#parametros"
-                      aria-expanded="false" aria-controls="parametros">
-                      <i class="mdi mdi-checkbox-multiple-blank-outline"></i>
-                      <span class="nav-text">Parametros</span> <b class="caret"></b>
-                    </a>
-                    <ul  class="collapse"  id="parametros"
-                      data-parent="#sidebar-menu">
-                      <div class="sub-menu">
-                        
-                            <li>
-                              <a class="sidenav-item-link" href="{{ route('Dominio.index') }}">
-                                <span class="nav-text">Dominios</span>
-                                
-                              </a>
-                            </li>
-                            <li >
-                              <a class="sidenav-item-link" href="{{ route('Subdominio.index') }}">
-                                <span class="nav-text">Subdominios</span>                             
-                              </a>
-                            </li>   
-                      </div>
-                    </ul>
-                  </li>   -->
                   <!----------------------------ENSEÑANZA---------------------------------->
                   @if (auth()->user()->per_rol <= 2)
                     <li  class="has-sub" >
@@ -287,6 +260,13 @@
                               </li>  
                         </div>
                       </ul>
+                    </li>
+
+                    <li  class="has-sub" >
+                      <a class="sidenav-item-link" href="{{ route('listZoom') }}">
+                        <i class="mdi mdi-calendar-clock"></i>
+                        <span class="nav-text">Zoom</span>
+                      </a>
                     </li>
                   @endif
 
