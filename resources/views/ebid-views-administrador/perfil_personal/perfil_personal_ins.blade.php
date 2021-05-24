@@ -246,7 +246,7 @@ $(document).ready(function(){
       console.log(data);
       //$('#contraseña_nueva').val(data[8]);
   
-      $('#editconForm').attr('action', '/Contrasena/'+data[0]);
+      $('#editconForm').attr('action', 'Contrasena/'+data[0]);
       $('#editconModal').modal('show');
     })
   });
