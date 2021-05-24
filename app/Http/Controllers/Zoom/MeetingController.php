@@ -34,6 +34,7 @@ class MeetingController extends Controller
         ];*/
         $status = $response->ok();
         $datos=$data['meetings'];
+        
         $aux = [$status, $datos];
         return view('ebid-views-administrador.zoom.meeting')->with('aux', $aux);
     }

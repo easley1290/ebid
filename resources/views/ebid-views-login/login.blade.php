@@ -66,11 +66,9 @@
             <div class="col-md-12">
               <div class="d-flex my-2 justify-content-between">
                
-                @if (Route::has('password.request'))
-                      <a class="text-blue" href="/MailContrasena">
+                      <a class="text-blue" href="MailContrasena">
                         Olvidaste tu contraseña?
                       </a>
-                @endif
               </div>
               <button type="submit" class="btn btn-lg btn-purple btn-block mb-4">Acceder</button>
               <p>Quieres ser miembro de Ebid?

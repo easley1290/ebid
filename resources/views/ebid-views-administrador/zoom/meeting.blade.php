@@ -35,7 +35,7 @@
                     <div class="card-header">
                           <div class="col-md-9"><h4 class="row">Listado de las reuniones generadas en Zoom</h4></div>
                           <div class="col-md-3"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                              <span class="mdi mdi-comment-plus"></span>&nbsp;Agregar una reunion
+                              <span class="mdi mdi-comment-plus"></span>&nbsp;Agregar una reunión
                           </button></div>
                       </div>
                       <div class="card-body pt-0 pb-5">
@@ -44,10 +44,10 @@
                             <tr>
                               <th style="display:none">ID</th>
                               <th>Tema</th>
-                              <th>Descripción</th>
+                              <th>Materia</th>
                               <th>Fecha y Hora </th>
                               <th style="display:none">Hora Inicio</th>
-                              <th>Link de Reunion</th>
+                              <th>Link de Reunión</th>
                               <th style="width:200px">Acciones</th>
                             </tr>
                           </thead>
@@ -92,7 +92,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <label for="exampleInputEmail1" class="form-label">Descripción</label>
+                        <label for="exampleInputEmail1" class="form-label">Materia</label>
                         <input name="agenda" type="text" class="form-control" id="agenda" aria-describedby="emailHelp" required>
                       </div>
                     </div>
@@ -133,7 +133,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <label for="exampleInputEmail1" class="form-label">Descripción</label>
+                        <label for="exampleInputEmail1" class="form-label">Materia</label>
                         <input name="agenda_" type="text" class="form-control" id="agenda_" aria-describedby="emailHelp" required>
                       </div>
                     </div>
