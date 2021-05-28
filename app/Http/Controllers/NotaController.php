@@ -35,7 +35,7 @@ class NotaController extends Controller
                 $contador_x = count($materia_docente) - 1;
                 $aux_posicion = 0;
                 $aux_array_est = [];
-                $aux_array_nota = [];
+                $aux_array_nota = []; s
                 while($aux_cantidad != 0){
                     $materia_id = $materia_docente[$aux_posicion]['matd_mat_id'];
                     $materia1[$aux_posicion] = $materia_docente[$aux_posicion]['matd_mat_id'];
@@ -60,7 +60,7 @@ class NotaController extends Controller
                     $aux_posicion = $aux_posicion + 1;
                 }
                 $notas = Notas::all();
-                $materias_est = MateriaEstudiante::all();
+                $materias_est = MateriaEstudiante::all(); 
                 $materias = Materias::all();
                 $estudiantes = Estudiantes::all();
                 $personas = Personas::all();

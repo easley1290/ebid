@@ -22,6 +22,7 @@ class DocenteController extends Controller
             $categorias = CategoriaDocente::all();
             $personas_habilitadas = Personas::select('*')
             ->where('per_rol','=',7)
+            ->orWhere('per_rol','=',6)
             ->get();
             $aux = [$docentes, $personas, $categorias, $personas_habilitadas];
             return view('ebid-views-administrador.docente.docente')->with('aux', $aux);
@@ -143,11 +144,17 @@ class DocenteController extends Controller
             $persona = $docente_delete->doc_per_id;
             $docente_delete->delete();
 
-            $personas = Personas::find($persona);
-            /*->where('per_id','=',$request->input('adm_per_id'))
-            ->get();*/
-            $personas->per_rol = 7;
-            $personas->save();
+            $docente_existe = Docentes::select('*')->where('doc_per_id', $persona)->exists();
+            if($docente_existe==True){
+                //dato existente
+            }
+            else {
+                $personas = Personas::find($persona);
+                /*->where('per_id','=',$request->input('adm_per_id'))
+                ->get();*/
+                $personas->per_rol = 7;
+                $personas->save();
+            }
 
             return redirect()->route('Docente.index')->with('status', 'Se ELIMINÓ el Docente con exito');
         } 

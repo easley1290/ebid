@@ -50,11 +50,12 @@
                                     <?php 
                                     $aux1[$posicion] = $aux[9][$posicion];
                                     echo $aux1[$posicion];
+                                    $enviar = $aux1[$posicion];
                                     $posicion = $posicion + 1;
                                     ?>
                             <div class="row">                              
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <span class="mdi mdi-comment-plus"></span>&nbsp;{{$materia1->mat_nombre}}
+                                <button class="btn btn-primary edit">
+                                  <span class="mdi mdi-circle-edit-outline"></span>&nbsp;{{$materia1->mat_nombre}}
                                 </button>                              
                             </div>
                             <br>
@@ -95,7 +96,7 @@
                                               @foreach($aux[0] as $nota)
                                                 <tr>
                                                     <td class="" style="display:none">{{ $nota->nota_id}}</td>
-                                                    @for each($aux[1] as $materiaEst)
+                                                    @foreach($aux[1] as $materiaEst) 
                                                       
                                                         @if($materiaEst->mate_id == $nota->nota_mate_id)
                                                             @foreach($aux[3] as $estudiante)
@@ -133,42 +134,13 @@
                                                     </div>
                                                     <form action="Nota" method="POST" id="editForm"> <!-- {{route('Dominio.store')}} -->
                                                     {{ csrf_field() }}
-                                                    {{ method_field('PUT') }}
                                                     <div class="modal-body">
                                                         <div class="row">
                                                           <input id="nota_mate_id" name="nota_mate_id" type="hidden">
                                                           <div class="col-md-12">
-                                                            <label for="exampleInputPassword1" class="form-label">Nombre del estudiante</label>
+                                                            <label for="exampleInputPassword1" class="form-label">Esta seguro de calificar la materia {{$materia1->mat_nombre}}</label>
                                                             <input name="est_id" type="text" class="form-control" id="est_id" readonly="readonly" required>
                                                           </div>
-                                                        </div>
-                                                        <div class="row">
-                                                          <div class="col-md-12">
-                                                            <label for="exampleInputPassword1" class="form-label">Nota 1er parcial</label>
-                                                            <input name="nota_examen1" type="text" class="form-control" id="nota_examen1" required>
-                                                          </div>
-                                                        </div>
-                                                        <div class="row">
-                                                          <div class="col-md-12">
-                                                            <label for="exampleInputPassword1" class="form-label">Nota 2do parcial</label>
-                                                            <input name="nota_examen2" type="text" class="form-control" id="nota_examen2" required>
-                                                          </div>
-                                                        </div>                    
-                                                        <div class="row">
-                                                          <div class="col-md-12">
-                                                            <label for="exampleInputPassword1" class="form-label">Nota examen 3er parcial</label>
-                                                            <input name="nota_examen3" type="text" class="form-control" id="nota_examen3" required>
-                                                          </div>
-                                                        </div> 
-                                                        <div class="row">
-                                                          <div class="col-md-12">
-                                                            <label for="exampleInputPassword1" class="form-label">Nota final</label>
-                                                            <input name="nota_final" type="text" class="form-control" id="nota_final" readonly="readonly" required>
-                                                          </div>
-                                                        </div> 
-                                                        <div class="modal-footer">
-                                                          <button type="submit" class="btn btn-primary">Guardar</button>
-                                                          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                                                         </div>
                                                       </div>
                                                       </form>
