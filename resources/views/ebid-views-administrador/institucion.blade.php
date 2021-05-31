@@ -22,7 +22,7 @@
                                 <th>Codigo U.A.</th>
                                 <th>Nombre U.A.</th>
                                 <th>Descripci&oacute;n U.A.</th>
-                                <th></th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -136,60 +136,60 @@
         </div>
     </div>
 
-            <!-- Modal editar-->
-            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Creación del Dominio</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <form action="/Dominio" method="POST" id="editForm"> <!-- {{route('Dominio.store')}} -->
-                  {{ csrf_field() }}
-                  {{ method_field('PUT') }}
-                  <div class="modal-body">
-                      <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Nombre del Dominio</label>
-                        <input name="dom_nombre" id="dom_nombre" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                      </div>
-                      <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Descripción</label>
-                        <input name="dom_descrip" id="dom_descrip" type="text" class="form-control" id="exampleInputPassword1">
-                      </div>
-                      <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                      </div>
-                    </div>
-                    </form>
-                </div>
-              </div>
+    <!-- Modal editar-->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Creación del Dominio</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form action="/Dominio" method="POST" id="editForm"> <!-- {{route('Dominio.store')}} -->
+            {{ csrf_field() }}
+            {{ method_field('PUT') }}
+            <div class="modal-body">
+                <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Nombre del Dominio</label>
+                <input name="dom_nombre" id="dom_nombre" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Descripción</label>
+                <input name="dom_descrip" id="dom_descrip" type="text" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+            </form>
+        </div>
+        </div>
+    </div>
 
-            <!-- Modal eliminar-->
-            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Dominio</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <form action="/Dominio" method="POST" id="deleteForm"> <!-- {{route('Dominio.store')}} -->
-                  {{ csrf_field() }}
-                  {{ method_field('DELETE') }}
-                  <div class="modal-body">
-                      <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Esta seguro de elimiar el dominio?</label>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Borrar</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                      </div>
-                    </div>
-                    </form>
-                </div>
-              </div>
+    <!-- Modal eliminar-->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Eliminar Dominio</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form action="/Dominio" method="POST" id="deleteForm">
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+            <div class="modal-body">
+                <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Esta seguro de elimiar el dominio?</label>
+                </div>
+                <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Borrar</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+            </form>
+        </div>
+        </div>
+    </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>

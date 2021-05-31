@@ -13,7 +13,7 @@ use App\Models\Pensum;
 use App\Models\Especialidades;
 use Illuminate\Support\Facades\DB;
 
-class EstudianteNuevoController extends Controller
+class EstudianteNuevoEstController extends Controller
 {
     public function store(Request $request)
     {
@@ -33,9 +33,6 @@ class EstudianteNuevoController extends Controller
                 'nombre_tutor' => 'required|min:10|max:150',
                 'telefono_tutor' => 'required|min:8|max:11',
                 'domicilio_tutor' => 'required|max:100',
-                'anio_estudiante' => 'required',
-                'ua_estudiante' => 'required',
-                'especialidad' => 'required'
             ]);
            
             $personaE = Personas::select('personas.*')
@@ -54,7 +51,6 @@ class EstudianteNuevoController extends Controller
             $personaE->email = (string) $request->get('correo_personal_estudiante');
             $personaE->per_domicilio = (string) $request->get('domicilio_estudiante');
             $personaE->per_subd_genero = $request->get('genero_estudiante');
-            $personaE->per_ua_id = $request->get('ua_estudiante');
             $personaE->per_rol = 3;
 
             $estudianteE = Estudiantes::select('estudiantes.*')
@@ -69,38 +65,7 @@ class EstudianteNuevoController extends Controller
             $estudianteE->est_domicilio_tutor =  $request->get('domicilio_tutor');
             $estudianteE->est_ocupacion_tutor =  $request->get('ocupacion_tutor');
             
-            if($request->get('bachiller') || $request->get('nacimiento') || $request->get('ciEst')){
-                $estudianteE->est_bachiller =  $request->get('bachiller');
-                $estudianteE->est_cert_nac =  $request->get('nacimiento');
-                $estudianteE->est_fot_ci =  $request->get('ciEst');
-                $estudianteE->est_fot_tutor =  $request->get('ciTutor');
-                $estudianteE->est_certificaciones =  $request->get('certificaciones');
-                $estudianteE->est_experiencia =  $request->get('experiencia');
-            }
-            
             $estudianteE->est_examen_ingreso_estado =  13;
-
-            $pensum = Pensum::select('*')
-                        ->where('pen_sem_id', '=', $request->get('anio_estudiante'))
-                        ->where('pen_esp_id', '=', $request->get('especialidad'))
-                        ->get();
-            
-            $tamanio = count($pensum);
-            $indicador = MateriaEstudiante::select('*')
-                        ->where('mate_est_id', '=', $estudianteE->est_id)
-                        ->get();
-            $tamanio2 = count($indicador);
-            if($tamanio2 == 0){
-                for($i = 0; $i < $tamanio; $i++){
-                    $me =  MateriaEstudiante::create([
-                        'mate_mat_id' => $pensum[$i]->pen_mat_id,
-                        'mate_esp_id' => $pensum[$i]->pen_esp_id,
-                        'mate_sem_id' => $pensum[$i]->pen_sem_id,
-                        'mate_est_id' => $estudianteE->est_id,
-                        'mate_subd_id' => 9
-                    ]);
-                }
-            }
             
             $personaE->save();
             $estudianteE->save();
@@ -156,7 +121,7 @@ class EstudianteNuevoController extends Controller
 
                 $especialidades = Especialidades::select('especialidades.*')
                                     ->get();
-                return view('ebid-views-administrador.estudiante.estudiante-nuevo', [
+                return view('ebid-views-administrador.estudiante.estudiante-nuevo-est', [
                     'datos'=>$datos, 
                     'genero'=>$genero, 
                     'extension'=>$extension, 

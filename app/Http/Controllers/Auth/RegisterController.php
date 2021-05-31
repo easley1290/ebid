@@ -79,11 +79,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
         $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-";
         $password = "";
         for($i=0;$i<8;$i++) {
-        $password .= substr($str,rand(0,62),1);
+            $password .= substr($str,rand(0,62),1);
         }
         /******************************************* */
         $crear_persona= Personas::create([

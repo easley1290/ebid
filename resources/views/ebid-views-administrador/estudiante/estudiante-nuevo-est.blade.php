@@ -30,7 +30,7 @@
                 <div class="card card-default">            
                     @if (auth()->user()->per_rol<=3 || auth()->user()->per_id == $datos->per_id)
                     <div class="card-body">
-                        <form action="{{ route('estudiante-nuevo.store') }}" method="POST">
+                        <form action="{{ route('estudiante-nuevo-est.store') }}" method="POST">
                             @csrf
                             <div class="form-group row">
                                 <div class="col-md-4">
@@ -163,102 +163,6 @@
                                             tabindex="14" autocomplete="off"  required>
                                 </div>
                             </div>
-                            @if (auth()->user()->per_rol == 1)
-                                <div class="form-group row">
-                                    <div class="col-md-4 mb-3">
-                                        <label for="anio_estudiante">Año en el que cursará el estudiante</label>
-                                        <select class="form-select" name="anio_estudiante" id="anio_estudiante" required tabindex="15">
-                                            @if ($nombreSem != null)
-                                                <option value="{{ $datos->est_sem_id }}" selected>{{ $nombreSem->sem_nombre }}</option>
-                                            @else
-                                                <option value="" disabled selected>-- Seleccione la gestión --</option>
-                                            @endif
-                                            @foreach($anio as $sem)               
-                                                <option value="{{$sem->sem_id}}">{{$sem->sem_nombre}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-4 mb-3">
-                                        <label for="especialidad">Especialidad del estudiante</label>
-                                        <select class="form-select" name="especialidad" id="especialidad" required tabindex="16">
-                                            @foreach($especialidad as $esp)               
-                                                <option value="{{$esp->esp_id}}">{{$esp->esp_nombre}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-4 mb-3">
-                                        <label for="ua_estudiante">Unidad academica en la que se inscribirá</label>
-                                        <select class="form-select" name="ua_estudiante" id="ua_estudiante" required tabindex="17s">
-                                            @foreach($uacad as $ua)               
-                                                <option value="{{$ua->ua_id}}">{{$ua->ua_nombre}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-
-                            
-                                <div class="form-group row">
-                                    <div class="col-md-12 mb-3">
-                                        <label for="">Seleccione la documentacion y detalles adicionales presentados por el estudiante</label>
-                                        <label class="control control-checkbox outlined">Fotocopia legalizada de diploma de bachiller
-                                            @if ($datos->est_bachiller == 'on')
-                                                <input type="checkbox" id="bachiller" name="bachiller" value="{{ $datos->est_bachiller }}" checked>
-                                                <div class="control-indicator"></div>
-                                            @else
-                                                <input type="checkbox" id="bachiller" name="bachiller">
-                                                <div class="control-indicator"></div>
-                                            @endif
-                                        </label>
-                                        <label class="control control-checkbox outlined">Certificado de nacimiento original actualizado
-                                            @if ($datos->est_cert_nac == 'on')
-                                                <input type="checkbox" id="nacimiento" name="nacimiento" value="{{ $datos->est_cert_nac }}" checked>
-                                                <div class="control-indicator"></div>
-                                            @else
-                                                <input type="checkbox" id="nacimiento" name="nacimiento">
-                                                <div class="control-indicator"></div>
-                                            @endif
-                                        </label>
-                                        <label class="control control-checkbox outlined">Fotocopia de cedula de identidad del estudiante
-                                            @if ($datos->est_fot_ci == 'on')
-                                                <input type="checkbox" id="ciEst" name="ciEst" value="{{ $datos->est_fot_ci }}" checked>
-                                                <div class="control-indicator"></div>
-                                            @else
-                                                <input type="checkbox" id="ciEst" name="ciEst">
-                                                <div class="control-indicator"></div>
-                                            @endif
-                                        </label>
-                                        <label class="control control-checkbox outlined">Fotocopia de cedula de identidad del madre/padre/tutor registrado
-                                            @if ($datos->est_fot_tutor == 'on')
-                                                <input type="checkbox" id="ciTutor" name="ciTutor" value="{{ $datos->est_fot_tutor }}" checked>
-                                                <div class="control-indicator"></div>
-                                            @else
-                                                <input type="checkbox" id="ciTutor" name="ciTutor">
-                                                <div class="control-indicator"></div>
-                                            @endif
-                                        </label>
-                                        <label class="control control-checkbox outlined">Certificaciones de institutos
-                                            @if ($datos->est_certificaciones == 'on')
-                                                <input type="checkbox" id="certificaciones" name="certificaciones" value="{{ $datos->est_certificaciones }}" checked>
-                                                <div class="control-indicator"></div>
-                                            @else
-                                                <input type="checkbox" id="certificaciones" name="certificaciones">
-                                                <div class="control-indicator"></div>
-                                            @endif
-                                        </label>
-                                        <label class="control control-checkbox outlined">Experiencia previa
-                                            @if ($datos->est_experiencia == 'on')
-                                                <input type="checkbox" id="experiencia" name="experiencia" value="{{ $datos->est_experiencia }}" checked>
-                                                <div class="control-indicator"></div>
-                                            @else
-                                                <input type="checkbox" id="experiencia" name="experiencia">
-                                                <div class="control-indicator"></div>
-                                            @endif
-                                        </label>
-                                    </div>
-                                </div>
-                            @endif
                             
                             <div style="float: right;">
                                 <button type="button"  class="btn btn-success" data-bs-toggle="modal" data-bs-target="#confirmar"><span class="mdi mdi-check" ></span>&nbsp;REGISTRAR DATOS</button>
