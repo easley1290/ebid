@@ -256,7 +256,7 @@ $(document).ready(function() {
       $('#per_domicilio').val($('#per_domicilio_').val());
       
 
-      $('#editForm').attr('action', '/PersonaPerfil/'+id);
+      $('#editForm').attr('action', 'PersonaPerfil/'+id);
       $('#editModal').modal('show');
     })
   });

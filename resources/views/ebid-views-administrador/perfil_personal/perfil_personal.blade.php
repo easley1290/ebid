@@ -346,7 +346,7 @@ $(document).ready(function(){
     $('#per_correo_personal').val(data[7]);
     $('#per_domicilio').val(data[14]);
 
-    $('#editForm').attr('action', '/Persona/'+data[0]);
+    $('#editForm').attr('action', 'Persona/'+data[0]);
     $('#editModal').modal('show');
   })
 });
@@ -363,7 +363,7 @@ $(document).ready(function(){
       }
       var data = table.row($tr).data();
   
-      $('#deleteForm').attr('action', '/Persona/'+data[0]);
+      $('#deleteForm').attr('action', 'Persona/'+data[0]);
       $('#deleteModal').modal('show');
     })
   });
