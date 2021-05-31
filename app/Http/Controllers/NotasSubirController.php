@@ -22,7 +22,7 @@ class NotasSubirController extends Controller
         try{
             $idUsuario = auth()->user()->per_id;
             $docente = Docentes::select('docentes.*')
-                    ->where('doc_per_id','=',66)
+                    ->where('doc_per_id','=',$idUsuario)
                     ->first();
             
             $materiaDocente = MateriaDocente::select('materias_docente.*')
