@@ -38,9 +38,13 @@ use App\Http\Controllers\SubirComprobante2Controller;
 use App\Http\Controllers\ValidarComprobanteController;
 use App\Http\Controllers\CalendarioExamenIngresoController;
 use App\Http\Controllers\EstudianteNuevoController;
+use App\Http\Controllers\EstudianteNuevoEstController;
 use App\Models\Subdominios;
 use App\Http\Controllers\EstudianteUsuarioController;
 use App\Http\Controllers\MailController;
+
+use App\Http\Controllers\NotasController;
+use App\Http\Controllers\NotasSubirController;
 
 /*---------------- Portal web controllers---------------- */
 use App\Http\Controllers\HomePortalController;
@@ -53,16 +57,6 @@ use App\Http\Controllers\PortalVistaInscripcionController;
 
 use App\Http\Controllers\Zoom;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 /*PORTAL*/ 
 Route::resource('/', HomePortalController::class);
@@ -97,7 +91,19 @@ Route::prefix('administracion/inscripcion')->group(function () {
     Route::resource('/valida-comprobante', ValidarComprobanteController::class);
     Route::resource('/calendario-ingreso', CalendarioExamenIngresoController::class);
     Route::resource('/estudiante-nuevo', EstudianteNuevoController::class);
+    Route::resource('/estudiante-nuevo-est', EstudianteNuevoEstController::class);
     Route::post('/estudiante-buscar', [EstudianteController::class, 'busquedaEstudiante'])->name('busquedaEstudiante');
+});
+
+Route::prefix('administracion/notas')->group(function () {
+    Route::resource('/subir-notas', NotasSubirController::class);
+    Route::resource('/ver-notas', NotasController::class);
+    Route::post('/materia-estudiante-buscar', [NotasSubirController::class, 'busquedaMateriaEstudiante'])->name('busquedaMateriaEstudiante');
+    Route::post('/materia-estudiante-buscar-notas', [NotasController::class, 'busquedaMateriaEstudianteNotas'])->name('busquedaMateriaEstudianteNotas');
+    Route::get('/cerrar-abrir-parcial', [NotasController::class, 'cerrarAbrirParcialVer'])->name('cerrarAbrirParcialVer');
+    Route::post('/cerrar-abrir-parcial', [NotasController::class, 'cerrarAbrirParcialMod'])->name('cerrarAbrirParcialMod');
+    Route::get('/modificar-permisos-notas', [NotasController::class, 'permisoModificarNotasVer'])->name('permisoModificarNotasVer');
+    Route::post('/modificar-permisos-notas', [NotasController::class, 'permisoModificarNotasMod'])->name('permisoModificarNotasMod');
 });
 
 /***********Rutas dominio**********/

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Subdominios;
 
 class AdministracionController extends Controller
 {
@@ -13,7 +14,12 @@ class AdministracionController extends Controller
      */
     public function index()
     {
-        return view('ebid-views-administrador.home');
+        $subdominios = Subdominios::select('subd_descripcion')
+                        ->where('subd_nombre', '=', 'Parcial a cerrar')
+                        ->first();
+        return view('ebid-views-administrador.home', [
+            'subdominios'=>$subdominios
+        ]);
     }
 
     /**

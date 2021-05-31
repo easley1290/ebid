@@ -247,17 +247,16 @@
                       <ul  class="collapse"  id="cursos"
                         data-parent="#sidebar-menu">
                         <div class="sub-menu">
-                              <li>
-                                <a class="sidenav-item-link" href="#">
-                                  <span class="nav-text">Seguimiento de estudiantes</span>
-                                  
-                                </a>
-                              </li>
-                              <li >
-                                <a class="sidenav-item-link" href="{{ route('MateriaDocente.index') }}">
-                                  <span class="nav-text">Seguimiento de docentes</span>                             
-                                </a>
-                              </li>  
+                          <li>
+                            <a class="sidenav-item-link" href="{{ route('MateriaDocente.index') }}">
+                              <span class="nav-text">Asignacion de materia a docentes</span>                             
+                            </a>
+                          </li>
+                          <li>
+                            <a class="sidenav-item-link" href="">
+                              <span class="nav-text">Seguimiento a estudiantes</span>
+                            </a>
+                          </li> 
                         </div>
                       </ul>
                     </li>
@@ -270,12 +269,21 @@
                     </li>
                   @endif
 
-                  @if (auth()->user()->per_rol <= 6)
+                  @if (auth()->user()->per_rol == 6 || auth()->user()->per_rol == 1)
                     <!----------------------------NOTAS---------------------------------->
                     <li  class="has-sub" >
-                      <a class="sidenav-item-link" href="{{ route('Nota.index') }}">
+                      <a class="sidenav-item-link" href="{{ route('ver-notas.index') }}">
                         <i class="mdi mdi-notebook"></i>
                         <span class="nav-text">Notas</span>
+                      </a>
+                    </li>
+                  @endif
+                  @if (auth()->user()->per_rol == 3)
+                    <!----------------------------VER NOTAS---------------------------------->
+                    <li  class="has-sub" >
+                      <a class="sidenav-item-link" href="">
+                        <i class="mdi mdi-notebook"></i>
+                        <span class="nav-text">Ver mis notas</span>
                       </a>
                     </li>
                   @endif
@@ -304,7 +312,7 @@
                           @endif
                           @if (auth()->user()->per_rol == 5)
                             <li>
-                              <a class="sidenav-item-link" href="{{ route('estudiante-nuevo.show', auth()->user()->per_id) }}">
+                              <a class="sidenav-item-link" href="{{ route('estudiante-nuevo-est.show', auth()->user()->per_id) }}">
                                 <span class="nav-text">Registrar perfil de estudiante</span>
                               </a>
                             </li>

@@ -19,6 +19,7 @@ class SubirComprobante2Controller extends Controller
         $estudiantes = Estudiantes::select('estudiantes.*', 'personas.*')
                         ->join('personas', 'personas.per_id', '=', 'estudiantes.est_per_id')
                         ->get();
+                        
         $semestres = Semestre::all();
                 
         return view('ebid-views-administrador.inscripcion.subir_comprobanteNA', ['estudiantes' => $estudiantes, 'semestre' => $semestres]);
