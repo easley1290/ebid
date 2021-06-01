@@ -242,7 +242,7 @@ $(document).ready(function(){
     $('#doc_titulo').val(data[5]);
     $('#doc_descripcion').val(data[6]);
 
-    $('#editForm').attr('action', '/Docente/'+data[0]);
+    $('#editForm').attr('action', 'Docente/'+data[0]);
     $('#editModal').modal('show');
   })
 });
@@ -258,7 +258,7 @@ $(document).ready(function(){
     }
     var data = table.row($tr).data();
 
-    $('#deleteForm').attr('action', '/Docente/'+data[0]);
+    $('#deleteForm').attr('action', 'Docente/'+data[0]);
     $('#deleteModal').modal('show');
   })
 });
