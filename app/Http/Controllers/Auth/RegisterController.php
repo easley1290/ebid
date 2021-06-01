@@ -99,7 +99,7 @@ class RegisterController extends Controller
             'per_telefono' => trim($data['per_telefono']),
             'per_subd_extension' => trim($data['per_subd_extension']),
             'per_num_documentacion' => trim($data['per_num_documentacion']).trim($data['per_alfanumerico']),
-            'per_rol' => '4', 
+            'per_rol' => '7', 
             'per_foto_personal' => '/assets/img/usuario.ico',
         ]);
         /******************************************* */
