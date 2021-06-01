@@ -38,7 +38,7 @@ class RegisterController extends Controller
 
     protected function redirectTo()
     {
-        session()->flash('contrasena', 'Por favor revise su correo, la conotraseña fue enviada'); 
+        session()->flash('contrasena', 'Por favor revise el correo que ingreso en el formulario, la contraseña fue enviada'); 
         return '/login_';
     }
 
@@ -68,6 +68,7 @@ class RegisterController extends Controller
             //'password' => ['required', 'string', 'min:8', 'confirmed'],
             'per_subd_extension' => ['required', 'string'],
             'per_num_documentacion' => ['required', 'max:11', 'unique:personas'],
+            'g-recaptcha-response' => ['required', 'recaptcha'],
         ]);
     }
 
@@ -101,6 +102,7 @@ class RegisterController extends Controller
             'per_num_documentacion' => trim($data['per_num_documentacion']).trim($data['per_alfanumerico']),
             'per_rol' => '7', 
             'per_foto_personal' => '/assets/img/usuario.ico',
+            
         ]);
         /******************************************* */
 

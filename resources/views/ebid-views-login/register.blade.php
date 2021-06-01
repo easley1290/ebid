@@ -1,5 +1,5 @@
 @extends('ebid-views-login.componentes.link')
-
+{!! htmlScriptTagJsApi(['lang' => 'es']) !!}
 <body class="" id="body">
   <div class="container d-flex flex-column justify-content-between vh-100">
   <div class="row justify-content-center mt-5">
@@ -15,7 +15,7 @@
         </div>
         <div class="card-body p-5">
           <h4 class="text-dark mb-5">Ingrese los siguientes datos</h4>
-          <form method="POST" action="{{ route('register') }}">
+          <form method="POST" action="{{ route('register') }}" onsubmit="return validateRecaptcha();">
             @csrf
             <div class="row">
               <div class="form-group col-md-4 mb-4">
@@ -76,7 +76,7 @@
               </div>
               <div class="form-group col-md-4 mb-4">
                 <select class="form-select form-control" name="per_subd_extension" id="per_subd_extension" required>
-                  <option value="" disabled selected>-- Extención CI --</option>
+                  <option value="" disabled selected>-- Extensión CI --</option>
                   @foreach($extension as $ext)               
                     <option value="{{$ext->subd_id}}">{{$ext->subd_nombre}}</option>
                   @endforeach
@@ -122,12 +122,19 @@
                 <input id="password-confirm" type="password" class="form-control" 
                 name="password_confirmation" placeholder="Confirmar Contraseña" autocomplete="new-password" required>
               </div-->
+              
+              <div class="col-md-12" aria-label="Verifique el codigo captcha" >
+                <div class="col-md-4" style="display: flex; justify-content: center; margin-left: auto; margin-right: auto;">{!! htmlFormSnippet() !!}</div>
 
-              <div class="col-md-12">
-                <button type="submit" class="btn btn-lg btn-purple btn-block mb-4">Incribirse</button>
-                <p>Ya tienes una cuenta?
-                  <a class="text-blue" href="login_">Volver</a>
-                </p>
+              </div>
+
+              <div class="form-group row col-md-12">
+                <div class="col-md-12 mt-4">
+                  <button type="submit" class="btn btn-lg btn-purple btn-block mb-4">Incribirse</button>
+                  <p>Ya tienes una cuenta?
+                    <a class="text-blue" href="login_">Volver</a>
+                  </p>
+                </div>
               </div>
             </div>
           </form>
@@ -138,4 +145,16 @@
 </div>
 </body>
 </html>
+<script src='https://www.google.com/recaptcha/api.js?render=onload{{ (isset($lang) ? '&hl='.$lang : '') }}'></script>
+<script type="text/javascript">
+  function validateRecaptcha() {
+    var response = grecaptcha.getResponse();
+    if (response.length === 0) {
+        alert("Debe validar que no es un robot, marcando el captcha");
+        return false;
+    } else {
+        return true;
+    }
+}
+</script>
 @extends('ebid-views-login.componentes.script')
