@@ -53,39 +53,45 @@ class PersonaController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'nombres' => 'required',
-            'paterno' => 'required',
-            'materno' => 'required',
-            'tipo_doc' => 'required',
-            'num_doc' => 'required',
-            'extension' => 'required',
-            'extension' => 'required',
-            'fec_nac' => 'required',
-            'correo' => 'required'
-        ]);
-        
-        $persona_nuevo = new Personas;
+        try{
+            
+            $this->validate($request,[
+                'nombres' => 'required',
+                'paterno' => 'required',
+                'materno' => 'required',
+                'tipo_doc' => 'required',
+                'num_doc' => 'required',
+                'extension' => 'required',
+                'extension' => 'required',
+                'fec_nac' => 'required',
+                'correo' => 'required'
+            ]);
+            
+            $persona_nuevo = new Personas;
 
-        $persona_nuevo->per_ua_id =             'UA-EA0001';
-        $persona_nuevo->per_nombres =           $request->nombres;
-        $persona_nuevo->per_paterno =           $request->paterno;
-        $persona_nuevo->per_materno =           $request->materno;
-        $persona_nuevo->per_num_documentacion = $request->num_doc;
-        $persona_nuevo->per_fecha_nacimiento =  $request->fec_nac;
-        $persona_nuevo->per_telefono =          $request->telefono;
-        $persona_nuevo->name = $request->input('nombres').' '.$request->input('paterno').' '.$request->input('materno');
-        $persona_nuevo->email =                 $request->correo;
-        $persona_nuevo->per_domicilio =         $request->domicilio;
-        $persona_nuevo->per_subd_documentacion =$request->tipo_doc;
-        $persona_nuevo->per_subd_extension =    $request->extension;
-        $persona_nuevo->per_subd_genero =       $request->genero;
-        $persona_nuevo->per_subd_estado =       '1';
+            $persona_nuevo->per_ua_id =             'UA-EA0001';
+            $persona_nuevo->per_nombres =           $request->nombres;
+            $persona_nuevo->per_paterno =           $request->paterno;
+            $persona_nuevo->per_materno =           $request->materno;
+            $persona_nuevo->per_num_documentacion = $request->num_doc;
+            $persona_nuevo->per_fecha_nacimiento =  $request->fec_nac;
+            $persona_nuevo->per_telefono =          $request->telefono;
+            $persona_nuevo->name = $request->input('nombres').' '.$request->input('paterno').' '.$request->input('materno');
+            $persona_nuevo->email =                 $request->correo;
+            $persona_nuevo->per_domicilio =         $request->domicilio;
+            $persona_nuevo->per_subd_documentacion =$request->tipo_doc;
+            $persona_nuevo->per_subd_extension =    $request->extension;
+            $persona_nuevo->per_subd_genero =       $request->genero;
+            $persona_nuevo->per_subd_estado =       '1';
 
-        $persona_nuevo->per_rol = '7';
-        $persona_nuevo->save();
+            $persona_nuevo->per_rol = '7';
+            $persona_nuevo->save();
 
-        return redirect()->route('Persona.index');
+        return redirect()->route('Persona.index')->with('status', 'Se CREÓ la persona con exito');
+        }
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 
     /**
@@ -148,10 +154,10 @@ class PersonaController extends Controller
             $persona_edit->per_subd_documentacion = $request->input('per_subd_documentacion');
             $persona_edit->per_subd_extension = $request->input('per_subd_extension');
             $persona_edit->per_subd_genero = $request->input('per_subd_genero');
-            $persona_edit->per_subd_estado = '7';
+            $persona_edit->per_subd_estado = '1';
 
             $persona_edit->save();
-            return redirect()->route('Persona.index');
+            return redirect()->route('Persona.index')->with('status', 'Se MODIFICÓ la persona con exito');
         }
         catch (Throwable $e){
             return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
