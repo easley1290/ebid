@@ -299,12 +299,10 @@
                     $('#nota4').removeAttr('readonly', 'readonly');
                 @endif
 
-                
-
                 $('#mate_id').val($tr[0].children[12].innerText);
-
+                
                 $('#editModal').modal('show');
-                $('#editForm').attr('action', 'ver-notas/'+$tr[0].children[11].innerText);
+                $('#editForm').attr('action', 'ver-notas/'+$tr[0].children[12].innerText);
             })
         });
     </script>

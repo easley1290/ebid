@@ -71,6 +71,7 @@ class NotasController extends Controller
         try{
             $notaE = Notas::find($id);
             $notaE->nota_final1 = $request->get('nota1');
+           
             $notaE->nota_final2 = $request->get('nota2');
             $notaE->nota_final3 = $request->get('nota3');
             $notaE->nota_final4 = $request->get('nota4');
