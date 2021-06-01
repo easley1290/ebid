@@ -19,21 +19,36 @@ class NotasController extends Controller
 {
     public function index()
     {
-        $idUsuario = auth()->user()->per_id;
-        $docente = Docentes::select('docentes.*')
-                ->where('doc_per_id','=',$idUsuario)
-                ->first();
-        
-        $materiaDocente = MateriaDocente::select('materias_docente.*')
-                ->where('matd_doc_id','=',$docente->doc_id)
-                ->get();
-        
-        $materias = Materias::select('materias.*')
+        try{
+            $idUsuario = auth()->user()->per_id;
+            $docente = Docentes::select('docentes.*')
+                    ->where('doc_per_id','=', $idUsuario)
+                    ->first();
+            
+            if($docente != null){
+                $materiaDocente = MateriaDocente::select('materias_docente.*')
+                    ->where('matd_doc_id','=',$docente->doc_id)
                     ->get();
-        return view('ebid-views-administrador.notas.notas-ver', [
-            'materiaDocente'=>$materiaDocente,
-            'materias'=>$materias
-        ]); 
+            
+                    $materias = Materias::select('materias.*')
+                    ->get();
+                return view('ebid-views-administrador.notas.notas-ver', [
+                    'materiaDocente'=>$materiaDocente,
+                    'materias'=>$materias
+                ]);
+            }
+            else{
+                $materias = Materias::select('materias.*')
+                            ->get();
+                return view('ebid-views-administrador.notas.notas-ver', [
+                    'materiaDocente'=>[],
+                    'materias'=>$materias
+                ])->with('status', 'No posee materias asiganadas');
+            }
+        }
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
     }
 
     public function busquedaMateriaEstudianteNotas(Request $request)
@@ -172,27 +187,90 @@ class NotasController extends Controller
                 case 1:
                     $notas->nota_indicador1 = "1";
                     $notas->save();
-                    return redirect()->route('administracion.index')->with('status', 'Se brindo permisos de modificacion de notas del parcial Nro.'.$parcial.', de la materia '.$nombreMateria);
+                    return redirect()->route('administracion.index')->with('status', 'Se brindo permisos de modificacion de notas del parcial Nro.'.$parcial.', de la materia '.$nombreMateria->mat_nombre);
                     break;
                 case 2:
                     $notas->nota_indicador2 = "1";
                     $notas->save();
-                    return redirect()->route('administracion.index')->with('status', 'Se brindo permisos de modificacion de notas del parcial Nro.'.$parcial.', de la materia '.$nombreMateria);
+                    return redirect()->route('administracion.index')->with('status', 'Se brindo permisos de modificacion de notas del parcial Nro.'.$parcial.', de la materia '.$nombreMateria->mat_nombre);
                     break;
                 case 3:
                     $notas->nota_indicador3 = "1";
                     $notas->save();
-                    return redirect()->route('administracion.index')->with('status', 'Se brindo permisos de modificacion de notas del parcial Nro.'.$parcial.', de la materia '.$nombreMateria);
+                    return redirect()->route('administracion.index')->with('status', 'Se brindo permisos de modificacion de notas del parcial Nro.'.$parcial.', de la materia '.$nombreMateria->mat_nombre);
                     break;
                 case 4:
                     $notas->nota_indicador4 = "1";
                     $notas->save();
-                    return redirect()->route('administracion.index')->with('status', 'Se brindo permisos de modificacion de notas del parcial Nro.'.$parcial.', de la materia '.$nombreMateria);
+                    return redirect()->route('administracion.index')->with('status', 'Se brindo permisos de modificacion de notas del parcial Nro.'.$parcial.', de la materia '.$nombreMateria->mat_nombre);
                     break;
                 default:
                     break;
             }
             
+        }
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
+    }
+    public function cerrarGestionAcademica(Request $request)
+    {
+        try
+        {
+            $subdominio = Subdominios::select('*')
+                        ->where('subd_nombre', '=', 'Parcial a cerrar')
+                        ->first();
+            $subdominio->subd_descripcion = "SEGUNDO TURNO";
+
+            $notas = Notas::select('notas.*', 'materia_estudiante.*')
+                    ->join('materia_estudiante', 'materia_estudiante.mate_id', '=', 'notas.nota_mate_id')
+                    ->get();
+            for($i=0; $i<count($notas); $i++){
+                if(floatval($notas[$i]->nota_final) < 6.1){
+                    $materiaEstudiante = MateriaEstudiante::find($notas[$i]->nota_mate_id);
+                    $materiaEstudiante->mate_subd_id = 12;
+                    $materiaEstudiante->save();
+                }
+            }
+            $subdominio->save();
+            return redirect()->route('administracion.index')->with('status', 'Se cerro el periodo academico y se abrío el periodo del Segundo Turno.');
+        }
+        catch (Throwable $e){
+            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
+    }
+    public function cerrarDosT(Request $request)
+    {
+        try{
+            $subdominio = Subdominios::select('*')
+                        ->where('subd_nombre', '=', 'Parcial a cerrar')
+                        ->first();
+            $subdominio->subd_descripcion = 1;
+
+            $notas = Notas::select('notas.*', 'materia_estudiante.*')
+                    ->join('materia_estudiante', 'materia_estudiante.mate_id', '=', 'notas.nota_mate_id')
+                    ->get();
+            
+            for($i=0; $i<count($notas); $i++){
+                if(floatval($notas[$i]->nota_final) < 6.1){
+                    $materiaEstudiante = MateriaEstudiante::find($notas[$i]->nota_mate_id);
+                    $materiaEstudiante->mate_subd_id = 32;
+                    $materiaEstudiante->save();
+                    $estudiante = Estudiantes::find($notas[$i]->mate_est_id);
+                    $estudiante->est_subd_estado = 7;
+                    $estudiante->save();
+                }
+                else if(floatval($notas[$i]->nota_final) >= 6.1){
+                    $materiaEstudiante = MateriaEstudiante::find($notas[$i]->nota_mate_id);
+                    $materiaEstudiante->mate_subd_id = 11;
+                    $materiaEstudiante->save();
+                    $estudiante = Estudiantes::find($notas[$i]->mate_est_id);
+                    $estudiante->est_subd_estado = 7;
+                    $estudiante->save();
+                }
+            }
+            $subdominio->save();
+            return redirect()->route('administracion.index')->with('status', 'Se cerro el periodo academico y se abrío el periodo del Segundo Turno.');
         }
         catch (Throwable $e){
             return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');

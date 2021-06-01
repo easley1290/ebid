@@ -61,9 +61,9 @@
                                         @endif
                                     @endforeach
                                     <td style="width:200px">
-                                            <button class="btn btn-success edit" id="edit">
-                                                <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Completar registro
-                                            </button>
+                                        <button class="btn btn-success edit" id="edit">
+                                            <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Completar registro
+                                        </button>
                                     </td>
                                 </tr>
                                 @endforeach

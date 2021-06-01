@@ -45,6 +45,7 @@ use App\Http\Controllers\MailController;
 
 use App\Http\Controllers\NotasController;
 use App\Http\Controllers\NotasSubirController;
+use App\Http\Controllers\NotasSeguimientoController;
 
 /*---------------- Portal web controllers---------------- */
 use App\Http\Controllers\HomePortalController;
@@ -98,12 +99,16 @@ Route::prefix('administracion/inscripcion')->group(function () {
 Route::prefix('administracion/notas')->group(function () {
     Route::resource('/subir-notas', NotasSubirController::class);
     Route::resource('/ver-notas', NotasController::class);
+    Route::resource('/seguimiento-estudiantes', NotasSeguimientoController::class);
     Route::post('/materia-estudiante-buscar', [NotasSubirController::class, 'busquedaMateriaEstudiante'])->name('busquedaMateriaEstudiante');
     Route::post('/materia-estudiante-buscar-notas', [NotasController::class, 'busquedaMateriaEstudianteNotas'])->name('busquedaMateriaEstudianteNotas');
+    Route::post('/estudiante-materia-buscar', [NotasSeguimientoController::class, 'busquedaEstudianteMateria'])->name('busquedaEstudianteMateria');
     Route::get('/cerrar-abrir-parcial', [NotasController::class, 'cerrarAbrirParcialVer'])->name('cerrarAbrirParcialVer');
     Route::post('/cerrar-abrir-parcial', [NotasController::class, 'cerrarAbrirParcialMod'])->name('cerrarAbrirParcialMod');
     Route::get('/modificar-permisos-notas', [NotasController::class, 'permisoModificarNotasVer'])->name('permisoModificarNotasVer');
     Route::post('/modificar-permisos-notas', [NotasController::class, 'permisoModificarNotasMod'])->name('permisoModificarNotasMod');
+    Route::post('/cerrar-ges-acad', [NotasController::class, 'cerrarGestionAcademica'])->name('cerrarGestionAcademica');
+    Route::post('/cerrar-2t', [NotasController::class, 'cerrarDosT'])->name('cerrarDosT');
 });
 
 /***********Rutas dominio**********/
@@ -122,8 +127,6 @@ Route::get('/register_', function () {
                         ->get();
     return view('ebid-views-login.register')->with('extension', $extension);
 });
-
-
 Route::get('/MailContrasena',[MailController::class,'index']);
 Route::post('/CambioContrasena',[MailController::class,'sendEmail'])->name('CambioContrasena');
 
@@ -172,12 +175,14 @@ Route::prefix('portal-vista/oferta-academica')->group(function () {
     Auth::routes();
     Route::get('/login_', function () {return view('ebid-views-login.login');});
     Route::get('/register_', function () {
-    $extension = Subdominios::select('subdominios.*')
-                        ->where('subd_dom_id','=',9)
-                        ->get();
-    return view('ebid-views-login.register')->with('extension', $extension);
+        $extension = Subdominios::select('subdominios.*')
+                            ->where('subd_dom_id','=',9)
+                            ->get();
+        return view('ebid-views-login.register')->with('extension', $extension);
+    });
 });
-});
+
+
 /******************ZOOM********************** */
 // Get list of meetings.
 Route::get('/meetings', [Zoom\MeetingController::class,'list'])->name('listZoom');

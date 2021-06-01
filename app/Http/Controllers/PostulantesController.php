@@ -42,7 +42,7 @@ class PostulantesController extends Controller
         }
     }
     public function create(){
-        /*-----------Se llama a la vista del resgitro del postulante---------------------------*/
+        /*-----------Se llama a la vista del registro del postulante---------------------------*/
         try{
             $extension = Subdominios::select('subdominios.*')
                         ->where('subd_dom_id','=',9)
@@ -85,7 +85,7 @@ class PostulantesController extends Controller
             $personaC->name = $request->get('nombres_estudiante').' '.$request->get('paterno_estudiante').' '. $request->get('materno_estudiante');
             $personaC->email = (string) $request->get('email');
             $personaC->per_correo_personal = (string) $request->get('email');
-            $personaC->password = Hash::make($request->get('numero_ci_estudiante'));
+            $personaC->password = Hash::make(trim($request->get('password')));
             $personaC->per_ua_id = 'UA-EA0001';
             $personaC->per_subd_estado = 1;
             $personaC->per_rol = 4;

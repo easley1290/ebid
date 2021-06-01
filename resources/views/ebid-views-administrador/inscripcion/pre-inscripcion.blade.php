@@ -122,9 +122,9 @@
                                             required autocomplete="off">
                                 </div>
                                 <div class="form-group col-md-12 ">
-                                    <label for="password">Repita la contraseña</label>
-                                  <input id="password-confirm" type="password" class="form-control" 
-                                        name="password_confirmation" placeholder="Confirmar Contraseña" 
+                                    <label for="password-confirm">Repita la contraseña</label>
+                                    <input id="password-confirm" type="password" class="form-control" 
+                                        name="password-confirm" placeholder="Confirmar Contraseña" 
                                         required autocomplete="off">
                                 </div>
                                 <div class="col-md-12">
@@ -143,7 +143,7 @@
     <script>
         $('#btnAgregar').click(function(){
             $mensaje = "Postulante "+$('#nombres_estudiante').val()+" "+$('#paterno_estudiante').val()+" "+$('#materno_estudiante').val()+" su registro ha sido completado";
-            $mensaje+= "por el personal de EBID, el paso siguiente es realizar el deposito de Bs. 1 en el numero de cuenta XXXXXXXXXXXXXXXXXXX";
+            $mensaje+= " por el personal de EBID, el paso siguiente es realizar el deposito de Bs. 1 en el numero de cuenta XXXXXXXXXXXXXXXXXXX";
             $url = 'https://web.whatsapp.com/send?phone=591'+$('#numero_telefono_estudiante').val()+'&text='+$mensaje+'&app_absent=0';
             window.open($url, "_blank");
         });

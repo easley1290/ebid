@@ -82,7 +82,7 @@ class PersonaController extends Controller
         $persona_nuevo->per_subd_genero =       $request->genero;
         $persona_nuevo->per_subd_estado =       '1';
 
-        //$persona_nuevo->per_rol =       '1';
+        $persona_nuevo->per_rol = '7';
         $persona_nuevo->save();
 
         return redirect()->route('Persona.index');

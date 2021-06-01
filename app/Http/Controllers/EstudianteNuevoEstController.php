@@ -69,7 +69,7 @@ class EstudianteNuevoEstController extends Controller
             
             $personaE->save();
             $estudianteE->save();
-            return redirect()->route('administracion.index')->with('status', 'Se completo el registro del estudiante.');
+            return redirect()->route('administracion.index')->with('status', 'Se completo el registro de sus datos, ahora tiene que realizar el deposito de Bs. 1, a la cuenta bancaria XXXXXXXXXXX para su inscripcion.');
 
         } catch(Exception $e){
             return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');

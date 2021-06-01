@@ -35,7 +35,7 @@ class Notas extends Model
     /**
      * @var array
      */
-    protected $fillable = ['nota_mate_id', 'nota_final1', 'nota_final2', 'nota_final3', 'nota_final4', 'nota_indicador1', 'nota_indicador2', 'nota_indicador3', 'nota_indicador4', 'nota_final'];
+    protected $fillable = ['nota_mate_id', 'nota_final1', 'nota_final2', 'nota_final3', 'nota_final4', 'nota_dosT', 'nota_indicador1', 'nota_indicador2', 'nota_indicador3', 'nota_indicador4', 'nota_final'];
 
     /**
      * Indicates if the model should be timestamped.

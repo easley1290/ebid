@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card text-white mb-3 bg-primary">
-                        <div class="card-header bg-primary" style="font-size: 30px;">PERFIL DE ESTUDIANTE</div>
+                        <div class="card-header bg-primary" style="font-size: 30px;">INSCRIPCION - PERFIL DE ESTUDIANTE</div>
                     </div>
                 </div>
             </div>
@@ -146,7 +146,7 @@
                                             tabindex="12" autocomplete="off" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="domicilio_tutor">Domiciliio de madre/padre/tutor</label>
+                                    <label for="domicilio_tutor">Domicilio de madre/padre/tutor</label>
                                     <textarea name="domicilio_tutor" type="text" class="form-control"
                                         id="domicilio_tutor" autocomplete="off" 
                                         placeholder="Domicilio de madre/padre/tutor"
@@ -261,6 +261,7 @@
                             @endif
                             
                             <div style="float: right;">
+                                <button type="button" class="btn btn-danger" onclick="javascript:window.close();"><span class="mdi mdi-close"></span>Cancelar</button>
                                 <button type="button"  class="btn btn-success" data-bs-toggle="modal" data-bs-target="#confirmar"><span class="mdi mdi-check" ></span>&nbsp;REGISTRAR DATOS</button>
                             </div>
 
@@ -277,7 +278,7 @@
                                             </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                                            <button type="submit" class="btn btn-primary">CONFIRMAR DATOS</button>
+                                            <button type="submit" class="btn btn-primary" onclick="deshabilitar()" id="conf">CONFIRMAR REGISTRO</button>
                                         </div>
                                     </div>
                                 </div>
@@ -290,4 +291,14 @@
         </div>
     </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    function deshabilitar(){
+        var boton = document.getElementById('conf');
+        setTimeout(function(){
+            boton.disabled = true;
+        }, 100);
+    }
+</script>
+
 @endsection

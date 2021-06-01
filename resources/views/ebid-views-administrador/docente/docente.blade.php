@@ -26,7 +26,7 @@
                   <div class="row">
                         <div class="col-md-12">
                             <div class="card text-white mb-3 bg-primary">
-                                <div class="card-header bg-primary" style="font-size: 30px;">PORTAL WEB - ADMINISTRACION DE DOCENTES</div>
+                                <div class="card-header bg-primary" style="font-size: 30px;">DOCENTE - ADMINISTRACION DE DOCENTES</div>
                             </div>
                         </div>
                     </div>             
@@ -126,8 +126,7 @@
                       </div>
                       <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Presentacion</label>
-                        <textarea id="exampleInputPassword12" name="doc_descripcion" rows="4" cols="55" class="form-control">
-                        </textarea>
+                        <textarea id="exampleInputPassword12" name="doc_descripcion" rows="4" cols="55" class="form-control"></textarea>
                       </div>
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>

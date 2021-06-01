@@ -21,9 +21,9 @@ class DocenteController extends Controller
             $personas = Personas::all();
             $categorias = CategoriaDocente::all();
             $personas_habilitadas = Personas::select('*')
-            ->where('per_rol','=',7)
-            ->orWhere('per_rol','=',6)
-            ->get();
+                                ->where('per_rol','=',7)
+                                ->orWhere('per_rol','=',6)
+                                ->get();
             $aux = [$docentes, $personas, $categorias, $personas_habilitadas];
             return view('ebid-views-administrador.docente.docente')->with('aux', $aux);
         } 

@@ -48,9 +48,6 @@
                 <div class="card card-table-border-none" id="recent-orders">
                     <div class="card-header">
                         <div class="col-md-9"><h4 class="row">Se esta mostrando el calendario de examenes de ingreso</h4></div>
-                        {{-- <div class="col-md-3"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
-                            <span class="mdi mdi-calendar-plus create"></span>&nbsp;Planificar fecha
-                        </button></div> --}}
                     </div>
                     <div class="card card-default">
                         <div class="card-body p-0">
@@ -104,6 +101,10 @@
                                     <option value="11:00" >11:00</option>
                                     <option value="11:30" >11:30</option>
                                     <option value="12:00" >12:00</option>
+                                    <option value="12:00" >12:30</option>
+                                    <option value="12:00" >13:00</option>
+                                    <option value="12:00" >13:30</option>
+                                    <option value="12:00" >14:00</option>
                                 </select>
                             </div>
                         </div>
@@ -214,7 +215,7 @@
                         var valorId = $('#estudiante').val();
                         var url = "{{ route('estudiante-nuevo.edit', 'temp') }}";
                         url = url.replace('temp', valorId);
-                        window.open(url, '_blank');
+                        window.open(url, '');
                     });
                 },
                 events: "{{ route('calendario-ingreso.show', 'b') }}"

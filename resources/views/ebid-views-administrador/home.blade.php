@@ -59,7 +59,8 @@
                                 </div>
                             </div>
                         </button>
-                        <form action="">
+                        <form action="{{ route('cerrarGestionAcademica') }}" method="POST">
+                            @csrf
                             <div class="modal fade" id="seguroModal" tabindex="-1" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -89,7 +90,8 @@
                                     </div>
                                 </div>
                             </button>
-                            <form action="">
+                            <form action="{{ route('cerrarDosT') }}" method="POST">
+                                @csrf
                                 <div class="modal fade" id="segundoModal" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">

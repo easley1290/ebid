@@ -253,7 +253,7 @@
                             </a>
                           </li>
                           <li>
-                            <a class="sidenav-item-link" href="">
+                            <a class="sidenav-item-link" href="{{ route('seguimiento-estudiantes.index') }}">
                               <span class="nav-text">Seguimiento a estudiantes</span>
                             </a>
                           </li> 
@@ -269,19 +269,36 @@
                     </li>
                   @endif
 
-                  @if (auth()->user()->per_rol == 6 || auth()->user()->per_rol == 1)
+                  @if (auth()->user()->per_rol == 6)
                     <!----------------------------NOTAS---------------------------------->
                     <li  class="has-sub" >
-                      <a class="sidenav-item-link" href="{{ route('ver-notas.index') }}">
-                        <i class="mdi mdi-notebook"></i>
-                        <span class="nav-text">Notas</span>
+                      <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#cursos"
+                        aria-expanded="false" aria-controls="cursos">
+                        <i class="mdi mdi-book-open-page-variant"></i>
+                        <span class="nav-text">NOTAS</span> <b class="caret"></b>
                       </a>
+                      <ul  class="collapse"  id="cursos"
+                        data-parent="#sidebar-menu">
+                        <div class="sub-menu">
+                          <li>
+                            <a class="sidenav-item-link" href="{{ route('ver-notas.index') }}">
+                              <span class="nav-text">Consultar las notas de los estudiantes</span>                             
+                            </a>
+                          </li>
+                          <li>
+                            <a class="sidenav-item-link" href="{{ route('subir-notas.index') }}">
+                              <span class="nav-text">Subir notas de los estudiantes</span>
+                            </a>
+                          </li> 
+                        </div>
+                      </ul>
                     </li>
+                    
                   @endif
                   @if (auth()->user()->per_rol == 3)
                     <!----------------------------VER NOTAS---------------------------------->
                     <li  class="has-sub" >
-                      <a class="sidenav-item-link" href="">
+                      <a class="sidenav-item-link" href="{{ route('seguimiento-estudiantes.index') }}">
                         <i class="mdi mdi-notebook"></i>
                         <span class="nav-text">Ver mis notas</span>
                       </a>

@@ -25,14 +25,14 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card text-white mb-3 bg-primary">
-                            <div class="card-header bg-primary" style="font-size: 30px;">ESTUDIANTES - LISTA DE ESTUDIANTES PREINSCRITOS</div>
+                            <div class="card-header bg-primary" style="font-size: 30px;">ESTUDIANTES - LISTA DE ESTUDIANTES INSCRITOS</div>
                         </div>
                     </div>
                 </div>      
                 <div class="card card-table-border-none" id="recent-orders">
                     <div class="card-header">
                         <div class="col-md-12 pb-3">
-                            <h4 class="row">En este listado ud. verá la lista de estudiantes preinscritos de la institucion</h4>
+                            <h4 class="row">En este listado ud. verá la lista de estudiantes inscritos</h4>
                         </div><br>
                     </div>
                     <div class="card-body">
@@ -60,11 +60,12 @@
                                             @break
                                         @endif
                                     @endforeach
-                                    <td style="width:200px">
+                                    <td></td>
+                                    {{-- <td style="width:200px">
                                             <button class="btn btn-success edit" id="edit">
                                                 <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Completar registro
                                             </button>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                                 @endforeach
                             </tbody>

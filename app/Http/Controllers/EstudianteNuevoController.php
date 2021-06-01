@@ -89,22 +89,21 @@ class EstudianteNuevoController extends Controller
             $indicador = MateriaEstudiante::select('*')
                         ->where('mate_est_id', '=', $estudianteE->est_id)
                         ->get();
-            $tamanio2 = count($indicador);
-            if($tamanio2 == 0){
-                for($i = 0; $i < $tamanio; $i++){
-                    $me =  MateriaEstudiante::create([
-                        'mate_mat_id' => $pensum[$i]->pen_mat_id,
-                        'mate_esp_id' => $pensum[$i]->pen_esp_id,
-                        'mate_sem_id' => $pensum[$i]->pen_sem_id,
-                        'mate_est_id' => $estudianteE->est_id,
-                        'mate_subd_id' => 9
-                    ]);
-                }
+                        
+            
+            for($i = 0; $i < $tamanio; $i++){
+                $me =  MateriaEstudiante::create([
+                    'mate_mat_id' => $pensum[$i]->pen_mat_id,
+                    'mate_esp_id' => $pensum[$i]->pen_esp_id,
+                    'mate_sem_id' => $pensum[$i]->pen_sem_id,
+                    'mate_est_id' => $estudianteE->est_id,
+                    'mate_subd_id' => 9
+                ]);
             }
             
             $personaE->save();
             $estudianteE->save();
-            return redirect()->route('administracion.index')->with('status', 'Se completo el registro del estudiante.');
+            return redirect()->route('administracion.index')->with('status', 'Se completo el registro del estudiante inscribiendose en '. $request->get('anio_estudiante').' año.');
 
         } catch(Exception $e){
             return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');

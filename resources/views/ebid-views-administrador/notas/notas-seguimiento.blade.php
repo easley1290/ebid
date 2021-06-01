@@ -24,46 +24,66 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card text-white mb-3 bg-primary">
-                        <div class="card-header bg-primary" style="font-size: 30px;">NOTAS - VER NOTAS DE SUS MATERIAS</div>
+                        <div class="card-header bg-primary" style="font-size: 30px;">NOTAS - SEGUIMIENTO DE NOTAS A ESTUDIANTES</div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-12">
                 <div class="card card-default">
                     <div class="card-header card-header-border-bottom" style="justify-content: space-between;">
-                        <div class="col-md-9"><h4 class="row">Si tiene materias asignadas usted podrá ver a los estudiantes cursando la materia</h4></div>
-                        <div class="col-md-3">
-                            <a href="{{ route('subir-notas.index') }}"><button type="button" class="btn btn-primary"><span class="mdi mdi-comment-plus"></span>&nbsp;Ir seccion subir notas</button></a>
-                        </div>
+                        <div class="col-md-9"><h4 class="row">En esta seccion ud. podra ver las notas de las materia de cada estudiante</h4></div>
                     </div>
                     <div class="card-body">
-                        <form action="materia-estudiante-buscar-notas" method="POST" id="formBusqueda">
-                            @csrf
-                            <div class="form-group row" style="justify-content: center;">
-                                <div class="col-md-6">
-                                    <label for="busqueda_nombre">Seleccione una de sus materias asignadas</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                                <i class="mdi mdi-account-search"></i>
-                                            </span>
-                                        </div>
-                                        <select class="form-select" name="busqueda_materia_docente" id="busqueda_materia_docente">
-                                            <option value="" selected disabled>--Seleccione la materia--</option>
-                                            @foreach($materiaDocente as $matDoc)             
-                                                @foreach ($materias as $mat)
-                                                    @if($mat->mat_id == $matDoc->matd_mat_id)
-                                                        <option value="{{ $mat->mat_id }}">{{ $mat->mat_nombre }}</option>
-                                                    @endif
-                                                @endforeach
+                        @if (auth()->user()->per_rol == 1)
+                            <form action="estudiante-materia-buscar" method="POST" id="formBusqueda">
+                                @csrf
+                                <div class="form-group row" style="justify-content: center;">
+                                    <div class="col-md-4">
+                                        <label for="codigo_estudiante">Seleccione al estudiante</label>
+                                        <select class="form-select" name="codigo_estudiante" id="codigo_estudiante">
+                                            <option value="" selected disabled>--Seleccione al estudiante--</option>
+                                            @foreach($estudiantes as $est)   
+                                                <option value="{{ $est->per_id }}">{{ $est->name }}</option>
                                             @endforeach
                                         </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="busqueda_anio">Seleccione el año</label>
+                                        <select class="form-select" name="busqueda_anio" id="busqueda_anio">
+                                            <option value="" selected disabled>--Seleccione el año--</option>
+                                            @foreach($semestres as $sem)   
+                                                <option value="{{ $sem->sem_id }}">{{ $sem->sem_nombre }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 pt-4">
                                         <button type="submit" class="btn btn-primary"><span class="mdi mdi-account-search"></span>&nbsp;Buscar</button>
                                     </div>
                                 </div>
+                            </form>
+                        @endif
+                        @if (auth()->user()->per_rol == 3)
+                        <form action="estudiante-materia-buscar" method="POST" id="formBusqueda">
+                            @csrf
+                            <div class="form-group row" style="justify-content: center;">
+                                
+                                <input type="hidden" name="codigo_estudiante" id="codigo_estudiante" value="{{ auth()->user()->per_id }}">
+                                
+                                <div class="col-md-4">
+                                    <label for="busqueda_anio">Seleccione el año</label>
+                                    <select class="form-select" name="busqueda_anio" id="busqueda_anio">
+                                        <option value="" selected disabled>--Seleccione el año--</option>
+                                        @foreach($semestres as $sem)   
+                                            <option value="{{ $sem->sem_id }}">{{ $sem->sem_nombre }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-3 pt-4">
+                                    <button type="submit" class="btn btn-primary"><span class="mdi mdi-account-search"></span>&nbsp;Buscar</button>
+                                </div>
                             </div>
                         </form>
-
+                        @endif
                         <form action="{{ route('subir-notas.store') }}" method="POST" id="createRegistros">
                             @csrf
                             <div class="form-group row">
@@ -71,8 +91,7 @@
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Nombre completo</th>
-                                            <th>Cedula de identidad</th>
+                                            <th>Nombre materia</th>
                                             <th>1er Parcial</th>
                                             <th>2do Parcial</th>
                                             <th>3er Parcial</th>
@@ -80,7 +99,6 @@
                                             <th>Segundo Turno</th>
                                             <th colspan="5" style="display: none;"></th>
                                             <th>Nota final</th>
-                                            <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody id="cuerpoTabla"></tbody>
@@ -106,8 +124,7 @@
                     @method('PUT')
                     <div class="modal-body">
                         <div class="row">
-                            <p class="mb-1">Si usted no pude modificar las notas comuniquese con administracion para solicitar permisos de modificación</p>
-                            <p class="mb-4"><b>NO PUEDE modificar la nota del segundo turno</b></p>
+                            <p>Si usted no pude modificar las notas comuniquese con administracion para solicitar permisos de modificación</p>
                         </div>
                         <div class="row">
                             <input id="mate_id" name="mate_id" type="hidden">
@@ -149,35 +166,6 @@
             </div>
         </div>
     </div>
-
-    {{-- Eliminar registro --}}
-    <div class="modal fade" id="destroyModal" tabindex="-1" aria-labelledby="destroyLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="destroyLabel">ELIMINAR NOTA</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="" method="POST" id="deleteForm">
-                    @csrf
-                    @method('DELETE')
-                    <div class="modal-body">
-                        <div class="row">
-                            <p>Esta seguro de eliminar el registro?</p>
-                            <p>Se recomienda fervientemente no realizarlo ya que perjudicará al registro de nuestros queridos estudiantes</p>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cerrar</button>
-                        <button type="submit" class="btn btn-primary">
-                            <span class="mdi mdi-folder-upload"></span>&nbsp;ELIMINAR NOTA
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -196,21 +184,19 @@
     <script type="text/javascript">
         $(document).ready(function(){   
             $(document).on('submit', '#formBusqueda', function() {
-                var param = $('#busqueda_materia_docente').val();
+                var param = $('#codigo_estudiante').val();
                 $.ajax({
                     method  : "POST",
-                    url     : "materia-estudiante-buscar-notas",
+                    url     : "estudiante-materia-buscar",
                     data    : $('#formBusqueda').serialize(),
                     success : function(res){
                         var array = JSON.parse(res);
                         var fila = '';
-                        var contador = 0;
                         var notaFinal = 0;
                         if(array.length > 0){
                             for(var i=0; i<array.length; i++){
-                                fila+= '<tr><td>'+array[i].est_id+'</td>'
-                                fila+='<td>'+array[i].name+'</td>';
-                                fila+='<td>'+array[i].per_num_documentacion+'</td>';
+                                fila+= '<tr><td>'+array[i].mat_id+'</td>'
+                                fila+='<td>'+array[i].mat_nombre+'</td>';
                                 fila+='<td>'+array[i].nota_final1+'</td>';
                                 fila+='<td>'+array[i].nota_final2+'</td>';
                                 fila+='<td>'+array[i].nota_final3+'</td>';
@@ -222,28 +208,17 @@
                                 fila+='<td style="display:none;">'+array[i].nota_indicador4+'</td>';
                                 fila+='<td style="display:none;">'+array[i].nota_id+'</td>';
                                 if(Math.round(array[i].nota_final * 100) / 100 <= 6){
-                                    fila+='<td style="background-color: #EA7A76; color: #000;">'+Math.round(array[i].nota_final * 100) / 100+'</td>';
+                                    fila+='<td style="background-color: #EA7A76; color: #000;">'+Math.round(array[i].nota_final * 100) / 100+'</td></tr>';
                                 }else{
-                                    fila+='<td style="background-color: #8BCE91; color: #000;">'+Math.round(array[i].nota_final * 100) / 100+'</td>';
+                                    fila+='<td style="background-color: #8BCE91; color: #000;">'+Math.round(array[i].nota_final * 100) / 100+'</td></tr>';
                                 }
-                                @if (auth()->user()->per_rol == 6)
-                                    fila+='<td><button class="btn btn-success edit" type="button"><span class="mdi mdi-circle-edit-outline"></span></button></td></tr>';
-                                @endif
-                                @if (auth()->user()->per_rol == 1)
-                                    fila+='<td><button class="btn btn-success edit" type="button"><span class="mdi mdi-circle-edit-outline"></span></button>';
-                                    fila+='<button class="btn btn-danger destroy" type="button"><span class="mdi mdi-delete"></span></button></td></tr>';
-                                @endif
-                                contador++;
                             }
-                            contador--;
                             $('#cuerpoTabla').html(fila);
                         }
                         if(array.length<=0){
                             contador = -1;
-                            fila = '<tr><td colspan="3" align="center">No existen registros de estudiantes en esa materia</td></tr>';
+                            fila = '<tr><td colspan="13" align="center">No existen registros de notas de las materias del año que seleccionó</td></tr>';
                             $('#cuerpoTabla').html(fila);
-                            fila2 = '';
-                            $('#confirmar').html(fila2)
                         }
                     },
                     error   : function(){
@@ -272,22 +247,22 @@
                 $('#nota4').val($tr[0].children[6].innerText);
 
                 @if (auth()->user()->per_rol != 1)
-                    if($tr[0].children[8].innerText == "0"){
+                    if($tr[0].children[7].innerText == "0"){
                         $('#nota1').attr('readonly', 'readonly');
                     }else{
                         $('#nota1').removeAttr('readonly', 'readonly');
                     }
-                    if($tr[0].children[9].innerText == "0"){
+                    if($tr[0].children[8].innerText == "0"){
                         $('#nota2').attr('readonly', 'readonly');
                     }else{
                         $('#nota2').removeAttr('readonly', 'readonly');
                     }
-                    if($tr[0].children[10].innerText == "0"){
+                    if($tr[0].children[9].innerText == "0"){
                         $('#nota3').attr('readonly', 'readonly');
                     }else{
                         $('#nota3').removeAttr('readonly', 'readonly');
                     }
-                    if($tr[0].children[11].innerText == "0"){
+                    if($tr[0].children[10].innerText == "0"){
                         $('#nota4').attr('readonly', 'readonly');
                     }else{
                         $('#nota4').removeAttr('readonly', 'readonly');
@@ -298,26 +273,11 @@
                     $('#nota3').removeAttr('readonly', 'readonly');
                     $('#nota4').removeAttr('readonly', 'readonly');
                 @endif
-
-                
-
-                $('#mate_id').val($tr[0].children[12].innerText);
+W
+                $('#mate_id').val($tr[0].children[11].innerText);
 
                 $('#editModal').modal('show');
                 $('#editForm').attr('action', 'ver-notas/'+$tr[0].children[11].innerText);
-            })
-        });
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            var table = $('#notas').DataTable();
-            table.on('click', '.destroy', function(){
-                $tr = $(this).closest('tr');
-                if ($($tr).hasClass('child')) {
-                    $tr = $tr.prev('.parent');
-                }
-                $('#destroyModal').modal('show');
-                $('#deleteForm').attr('action', 'ver-notas/'+$tr[0].children[11].innerText);
             })
         });
     </script>
