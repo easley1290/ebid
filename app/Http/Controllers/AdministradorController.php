@@ -26,7 +26,7 @@ class AdministradorController extends Controller
             ->get();
             $roles = Roles::select('roles.*')
             ->where('rol_id','<',3)
-            ->get();
+            ->get(); 
             $personas_habilitadas = Personas::select('*')
             ->where('per_rol','=',7)
             ->get();
@@ -124,6 +124,7 @@ class AdministradorController extends Controller
                 'adm_cargo' => 'required',
                 'adm_area_pertenece' => 'required',
                 'adm_subd_estado' => 'required',
+                'adm_descripcion' => 'required',
                 'adm_rol' => 'required',
             ]);
             $administrativo_nuevo = Administrativos::find($id);            
@@ -134,7 +135,9 @@ class AdministradorController extends Controller
             $administrativo_nuevo->adm_descripcion = $request->input('adm_descripcion');
             $administrativo_nuevo->save();
 
-            $personas = Personas::find($request->input('adm_per_id'));
+            $administrativo_edit = Administrativos::find($id); 
+            $persona = $administrativo_edit->adm_per_id;
+            $personas = Personas::find($persona);
             /*->where('per_id','=',$request->input('adm_per_id'))
             ->get();*/
             $personas->per_rol = $request->input('adm_rol');

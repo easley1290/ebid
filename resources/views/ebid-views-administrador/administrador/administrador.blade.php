@@ -48,6 +48,7 @@
                               <th>Cargo</th>
                               <th>Area de trabajo</th>
                               <th style="display:none">adm_sub_estado</th>
+                              <th style="display:none">adm_roll</th>
                               <th style="display:none">adm_descripcion</th>
                               <th style="width:200px">Acciones</th>
                             </tr>
@@ -65,6 +66,11 @@
                                 <td class="">{{ $administrativo->adm_cargo}}</td>
                                 <td class="">{{ $administrativo->adm_area_pertenece}}</td>
                                 <td class="" style="display:none">{{ $administrativo->adm_subd_estado}}</td>
+                                @foreach($aux[1] as $persona)
+                                  @if($administrativo->adm_per_id == $persona->per_id)
+                                  <td class="" style="display:none">{{ $persona->per_rol}}</td>
+                                  @endif
+                                @endforeach
                                 <td class="" style="display:none">{{ $administrativo->adm_descripcion}}</td>
                                 <td style="width:200px">
                                   <button class="btn btn-success edit">
@@ -134,8 +140,7 @@
                       </div>
                       <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Presentacion</label>
-                        <textarea id="adm_descripcion" name="adm_descripcion" rows="4" cols="55" class="form-control">
-                        </textarea>
+                        <input name="adm_descripcion" type="text" class="form-control" id="adm_descrn">
                       </div>
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Agregar</button>
@@ -192,9 +197,8 @@
                         </select>
                       </div>
                       <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Presentacion</label>
-                        <textarea id="adm_descripcion" name="adm_descripcion" rows="4" cols="55" class="form-control">
-                        </textarea>
+                        <label for="exampleInputEmail1" class="form-label">Presentación</label>                       
+                        <input name="adm_descripcion" type="text" class="form-control" id="adm_descripcion">
                       </div>
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Guardar</button>
@@ -262,10 +266,10 @@ $(document).ready(function(){
     $('#adm_cargo').val(data[3]);
     $('#adm_area_pertenece').val(data[4]);
     $('#adm_subd_estado').val(data[5]);
-    $('#adm_descripcion').val(data[6]);
-    $('#adm_rol').val(data[7]);
+    $('#adm_descripcion').val(data[7]);
+    $('#adm_rol').val(data[6]);
 
-    $('#editForm').attr('action', '/Administrador/'+data[0]);
+    $('#editForm').attr('action', 'Administrador/'+data[0]);
     $('#editModal').modal('show');
   })
 });
@@ -281,7 +285,7 @@ $(document).ready(function(){
     }
     var data = table.row($tr).data();
 
-    $('#deleteForm').attr('action', '/Administrador/'+data[0]);
+    $('#deleteForm').attr('action', 'Administrador/'+data[0]);
     $('#deleteModal').modal('show');
   })
 });
