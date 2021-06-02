@@ -7,7 +7,7 @@
           <div id="sidebar" class="sidebar">
             <!-- Aplication Brand -->
             <div class="app-brand">
-              <a href="/administracion" >
+              <a href="/public/administracion" >
                 <img src="{{ asset('assets/img/logo.png') }}" alt="" style="height: 50px;" class="img-fluid">
                 
               </a>

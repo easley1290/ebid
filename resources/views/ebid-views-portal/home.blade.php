@@ -190,7 +190,7 @@
           <div class="member-img" style=" height: 80%; display: flex;justify-content: center; align-items: center;">
             <img src="http://ebid.edu.bo/public{{$docente->per_foto_personal}}" class="img-fluid" alt="">
             <div class="social">
-              <h5 style="font-size: 16px; color:black;">{{$docente->doc_titulo}}</h5>
+              <h5 style="font-size: 18px; color:black;">{{$docente->doc_titulo}}</h5>
               <!--a href=""><i class="icofont-facebook"></i></a-->
             </div>
           </div>

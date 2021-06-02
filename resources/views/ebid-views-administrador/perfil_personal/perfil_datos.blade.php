@@ -199,7 +199,7 @@
                             <div class="row">
                               <div class="col-md-12">
                                 <label for="exampleInputPassword1" class="form-label">Domicilio</label>
-                                <input id="per_domicilio" name="per_domicilio" type="text" class="form-control" id="exampleInputPassword1">
+                                <input id="per_domicilio" name="per_domicilio" type="text" class="form-control" id="exampleInputPassword1" required>
                               </div>
                             </div>
                             <div class="row">
@@ -256,7 +256,7 @@ $(document).ready(function() {
       $('#per_domicilio').val($('#per_domicilio_').val());
       
 
-      $('#editForm').attr('action', 'PersonaPerfil/'+id);
+      $('#editForm').attr('action', '/public/PersonaPerfil/'+id);
       $('#editModal').modal('show');
     })
   });
