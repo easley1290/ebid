@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Personas;
 use App\Models\Subdominios;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class PersonaController extends Controller
 {
@@ -83,6 +86,8 @@ class PersonaController extends Controller
             $persona_nuevo->per_subd_extension =    $request->extension;
             $persona_nuevo->per_subd_genero =       $request->genero;
             $persona_nuevo->per_subd_estado =       '1';
+            $persona_nuevo->password =              Hash::make('12345678');
+
 
             $persona_nuevo->per_rol = '7';
             $persona_nuevo->save();
@@ -137,7 +142,6 @@ class PersonaController extends Controller
                 'per_subd_extension' => 'required',
                 'per_telefono' => 'required',
                 'per_correo_personal' => 'required',
-                'per_domicilio' => 'required',
             ]);
 
             $persona_edit = Personas::find($id);
