@@ -57,16 +57,22 @@
         <p class="font-italic">
         Deberas registrarte en el siguiente enlace y llenar los datos correspondientes, una vez llenado el formulario 
         se le enviara la contraseña a su correo personal con la que podra ingresar al sistema.
-        <a href="register_" class="btn-miembro">REGISTRATE AQUÍ<i class="ri-arrow-right-s-line"></i></i></a>
+        <br>
+        <div style="text-align: center;">
+          <a href="register_" class="btn-miembro">REGISTRATE AQUÍ<i class="ri-arrow-right-s-line"></i></i></a>
+        </div>
+        <hr>
         <div class="container">
           <div class="row">
-            <div class="col-md-6">
-              <img src="{{ asset('assets/img/ejemplo_est.png') }}" class="img-fluid" alt="">
-            </div>
-            <div class="col-md-6">
-              Una vez en el sistema podra visualizar una vista similar a la imagen y seguir los siguientes pasos los cuales se ecuentran
-              en el siguiente enlace
-              <li>Ingresar a inscripción estudiante</li> 
+            <div class="col-md-12">
+              En el siguiente archivo se le proporciona una guía en la cual se especifica el procedimiento a seguir para la inscripcion de estudiantes.
+              <hr>
+              <div style="text-align: center;">
+                <iframe width="500" height="300" src="{{asset('assets/doc/pasos_inscripcion.pdf')}}" frameborder="0"></iframe>
+                <br>
+                <a class="btn-miembro" href="{{asset('assets/doc/pasos_inscripcion.pdf')}}" target='blank_'><i class="ri-arrow-right-s-line"></i>Descargar<i class="ri-arrow-left-s-line"></i></a>
+              </div>
+              
             </div>
           </div>
         </div>

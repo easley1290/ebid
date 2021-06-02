@@ -31,7 +31,13 @@
             <div class="col-lg-12">
                 <div class="card card-default">
                     <div class="card-header card-header-border-bottom" style="justify-content: space-between;">
+                        <!--------------------------------------->
+                        <div class="col-md-9"><h3 class="row text-uppercase">Sr (a): {{auth()->user()->name}}</h3></div>
+                        <div class="col-md-9"><h3 class="row text-uppercase">Numero de documento: {{auth()->user()->per_num_documentacion}}</h3></div>
                         <div class="col-md-9"><h4 class="row">En esta seccion ud. podra ver las notas de las materia de cada estudiante</h4></div>
+                        
+                        <button type="button" class="btn btn-secondary" onclick="window.print()"><i class="mdi mdi-printer"></i>&nbsp;Imprimir</button>
+                        <!--------------------------------------->
                     </div>
                     <div class="card-body">
                         @if (auth()->user()->per_rol == 1)

@@ -56,6 +56,7 @@ use App\Http\Controllers\PortalVistaProcesoController;
 use App\Http\Controllers\PortalVistaMallaController;
 use App\Http\Controllers\PortalVistaInscripcionController;
 
+use App\Http\Controllers\ImprimirController;
 use App\Http\Controllers\Zoom;
 
 
@@ -163,6 +164,7 @@ Route::resource('/estudiante-usuario', EstudianteUsuarioController::class);
 Route::resource('/MateriaDocente', MateriaDocenteController::class);
 /***************  Nota  ****************** */
 Route::resource('/Nota', NotaController::class);
+Route::resource('/Imprimir', ImprimirController::class);
 
 /***************  oferta academica  ****************** */
 Route::resource('/portal-vista', PortalVistaController::class);

@@ -177,7 +177,7 @@ return [
 
         Krlove\EloquentModelGenerator\Provider\GeneratorServiceProvider::class,
         Biscolab\ReCaptcha\ReCaptchaServiceProvider::class,
-
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -230,6 +230,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'ReCaptcha' => Biscolab\ReCaptcha\Facades\ReCaptcha::class,
+
+
+        
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

@@ -212,7 +212,7 @@ $(document).ready(function(){
     $('#agenda_').val(data[2]);
     $('#start_time_').val(data[4]);
 
-    $('#editForm').attr('action', '/meetings/'+data[0]);
+    $('#editForm').attr('action', 'meetings/'+data[0]);
     $('#editModal').modal('show');
   })
 });
@@ -229,7 +229,7 @@ $(document).ready(function(){
       }
       var data = table.row($tr).data();
   
-      $('#deleteForm').attr('action', '/meetings/'+data[0]);
+      $('#deleteForm').attr('action', 'meetings/'+data[0]);
       $('#deleteModal').modal('show');
     })
   });
