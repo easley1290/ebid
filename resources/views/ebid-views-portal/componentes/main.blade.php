@@ -9,7 +9,7 @@
 <body>
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center justify-content-between">
-            <a href="/" class="" style="width: 60px;"><img src="{{ asset('assets/img/logo.png') }}" alt="" class="img-fluid"></a>
+            <a href="/" class="" style="width: 80%;"><img src="{{ asset('assets/img/logo.png') }}" alt="" class="img-fluid"></a>
             <nav class="nav-menu d-none d-lg-block">
                 <ul><li class="@yield('inicio')"><a href="/">Inicio</a></li>
                 <li class="@yield('nosotros')"><a href="">Nosotros</a>
@@ -32,7 +32,10 @@
                 <li class="@yield('noticia')"><a href="{{ route('indexNoticias') }}">Noticias</a></li>
                 <li class="@yield('contactos')"><a href="{{ route('indexContactos') }}">Contactos</a></li></ul>
             </nav>
+            &nbsp;
             <a href="@if (Auth::check()) /administracion @else login_ @endif" class="btn-miembro" style="">Eres miembro?</a>
+            &nbsp;
+            <a href="https://moodle.ebid.edu.bo/moodle/" class="btn-miembro" style="" target='_blank'>Campus Virtual</a>
         </div>
     </header>
     

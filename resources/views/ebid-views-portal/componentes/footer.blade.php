@@ -59,8 +59,8 @@
     <div class="copyright">
       &copy; Copyright <strong>E<span>BID</span></strong> Todos los derechos reservados
     </div>
-    <div class="credits">
+    <!--div class="credits">
       Pagina diseñada por: <a href="">IDG</a>
-    </div>
+    </div-->
   </div>
 </footer>
