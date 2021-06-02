@@ -392,7 +392,7 @@
 
               <div class="navbar-right ">
                 <ul class="nav navbar-nav">
-                  <li class="dropdown notifications-menu">
+                  <!--li class="dropdown notifications-menu">
                     <button class="dropdown-toggle" data-toggle="dropdown">
                       <i class="mdi mdi-bell-outline"></i>
                     </button>
@@ -407,7 +407,7 @@
                         <a class="text-center" href="#"> View All </a>
                       </li>
                     </ul>
-                  </li>
+                  </li-->
                   <!--li class="right-sidebar-in right-sidebar-2-menu">
                     <i class="mdi mdi-settings mdi-spin"></i>
                   </li-->
