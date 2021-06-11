@@ -15,9 +15,10 @@ class ImprimirController extends Controller
      */
     public function index()
     {
-        $today = Carbon::now()->format('d/m/Y');
+        $today = Carbon::now()->format('d/m/Y H:i');
         $pdf = \PDF::loadView('ebid-views-administrador.notas.notas-imprimir', compact('today'));
-        return $pdf->download('Notas '.$today.'.pdf');
+        return $pdf->stream('Notas '.$today.'.pdf');
+
     }
 
     /**

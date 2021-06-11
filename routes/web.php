@@ -104,6 +104,7 @@ Route::prefix('administracion/notas')->group(function () {
     Route::post('/materia-estudiante-buscar', [NotasSubirController::class, 'busquedaMateriaEstudiante'])->name('busquedaMateriaEstudiante');
     Route::post('/materia-estudiante-buscar-notas', [NotasController::class, 'busquedaMateriaEstudianteNotas'])->name('busquedaMateriaEstudianteNotas');
     Route::post('/estudiante-materia-buscar', [NotasSeguimientoController::class, 'busquedaEstudianteMateria'])->name('busquedaEstudianteMateria');
+    Route::post('/estudiante-materia-imprimir', [NotasSeguimientoController::class, 'imprimirEstudianteMateria'])->name('imprimirEstudianteMateria');
     Route::get('/cerrar-abrir-parcial', [NotasController::class, 'cerrarAbrirParcialVer'])->name('cerrarAbrirParcialVer');
     Route::post('/cerrar-abrir-parcial', [NotasController::class, 'cerrarAbrirParcialMod'])->name('cerrarAbrirParcialMod');
     Route::get('/modificar-permisos-notas', [NotasController::class, 'permisoModificarNotasVer'])->name('permisoModificarNotasVer');

@@ -36,7 +36,20 @@
                         <div class="col-md-9"><h3 class="row text-uppercase">Numero de documento: {{auth()->user()->per_num_documentacion}}</h3></div>
                         <div class="col-md-9"><h4 class="row">En esta seccion ud. podra ver las notas de las materia de cada estudiante</h4></div>
                         
-                        <button type="button" class="btn btn-secondary" onclick="window.print()"><i class="mdi mdi-printer"></i>&nbsp;Imprimir</button>
+                        <!--button type="button" class="btn btn-secondary"><span class="mdi mdi-printer"></span>&nbsp;<a style="color:white;" href="{{route('Imprimir.index')}}" target="_blank">Imprimir</a></button-->
+
+                        <form action="estudiante-materia-imprimir" method="POST" id="formImprimir" target="_blank">
+                            @csrf
+                            <div >
+                                <input type="hidden" name="codigo_estudiante" id="codigo_estudiante" value="{{ auth()->user()->per_id }}">
+                                <input type="hidden" name="busqueda_anio" id="busqueda_anio" value="1">
+
+                                
+                                <button type="submit" class="btn btn-secondary"><span class="mdi mdi-print"></span>&nbsp;Imprimir</button>
+                                
+                            </div>
+                        </form>
+
                         <!--------------------------------------->
                     </div>
                     <div class="card-body">
@@ -89,6 +102,8 @@
                                 </div>
                             </div>
                         </form>
+                        
+
                         @endif
                         <form action="{{ route('subir-notas.store') }}" method="POST" id="createRegistros">
                             @csrf
