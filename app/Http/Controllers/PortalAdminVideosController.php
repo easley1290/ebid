@@ -20,7 +20,7 @@ class PortalAdminVideosController extends Controller
             $arrayAux = [$unidadAcademica, $subdominios, $videos];
             return view('ebid-views-administrador.portal-web.videos')->with('arrayAux', $arrayAux);
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -51,7 +51,7 @@ class PortalAdminVideosController extends Controller
             $videoC->save();
             return redirect()->route('videos.index')->with('status', 'Se CREÓ un nuevo registro para un nuevo video.');
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -86,7 +86,7 @@ class PortalAdminVideosController extends Controller
             }
             return redirect()->route('videos.index')->with('status', 'Se MODIFICÓ el registro del video.');
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -106,7 +106,7 @@ class PortalAdminVideosController extends Controller
             $videoD->delete();
             return redirect()->route('videos.index')->with('status', 'Se ELIMINÓ el registro del video con éxito.');
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];

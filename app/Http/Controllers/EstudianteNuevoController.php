@@ -110,7 +110,7 @@ class EstudianteNuevoController extends Controller
             return redirect()->route('administracion.index')->with('status', 'Se completo el registro del estudiante inscribiendose en '. $request->get('anio_estudiante').' año.');
 
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -184,7 +184,7 @@ class EstudianteNuevoController extends Controller
             }
             
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -223,7 +223,7 @@ class EstudianteNuevoController extends Controller
             }
             
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];

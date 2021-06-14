@@ -22,7 +22,7 @@ class UnidadAcademicaController extends Controller
             $aux = [$unidadAcademicas, $institucions, $estados];
             return view('ebid-views-administrador.unidadAcademica.unidadAcademica')->with('aux', $aux);
         } 
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -61,7 +61,7 @@ class UnidadAcademicaController extends Controller
             $ua_nuevo->save();
             return redirect()->route('UnidadAcademica.index')->with('status', 'Se CREÓ la Unidad Académica con exito');
         } 
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -100,7 +100,7 @@ class UnidadAcademicaController extends Controller
             $ua_nuevo->save();
             return redirect()->route('UnidadAcademica.index')->with('status', 'Se MODIFICÓ la Unidad Académica con exito');
         } 
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -120,7 +120,7 @@ class UnidadAcademicaController extends Controller
             $ua_delete->delete();
             return redirect()->route('UnidadAcademica.index')->with('status', 'Se ELIMINÓ la Unidad Académica con exito');
         } 
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];

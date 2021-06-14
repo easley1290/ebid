@@ -21,7 +21,7 @@ class PortalAdminGalleryController extends Controller
             $arrayAux = [$unidadAcademica, $subdominios, $galeria];
             return view('ebid-views-administrador.portal-web.galeria')->with('arrayAux', $arrayAux);
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -66,7 +66,7 @@ class PortalAdminGalleryController extends Controller
             $galeriaC->save();
             return redirect()->route('galeria.index')->with('status', 'Se CREÓ un nuevo registro para la galeria.');
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -112,7 +112,7 @@ class PortalAdminGalleryController extends Controller
             $galeriaE->save();
             return redirect()->route('galeria.index')->with('status', 'Se MODIFICÓ el registro para la galeria.');
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -137,7 +137,7 @@ class PortalAdminGalleryController extends Controller
             $galeriaD->delete();
             return redirect()->route('galeria.index')->with('status', 'Se ELIMINÓ el registro de la galeria con éxito.');
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];

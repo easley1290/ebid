@@ -40,7 +40,7 @@ class PostulantesController extends Controller
             $arrayAux = [$postulante, $subdominiosExamen, $subdominiosEst, $extension];
             return view('ebid-views-administrador.inscripcion.lista-postulante')->with('arrayAux', $arrayAux);
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -60,7 +60,7 @@ class PostulantesController extends Controller
                         ->get();
             return view ('ebid-views-administrador.inscripcion.pre-inscripcion')->with('extension', $extension);
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -124,7 +124,7 @@ class PostulantesController extends Controller
             return redirect()->route('postulante.index')->with('status', 'Se creo un nuevo registro del postulante.');
             
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -164,7 +164,7 @@ class PostulantesController extends Controller
 
             return redirect()->route('postulante.index')->with('status', 'Se modifico el registro del postulante '.$request->get('nombres_estudiante').' '.$request->get('paterno_estudiante').' '. $request->get('materno_estudiante'));
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -184,7 +184,7 @@ class PostulantesController extends Controller
             $personaD->delete();
             return redirect()->route('postulante.index')->with('status', 'Se elimino el registro del postulante');
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];

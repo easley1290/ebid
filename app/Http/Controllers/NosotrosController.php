@@ -17,7 +17,7 @@ class NosotrosController extends Controller
                             ->first();  
             return view('ebid-views-portal/nosotros/mision-vision')->with('instituciones', $instituciones);
         } 
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -42,7 +42,7 @@ class NosotrosController extends Controller
                     ->get();  
             return view('ebid-views-portal/nosotros/plantel-admin', compact('instituciones','admin'));
         } 
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -67,7 +67,7 @@ class NosotrosController extends Controller
                     ->get();  
             return view('ebid-views-portal/nosotros/plantel-doc',compact('instituciones','doc'));
         } 
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];

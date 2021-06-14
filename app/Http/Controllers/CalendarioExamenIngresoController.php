@@ -31,7 +31,7 @@ class CalendarioExamenIngresoController extends Controller
 
             return view('ebid-views-administrador.inscripcion.calendario-ingreso',['estudiantes' => $estudiantes]);
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];

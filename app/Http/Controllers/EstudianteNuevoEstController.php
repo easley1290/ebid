@@ -75,7 +75,7 @@ class EstudianteNuevoEstController extends Controller
             return redirect()->route('administracion.index')->with('status', 'Se completo el registro de sus datos, ahora tiene que realizar el deposito de Bs. 1, a la cuenta bancaria XXXXXXXXXXX para su inscripcion.');
 
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -150,7 +150,7 @@ class EstudianteNuevoEstController extends Controller
             }
             
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];

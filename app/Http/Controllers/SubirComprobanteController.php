@@ -21,7 +21,7 @@ class SubirComprobanteController extends Controller
                 
             return view('ebid-views-administrador.inscripcion.subir_comprobante')->with('estudiantes', $estudiantes);
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -66,7 +66,7 @@ class SubirComprobanteController extends Controller
 
             return redirect()->route('subir-comprobantes.index')->with('status', 'Se subio el comprobante con exito');
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];

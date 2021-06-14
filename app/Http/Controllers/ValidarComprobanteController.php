@@ -48,7 +48,7 @@ class ValidarComprobanteController extends Controller
             }
             
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];

@@ -48,7 +48,7 @@ class NotasController extends Controller
                 ])->with('status', 'No posee materias asiganadas');
             }
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -99,7 +99,7 @@ class NotasController extends Controller
             $notaE->save();
             return redirect()->route('ver-notas.index')->with('status', 'Se MODIFICO la nota con exito');
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -119,7 +119,7 @@ class NotasController extends Controller
             $notaD->delete();
             return redirect()->route('ver-notas.index')->with('status', 'Se ELIMINO el registro de la nota con exito');
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -166,7 +166,7 @@ class NotasController extends Controller
                 }
             }
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -194,7 +194,7 @@ class NotasController extends Controller
                 'estudiantes'=>$estudiantes
             ]);
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -253,7 +253,7 @@ class NotasController extends Controller
             }
             
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -288,7 +288,7 @@ class NotasController extends Controller
             $subdominio->save();
             return redirect()->route('administracion.index')->with('status', 'Se cerro el periodo academico y se abrío el periodo del Segundo Turno.');
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -334,7 +334,7 @@ class NotasController extends Controller
             $subdominio->save();
             return redirect()->route('administracion.index')->with('status', 'Se cerro el periodo academico y se abrío el periodo del Segundo Turno.');
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];

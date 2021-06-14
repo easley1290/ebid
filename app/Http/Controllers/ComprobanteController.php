@@ -30,7 +30,7 @@ class ComprobanteController extends Controller
                 'comprobante'=> $comprobante
             ]);
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -91,7 +91,7 @@ class ComprobanteController extends Controller
 
             return redirect()->route('comprobante.index')->with('status', 'Se modifico el registro del comprobante, como se modifico el registro el estado validacion volvio a "No validado"');
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -112,7 +112,7 @@ class ComprobanteController extends Controller
             $comprobanteE->delete();
             return redirect()->route('comprobante.index')->with('status', 'Se elimino el registro del comprobante');
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];

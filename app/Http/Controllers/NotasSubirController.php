@@ -54,7 +54,7 @@ class NotasSubirController extends Controller
                 ])->with('status', 'No posee materias asignadas.');
             }
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -178,7 +178,7 @@ class NotasSubirController extends Controller
             }
             return redirect()->route('ver-notas.index')->with('status', 'Se subio las notas de su materia exitosamente, correspondiente al parcial Nro.'.$indicadorParcialACerrar->subd_descripcion);
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];

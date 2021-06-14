@@ -18,7 +18,7 @@ class PortalAdminContactController extends Controller
             $arrayAux = [$unidadAcademica, $subdominios];
             return view('ebid-views-administrador.portal-web.contactos')->with('arrayAux', $arrayAux);
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -48,7 +48,7 @@ class PortalAdminContactController extends Controller
             $contactE->save();
             return redirect()->route('contactos.index')->with('status', 'Se MODIFICÓ la informacion de contactos con exito');
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];

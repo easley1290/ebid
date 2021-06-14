@@ -16,7 +16,7 @@ class PortalAdminQSController extends Controller
             
             return view('ebid-views-administrador.portal-web.quienes-somos')->with('institucion', $institucion[0]);
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -56,7 +56,7 @@ class PortalAdminQSController extends Controller
             $qsE->save();
             return redirect()->route('quienessomos.index')->with('status', 'Se MODIFICÓ la informacion con exito');
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];

@@ -32,7 +32,7 @@ class EstudianteUsuarioController extends Controller
             $arrayAux = [$subdominios, $estudiante];
             return view('ebid-views-administrador.estudiante.estudiante-home-usu')->with('arrayAux', $arrayAux);
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];

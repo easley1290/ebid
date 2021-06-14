@@ -22,7 +22,7 @@ class PortalAdminNoticeController extends Controller
             $arrayAux = [$unidadAcademica, $subdominios, $noticias];
             return view('ebid-views-administrador.portal-web.noticias')->with('arrayAux', $arrayAux);
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -67,7 +67,7 @@ class PortalAdminNoticeController extends Controller
 
             return redirect()->route('noticias.index')->with('status', 'Se CREÓ la noticia con exito');
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -112,7 +112,7 @@ class PortalAdminNoticeController extends Controller
             $noticiasE->save();
             return redirect()->route('noticias.index')->with('status', 'Se MODIFICÓ la noticia con exito');
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
@@ -136,7 +136,7 @@ class PortalAdminNoticeController extends Controller
             $noticiasD->delete();
             return redirect()->route('noticias.index')->with('status', 'Se ELIMINÓ la noticia con exito');
         }
-        catch(QueryException $err, Exception $e){
+        catch(QueryException $err){
             if($err){
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
