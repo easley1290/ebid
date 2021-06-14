@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
+
 use App\Models\Estudiantes;
 use App\Models\Subdominios;
 use App\Models\Semestre;
@@ -11,13 +14,14 @@ use App\Models\Personas;
 use App\Models\UnidadAcademica;
 use App\Models\Pensum;
 use App\Models\Especialidades;
-use Illuminate\Support\Facades\DB;
+
 
 class EstudianteNuevoController extends Controller
 {
     public function store(Request $request)
     {
-        /**----------------------------------- Guardar formulario de registro de estudiantes ---------------------- */
+        /**----------------------------------- Guardar formulario de registro de estudiantes desde la vista de administrador ---------------------- */
+        // este controlador se lo utiliza al momento de inscribir al estudiante desde admnistracion
         try{
             $this->validate($request,[
                 'nombre_estudiante' => 'required|min:2|max:50',
@@ -105,14 +109,23 @@ class EstudianteNuevoController extends Controller
             $estudianteE->save();
             return redirect()->route('administracion.index')->with('status', 'Se completo el registro del estudiante inscribiendose en '. $request->get('anio_estudiante').' año.');
 
-        } catch(Exception $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 
     public function show($id)
     {
-        /** ------------------- mostrar formulario de registro de datos de estudiantes --------------------- */
+        /** ------------------- mostrar formulario de registro de datos de estudiantes desde el rol de administrador--------------------- */
         try{
             $idnumero = (int) $id;
             $datos = DB::table('personas')
@@ -170,8 +183,17 @@ class EstudianteNuevoController extends Controller
                 return redirect()->route('administracion.index')->with('status', 'No puede ingresar a esta pagina');
             }
             
-        } catch(Exception $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 
@@ -200,8 +222,17 @@ class EstudianteNuevoController extends Controller
                 return redirect()->route('administracion.index')->with('status', 'No se encontro ningun registro correspondiente a su usuario');
             }
             
-        } catch(Exception $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 }

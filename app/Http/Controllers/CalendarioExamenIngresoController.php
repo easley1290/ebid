@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
+use Exception;
+
 use App\Models\Estudiantes;
 use App\Models\Subdominios;
 use App\Models\Semestre;
@@ -10,7 +14,6 @@ use App\Models\MateriaEstudiante;
 use App\Models\Personas;
 use App\Models\UnidadAcademica;
 use App\Models\Pensum;
-use Illuminate\Support\Facades\DB;
 
 class CalendarioExamenIngresoController extends Controller
 {
@@ -28,52 +31,53 @@ class CalendarioExamenIngresoController extends Controller
 
             return view('ebid-views-administrador.inscripcion.calendario-ingreso',['estudiantes' => $estudiantes]);
         }
-        catch(Exception $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
     
     public function store(Request $request)
     {
-        try{
-            $datosEvento = request()->except(['_token', '_method']);
-            $estudianteC = Estudiantes::find($datosEvento['est_id']);
-            $estudianteC->est_examen_ingreso_fecha = $datosEvento['est_examen_ingreso_fecha'];
-            $estudianteC->est_examen_ingreso_color = $datosEvento['est_examen_ingreso_color'];
-            $estudianteC->est_examen_ingreso_estado = $datosEvento['est_examen_ingreso_estado'];
-            $estudianteC->save();
+        /*----guarda datos del examen de ingreso en el calendario----*/
+        $datosEvento = request()->except(['_token', '_method']);
+        $estudianteC = Estudiantes::find($datosEvento['est_id']);
+        $estudianteC->est_examen_ingreso_fecha = $datosEvento['est_examen_ingreso_fecha'];
+        $estudianteC->est_examen_ingreso_color = $datosEvento['est_examen_ingreso_color'];
+        $estudianteC->est_examen_ingreso_estado = $datosEvento['est_examen_ingreso_estado'];
+        $estudianteC->save();
 
-            $estudianteH = DB::table('estudiantes')
-                            ->join('personas', 'personas.per_id','=', 'estudiantes.est_per_id')
-                            ->where('personas.per_id', '=', $estudianteC->est_per_id)
-                            ->get();
-            return response()->json($estudianteH);
-        }catch(Exception $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
-        }
+        $estudianteH = DB::table('estudiantes')
+                        ->join('personas', 'personas.per_id','=', 'estudiantes.est_per_id')
+                        ->where('personas.per_id', '=', $estudianteC->est_per_id)
+                        ->get();
+        return response()->json($estudianteH);
     }
 
     public function show($id)
     {
-        try{
-            $datos['eventos'] = DB::table('estudiantes')
-                            ->join('personas', 'personas.per_id','=', 'estudiantes.est_per_id')
-                            ->where('estudiantes.est_subd_estado', '=', 8)
-                            ->where('estudiantes.est_examen_ingreso_fecha', '!=', "")
-                            ->get();
+        // muestra datos del examen de ingreso de todos los estudiantes con estado pre examen (8)
+        $datos['eventos'] = DB::table('estudiantes')
+                        ->join('personas', 'personas.per_id','=', 'estudiantes.est_per_id')
+                        ->where('estudiantes.est_subd_estado', '=', 8)
+                        ->where('estudiantes.est_examen_ingreso_fecha', '!=', "")
+                        ->get();
 
-            foreach($datos['eventos'] as $resultado){
-                $title = $resultado->name;
-                $start = $resultado->est_examen_ingreso_fecha;
-                $id = $resultado->est_id;
-                $color = $resultado->est_examen_ingreso_color;
-                $textColor = '#000000';
-                $eventos[] = array('id' => $id, 'title' => $title, 'start' => $start, 'color' => $color, 'textColor' => $textColor);
-            }
-            return response()->json($eventos);
-
-        }catch(Exception $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        foreach($datos['eventos'] as $resultado){
+            $title = $resultado->name;
+            $start = $resultado->est_examen_ingreso_fecha;
+            $id = $resultado->est_id;
+            $color = $resultado->est_examen_ingreso_color;
+            $textColor = '#000000';
+            $eventos[] = array('id' => $id, 'title' => $title, 'start' => $start, 'color' => $color, 'textColor' => $textColor);
         }
+        return response()->json($eventos);
     }
 }

@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\DB;
+use File;
+
 use App\Models\Estudiantes;
 use App\Models\Subdominios;
 use App\Models\Comprobantes;
-use Illuminate\Support\Facades\DB;
-use File;
 
 class ComprobanteController extends Controller
 {
     public function index()
     {
-        $comprobante = DB::table('personas')
+        // trae vista de lista de comprobantes de los estudiantes de estado 6, 7 y 8
+        try{
+            $comprobante = DB::table('personas')
                     ->select('personas.*', 'estudiantes.*', 'comprobantes.*')
                     ->join('estudiantes', 'estudiantes.est_per_id', '=', 'personas.per_id')
                     ->join('comprobantes', 'estudiantes.est_id', '=', 'comprobantes.com_est_id')
@@ -22,10 +26,25 @@ class ComprobanteController extends Controller
                     ->orWhere('estudiantes.est_subd_estado', '=', 6)
                     ->get();
 
-        return view('ebid-views-administrador.inscripcion.comprobante', ['comprobante'=> $comprobante]);
+            return view('ebid-views-administrador.inscripcion.comprobante', [
+                'comprobante'=> $comprobante
+            ]);
+        }
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
+        }
     }
     public function update(Request $request, $id)
     {
+        // guarda modificaciones que se pudiesen haber dado en el registro del comprobante
         try{
             $this->validate($request,[
                 'e_tipo_comprobante' => 'required'
@@ -71,19 +90,38 @@ class ComprobanteController extends Controller
             $comprobanteE->save();
 
             return redirect()->route('comprobante.index')->with('status', 'Se modifico el registro del comprobante, como se modifico el registro el estado validacion volvio a "No validado"');
-        } catch(Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
     public function destroy($id){
+        // elimina el registro del comprobante seleccionado
         try{
             $comprobanteE = Comprobantes::find($id);
             
             unlink(public_path().$comprobanteE->com_url);
             $comprobanteE->delete();
             return redirect()->route('comprobante.index')->with('status', 'Se elimino el registro del comprobante');
-        } catch(Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
-        }  
+        }
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
+        }
     }
 }

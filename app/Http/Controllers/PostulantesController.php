@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\QueryException;
+
 use App\Models\Personas;
 use App\Models\Estudiantes;
 use App\Models\Subdominios;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class PostulantesController extends Controller
 {
     public function index()
     {
-         /*-----------Se llama a la vista del listado de postulantes con estado pre examen(8) y per_rol = 1---------------------------*/
+         /*-----------Se llama a la vista del listado de postulantes con estado pre examen(8) y per_rol = 4---------------------------*/
         try{
             $postulante = DB::table('personas')
                             ->join('estudiantes', 'estudiantes.est_per_id', '=', 'personas.per_id')
@@ -37,8 +39,17 @@ class PostulantesController extends Controller
 
             $arrayAux = [$postulante, $subdominiosExamen, $subdominiosEst, $extension];
             return view('ebid-views-administrador.inscripcion.lista-postulante')->with('arrayAux', $arrayAux);
-        }catch(Exception $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
     public function create(){
@@ -48,8 +59,17 @@ class PostulantesController extends Controller
                         ->where('subd_dom_id','=',9)
                         ->get();
             return view ('ebid-views-administrador.inscripcion.pre-inscripcion')->with('extension', $extension);
-        }catch(Exception $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
     public function store(Request $request)
@@ -103,8 +123,17 @@ class PostulantesController extends Controller
             
             return redirect()->route('postulante.index')->with('status', 'Se creo un nuevo registro del postulante.');
             
-        } catch(Exception $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
     public function update(Request $request, $id)
@@ -134,8 +163,17 @@ class PostulantesController extends Controller
             $personaE->save();
 
             return redirect()->route('postulante.index')->with('status', 'Se modifico el registro del postulante '.$request->get('nombres_estudiante').' '.$request->get('paterno_estudiante').' '. $request->get('materno_estudiante'));
-        } catch(Exception $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 
@@ -145,8 +183,17 @@ class PostulantesController extends Controller
             $personaD = Personas::find($id);
             $personaD->delete();
             return redirect()->route('postulante.index')->with('status', 'Se elimino el registro del postulante');
-        } catch(Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 }

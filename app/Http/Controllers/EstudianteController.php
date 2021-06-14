@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
+
 use App\Models\Estudiantes;
 use App\Models\Subdominios;
 use App\Models\Semestre;
@@ -10,13 +13,12 @@ use App\Models\MateriaEstudiante;
 use App\Models\Personas;
 use App\Models\UnidadAcademica;
 use App\Models\Pensum;
-use Illuminate\Support\Facades\DB;
 
 class EstudianteController extends Controller
 {
-    
     public function index()
     {
+        // trae el listado de estudiantes preinscritos estado (7) el estado preinscrito es al terminar el año y al aprobar el examen
         try{
             $estudiante = DB::table('estudiantes')
                             ->select('personas.*', 'estudiantes.*')
@@ -29,13 +31,23 @@ class EstudianteController extends Controller
             $subdominios = Subdominios::all();
             $arrayAux = [$subdominios, $estudiante];
             return view('ebid-views-administrador.estudiante.estudiante-home')->with('arrayAux', $arrayAux);
-        } catch (Exception $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 
     public function busquedaEstudiante(Request $request)
     {
+        //funcion de buscar estudiantes 
         if($request->ajax()){
             $nombre = ucwords(strtolower($request->get('busqueda_nombre')));
 

@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Database\QueryException;
+use Exception;
+
 use App\Mail\ValidacionRegistro;
 use App\Mail\ContrasenaCambio;
-use Illuminate\Support\Facades\Mail;
-
 use App\Models\User;
 use App\Models\Personas;
 use App\Models\Subdominios;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+
 
 class MailController extends Controller
 {
@@ -20,8 +23,8 @@ class MailController extends Controller
         try{
             return view('ebid-views-login.contrasena-mail');
         } 
-        catch (Throwable $e){
-            return view('ebid-views-portal.home');
+        catch (Exception $e){
+            return view('ebid-views-portal.home')->with('status', 'Hubo un error '.$e);
         }
     }
     public function sendEmail(Request $request)
@@ -47,8 +50,7 @@ class MailController extends Controller
         $persona_edit->password = Hash::make($password);
 
         $persona_edit->save();
-        
-
+    
         return redirect('/login_')->with('contrasena', 'Se cambio la contraseña, verifique su correo electronico');
 
     }

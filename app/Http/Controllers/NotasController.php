@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
+
 use App\Models\Notas;
 use App\Models\MateriaEstudiante;
 use App\Models\MateriaDocente;
@@ -13,12 +16,11 @@ use App\Models\Docentes;
 use App\Models\Subdominios;
 use App\Models\Dominios;
 
-use Illuminate\Support\Facades\DB;
-
 class NotasController extends Controller
 {
     public function index()
     {
+        //mostrar vista de seleccion de materia para ver notas
         try{
             $idUsuario = auth()->user()->per_id;
             $docente = Docentes::select('docentes.*')
@@ -30,7 +32,7 @@ class NotasController extends Controller
                     ->where('matd_doc_id','=',$docente->doc_id)
                     ->get();
             
-                    $materias = Materias::select('materias.*')
+                $materias = Materias::select('materias.*')
                     ->get();
                 return view('ebid-views-administrador.notas.notas-ver', [
                     'materiaDocente'=>$materiaDocente,
@@ -46,13 +48,22 @@ class NotasController extends Controller
                 ])->with('status', 'No posee materias asiganadas');
             }
         }
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 
     public function busquedaMateriaEstudianteNotas(Request $request)
     {
+        // funcion ajax de buscar las notas de los estudiantes por materia
         if($request->ajax()){
             $materiaEstudiante = Personas::select('personas.name', 'personas.per_num_documentacion', 'estudiantes.est_id', 'materia_estudiante.mate_id', 'notas.*')
                 ->join('estudiantes', 'estudiantes.est_per_id', '=', 'personas.per_id')
@@ -68,6 +79,7 @@ class NotasController extends Controller
     public function update(Request $request, $id)
     {
         // recibiendo variable not_id
+        // guardar notas de los estudiantes ************
         try{
             $notaE = Notas::find($id);
             $notaE->nota_final1 = $request->get('nota1');
@@ -87,10 +99,19 @@ class NotasController extends Controller
             $notaE->save();
             return redirect()->route('ver-notas.index')->with('status', 'Se MODIFICO la nota con exito');
         }
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
+
     public function destroy($id)
     {
         try{
@@ -98,21 +119,25 @@ class NotasController extends Controller
             $notaD->delete();
             return redirect()->route('ver-notas.index')->with('status', 'Se ELIMINO el registro de la nota con exito');
         }
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
-    public function cerrarAbrirParcialVer()
-    {
-        //Abrir vista para cerrar o abrir parcial
-        return view ('ebid-views-administrador.notas.cerrar-abrir-parcial');
-    }
+
     public function cerrarAbrirParcialMod(Request $request)
     {
         //Modificar el parcial vigente
         try{
             $subdominio = Subdominios::select('*')
-                    ->where('subd_nombre', '=', 'Parcial a cerrar')
+                    ->where('subd_nombre', '=', 'Parcial actual')
                     ->first();
             if($request->get('indicador_parcial') == "ABRIR"){
                 $subdominio->subd_descripcion = $request->get('nombre_parcial');
@@ -141,10 +166,19 @@ class NotasController extends Controller
                 }
             }
         }
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
+
     public function permisoModificarNotasVer()
     {
         try{
@@ -160,10 +194,19 @@ class NotasController extends Controller
                 'estudiantes'=>$estudiantes
             ]);
         }
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
+
     public function permisoModificarNotasMod(Request $request)
     {
         //Modificar el indicador de las notas
@@ -210,16 +253,25 @@ class NotasController extends Controller
             }
             
         }
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
+
     public function cerrarGestionAcademica(Request $request)
     {
         try
         {
             $subdominio = Subdominios::select('*')
-                        ->where('subd_nombre', '=', 'Parcial a cerrar')
+                        ->where('subd_nombre', '=', 'Parcial actual')
                         ->first();
             $subdominio->subd_descripcion = "SEGUNDO TURNO";
 
@@ -236,15 +288,24 @@ class NotasController extends Controller
             $subdominio->save();
             return redirect()->route('administracion.index')->with('status', 'Se cerro el periodo academico y se abrío el periodo del Segundo Turno.');
         }
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
+
     public function cerrarDosT(Request $request)
     {
         try{
             $subdominio = Subdominios::select('*')
-                        ->where('subd_nombre', '=', 'Parcial a cerrar')
+                        ->where('subd_nombre', '=', 'Parcial actual')
                         ->first();
             $subdominio->subd_descripcion = 1;
 
@@ -273,8 +334,16 @@ class NotasController extends Controller
             $subdominio->save();
             return redirect()->route('administracion.index')->with('status', 'Se cerro el periodo academico y se abrío el periodo del Segundo Turno.');
         }
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 }

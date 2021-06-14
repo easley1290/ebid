@@ -139,7 +139,10 @@ Route::resource('/PersonaPerfil', PersonaPerfilController::class);
 Route::resource('/Contrasena', ContrasenaController::class);
 
 /***************  Institucion  ****************** */
+//?
 Route::resource('/Institucion', InstitucionController::class);
+
+
 /***************  UnidadAcademica  ****************** */
 Route::resource('/UnidadAcademica', UnidadAcademicaController::class);
 /***************  Carrera  ****************** */
@@ -168,7 +171,7 @@ Route::resource('/Nota', NotaController::class);
 Route::resource('/Imprimir', ImprimirController::class);
 
 /***************  oferta academica  ****************** */
-Route::resource('/portal-vista', PortalVistaController::class);
+//Route::resource('/portal-vista', PortalVistaController::class);
 
 Route::prefix('portal-vista/oferta-academica')->group(function () {
     Route::resource('/perfilProfesional', PortalVistaPerfilController::class);

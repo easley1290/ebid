@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+
 use App\Models\UnidadAcademica;
 use App\Models\Subdominios;
 
@@ -15,8 +17,17 @@ class PortalAdminContactController extends Controller
             $subdominios = Subdominios::all();
             $arrayAux = [$unidadAcademica, $subdominios];
             return view('ebid-views-administrador.portal-web.contactos')->with('arrayAux', $arrayAux);
-        } catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
     public function update(Request $request, $id)
@@ -36,8 +47,17 @@ class PortalAdminContactController extends Controller
             $contactE->ua_correo_electronico = (string) $request->get('correo_electronico_ua');
             $contactE->save();
             return redirect()->route('contactos.index')->with('status', 'Se MODIFICÓ la informacion de contactos con exito');
-        } catch(Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 }

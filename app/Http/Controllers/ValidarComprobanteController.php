@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
+
 use App\Models\Personas;
 use App\Models\Estudiantes;
 use App\Models\Subdominios;
 use App\Models\Comprobantes;
 use App\Models\Pensum;
 use App\Models\MateriaEstudiante;
-use Illuminate\Support\Facades\DB;
 
 class ValidarComprobanteController extends Controller
 {
@@ -45,9 +47,17 @@ class ValidarComprobanteController extends Controller
                 return redirect()->route('comprobante.index')->with('status', 'Comprobante de inscripcion validado, estudiante inscrito');
             }
             
-        } catch(Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
         }
-        
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
+        }        
     }
 }

@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+use File;
 
 use App\Models\UnidadAcademica;
 use App\Models\Subdominios;
 use App\Models\Galeria;
-use File;
 
 class PortalAdminGalleryController extends Controller
 {
-    
     public function index()
     {
         try{
@@ -20,8 +20,17 @@ class PortalAdminGalleryController extends Controller
             $subdominios = Subdominios::all();
             $arrayAux = [$unidadAcademica, $subdominios, $galeria];
             return view('ebid-views-administrador.portal-web.galeria')->with('arrayAux', $arrayAux);
-        } catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 
@@ -56,8 +65,17 @@ class PortalAdminGalleryController extends Controller
             $galeriaC->gal_subd_estado = (int) $request->get('c_estado_galeria');
             $galeriaC->save();
             return redirect()->route('galeria.index')->with('status', 'Se CREÓ un nuevo registro para la galeria.');
-        } catch(Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 
@@ -93,8 +111,17 @@ class PortalAdminGalleryController extends Controller
             $galeriaE->gal_subd_estado = (int) $request->get('e_estado_galeria');
             $galeriaE->save();
             return redirect()->route('galeria.index')->with('status', 'Se MODIFICÓ el registro para la galeria.');
-        } catch(Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 
@@ -109,8 +136,17 @@ class PortalAdminGalleryController extends Controller
             }
             $galeriaD->delete();
             return redirect()->route('galeria.index')->with('status', 'Se ELIMINÓ el registro de la galeria con éxito.');
-        } catch(Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 }

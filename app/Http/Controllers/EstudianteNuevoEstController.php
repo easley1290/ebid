@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\DB;
+
 use App\Models\Estudiantes;
 use App\Models\Subdominios;
 use App\Models\Semestre;
@@ -11,13 +14,13 @@ use App\Models\Personas;
 use App\Models\UnidadAcademica;
 use App\Models\Pensum;
 use App\Models\Especialidades;
-use Illuminate\Support\Facades\DB;
 
 class EstudianteNuevoEstController extends Controller
 {
     public function store(Request $request)
     {
-        /**----------------------------------- Guardar formulario de registro de estudiantes ---------------------- */
+        /**----------------------------------- Guardar formulario de registro de estudiantes desde el rol de estudiante ---------------------- */
+        // esta funcion se utilizará al guardar el formulario despues de aprpobar el examen
         try{
             $this->validate($request,[
                 'nombre_estudiante' => 'required|min:2|max:50',
@@ -71,23 +74,33 @@ class EstudianteNuevoEstController extends Controller
             $estudianteE->save();
             return redirect()->route('administracion.index')->with('status', 'Se completo el registro de sus datos, ahora tiene que realizar el deposito de Bs. 1, a la cuenta bancaria XXXXXXXXXXX para su inscripcion.');
 
-        } catch(Exception $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        }
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 
     public function show($id)
     {
         /** ------------------- mostrar formulario de registro de datos de estudiantes --------------------- */
+        // esta funcion se llama cuando el estudiante esta en un estado de preinscrito (7) con el rol estudiante
         try{
             $idnumero = (int) $id;
             $datos = DB::table('personas')
-                ->join('estudiantes', 'estudiantes.est_per_id', '=', 'personas.per_id')
-                ->where('personas.per_id', '=', (int)$idnumero)
-                ->where('estudiantes.est_subd_estado', '<=', 7)
-                ->where('personas.per_rol', '<=', 5)
-                ->get()
-                ->first();
+                    ->join('estudiantes', 'estudiantes.est_per_id', '=', 'personas.per_id')
+                    ->where('personas.per_id', '=', (int)$idnumero)
+                    ->where('estudiantes.est_subd_estado', '<=', 7)
+                    ->where('personas.per_rol', '<=', 5)
+                    ->get()
+                    ->first();
             if($datos != null){
 
                 $nombreExt = Subdominios::select('subdominios.*')
@@ -136,38 +149,17 @@ class EstudianteNuevoEstController extends Controller
                 return redirect()->route('administracion.index')->with('status', 'No puede ingresar a esta pagina');
             }
             
-        } catch(Exception $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
         }
-    }
-
-
-    public function edit($id)
-    {
-        /** ------------------ funcion de aprobar estudiante desde el calendario de examenes de ingreso --------------------------*/
-        try{
-            $estudiante = Estudiantes::find($id);
-
-            $datos = Personas::select('*')
-                    ->where('personas.per_id', '=', $estudiante->est_per_id)
-                    ->get()
-                    ->first();
-
-            if($datos!= null){
-                /** se lo aprueba con per_rol = 5 que equivale a un estado auxiliar para resgitar datos de inscripcion solo una vez */
-                $datos->per_rol = 5;
-                $estudiante->est_examen_ingreso_estado =  13;
-                $estudiante->est_subd_estado = 7;
-                $estudiante->save();
-                $datos->save();
-                return redirect()->route('calendario-ingreso.index')->with('status', 'El estudiante aprobo el examen de ingreso, AHORA el estudiante debe completar sus datos');
-
-            }else if($datos == null){
-                return redirect()->route('administracion.index')->with('status', 'No se encontro ningun registro correspondiente a su usuario');
+        catch(QueryException $err, Exception $e){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
             }
-            
-        } catch(Exception $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 }

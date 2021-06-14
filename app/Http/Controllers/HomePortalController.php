@@ -7,48 +7,49 @@ use App\Models\Institucion;
 use App\Models\Personas;
 use Mail;
 use App\Mail\Contactanos;
+use Illuminate\Database\QueryException;
 
 class HomePortalController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $perfiles = Institucion::select('institucion.*')
-            ->where('ins_id','=',1)
-            ->get();
-        $instituciones = Institucion::select('*')
-            ->first(); 
-        $doc = Personas::select('*')
-            ->where('per_rol', '=', 6)
-            ->where('per_subd_estado','=',1)
-            ->join('docentes', 'doc_per_id', '=', 'per_id')
-            ->get(); 
-        $aux = [$perfiles, $instituciones, $doc];
-        return view('ebid-views-portal.home')->with('aux', $aux);
+        // retorna index del portal web
+        try{
+            $perfiles = Institucion::select('institucion.*')
+                ->where('ins_id','=',1)
+                ->get();
+            $instituciones = Institucion::select('*')
+                ->first(); 
+            $doc = Personas::select('*')
+                ->where('per_rol', '=', 6)
+                ->where('per_subd_estado','=',1)
+                ->join('docentes', 'doc_per_id', '=', 'per_id')
+                ->get(); 
+            $aux = [$perfiles, $instituciones, $doc];
+            return view('ebid-views-portal.home')->with('aux', $aux);
+        }
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('error', [
+                    'numero'=> $numeroError,
+                    'nombre'=> $nombreError
+                ]);
+            }
+            else{
+                return view('error', [
+                    'numero'=> '',
+                    'nombre'=> ''
+                ]);
+            }
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
+        // Formulario de contactanos del portal web
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',
@@ -71,50 +72,5 @@ class HomePortalController extends Controller
             ->send(new Contactanos($details));
 
         return response(json_encode('OK'), 200)->header('Content-type', 'text/plain');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
