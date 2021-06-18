@@ -14,8 +14,27 @@ class PortalVistaMallaController extends Controller
      */
     public function index()
     {
-        $institucions = Institucion::all();
-        return view('ebid-views-portal.oferta-academica.malla')->with('institucions', $institucions);
+        try{
+            $institucions = Institucion::all();
+            return view('ebid-views-portal.oferta-academica.malla')->with('institucions', $institucions);
+        }
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('error', [
+                    'numero'=> $numeroError,
+                    'nombre'=> $nombreError
+                ]);
+            }
+            else{
+                return view('error', [
+                    'numero'=> '',
+                    'nombre'=> ''
+                ]);
+            }
+        }
     }
 
     /**

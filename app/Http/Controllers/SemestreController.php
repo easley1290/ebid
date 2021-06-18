@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+
 use App\Models\Semestre;
 use App\Models\Subdominios;
 
@@ -24,8 +26,16 @@ class SemestreController extends Controller
             $aux = [$semestres, $estados];
             return view('ebid-views-administrador.semestre.semestre')->with('aux', $aux);
         } 
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
  
@@ -60,8 +70,16 @@ class SemestreController extends Controller
             $semestre_nuevo->save();
             return redirect()->route('Semestre.index')->with('status', 'Se CREÓ el semestre con exito');
         } 
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 
@@ -109,8 +127,16 @@ class SemestreController extends Controller
             $semestre_edit->save();
             return redirect()->route('Semestre.index')->with('status', 'Se MODIFICÓ el semestre con exito');
         } 
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 
@@ -127,8 +153,16 @@ class SemestreController extends Controller
             $semestre_delete->delete();
             return redirect()->route('Semestre.index')->with('status', 'Se ELIMINÓ el semestre con exito');
         } 
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 }

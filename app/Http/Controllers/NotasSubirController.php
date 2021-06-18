@@ -20,6 +20,7 @@ class NotasSubirController extends Controller
 {
     public function index()
     {
+        //retorna vista para subir notas
         try{
             $idUsuario = auth()->user()->per_id;
             $docente = Docentes::select('docentes.*')

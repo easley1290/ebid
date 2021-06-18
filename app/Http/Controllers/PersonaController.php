@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Personas;
-use App\Models\Subdominios;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Database\QueryException;
+
+use App\Models\User;
+use App\Models\Personas;
+use App\Models\Subdominios;
 
 class PersonaController extends Controller
 {
@@ -33,8 +35,16 @@ class PersonaController extends Controller
             return  view('ebid-views-administrador.perfil_personal.perfil_personal',
                     compact('personas','generos','tipo_docs','extensions'));
         } 
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
  
@@ -92,10 +102,18 @@ class PersonaController extends Controller
             $persona_nuevo->per_rol = '7';
             $persona_nuevo->save();
 
-        return redirect()->route('Persona.index')->with('status', 'Se CREÓ la persona con exito');
+            return redirect()->route('Persona.index')->with('status', 'Se CREÓ la persona con exito');
         }
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 
@@ -163,10 +181,17 @@ class PersonaController extends Controller
             $persona_edit->save();
             return redirect()->route('Persona.index')->with('status', 'Se MODIFICÓ la persona con exito');
         }
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
-
     }
 
     /**
@@ -177,9 +202,22 @@ class PersonaController extends Controller
      */
     public function destroy($id)
     {
-        $persona_delete = Personas::find($id);
+        try{
+            $persona_delete = Personas::find($id);
 
-        $persona_delete->delete();
-        return redirect()->route('Persona.index');
+            $persona_delete->delete();
+            return redirect()->route('Persona.index');
+        }
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
+        }
     }
 }

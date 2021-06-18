@@ -23,8 +23,22 @@ class MailController extends Controller
         try{
             return view('ebid-views-login.contrasena-mail');
         } 
-        catch (Exception $e){
-            return view('ebid-views-portal.home')->with('status', 'Hubo un error '.$e);
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('error', [
+                    'numero'=> $numeroError,
+                    'nombre'=> $nombreError
+                ]);
+            }
+            else{
+                return view('error', [
+                    'numero'=> '',
+                    'nombre'=> ''
+                ]);
+            }
         }
     }
     public function sendEmail(Request $request)

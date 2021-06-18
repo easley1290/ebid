@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+
 use App\Models\CategoriaDocente;
 use App\Models\Subdominios;
 
@@ -23,8 +25,16 @@ class CategoriaDocenteController extends Controller
             $aux = [$categorias, $estados];
             return view('ebid-views-administrador.categoriaDocente.categoriaDocente')->with('aux', $aux);
         } 
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 
@@ -62,8 +72,16 @@ class CategoriaDocenteController extends Controller
             $cat_nuevo->save();
             return redirect()->route('CategoriaDocente.index')->with('status', 'Se CREÓ el Rol con exito');
         } 
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 
@@ -114,8 +132,16 @@ class CategoriaDocenteController extends Controller
             $cat_edit->save();
             return redirect()->route('CategoriaDocente.index')->with('status', 'Se MODIFICÓ el Rol con exito');
         } 
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 
@@ -132,8 +158,16 @@ class CategoriaDocenteController extends Controller
             $cat_delete->delete();
             return redirect()->route('CategoriaDocente.index')->with('status', 'Se ELIMINÓ el Rol con exito');
         } 
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 }

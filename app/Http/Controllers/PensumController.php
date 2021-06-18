@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+
 use App\Models\Pensum;
 use App\Models\Especialidades;
 use App\Models\Semestre;
@@ -75,8 +77,16 @@ class PensumController extends Controller
             $aux = [$pensum, $estados, $especialidades, $materias, $semestre, $carreras, $pensum_basicas_1, $pensum_basicas_2, $pensum_basicas_3, $pensum_cd, $pensum_dc, $pensum_df, $pensum_dmc, $pensum_pd];
             return view('ebid-views-administrador.pensum.pensum')->with('aux', $aux);
         } 
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 
@@ -115,8 +125,16 @@ class PensumController extends Controller
             $pensum_nueva->save();
             return redirect()->route('Pensum.index')->with('status', 'Se AGREGÓ una materia al pensum con exito');
         } 
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 
@@ -166,8 +184,16 @@ class PensumController extends Controller
             $pensum_edit->save();
             return redirect()->route('Pensum.index')->with('status', 'Se MODIFICÓ una materia del pensum con exito');
         } 
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 
@@ -184,8 +210,16 @@ class PensumController extends Controller
             $pensum_delete->delete();
             return redirect()->route('Pensum.index')->with('status', 'Se ELIMINÓ una materia del pensum con exito');
         } 
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 }

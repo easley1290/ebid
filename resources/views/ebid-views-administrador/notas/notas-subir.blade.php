@@ -19,6 +19,7 @@
             </ul>
         </div>
     @endif
+    
     <div class="container">							
         <div class="row">
             <div class="row">
@@ -111,6 +112,7 @@
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function(){   
             $(document).on('submit', '#formBusqueda', function() {

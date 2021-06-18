@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Personas;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Database\QueryException;
 
 class ContrasenaController extends Controller
 {
@@ -17,13 +18,25 @@ class ContrasenaController extends Controller
      */
     public function index()
     {
-        $personas = Personas::select('*')
+        try{
+            $personas = Personas::select('*')
                 ->where('per_id','=',auth()->user()->id)
                 ->get();
-        
-        return  view('ebid-views-administrador.perfil_personal.perfil_contrasena',
-                //compact('personas','generos','tipo_docs','extensions'));
-                compact('personas'));
+            return  view('ebid-views-administrador.perfil_personal.perfil_contrasena',
+                    //compact('personas','generos','tipo_docs','extensions'));
+                    compact('personas'));
+        }
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
+        }
     }
 
     /**
@@ -78,57 +91,67 @@ class ContrasenaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $this->validate($request,[
-            'contrasena_nueva' => 'required',
-            'contrasena_nueva1' => 'required'
-        ]);
-        
-
-        $contrasena = Personas::select('*')
-                    ->where('per_id','=',$id)
-                    ->first();
-        $texto_hashed= $contrasena->password;
-        $texto_normal= $request->input('per_contrasena_antigua');
+        try{
+            $this->validate($request,[
+                'contrasena_nueva' => 'required',
+                'contrasena_nueva1' => 'required'
+            ]);
+            
     
-        if(isset($request->per_contrasena_antigua))
-        {
-            if(Hash::check($texto_normal,$texto_hashed))
+            $contrasena = Personas::select('*')
+                        ->where('per_id','=',$id)
+                        ->first();
+            $texto_hashed= $contrasena->password;
+            $texto_normal= $request->input('per_contrasena_antigua');
+        
+            if(isset($request->per_contrasena_antigua))
+            {
+                if(Hash::check($texto_normal,$texto_hashed))
+                {
+                    if($request->input('contrasena_nueva') == $request->input('contrasena_nueva1'))
+                    {
+                        $persona_edit = Personas::find($id);
+                        $persona_edit->password = Hash::make($request->input('contrasena_nueva'));
+                        $persona_edit->save();
+                        return redirect()->route('Contrasena.index')->with('success', 'Contraseña Guardada');
+                    }
+                    else
+                    {
+                        return redirect()->route('Contrasena.index')->with('danger', 'Las contraseñas no coinciden');
+                    }
+                }
+                else
+                {
+                    return redirect()->route('Contrasena.index')->with('danger', 'La contraseña antigua no corresponde');
+                }
+    
+            }
+            else
             {
                 if($request->input('contrasena_nueva') == $request->input('contrasena_nueva1'))
                 {
                     $persona_edit = Personas::find($id);
                     $persona_edit->password = Hash::make($request->input('contrasena_nueva'));
                     $persona_edit->save();
-                    return redirect()->route('Contrasena.index')->with('success', 'Contraseña Guardada');
+                    return redirect()->route('PersonaInstitucional.index')->with('success', 'Contraseña Guardada');
                 }
                 else
                 {
-                    return redirect()->route('Contrasena.index')->with('danger', 'Las contraseñas no coinciden');
+                    return redirect()->route('PersonaInstitucional.index')->with('danger', 'Las contraseñas no coinciden');;
                 }
             }
-            else
-            {
-                return redirect()->route('Contrasena.index')->with('danger', 'La contraseña antigua no corresponde');
-            }
-
         }
-        else
-        {
-            if($request->input('contrasena_nueva') == $request->input('contrasena_nueva1'))
-            {
-                $persona_edit = Personas::find($id);
-                $persona_edit->password = Hash::make($request->input('contrasena_nueva'));
-                $persona_edit->save();
-                return redirect()->route('PersonaInstitucional.index')->with('success', 'Contraseña Guardada');
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
             }
-            else
-            {
-                return redirect()->route('PersonaInstitucional.index')->with('danger', 'Las contraseñas no coinciden');;
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
             }
         }
-    
-
     }
 
     /**

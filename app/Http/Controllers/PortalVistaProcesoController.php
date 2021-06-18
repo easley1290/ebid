@@ -13,7 +13,26 @@ class PortalVistaProcesoController extends Controller
      */
     public function index()
     {
-        return view('ebid-views-portal.oferta-academica.procesoAdmision');
+        try{
+            return view('ebid-views-portal.oferta-academica.procesoAdmision');
+        }
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('error', [
+                    'numero'=> $numeroError,
+                    'nombre'=> $nombreError
+                ]);
+            }
+            else{
+                return view('error', [
+                    'numero'=> '',
+                    'nombre'=> ''
+                ]);
+            }
+        }
     }
 
     /**

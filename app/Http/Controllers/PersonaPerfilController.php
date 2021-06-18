@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+
 use App\Models\User;
 use App\Models\Personas;
 use App\Models\Subdominios;
@@ -62,8 +64,16 @@ class PersonaPerfilController extends Controller
             return  view('ebid-views-administrador.perfil_personal.perfil_datos',
                     compact('personas','generos','tipo_docs','extensions'));
         } 
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 
@@ -118,22 +128,30 @@ class PersonaPerfilController extends Controller
             $persona_edit->per_subd_genero = $request->input('per_subd_genero');
 
             if ($request->hasFile('per_foto_personal')) 
-        {
-            $ldate = date('YmdHis_');
+            {
+                $ldate = date('YmdHis_');
 
-            $file = $request->file('per_foto_personal');
-            $name=$file->getClientOriginalName();
-            $originalname = $ldate.$file->getClientOriginalName();
-            $place = $file->storeAs('public/Foto', $originalname);
-            $path = '/storage/Foto/'.$originalname;
-            $persona_edit->per_foto_personal      = $path;
-        }
+                $file = $request->file('per_foto_personal');
+                $name=$file->getClientOriginalName();
+                $originalname = $ldate.$file->getClientOriginalName();
+                $place = $file->storeAs('public/Foto', $originalname);
+                $path = '/storage/Foto/'.$originalname;
+                $persona_edit->per_foto_personal      = $path;
+            }
         
             $persona_edit->save();
             return redirect()->route('PersonaPerfil.show',auth()->user()->per_id);
         }
-        catch (Throwable $e){
-            return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
         }
     }
 

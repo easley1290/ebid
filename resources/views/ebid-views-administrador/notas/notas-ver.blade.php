@@ -31,7 +31,7 @@
             <div class="col-lg-12">
                 <div class="card card-default">
                     <div class="card-header card-header-border-bottom" style="justify-content: space-between;">
-                        <div class="col-md-9"><h4 class="row">Si tiene materias asignadas usted podrá ver a los estudiantes cursando la materia</h4></div>
+                        <div class="col-md-9"><h4 class="row">Si tiene materias asignadas usted podrá ver a los estudiantes que estan cursando la materia</h4></div>
                         <div class="col-md-3">
                             <a href="{{ route('subir-notas.index') }}"><button type="button" class="btn btn-primary"><span class="mdi mdi-comment-plus"></span>&nbsp;Ir seccion subir notas</button></a>
                         </div>
