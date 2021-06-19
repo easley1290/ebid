@@ -168,8 +168,13 @@ Route::resource('/estudiante-usuario', EstudianteUsuarioController::class);
 Route::resource('/MateriaDocente', MateriaDocenteController::class);
 /***************  Nota  ****************** */
 Route::resource('/Nota', NotaController::class);
-Route::resource('/Imprimir', ImprimirController::class);
 
+//Route::resource('/Imprimir', ImprimirController::class);
+
+Route::get('/ImprimirPersonal', [ImprimirController::class, 'ImprimirPersonal'])->name('ImprimirPersonal');
+Route::get('/ImprimirEstudiantes', [ImprimirController::class, 'ImprimirEstudiantes'])->name('ImprimirEstudiantes');
+Route::post('/ImprimirDocentes', [ImprimirController::class, 'ImprimirDocentes'])->name('ImprimirDocentes');
+Route::post('/ImprimirAdministrativo', [ImprimirController::class, 'ImprimirAdministrativo'])->name('ImprimirAdministrativo');
 /***************  oferta academica  ****************** */
 //Route::resource('/portal-vista', PortalVistaController::class);
 

@@ -133,11 +133,6 @@
                                 <span class="nav-text">Institucional</span>                             
                               </a>
                             </li> 
-                            <!--li >
-                              <a class="sidenav-item-link" href="{{route('Contrasena.index')}}">
-                                <span class="nav-text">Cambiar Contraseña</span>                             
-                              </a>
-                            </li--> 
                       </div>
                     </ul>
                   </li>
@@ -171,6 +166,29 @@
                     </ul>
                   </li>
                   
+                  <!----------------------------REPORTES---------------------------------->
+                  <li  class="has-sub" >
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#informe"
+                      aria-expanded="false" aria-controls="informe">
+                      <i class="mdi mdi-file-document-edit-outline"></i>
+                      <span class="nav-text">Informes</span> <b class="caret"></b>
+                    </a>
+                    <ul  class="collapse"  id="informe"
+                      data-parent="#sidebar-menu">
+                      <div class="sub-menu">
+                            <li >
+                              <a class="sidenav-item-link" href="{{route('ImprimirPersonal')}}" target="blank_">
+                                <span class="nav-text">Personal (Informe)</span>                             
+                              </a>
+                            </li> 
+                            <li >
+                              <a class="sidenav-item-link" href="{{route('ImprimirEstudiantes')}}" target="blank_">
+                                <span class="nav-text">Estudiantes (Informe)</span>                             
+                              </a>
+                            </li> 
+                      </div>
+                    </ul>
+                  </li>
                   <!----------------------------ROLES Y PERMISOS---------------------------------->
                   <li  class="has-sub" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"

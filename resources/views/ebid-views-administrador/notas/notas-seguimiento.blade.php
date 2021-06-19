@@ -36,7 +36,7 @@
                         <div class="col-md-9"><h3 class="row text-uppercase">Numero de documento: {{auth()->user()->per_num_documentacion}}</h3></div>
                         <div class="col-md-9"><h4 class="row">En esta seccion ud. podra ver las notas de las materia de cada estudiante</h4></div>
                         
-                        <!--button type="button" class="btn btn-secondary"><span class="mdi mdi-printer"></span>&nbsp;<a style="color:white;" href="{{route('Imprimir.index')}}" target="_blank">Imprimir</a></button-->
+                        <!--button type="button" class="btn btn-secondary"><span class="mdi mdi-printer"></span>&nbsp;<a style="color:white;" href="" target="_blank">Imprimir</a></button-->
 
                         <form action="estudiante-materia-imprimir" method="POST" id="formImprimir" target="_blank">
                             @csrf
