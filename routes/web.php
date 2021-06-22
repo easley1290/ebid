@@ -129,6 +129,7 @@ Route::get('/register_', function () {
                         ->get();
     return view('ebid-views-login.register')->with('extension', $extension);
 });
+
 Route::get('/MailContrasena',[MailController::class,'index']);
 Route::post('/CambioContrasena',[MailController::class,'sendEmail'])->name('CambioContrasena');
 
@@ -178,19 +179,11 @@ Route::post('/ImprimirAdministrativo', [ImprimirController::class, 'ImprimirAdmi
 /***************  oferta academica  ****************** */
 //Route::resource('/portal-vista', PortalVistaController::class);
 
-Route::prefix('portal-vista/oferta-academica')->group(function () {
+Route::prefix('portal')->group(function () {
     Route::resource('/perfilProfesional', PortalVistaPerfilController::class);
     Route::resource('/procesoAdmision', PortalVistaProcesoController::class);
     Route::resource('/malla', PortalVistaMallaController::class);
     Route::resource('/inscripcion', PortalVistaInscripcionController::class);
-    Auth::routes();
-    Route::get('/login_', function () {return view('ebid-views-login.login');});
-    Route::get('/register_', function () {
-        $extension = Subdominios::select('subdominios.*')
-                            ->where('subd_dom_id','=',9)
-                            ->get();
-        return view('ebid-views-login.register')->with('extension', $extension);
-    });
 });
 
 

@@ -64,10 +64,10 @@ class NotasSubirController extends Controller
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
                 $nombreError = $e['errorInfo'][2];
-                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+                return redirect()->route('administracion.index')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
             }
             else{
-                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+                return redirect()->route('administracion.index')->with('status', 'Hubo un error inusual');
             }
         }
     }
@@ -285,7 +285,7 @@ class NotasSubirController extends Controller
                             }else{
                                 $datoAModificar->nota_final = $notaFinal;
                             }
-                            
+
                             $datoAModificar->save();
                             $materiaEst = MateriaEstudiante::select('*')
                                     ->where('mate_id', '=', $request->get('materiaEstudiante'.$i))
@@ -302,17 +302,13 @@ class NotasSubirController extends Controller
         }
         catch(QueryException $err){
             if($err){
-
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
                 $nombreError = $e['errorInfo'][2];
-                $subdominios = Subdominios::select('subd_descripcion')
-                        ->where('subd_nombre', '=', 'Parcial actual')
-                        ->first();
                 return redirect()->route('administracion.index')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
             }
             else{
-                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+                return redirect()->route('administracion.index')->with('status', 'Hubo un error inusual');
             }
         }
     }

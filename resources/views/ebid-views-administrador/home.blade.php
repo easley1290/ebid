@@ -25,7 +25,9 @@
                         <img src="{{ asset('assets/img/aaaa.jpg') }}" alt="" width="80%">
                     </div>
                     <h3 class="mb-1">Bienvenidos a nuestro sistema, le invitamos a navegar por nuestras opciones del menu disponible.</h3>
-                    <h3 class="mb-6"><b>Actualmente nos encontramos en el parcial Nro.{{ $subdominios->subd_descripcion }}</b></h3>
+                    @if ($subdominios)
+                        <h3 class="mb-6"><b>Actualmente nos encontramos en el parcial Nro.{{ $subdominios->subd_descripcion }}</b></h3>
+                    @endif
                 </div>
             </div>
             @if (auth()->user()->per_rol == '1')

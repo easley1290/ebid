@@ -19,14 +19,14 @@ class AdministradorController extends Controller
             $administrativos = Administrativos::all();
             $personas = Personas::all();
             $estados = Subdominios::select('subdominios.*')
-            ->where('subd_dom_id','=',1)
-            ->get();
+                ->where('subd_dom_id','=',1)
+                ->get();
             $roles = Roles::select('roles.*')
-            ->where('rol_id','<',3)
-            ->get(); 
+                ->where('rol_id','<',3)
+                ->get(); 
             $personas_habilitadas = Personas::select('*')
-            ->where('per_rol','=',7)
-            ->get();
+                ->where('per_rol','=',7)
+                ->get();
             $aux = [$administrativos, $personas, $estados, $roles, $personas_habilitadas];
             return view('ebid-views-administrador.administrador.administrador')->with('aux', $aux);
         } 
@@ -35,10 +35,10 @@ class AdministradorController extends Controller
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
                 $nombreError = $e['errorInfo'][2];
-                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+                return redirect()->route('administracion.index')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
             }
             else{
-                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+                return redirect()->route('administracion.index')->with('status', 'Hubo un error inusual');
             }
         }
     }
@@ -76,10 +76,10 @@ class AdministradorController extends Controller
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
                 $nombreError = $e['errorInfo'][2];
-                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+                return redirect()->route('administracion.index')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
             }
             else{
-                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+                return redirect()->route('administracion.index')->with('status', 'Hubo un error inusual');
             }
         }
     }
@@ -118,10 +118,10 @@ class AdministradorController extends Controller
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
                 $nombreError = $e['errorInfo'][2];
-                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+                return redirect()->route('administracion.index')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
             }
             else{
-                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+                return redirect()->route('administracion.index')->with('status', 'Hubo un error inusual');
             }
         }
     }
@@ -147,10 +147,10 @@ class AdministradorController extends Controller
                 $e = json_decode(json_encode($err), true);
                 $numeroError = $e['errorInfo'][1];
                 $nombreError = $e['errorInfo'][2];
-                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+                return redirect()->route('administracion.index')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
             }
             else{
-                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+                return redirect()->route('administracion.index')->with('status', 'Hubo un error inusual');
             }
         }
     }
