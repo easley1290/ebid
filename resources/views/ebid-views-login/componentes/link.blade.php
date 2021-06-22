@@ -7,10 +7,10 @@
   <!-- No Extra plugin used -->
   <link href="{{asset('assets/assets/plugins/jvectormap/jquery-jvectormap-2.0.3.css')}}" rel="stylesheet" />
   <link href="{{asset('assets/assets/plugins/daterangepicker/daterangepicker.css')}}" rel="stylesheet" />
-  {{-- <link href="{{asset('assets/assets/plugins/toastr/toastr.min.css')}}" rel="stylesheet" />
+  {{-- <link href="{{asset('assets/assets/plugins/toastr/toastr.min.css')}}" rel="stylesheet" />--}}
 
   <!-- SLEEK CSS -->
-  <link id="sleek-css" rel="stylesheet" href="{{asset('assets/assets/css/sleek.css')}}" /> --}}
+  <link id="sleek-css" rel="stylesheet" href="{{asset('assets/assets/css/sleek.css')}}" /> 
   
   <!-- FAVICON -->
   <link href="{{asset('assets/assets/img/favicon.png')}}" rel="shortcut icon" />

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\QueryException;
+use App\Mail\ValidacionRegistro;
+use Illuminate\Support\Facades\Mail;
 
 use App\Models\Personas;
 use App\Models\Estudiantes;
@@ -83,8 +85,7 @@ class PostulantesController extends Controller
                 'numero_ci_estudiante' => 'required|min:5',
                 'extension_ci_estudiante' => 'required',
                 'numero_telefono_estudiante' => 'required|min:8|max:11',
-                'email' => 'required|min:8|max:50',
-                'password' => 'required|min:8|max:100',
+                'email' => 'required|min:8|max:50'
             ]);
 
             $personaC = new Personas;
@@ -102,10 +103,23 @@ class PostulantesController extends Controller
             $personaC->per_num_documentacion = trim($request->get('numero_ci_estudiante').$alfa);
             $personaC->per_subd_extension = $request->get('extension_ci_estudiante');
             $personaC->per_telefono = (int) $request->get('numero_telefono_estudiante');
-            $personaC->name = $request->get('nombres_estudiante').' '.$request->get('paterno_estudiante').' '. $request->get('materno_estudiante');
+            $personaC->name = trim($request->get('nombres_estudiante')).' '.trim($request->get('paterno_estudiante')).' '.trim($request->get('materno_estudiante'));
             $personaC->email = (string) $request->get('email');
             $personaC->per_correo_personal = (string) $request->get('email');
-            $personaC->password = Hash::make(trim($request->get('password')));
+            
+            $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-";
+            $password = "";
+            for($i=0;$i<8;$i++) {
+                $password .= substr($str,rand(0,62),1);
+            }
+
+            $details = [
+                'password'=> $password,
+                'name'=>trim($request->get('nombres_estudiante')).' '.trim($request->get('paterno_estudiante')).' '.trim($request->get('materno_estudiante'))
+            ];
+
+            Mail::to($request->get('email'))->send(new ValidacionRegistro($details));
+            $personaC->password = Hash::make($password);
             $personaC->per_ua_id = 'UA-EA0001';
             $personaC->per_subd_estado = 1;
             $personaC->per_rol = 4;

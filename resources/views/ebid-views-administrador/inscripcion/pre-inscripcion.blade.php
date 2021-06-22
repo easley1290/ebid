@@ -114,19 +114,6 @@
                                             onKeyPress="if(this.value.length==50) return false;"
                                             required autocomplete="off">
                                 </div>
-                                <div class="form-group col-md-12 ">
-                                    <label for="password">Nueva contraseña</label>
-                                    <input id="password" type="password" 
-                                            class="form-control input-lg @error('password') is-invalid @enderror" 
-                                            name="password" placeholder="Contraseña"
-                                            required autocomplete="off">
-                                </div>
-                                <div class="form-group col-md-12 ">
-                                    <label for="password-confirm">Repita la contraseña</label>
-                                    <input id="password-confirm" type="password" class="form-control" 
-                                        name="password-confirm" placeholder="Confirmar Contraseña" 
-                                        required autocomplete="off">
-                                </div>
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-lg btn-primary btn-block mb-4" id="btnAgregar">Registrar est. pre inscrito</button>
                                 </div>

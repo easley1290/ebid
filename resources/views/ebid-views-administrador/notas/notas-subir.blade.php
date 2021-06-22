@@ -76,7 +76,9 @@
                                             <th>Id estudiante</th>
                                             <th>Nombre completo</th>
                                             <th>Cedula de identidad</th>
-                                            <th style="background-color: #266AFF; color: white;">Nota del estudiante</th>
+                                            <th style="background-color: #C493C3; color: white;">Practica (70%)</th>
+                                            <th style="background-color: #E0BBE8; color: white;">Teorica (30%)</th>
+                                            <th style="background-color: #C493C3; color: white;">Total (100%)</th>
                                             <th style="display: none;" colspan="5"></th>
                                         </tr>
                                     </thead>
@@ -95,8 +97,8 @@
                                             <p>Recuerde que no podra cambiar las notas a menos que adminitracion le de autorizacion para ello</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cerrar</button>
-                                            <button type="submit" class="btn btn-primary"><span class="mdi mdi-folder-upload"></span>&nbsp;SUBIR NOTAS</button></div>
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="cancelar"><span class="mdi mdi-cancel"></span>&nbsp;Cerrar</button>
+                                            <button type="button" class="btn btn-primary" id="submitt" onclick="deshabilitar(submitt)"><span class="mdi mdi-folder-upload"></span>&nbsp;SUBIR NOTAS</button></div>
                                         </div>
                                     </div>
                                 </div>
@@ -131,7 +133,11 @@
                                 fila+= '<tr><td>'+array[i].est_id+'<input type="hidden" value="'+array[i].mate_id+'" id="materiaEstudiante'+contador+'" name="materiaEstudiante'+contador+'"></input></td>'
                                 fila+='<td>'+array[i].name+'</td>';
                                 fila+='<td>'+array[i].per_num_documentacion+'</td>';
-                                fila+='<td><input type="text" class="form-control" id="nota'+contador+'" name="nota'+contador+'" placeholder="Ingrese la nota del estudiante"';
+                                fila+='<td><input type="text" class="form-control" onchange="calcular(notaA'+contador+', notaB'+contador+')" id="notaA'+contador+'" name="notaA'+contador+'" placeholder="Nota practica"';
+                                fila+='onKeyPress="if(this.value.length==4) return false;" value=0 autocomplete="off" required></input></td>';
+                                fila+='<td><input type="text" class="form-control" onchange="calcular(notaA'+contador+', notaB'+contador+')" id="notaB'+contador+'" name="notaB'+contador+'" placeholder="Nota teorica"';
+                                fila+='onKeyPress="if(this.value.length==4) return false;" value=0 autocomplete="off" required></input></td>';
+                                fila+='<td><input type="text" class="form-control" disabled id="notaC" name="notaC" value =0 placeholder="Nota Total"';
                                 fila+='onKeyPress="if(this.value.length==4) return false;" autocomplete="off" required></input></td></tr>';
                                 contador++;
                             }
@@ -139,7 +145,7 @@
                             $('#cuerpoTabla').html(fila);
 
                             fila2+='<div class="form-group row" style="justify-content: center;"><div class="col-md-3">';
-                            fila2+='<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#afirmar"><span class="mdi mdi-account-search"></span>&nbsp;SUBIR NOTAS</button>';
+                            fila2+='<button type="button" class="btn btn-primary" id="subir_nota" onclick="verificar()"><span class="mdi mdi-account-search"></span>&nbsp;SUBIR NOTAS</button>';
                             fila2+='<input type="hidden" value="'+contador+'" name="contador" id="contador"></input>';
                             fila2+='<input type="hidden" value="'+param+'" name="materiaEst" id="materiaEst"></input>';
                             fila2+='</div></div>';
@@ -148,7 +154,7 @@
                         }
                         if(array.length<=0){
                             contador = -1;
-                            fila = '<tr><td colspan="3" align="center">No existen registros de estudiantes en esa materia</td></tr>';
+                            fila = '<tr><td colspan="6" align="center">No existen registros de estudiantes habilitados para subir notas</td></tr>';
                             $('#cuerpoTabla').html(fila);
                             fila2 = '';
                             $('#confirmar').html(fila2)
@@ -171,6 +177,35 @@
                     "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
                 },
             });
+        });
+    </script>
+
+    <script type="text/javascript">
+        function calcular(param1, param2){
+            if(parseFloat(param1.value) > 100 || parseFloat(param2.value) > 100){
+                alert('Los valores '+param1.value+' (PRACTICO) y '+param2.value+' (TEORICO) superan el valor de 100 y 100 respectivamente, revise los valores porfavor.')
+                if(parseFloat(param1.value) > 100){
+                    param1.focus();
+                }
+                if(parseFloat(param2.value) > 100){
+                    param2.focus();
+                }
+            }
+            else{
+                document.getElementById('notaC').value = ((parseFloat(param1.value))*0.7) + ((parseFloat(param2.value))*0.3);
+            }
+           
+        }
+        function verificar(){
+            if(document.getElementById('notaC').value > 1 && document.getElementById('notaC').value != 0){
+                $('#afirmar').modal('show');
+            }
+            else{
+                alert('Se verifico que la nota final es igual a 0 verifique las notas practicas y teoricas');
+            }
+        }
+        $("#submitt").click(function(){        
+            $("#createRegistros").submit();
         });
     </script>
 @endsection

@@ -19,21 +19,20 @@
             </ul>
         </div>
     @endif
-    <div class="container">							
+    <div class="container col-md-12">							
         <div class="row">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card text-white mb-3 bg-primary">
-                        <div class="card-header bg-primary" style="font-size: 30px;">NOTAS - VER NOTAS DE SUS MATERIAS</div>
-                    </div>
+            <div class="col-md-12">
+                <div class="card text-white mb-3 bg-primary">
+                    <div class="card-header bg-primary" style="font-size: 30px;">NOTAS - VER NOTAS DE SUS MATERIAS</div>
                 </div>
             </div>
-            <div class="col-lg-12">
+            <div class="col-md-12">
                 <div class="card card-default">
                     <div class="card-header card-header-border-bottom" style="justify-content: space-between;">
                         <div class="col-md-9"><h4 class="row">Si tiene materias asignadas usted podrá ver a los estudiantes que estan cursando la materia</h4></div>
                         <div class="col-md-3">
-                            <a href="{{ route('subir-notas.index') }}"><button type="button" class="btn btn-primary"><span class="mdi mdi-comment-plus"></span>&nbsp;Ir seccion subir notas</button></a>
+                            <a href="{{ route('subir-notas.index') }}"><button type="button" class="btn btn-primary"><span class="mdi mdi-comment-plus"></span>
+                                &nbsp;Ir seccion subir notas</button></a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -64,29 +63,47 @@
                             </div>
                         </form>
 
+                       <div class="col-md-12">
                         <form action="{{ route('subir-notas.store') }}" method="POST" id="createRegistros">
                             @csrf
-                            <div class="form-group row">
-                                <table id="notas" class="table card-table table-responsive table-responsive-large" style="width:100%">
+                            <div class="form-group row col-md-12" style="margin-left: -5px;">
+                                <table id="notas" class="table table-responsive">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
+                                            <th style="display: none;"></th>
                                             <th>Nombre completo</th>
                                             <th>Cedula de identidad</th>
-                                            <th>1er Parcial</th>
-                                            <th>2do Parcial</th>
-                                            <th>3er Parcial</th>
-                                            <th>4to Parcial</th>
+                                            <th colspan="3">1er Parcial</th>
+                                            <th colspan="3">2do Parcial</th>
+                                            <th colspan="3">3er Parcial</th>
+                                            <th colspan="3">4to Parcial</th>
                                             <th>Segundo Turno</th>
                                             <th colspan="5" style="display: none;"></th>
                                             <th>Nota final</th>
                                             <th>Acciones</th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2"></th>
+                                            <th>P</th>
+                                            <th>T</th>
+                                            <th>&nbsp;</th>
+                                            <th>P</th>
+                                            <th>T</th>
+                                            <th>&nbsp;</th>
+                                            <th>P</th>
+                                            <th>T</th>
+                                            <th>&nbsp;</th>
+                                            <th>P</th>
+                                            <th>T</th>
+                                            <th>&nbsp;</th>
+                                            <th colspan="7"></th>
                                         </tr>
                                     </thead>
                                     <tbody id="cuerpoTabla"></tbody>
                                 </table>
                             </div>
                         </form>
+                       </div>
                     </div>
                 </div>
             </div>
@@ -109,34 +126,57 @@
                             <p class="mb-1">Si usted no pude modificar las notas comuniquese con administracion para solicitar permisos de modificación</p>
                             <p class="mb-4"><b>NO PUEDE modificar la nota del segundo turno</b></p>
                         </div>
-                        <div class="row">
+                        <div class="form-group row">
                             <input id="mate_id" name="mate_id" type="hidden">
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <label for="nombre_estudiante" class="form-label">Nombre del estudiante</label>
                                 <input name="nombre_estudiante" type="text" class="form-control" id="nombre_estudiante" readonly required>
                             </div>
-                            <div class="col-md-6">
-                                <label for="nombre_materia" class="form-label">Nombre de la materia</label>
+                            <div class="col-md-4">
+                                <label for="nombre_materia" class="form-label">Nro. identificacion del estudiante</label>
                                 <input id="nombre_materia" name="nombre_materia" type="text" class="form-control" readonly required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="2T" class="form-label">Segundo turno</label>
+                                <input name="2T" type="text" class="form-control" id="2T" required style="background-color: #F5F78B">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-3">
+                            <div class="col-md-3">
+                                <label for="notaP1" class="form-label">Nota Practica 1P</label>
+                                <input name="notaP1" type="text" class="form-control" id="notaP1" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="notaT1" class="form-label">Nota Teoria 1P</label>
+                                <input name="notaT1" type="text" class="form-control" id="notaT1" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="notaP2" class="form-label">Nota Practica 2P</label>
+                                <input name="notaP2" type="text" class="form-control" id="notaP2" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="notaT2" class="form-label">Nota Teoria 2P</label>
+                                <input name="notaT2" type="text" class="form-control" id="notaT2" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-3">
-                                <label for="nota1" class="form-label">Nota 1er parcial</label>
-                                <input name="nota1" type="text" class="form-control" id="nota1" required>
+                                <label for="notaP3" class="form-label">Nota Practica 3P</label>
+                                <input name="notaP3" type="text" class="form-control" id="notaP3" required>
                             </div>
                             <div class="col-md-3">
-                                <label for="nota2" class="form-label">Nota 2do parcial</label>
-                                <input name="nota2" type="text" class="form-control" id="nota2" required>
+                                <label for="notaT3" class="form-label">Nota Teoria 3P</label>
+                                <input name="notaT3" type="text" class="form-control" id="notaT3" required>
                             </div>
                             <div class="col-md-3">
-                                <label for="nota3" class="form-label">Nota 3er parcial</label>
-                                <input name="nota3" type="text" class="form-control" id="nota3" required>
+                                <label for="notaP4" class="form-label">Nota Practica 4P</label>
+                                <input name="notaP4" type="text" class="form-control" id="notaP4" required>
                             </div>
                             <div class="col-md-3">
-                                <label for="nota4" class="form-label">Nota 4to parcial</label>
-                                <input name="nota4" type="text" class="form-control" id="nota4" required>
+                                <label for="notaT4" class="form-label">Nota Teoria 4P</label>
+                                <input name="notaT4" type="text" class="form-control" id="notaT4" required>
                             </div>
+                            
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -206,25 +246,52 @@
                         var fila = '';
                         var contador = 0;
                         var notaFinal = 0;
+                        var practica = '';
                         if(array.length > 0){
                             for(var i=0; i<array.length; i++){
-                                fila+= '<tr><td>'+array[i].est_id+'</td>'
+                                fila+= '<tr><td style="display:none">'+array[i].est_id+'</td>'
                                 fila+='<td>'+array[i].name+'</td>';
                                 fila+='<td>'+array[i].per_num_documentacion+'</td>';
-                                fila+='<td>'+array[i].nota_final1+'</td>';
-                                fila+='<td>'+array[i].nota_final2+'</td>';
-                                fila+='<td>'+array[i].nota_final3+'</td>';
-                                fila+='<td>'+array[i].nota_final4+'</td>';
+
+                                aux = array[i].nota_final1.split("|");
+                                practica = Math.round(aux[0]*1000)/1000;
+                                teoria = Math.round(aux[1]*1000)/1000;
+                                fila+='<td>'+practica+'</td>';
+                                fila+='<td>'+teoria+'</td>';
+                                fila+='<td>'+Math.round((practica+teoria)*1000)/1000+'</td>';
+
+                                aux = array[i].nota_final2.split("|");
+                                practica = Math.round(aux[0]*1000)/1000;
+                                teoria = Math.round(aux[1]*1000)/1000;
+                                fila+='<td>'+practica+'</td>';
+                                fila+='<td>'+teoria+'</td>';
+                                fila+='<td>'+Math.round((practica+teoria)*1000)/1000+'</td>';
+
+                                aux = array[i].nota_final3.split("|");
+                                practica = Math.round(aux[0]*1000)/1000;
+                                teoria = Math.round(aux[1]*1000)/1000;
+                                fila+='<td>'+practica+'</td>';
+                                fila+='<td>'+teoria+'</td>';
+                                fila+='<td>'+Math.round((practica+teoria)*1000)/1000+'</td>';
+
+                                aux = array[i].nota_final4.split("|");
+                                practica = Math.round(aux[0]*1000)/1000;
+                                teoria = Math.round(aux[1]*1000)/1000;
+                                fila+='<td>'+practica+'</td>';
+                                fila+='<td>'+teoria+'</td>';
+                                fila+='<td>'+Math.round((practica+teoria)*1000)/1000+'</td>';
+
                                 fila+='<td>'+array[i].nota_dosT+'</td>';
                                 fila+='<td style="display:none;">'+array[i].nota_indicador1+'</td>';
                                 fila+='<td style="display:none;">'+array[i].nota_indicador2+'</td>';
                                 fila+='<td style="display:none;">'+array[i].nota_indicador3+'</td>';
                                 fila+='<td style="display:none;">'+array[i].nota_indicador4+'</td>';
+                                fila+='<td style="display:none;">'+array[i].nota_indicador2T+'</td>';
                                 fila+='<td style="display:none;">'+array[i].nota_id+'</td>';
-                                if(Math.round(array[i].nota_final * 100) / 100 <= 6){
-                                    fila+='<td style="background-color: #EA7A76; color: #000;">'+Math.round(array[i].nota_final * 100) / 100+'</td>';
+                                if(Math.round(array[i].nota_final * 1000) / 1000 <= 60){
+                                    fila+='<td style="background-color: #EA7A76; color: #000;">'+Math.round(array[i].nota_final * 1000) / 1000+'</td>';
                                 }else{
-                                    fila+='<td style="background-color: #8BCE91; color: #000;">'+Math.round(array[i].nota_final * 100) / 100+'</td>';
+                                    fila+='<td style="background-color: #8BCE91; color: #000;">'+Math.round(array[i].nota_final * 1000) / 1000+'</td>';
                                 }
                                 @if (auth()->user()->per_rol == 6)
                                     fila+='<td><button class="btn btn-success edit" type="button"><span class="mdi mdi-circle-edit-outline"></span></button></td></tr>';
@@ -240,7 +307,7 @@
                         }
                         if(array.length<=0){
                             contador = -1;
-                            fila = '<tr><td colspan="3" align="center">No existen registros de estudiantes en esa materia</td></tr>';
+                            fila = '<tr><td colspan="23" align="center">No existen registros de estudiantes en esa materia</td></tr>';
                             $('#cuerpoTabla').html(fila);
                             fila2 = '';
                             $('#confirmar').html(fila2)
@@ -266,43 +333,69 @@
                 $('#nombre_estudiante').val($tr[0].children[1].innerText);
                 $('#nombre_materia').val($tr[0].children[2].innerText);
                 
-                $('#nota1').val($tr[0].children[3].innerText);
-                $('#nota2').val($tr[0].children[4].innerText);
-                $('#nota3').val($tr[0].children[5].innerText);
-                $('#nota4').val($tr[0].children[6].innerText);
+                $('#notaP1').val($tr[0].children[3].innerText);
+                $('#notaT1').val($tr[0].children[4].innerText);
+                $('#notaP2').val($tr[0].children[6].innerText);
+                $('#notaT2').val($tr[0].children[7].innerText);
+                $('#notaP3').val($tr[0].children[9].innerText);
+                $('#notaT3').val($tr[0].children[10].innerText);
+                $('#notaP4').val($tr[0].children[12].innerText);
+                $('#notaT4').val($tr[0].children[13].innerText);
+                $('#2T').val($tr[0].children[15].innerText);
 
                 @if (auth()->user()->per_rol != 1)
-                    if($tr[0].children[8].innerText == "0"){
-                        $('#nota1').attr('readonly', 'readonly');
+                    if($tr[0].children[16].innerText == "0"){
+                        $('#notaP1').attr('readonly', 'readonly');
+                        $('#notaT1').attr('readonly', 'readonly');
                     }else{
-                        $('#nota1').removeAttr('readonly', 'readonly');
+                        $('#notaP1').removeAttr('readonly', 'readonly');
+                        $('#notaT1').removeAttr('readonly', 'readonly');
                     }
-                    if($tr[0].children[9].innerText == "0"){
-                        $('#nota2').attr('readonly', 'readonly');
+                    if($tr[0].children[17].innerText == "0"){
+                        $('#notaP2').attr('readonly', 'readonly');
+                        $('#notaT2').attr('readonly', 'readonly');
                     }else{
-                        $('#nota2').removeAttr('readonly', 'readonly');
+                        $('#notaP2').removeAttr('readonly', 'readonly');
+                        $('#notaT2').removeAttr('readonly', 'readonly');
                     }
-                    if($tr[0].children[10].innerText == "0"){
-                        $('#nota3').attr('readonly', 'readonly');
+                    if($tr[0].children[18].innerText == "0"){
+                        $('#notaP3').attr('readonly', 'readonly');
+                        $('#notaT3').attr('readonly', 'readonly');
                     }else{
-                        $('#nota3').removeAttr('readonly', 'readonly');
+                        $('#notaP3').removeAttr('readonly', 'readonly');
+                        $('#notaT3').removeAttr('readonly', 'readonly');
                     }
-                    if($tr[0].children[11].innerText == "0"){
-                        $('#nota4').attr('readonly', 'readonly');
+                    if($tr[0].children[19].innerText == "0"){
+                        $('#notaP4').attr('readonly', 'readonly');
+                        $('#notaT4').attr('readonly', 'readonly');
                     }else{
-                        $('#nota4').removeAttr('readonly', 'readonly');
+                        $('#notaP4').removeAttr('readonly', 'readonly');
+                        $('#notaT4').removeAttr('readonly', 'readonly');
+                    }
+                    if($tr[0].children[20].innerText == "0"){
+                        $('#2T').attr('readonly', 'readonly');
+                        $('#2T').attr('readonly', 'readonly');
+                    }else{
+                        $('#2T').removeAttr('readonly', 'readonly');
+                        $('#2T').removeAttr('readonly', 'readonly');
                     }
                 @else
-                    $('#nota1').removeAttr('readonly', 'readonly');
-                    $('#nota2').removeAttr('readonly', 'readonly');
-                    $('#nota3').removeAttr('readonly', 'readonly');
-                    $('#nota4').removeAttr('readonly', 'readonly');
+                    $('#notaP1').removeAttr('readonly', 'readonly');
+                    $('#notaT1').removeAttr('readonly', 'readonly');
+                    $('#notaP2').removeAttr('readonly', 'readonly');
+                    $('#notaT2').removeAttr('readonly', 'readonly');
+                    $('#notaP3').removeAttr('readonly', 'readonly');
+                    $('#notaT3').removeAttr('readonly', 'readonly');
+                    $('#notaP4').removeAttr('readonly', 'readonly');
+                    $('#notaT4').removeAttr('readonly', 'readonly');
+                    $('#2T').removeAttr('readonly', 'readonly');
+                    $('#2T').removeAttr('readonly', 'readonly');
                 @endif
 
-                $('#mate_id').val($tr[0].children[12].innerText);
+                $('#mate_id').val($tr[0].children[21].innerText);
                 
                 $('#editModal').modal('show');
-                $('#editForm').attr('action', 'ver-notas/'+$tr[0].children[12].innerText);
+                $('#editForm').attr('action', 'ver-notas/'+$tr[0].children[21].innerText);
             })
         });
     </script>
@@ -315,7 +408,7 @@
                     $tr = $tr.prev('.parent');
                 }
                 $('#destroyModal').modal('show');
-                $('#deleteForm').attr('action', 'ver-notas/'+$tr[0].children[11].innerText);
+                $('#deleteForm').attr('action', 'ver-notas/'+$tr[0].children[21].innerText);
             })
         });
     </script>

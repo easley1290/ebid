@@ -27,8 +27,8 @@ class MateriaDocenteController extends Controller
             $materias = Materias::all();
             $personas = Personas::all();
             $estados = Subdominios::select('subdominios.*')
-            ->where('subd_dom_id','=',1)
-            ->get();
+                ->where('subd_dom_id','=',1)
+                ->get();
             $aux = [$materiadocentes, $docentes, $personas, $materias, $estados];
             return view('ebid-views-administrador.materiaDocente.materiaDocente')->with('aux', $aux);
         } 

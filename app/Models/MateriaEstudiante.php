@@ -36,7 +36,7 @@ class MateriaEstudiante extends Model
     /**
      * @var array
      */
-    protected $fillable = ['mate_mat_id', 'mate_esp_id', 'mate_sem_id', 'mate_est_id', 'mate_subd_id'];
+    protected $fillable = ['mate_mat_id', 'mate_esp_id', 'mate_sem_id', 'mate_est_id', 'mate_subd_id', 'mate_subir_nota'];
 
     /**
      * Indicates if the model should be timestamped.

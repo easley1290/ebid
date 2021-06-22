@@ -101,7 +101,8 @@ class EstudianteNuevoController extends Controller
                     'mate_esp_id' => $pensum[$i]->pen_esp_id,
                     'mate_sem_id' => $pensum[$i]->pen_sem_id,
                     'mate_est_id' => $estudianteE->est_id,
-                    'mate_subd_id' => 9
+                    'mate_subd_id' => 9,
+                    'mate_subir_nota' => 1
                 ]);
             }
             

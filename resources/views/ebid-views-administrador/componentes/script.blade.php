@@ -30,3 +30,11 @@
 <script src="{{ asset('assets/assets/plugins/toastr/toastr.min.js') }}"></script>
 
 <script src="{{ asset('assets/assets/js/sleek.bundle.js') }}"></script>
+
+<script type="text/javascript">
+  function deshabilitar(param1){
+      setTimeout(function(){
+          param1.disabled = true;
+      }, 20);
+  }
+</script>

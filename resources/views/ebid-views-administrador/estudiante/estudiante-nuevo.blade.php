@@ -297,7 +297,7 @@
         var boton = document.getElementById('conf');
         setTimeout(function(){
             boton.disabled = true;
-        }, 100);
+        }, 180);
     }
 </script>
 

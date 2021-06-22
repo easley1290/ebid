@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
+use Exception;
 
 use App\Models\Notas;
 use App\Models\MateriaEstudiante;
@@ -20,13 +21,12 @@ class NotasController extends Controller
 {
     public function index()
     {
-        //mostrar vista de seleccion de materia para ver notas
+        // ??
         try{
             $idUsuario = auth()->user()->per_id;
             $docente = Docentes::select('docentes.*')
                     ->where('doc_per_id','=', $idUsuario)
                     ->first();
-            
             if($docente != null){
                 $materiaDocente = MateriaDocente::select('materias_docente.*')
                     ->where('matd_doc_id','=',$docente->doc_id)
@@ -36,7 +36,8 @@ class NotasController extends Controller
                     ->get();
                 return view('ebid-views-administrador.notas.notas-ver', [
                     'materiaDocente'=>$materiaDocente,
-                    'materias'=>$materias
+                    'materias'=>$materias,
+                    'docente'=>$docente
                 ]);
             }
             else{
@@ -44,7 +45,8 @@ class NotasController extends Controller
                             ->get();
                 return view('ebid-views-administrador.notas.notas-ver', [
                     'materiaDocente'=>[],
-                    'materias'=>$materias
+                    'materias'=>$materias,
+                    'docente'=>null
                 ])->with('status', 'No posee materias asiganadas');
             }
         }
@@ -71,6 +73,7 @@ class NotasController extends Controller
                 ->join('notas', 'notas.nota_mate_id', '=', 'materia_estudiante.mate_id')
                 ->where('materia_estudiante.mate_mat_id', '=', $request->get('busqueda_materia_docente'))
                 ->where('personas.per_rol', '=', 3)
+                ->where('materia_estudiante.mate_subir_nota', '>=', 0)
                 ->get();
             return response(json_encode($materiaEstudiante), 200)->header('Content-type', 'text/plain');
         }
@@ -79,20 +82,43 @@ class NotasController extends Controller
     public function update(Request $request, $id)
     {
         // recibiendo variable not_id
-        // guardar notas de los estudiantes ************
+        // modificar notas de los estudiantes************
         try{
             $notaE = Notas::find($id);
-            $notaE->nota_final1 = $request->get('nota1');
+
+            $practica = $request->get('notaP1');
+            $teoria = $request->get('notaT1');
+            $total1 = floatval($practica)+floatval($teoria);
+            $nuevo = $practica.'|'.$teoria.'|'.$total1;
+            $notaE->nota_final1 = $nuevo;
            
-            $notaE->nota_final2 = $request->get('nota2');
-            $notaE->nota_final3 = $request->get('nota3');
-            $notaE->nota_final4 = $request->get('nota4');
-            
+            $practica = $request->get('notaP2');
+            $teoria = $request->get('notaT2');
+            $total2 = floatval($practica)+floatval($teoria);
+            $nuevo = $practica.'|'.$teoria.'|'.$total2;
+            $notaE->nota_final2 = $nuevo;
+
+            $practica = $request->get('notaP3');
+            $teoria = $request->get('notaT3');
+            $total3 = floatval($practica)+floatval($teoria);
+            $nuevo = $practica.'|'.$teoria.'|'.$total3;
+            $notaE->nota_final3 = $nuevo;
+
+            $practica = $request->get('notaP4');
+            $teoria = $request->get('notaT4');
+            $total4 = floatval($practica)+floatval($teoria);
+            $nuevo = $practica.'|'.$teoria.'|'.$total4;
+            $notaE->nota_final4 = $nuevo;
+
+            $notaE->nota_dosT = $request->get('2T');
+
             $notaE->nota_indicador1 = 0;
             $notaE->nota_indicador2 = 0;
             $notaE->nota_indicador3 = 0;
             $notaE->nota_indicador4 = 0;
-            $notaFinal = floatval($request->get('nota1')) + floatval($request->get('nota2')) + floatval($request->get('nota3')) + floatval($request->get('nota4'));
+            $notaE->nota_indicador2T = 0;
+
+            $notaFinal = floatval($total1) + floatval($total2) + floatval($total3) + floatval($total4);
             $notaFinal = $notaFinal/4;
             $notaFinal = round($notaFinal, 2);
             $notaE->nota_final = $notaFinal;
@@ -131,6 +157,25 @@ class NotasController extends Controller
             }
         }
     }
+    public function cerrarAbrirParcialVer(Request $request)
+    {
+        //Modificar el parcial vigente
+        try{
+            //Abrir vista para cerrar o abrir parcial
+            return view ('ebid-views-administrador.notas.cerrar-abrir-parcial');
+        }
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return view('ebid-views-administrador.home')->with('status', 'Hubo un error inusual');
+            }
+        }
+    }
 
     public function cerrarAbrirParcialMod(Request $request)
     {
@@ -139,6 +184,12 @@ class NotasController extends Controller
             $subdominio = Subdominios::select('*')
                     ->where('subd_nombre', '=', 'Parcial actual')
                     ->first();
+            $materiaEstudiante = MateriaEstudiante::all();
+            $fin = count($materiaEstudiante);
+            for($i=0; $i<$fin; $i++){
+                $materiaEstudiante[$i]->mate_subir_nota = 1;
+                $materiaEstudiante[$i]->save();
+            }
             if($request->get('indicador_parcial') == "ABRIR"){
                 $subdominio->subd_descripcion = $request->get('nombre_parcial');
                 $subdominio->save();
