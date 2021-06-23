@@ -3,7 +3,7 @@
     <style>
         @page {
             margin: 0cm 0cm;
-            font-family: Arial;
+            font-family: sans-serif;
         }
 
         body {
@@ -11,15 +11,17 @@
         }
 
         header {
-            position: fixed;
+            position:fixed;
             top: 0cm;
             left: 0cm;
             right: 0cm;
             height: 2cm;
-            background-color: #2a0927;
+            padding-left: 2cm;
+            background-color: #691F53;
             color: white;
-            text-align: center;
-            line-height: 30px;
+            text-align: left;
+            line-height: 80px;
+            display: inline;
         }
 
         footer {
@@ -27,11 +29,16 @@
             bottom: 0cm;
             left: 0cm;
             right: 0cm;
-            height: 2cm;
-            background-color: #2a0927;
+            height: 1cm;
+            background-color: #691F53;
             color: white;
             text-align: center;
-            line-height: 35px;
+            line-height: 5px;
+        }
+        footer .page:after {
+            content: counter(page);
+            height: 15px;
+            font: bold;
         }
         table 
         {
@@ -39,25 +46,92 @@
         }
         th
         {
-            background-color: #2a0927;
+            background-color: #691F53;
             color: white;
             text-align: center;
-            width: 25%;
+            padding-top: 15px;
+            padding-bottom: 15px;
+
         }
         td
         {
             text-align: left;
+            height: 30px;
+            font-size: 15px;
         }
+        .td_center
+        {
+            text-align: center !important;
+        }
+        .td_right
+        {
+            text-align: right;
+        }
+
     }
     </style>
 </head>
 <body>
+<?php 
+$path = '/assets/img/logo.png'; 
+$semestre='';
+switch ($materiaEstudiante[0]->mate_sem_id) {
+    case '1':
+        $semestre='Primer Año';
+        break;
+    case '2':
+        $semestre='Segundo Año';
+        break;
+    case '3':
+        $semestre='Tercer Año';
+        break;
+    case '4':
+        $semestre='Cuarto Año';
+        break;
+    
+    default:
+        # code...
+        break;
+}
+$carrera= (int)substr($materiaEstudiante[0]->mate_mat_id, -3);;
+$carrera_nombre= '';
+if ($carrera <=399) 
+{
+    $carrera_nombre = 'Básicas';
+}
+else 
+{
+    $carrera_nombre = 'Especialidad';
+}
+?>
 <header>
-    <h2 style="text-align: center;">Escuela Boliviana de Danza Boliviana</h2>
+    <div class="container">
+        <div class="row">
+            <div style="display: inline">
+                <img src="http://ebid.edu.bo/assets/img/logo.png" height="60px">
+            </div>
+            
+        </div>
+    </div>
+    
 </header>
 
 <main>
-    <h3 style="text-align: center;">Seguimiento de notas</h3>
+    <table>
+        <tbody>
+            <tr>
+                <td style="width: 25%;"> </td>
+                <td style=" width: 50%;" class="td_center"><strong><u>ESCUELA BOLIVIANA INTERCULTURAL DE DANZA</u></strong></td>
+                <td style="width: 25%;" class="td_right"><strong>Fecha:</strong> {{$today}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="td_center"><strong><u>SEGUIMIENTO DE NOTAS</u></strong></td>
+                <td class="td_right"><strong>Hora:</strong> {{$hour}}</td>                
+            </tr>
+        </tbody>
+    </table>
+
     <table>
         <thead>
             <tr>
@@ -70,21 +144,21 @@
         <tbody>
             <tr>
                 <td> <strong>Nombre:</strong> </td>
-                <td>{{$materiaEstudiante[0]->name}}</td>
-                <td><strong>Codigo:</strong></td>
-                <td>{{$materiaEstudiante[0]->per_num_documentacion}}</td>
+                <td>{{$persona->name}}</td>
+                <td><strong>Código:</strong></td>
+                <td>{{$persona->per_codigo_institucional}}</td>
             </tr>
             <tr>
                 <td><strong>CI:</strong></td>
-                <td>{{$materiaEstudiante[0]->per_num_documentacion}}</td>
-                <td><strong>Gestion:</strong></td>
-                <td>{{$materiaEstudiante[0]->mate_sem_id}}</td>
+                <td>{{$persona->per_num_documentacion}}</td>
+                <td><strong>Gestión:</strong></td>
+                <td>{{$semestre}}</td>
             </tr>
             <tr>
                 <td><strong>Carrera:</strong></td>
+                <td>{{$carrera_nombre}}</td>
                 <td></td>
                 <td></td>
-                <td>{{$today}}</td>
             </tr>
             <tr></tr>
         </tbody>
@@ -95,14 +169,14 @@
     <table>
         <thead>
             <tr>
-                <th rowspan="2">Id</th>
-                <th rowspan="2">Materia</th>
-                <th colspan="2">Primer Parcial</th>
-                <th colspan="2">Segundo Parcial</th>
-                <th colspan="2">Tercer Parcial</th>
-                <th colspan="2">Cuarto Parcial</th>
-                <th rowspan="2">Segundo Turno</th>
-                <th rowspan="2">Nota final</th>
+                <th rowspan="2" style="width: 10%;">Id</th>
+                <th rowspan="2" style="width: 30%;">Materia</th>
+                <th colspan="2" style="width: 10%;">Primer Parcial</th>
+                <th colspan="2" style="width: 10%;">Segundo Parcial</th>
+                <th colspan="2" style="width: 10%;">Tercer Parcial</th>
+                <th colspan="2" style="width: 10%;">Cuarto Parcial</th>
+                <th rowspan="2" style="width: 10%;">Segundo Turno</th>
+                <th rowspan="2" style="width: 10%;">Nota final</th>
             </tr>
             <tr>
                 <th >T</th>
@@ -116,29 +190,40 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <?php
+            <?php
+                if (count($materiaEstudiante)>0) {
                     foreach ($materiaEstudiante as $arr) {
-                ?>
-                        <td>{{$arr->mat_id}}</td>
-                        <td>{{$arr->mat_nombre}}</td>
-                        <td>{{$arr->nota_final1}}</td>
-                        <td></td>
-                        <td>{{$arr->nota_final2}}</td>
-                        <td></td>
-                        <td>{{$arr->nota_final3}}</td>
-                        <td></td>
-                        <td>{{$arr->nota_final4}}</td>
-                        <td></td>
-                        <td>{{$arr->nota_dosT}}</td>
-                        <td>{{$arr->nota_final}}</td>
-                <?php
+            ?>
+                <tr>
+                    <td class="td_center">{{$arr->mat_id}}</td>
+                    <td class="td_center">{{$arr->mat_nombre}}</td>
+                    <td class="td_center">{{$arr->nota_final1}}</td>
+                    <td class="td_center"></td>
+                    <td class="td_center">{{$arr->nota_final2}}</td>
+                    <td class="td_center"></td>
+                    <td class="td_center">{{$arr->nota_final3}}</td>
+                    <td class="td_center"></td>
+                    <td class="td_center">{{$arr->nota_final4}}</td>
+                    <td class="td_center"></td>
+                    <td class="td_center">{{$arr->nota_dosT}}</td>
+                    <td class="td_center">{{ ($arr->nota_final * 100) / 100}}</td>
+                </tr>
+            <?php
                     }
-                ?>
-                
-            </tr>
+                }
+                else {
+                    ?>
+                    <tr>
+                        <td class="td_center" colspan="12">No existen registros de notas de las materias del año que seleccionado</td>
+                    </tr>
+                    <?php
+                }
+            ?>
         </tbody>
     </table>
+
+    
+
 
 </main>
 

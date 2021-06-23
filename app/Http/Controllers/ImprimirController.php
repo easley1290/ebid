@@ -13,6 +13,8 @@ use App\Models\MateriaEstudiante;
 use App\Models\Personas;
 use App\Models\UnidadAcademica;
 use App\Models\Pensum;
+use Illuminate\Database\QueryException;
+
 
 class ImprimirController extends Controller
 {
@@ -27,6 +29,49 @@ class ImprimirController extends Controller
         $pdf = \PDF::loadView('ebid-views-administrador.notas.notas-imprimir', compact('today'));
         return $pdf->stream('Notas '.$today.'.pdf');
     }
+    public function ImprimirNotas(Request $request)
+    {
+        try{
+            if($request){
+
+                $idEstudiante = Estudiantes::select('*')
+                                ->where('est_per_id', '=', $request->get('codigo_estudiante'))
+                                ->first();
+                $persona      = Personas::select('*')
+                                ->where('per_id', '=', $request->get('codigo_estudiante'))
+                                ->first();
+                $materiaEstudiante = Personas::select('personas.name', 'personas.per_num_documentacion', 'estudiantes.est_id', 'materia_estudiante.mate_id', 'notas.*', 'materias.mat_id', 'materias.mat_nombre', 'materia_estudiante.mate_sem_id')
+                                ->join('estudiantes', 'estudiantes.est_per_id', '=', 'personas.per_id')
+                                ->join('materia_estudiante', 'materia_estudiante.mate_est_id', '=', 'estudiantes.est_id')
+                                ->join('notas', 'notas.nota_mate_id', '=', 'materia_estudiante.mate_id')
+                                ->join('materias', 'materias.mat_id', '=', 'materia_estudiante.mate_mat_id')
+                                ->where('materia_estudiante.mate_est_id', '=', $idEstudiante->est_id)
+                                ->where('materia_estudiante.mate_sem_id', '=', $request->get('imprimir_anio'))
+                                ->where('personas.per_rol', '=', 3)
+                                ->get();
+                                //dd($materiaEstudiante);
+                $today = Carbon::now()->format('d/m/Y');
+                $hour = Carbon::now()->format('H:i');
+                
+                $pdf = \PDF::loadView('ebid-views-administrador.notas.notas-imprimir', 
+                compact('today','hour','materiaEstudiante','persona'))
+                ->setPaper('a4', 'landscape');
+                return $pdf->stream('Seguimiento de Notas '.$today.'.pdf');
+            }
+        }
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return redirect()->route('administracion.index')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return redirect()->route('administracion.index')->with('status', 'Hubo un error inusual');
+            }
+        }
+    }
+
     public function ImprimirPersonal()
     {
         try{
@@ -131,8 +176,6 @@ class ImprimirController extends Controller
                         ->where('personas.per_rol', '=',[6])
                         ->get(); 
            
-
-        //$arrayAux = [$subdominios, $estudiante];
         $today = Carbon::now()->format('dd/mm/yyyy');
         $pdf = \PDF::loadView('ebid-views-administrador.imprimir.imprimir_personas', compact('today','personas_adm','personas_est','personas_doc','personas_usu'))->setPaper('a4', 'landscape');
         return $pdf->stream('Reporte Personal '.$today.'.pdf');

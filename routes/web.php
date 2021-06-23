@@ -170,10 +170,12 @@ Route::resource('/MateriaDocente', MateriaDocenteController::class);
 /***************  Nota  ****************** */
 Route::resource('/Nota', NotaController::class);
 
-//Route::resource('/Imprimir', ImprimirController::class);
 
+/***************  Informes  ****************** */
+//Route::resource('/Imprimir', ImprimirController::class);
 Route::get('/ImprimirPersonal', [ImprimirController::class, 'ImprimirPersonal'])->name('ImprimirPersonal');
 Route::get('/ImprimirEstudiantes', [ImprimirController::class, 'ImprimirEstudiantes'])->name('ImprimirEstudiantes');
+Route::post('/ImprimirNotas', [ImprimirController::class, 'ImprimirNotas'])->name('ImprimirNotas');
 Route::post('/ImprimirDocentes', [ImprimirController::class, 'ImprimirDocentes'])->name('ImprimirDocentes');
 Route::post('/ImprimirAdministrativo', [ImprimirController::class, 'ImprimirAdministrativo'])->name('ImprimirAdministrativo');
 /***************  oferta academica  ****************** */
