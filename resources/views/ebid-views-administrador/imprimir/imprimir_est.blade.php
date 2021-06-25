@@ -79,7 +79,7 @@
     <div class="container">
         <div class="row">
             <div style="display: inline">
-                <img src="http://ebid.edu.bo/public/assets/img/logo.png" height="60px">
+                <img src="http://ebid.edu.bo/assets/img/logo.png" height="60px">
             </div>
             
         </div>

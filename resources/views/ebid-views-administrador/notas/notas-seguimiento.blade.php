@@ -32,9 +32,8 @@
                 <div class="card card-default">
                     <div class="card-header card-header-border-bottom" style="justify-content: space-between;">
                         <!--------------------------------------->
-                        <div class="col-md-9"><h3 class="row text-uppercase">Sr (a): {{auth()->user()->name}}</h3></div>
+                        <div class="col-md-9"><h3 class="row text-uppercase">Est: {{auth()->user()->name}}</h3></div>
                         <div class="col-md-9"><h3 class="row text-uppercase">Numero de documento: {{auth()->user()->per_num_documentacion}}</h3></div>
-                        <div class="col-md-9"><h4 class="row">En esta seccion ud. podra ver las notas de las materia de cada estudiante</h4></div>
                         
                         <!--button type="button" class="btn btn-secondary"><span class="mdi mdi-printer"></span>&nbsp;<a style="color:white;" href="" target="_blank">Imprimir</a></button-->
 
@@ -108,18 +107,36 @@
                         <form action="{{ route('subir-notas.store') }}" method="POST" id="createRegistros">
                             @csrf
                             <div class="form-group row">
-                                <table id="notas" class="table card-table table-responsive table-responsive-large" style="width:100%">
+                                <table id="notas" class="table table-responsive">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Nombre materia</th>
-                                            <th>1er Parcial</th>
-                                            <th>2do Parcial</th>
-                                            <th>3er Parcial</th>
-                                            <th>4to Parcial</th>
+                                            <th style="display: none;"></th>
+                                            <th>Nombre completo</th>
+                                            <th>Cedula de identidad</th>
+                                            <th colspan="3">1er Parcial</th>
+                                            <th colspan="3">2do Parcial</th>
+                                            <th colspan="3">3er Parcial</th>
+                                            <th colspan="3">4to Parcial</th>
                                             <th>Segundo Turno</th>
                                             <th colspan="5" style="display: none;"></th>
                                             <th>Nota final</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2"></th>
+                                            <th>P</th>
+                                            <th>T</th>
+                                            <th>&nbsp;</th>
+                                            <th>P</th>
+                                            <th>T</th>
+                                            <th>&nbsp;</th>
+                                            <th>P</th>
+                                            <th>T</th>
+                                            <th>&nbsp;</th>
+                                            <th>P</th>
+                                            <th>T</th>
+                                            <th>&nbsp;</th>
+                                            <th colspan="7"></th>
                                         </tr>
                                     </thead>
                                     <tbody id="cuerpoTabla"></tbody>
@@ -133,7 +150,7 @@
     </div> 
 
     <!-- Modal editar-->
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModal" aria-hidden="true">
+    {{-- <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModal" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -186,12 +203,12 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js" defer></script>
+    {{-- <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js" defer></script> --}}
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('#notas').DataTable({
                 "lengthMenu":[[10, 25, 50, -1], [10, 25, 50, "All"]],
@@ -200,7 +217,7 @@
                 },
             });
         });
-    </script>
+    </script> --}}
 
     <script type="text/javascript">
         $(document).ready(function(){   
@@ -216,29 +233,56 @@
                         var notaFinal = 0;
                         if(array.length > 0){
                             for(var i=0; i<array.length; i++){
-                                fila+= '<tr><td>'+array[i].mat_id+'</td>'
-                                fila+='<td>'+array[i].mat_nombre+'</td>';
-                                fila+='<td>'+array[i].nota_final1+'</td>';
-                                fila+='<td>'+array[i].nota_final2+'</td>';
-                                fila+='<td>'+array[i].nota_final3+'</td>';
-                                fila+='<td>'+array[i].nota_final4+'</td>';
+                                fila+= '<tr><td style="display:none">'+array[i].est_id+'</td>'
+                                fila+='<td>'+array[i].name+'</td>';
+                                fila+='<td>'+array[i].per_num_documentacion+'</td>';
+
+                                aux = array[i].nota_final1.split("|");
+                                practica = Math.round(aux[0]*1000)/1000;
+                                teoria = Math.round(aux[1]*1000)/1000;
+                                fila+='<td>'+practica+'</td>';
+                                fila+='<td>'+teoria+'</td>';
+                                fila+='<td>'+Math.round((practica+teoria)*1000)/1000+'</td>';
+
+                                aux = array[i].nota_final2.split("|");
+                                practica = Math.round(aux[0]*1000)/1000;
+                                teoria = Math.round(aux[1]*1000)/1000;
+                                fila+='<td>'+practica+'</td>';
+                                fila+='<td>'+teoria+'</td>';
+                                fila+='<td>'+Math.round((practica+teoria)*1000)/1000+'</td>';
+
+                                aux = array[i].nota_final3.split("|");
+                                practica = Math.round(aux[0]*1000)/1000;
+                                teoria = Math.round(aux[1]*1000)/1000;
+                                fila+='<td>'+practica+'</td>';
+                                fila+='<td>'+teoria+'</td>';
+                                fila+='<td>'+Math.round((practica+teoria)*1000)/1000+'</td>';
+
+                                aux = array[i].nota_final4.split("|");
+                                practica = Math.round(aux[0]*1000)/1000;
+                                teoria = Math.round(aux[1]*1000)/1000;
+                                fila+='<td>'+practica+'</td>';
+                                fila+='<td>'+teoria+'</td>';
+                                fila+='<td>'+Math.round((practica+teoria)*1000)/1000+'</td>';
+
                                 fila+='<td>'+array[i].nota_dosT+'</td>';
                                 fila+='<td style="display:none;">'+array[i].nota_indicador1+'</td>';
                                 fila+='<td style="display:none;">'+array[i].nota_indicador2+'</td>';
                                 fila+='<td style="display:none;">'+array[i].nota_indicador3+'</td>';
                                 fila+='<td style="display:none;">'+array[i].nota_indicador4+'</td>';
+                                fila+='<td style="display:none;">'+array[i].nota_indicador2T+'</td>';
                                 fila+='<td style="display:none;">'+array[i].nota_id+'</td>';
-                                if(Math.round(array[i].nota_final * 100) / 100 <= 6){
-                                    fila+='<td style="background-color: #EA7A76; color: #000;">'+Math.round(array[i].nota_final * 100) / 100+'</td></tr>';
+                                if(Math.round(array[i].nota_final * 1000) / 1000 <= 60){
+                                    fila+='<td style="background-color: #EA7A76; color: #000;">'+Math.round(array[i].nota_final * 1000) / 1000+'</td>';
                                 }else{
-                                    fila+='<td style="background-color: #8BCE91; color: #000;">'+Math.round(array[i].nota_final * 100) / 100+'</td></tr>';
+                                    fila+='<td style="background-color: #8BCE91; color: #000;">'+Math.round(array[i].nota_final * 1000) / 1000+'</td>';
                                 }
                             }
                             $('#cuerpoTabla').html(fila);
                         }
                         if(array.length<=0){
                             contador = -1;
-                            fila = '<tr><td colspan="13" align="center">No existen registros de notas de las materias del año que seleccionó</td></tr>';
+                            fila = '<tr><td colspan="23" align="center">No existen registros de notas de las materias del año que seleccionó</td></tr>';
                             $('#cuerpoTabla').html(fila);
                         }
                     },
@@ -251,7 +295,7 @@
         });
     </script>
 
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         $(document).ready(function(){
             var table = $('#notas').DataTable();
             table.on('click', '.edit', function(){
@@ -294,12 +338,11 @@
                     $('#nota3').removeAttr('readonly', 'readonly');
                     $('#nota4').removeAttr('readonly', 'readonly');
                 @endif
-W
                 $('#mate_id').val($tr[0].children[11].innerText);
 
                 $('#editModal').modal('show');
                 $('#editForm').attr('action', 'ver-notas/'+$tr[0].children[11].innerText);
             })
         });
-    </script>
+    </script> --}}
 @endsection
