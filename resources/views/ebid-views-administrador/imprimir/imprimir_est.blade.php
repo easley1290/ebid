@@ -17,7 +17,7 @@
             right: 0cm;
             height: 2cm;
             padding-left: 2cm;
-            background-color: #4d1448;
+            background-color: #691F53;
             color: white;
             text-align: left;
             line-height: 80px;
@@ -30,7 +30,7 @@
             left: 0cm;
             right: 0cm;
             height: 1cm;
-            background-color: #4d1448;
+            background-color: #691F53;
             color: white;
             text-align: center;
             line-height: 10px;
@@ -46,7 +46,7 @@
         }
         th
         {
-            background-color: #61215c;
+            background-color: #691F53;
             color: white;
             text-align: center;
             padding-top: 15px;

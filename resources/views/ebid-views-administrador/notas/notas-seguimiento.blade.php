@@ -37,11 +37,11 @@
                         
                         <!--button type="button" class="btn btn-secondary"><span class="mdi mdi-printer"></span>&nbsp;<a style="color:white;" href="" target="_blank">Imprimir</a></button-->
 
-                        <form action="estudiante-materia-imprimir" method="POST" id="formImprimir" target="_blank">
+                        <form action="{{route('ImprimirNotas')}}" method="POST" id="formImprimir" target="_blank">
                             @csrf
                             <div >
                                 <input type="hidden" name="codigo_estudiante" id="codigo_estudiante" value="{{ auth()->user()->per_id }}">
-                                <input type="hidden" name="busqueda_anio" id="busqueda_anio" value="1">
+                                <input type="hidden" name="imprimir_anio" id="imprimir_anio" value="1">
 
                                 
                                 <button type="submit" class="btn btn-secondary"><span class="mdi mdi-print"></span>&nbsp;Imprimir</button>
