@@ -61,7 +61,7 @@
                                         @endif
                                     @endforeach
                                     <td style="width:200px">
-                                        <button class="btn btn-success edit" id="edit">
+                                        <button class="btn btn-success edit" id="edit" onclick="deshabilitar(edit)">
                                             <span class="mdi mdi-circle-edit-outline"></span>&nbsp;Completar registro
                                         </button>
                                     </td>

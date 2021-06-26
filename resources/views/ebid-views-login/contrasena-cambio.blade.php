@@ -20,7 +20,7 @@
         que se encuentra en la barra superior.
     </p>
     <p>El siguiente link lo redirigira al portal:</p>
-    <a href="http://ebid.edu.bo/public" target="_blank">http://ebid.edu.bo/public</a>
+    <a href="http://ebid.edu.bo" target="_blank">http://ebid.edu.bo</a>
     &nbsp;
     <p>Saludos</p>
     <p>Administración</p> 

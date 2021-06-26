@@ -7,7 +7,7 @@
           <div id="sidebar" class="sidebar">
             <!-- Aplication Brand -->
             <div class="app-brand">
-              <a href="/public/administracion" >
+              <a href="/administracion" >
                 <img src="{{ asset('assets/img/logo.png') }}" alt="" style="height: 50px;" class="img-fluid">
                 
               </a>
@@ -18,7 +18,7 @@
               <ul class="nav sidebar-inner" id="sidebar-menu">
                   <!----------------------------INICIO---------------------------------->
                   <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="/public/administracion">
+                    <a class="sidenav-item-link" href="/administracion">
                       <i class="mdi mdi-home"></i>
                       <span class="nav-text">Inicio</span>
                     </a>
@@ -433,7 +433,7 @@
                   <!-- User Account -->
                   <li class="dropdown user-menu">
                     <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                      <img src="http://ebid.edu.bo/public{{ auth()->user()->per_foto_personal }}" class="user-image" alt="User Image" />
+                      <img src="http://ebid.edu.bo{{ auth()->user()->per_foto_personal }}" class="user-image" alt="User Image" />
                       <span class="d-none d-lg-inline-block">{{ auth()->user()->name}}</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">

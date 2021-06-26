@@ -169,7 +169,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cancelar</button>
-                        <button type="submit" class="btn btn-primary"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
+                        <button type="submit" class="btn btn-primary" id="agregarPost" onclick="deshabilitar(agregarPost)"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
                     </div>
                 </form>
             </div>
@@ -193,7 +193,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cancelar</button>
-                            <button type="submit" class="btn btn-primary"><span class="mdi mdi-check"></span>&nbsp;CONFIRMAR</button>
+                            <button type="submit" class="btn btn-primary" id="eliminarPostulante" onclick="deshabilitar(eliminarPostulante)"><span class="mdi mdi-check"></span>&nbsp;CONFIRMAR</button>
                         </div>
                     </div>
                 </form>

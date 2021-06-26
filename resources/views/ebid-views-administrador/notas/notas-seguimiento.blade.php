@@ -149,75 +149,10 @@
         </div>
     </div> 
 
-    <!-- Modal editar-->
-    {{-- <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModal" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editModal">EDITAR NOTA</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="" method="POST" id="editForm">
-                    @csrf
-                    @method('PUT')
-                    <div class="modal-body">
-                        <div class="row">
-                            <p>Si usted no pude modificar las notas comuniquese con administracion para solicitar permisos de modificación</p>
-                        </div>
-                        <div class="row">
-                            <input id="mate_id" name="mate_id" type="hidden">
-                            <div class="col-md-6">
-                                <label for="nombre_estudiante" class="form-label">Nombre del estudiante</label>
-                                <input name="nombre_estudiante" type="text" class="form-control" id="nombre_estudiante" readonly required>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="nombre_materia" class="form-label">Nombre de la materia</label>
-                                <input id="nombre_materia" name="nombre_materia" type="text" class="form-control" readonly required>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-3">
-                                <label for="nota1" class="form-label">Nota 1er parcial</label>
-                                <input name="nota1" type="text" class="form-control" id="nota1" required>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="nota2" class="form-label">Nota 2do parcial</label>
-                                <input name="nota2" type="text" class="form-control" id="nota2" required>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="nota3" class="form-label">Nota 3er parcial</label>
-                                <input name="nota3" type="text" class="form-control" id="nota3" required>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="nota4" class="form-label">Nota 4to parcial</label>
-                                <input name="nota4" type="text" class="form-control" id="nota4" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cerrar</button>
-                        <button type="submit" class="btn btn-primary">
-                            <span class="mdi mdi-folder-upload"></span>&nbsp;Modificar Nota
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
-    {{-- <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js" defer></script> --}}
+
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    {{-- <script>
-        $(document).ready(function() {
-            $('#notas').DataTable({
-                "lengthMenu":[[10, 25, 50, -1], [10, 25, 50, "All"]],
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
-                },
-            });
-        });
-    </script> --}}
 
     <script type="text/javascript">
         $(document).ready(function(){   

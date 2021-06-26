@@ -182,7 +182,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cerrar</button>
                         <button type="submit" class="btn btn-primary">
-                            <span class="mdi mdi-folder-upload"></span>&nbsp;Modificar Nota
+                            <span class="mdi mdi-folder-upload" id="modificar" onclick="deshabilitar(modificar)"></span>&nbsp;Modificar Nota
                         </button>
                     </div>
                 </form>
@@ -210,7 +210,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cerrar</button>
                         <button type="submit" class="btn btn-primary">
-                            <span class="mdi mdi-folder-upload"></span>&nbsp;ELIMINAR NOTA
+                            <span class="mdi mdi-folder-upload" id="borrarCarrera" onclick="deshabilitar(borrarCarrera)"></span>&nbsp;ELIMINAR NOTA
                         </button>
                     </div>
                 </form>

@@ -88,7 +88,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cerrar</button>
-                                                <button type="submit" class="btn btn-primary"><span class="mdi mdi-folder-upload"></span>&nbsp;BRINDAR PERMISOS</button></div>
+                                                <button type="submit" class="btn btn-primary" id="permiso" onclick="deshabilitar(permiso)"><span class="mdi mdi-folder-upload"></span>&nbsp;BRINDAR PERMISOS</button></div>
                                             </div>
                                         </div>
                                     </div>

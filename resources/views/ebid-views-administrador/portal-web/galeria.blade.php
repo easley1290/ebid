@@ -147,7 +147,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cancelar</button>
-                        <button type="submit" class="btn btn-primary"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
+                        <button type="submit" class="btn btn-primary" id="crearGal" onclick="deshabilitar(crearGal)"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
                     </div>
                 </form>
             </div>
@@ -231,7 +231,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cancelar</button>
-                        <button type="submit" class="btn btn-primary"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
+                        <button type="submit" class="btn btn-primary" id="modGal" onclick="deshabilitar(modGal)"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
                     </div>
                 </form>
             </div>
@@ -258,7 +258,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cancelar</button>
-                            <button type="submit" class="btn btn-primary"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
+                            <button type="submit" class="btn btn-primary" id="crearGal" onclick="deshabilitar(crearGal)"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
                         </div>
                     </div>
                 </form>
@@ -289,10 +289,8 @@
                 }
                 var data = table.row($tr).data();
                 $('#e_nombre_galeria').val(data[1]);
-                // $("#e_imagen_galeria").attr("href", data[4]);
-                // $("#img_imagen_galeria").attr("src", data[4]);
-                $("#e_imagen_galeria").attr("href", "http://ebid.edu.bo/public"+data[4]);
-                $("#img_imagen_galeria").attr("src", "http://ebid.edu.bo/public"+data[4]);
+                $("#e_imagen_galeria").attr("href", "http://ebid.edu.bo"+data[4]);
+                $("#img_imagen_galeria").attr("src", "http://ebid.edu.bo"+data[4]);
                 $("#e_imagen_galeria").text(data[4]);
                 $('#editModal').modal('show');
                 if(data[3]=='Imagen Activo'){
@@ -315,8 +313,7 @@
                     $tr = $tr.prev('.parent');
                 }
                 var data = table.row($tr).data();
-                //$("#imgd_imagen_galeria").attr("src", data[4]);
-                $("#imgd_imagen_galeria").attr("src","http://ebid.edu.bo/public"+ data[4]);
+                $("#imgd_imagen_galeria").attr("src","http://ebid.edu.bo"+ data[4]);
                 $('#deleteModal').modal('show');
                 $('#deleteForm').attr('action', 'galeria/'+data[0]);
             })

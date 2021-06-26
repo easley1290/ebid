@@ -88,7 +88,7 @@
                         <input name="dom_descripcion" type="text" class="form-control" id="exampleInputPassword1">
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" id="crearDominio" onclick="deshabilitar(crearDominio)">Crear dominio</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                       </div>
                     </div>
@@ -105,7 +105,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Creación del Dominio</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="Dominio" method="POST" id="editForm"> <!-- {{route('Dominio.store')}} -->
+                  <form action="Dominio" method="POST" id="editForm">
                   {{ csrf_field() }}
                   {{ method_field('PUT') }}
                   <div class="modal-body">
@@ -135,7 +135,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Eliminar Dominio</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="/Dominio" method="POST" id="deleteForm"> <!-- {{route('Dominio.store')}} -->
+                  <form action="/Dominio" method="POST" id="deleteForm">
                   {{ csrf_field() }}
                   {{ method_field('DELETE') }}
                   <div class="modal-body">
@@ -143,7 +143,7 @@
                         <label for="exampleInputEmail1" class="form-label">Esta seguro de elimiar el dominio?</label>
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Borrar</button>
+                        <button type="submit" class="btn btn-primary" id="borrarDominio" onclick="deshabilitar(borrarDominio)">Borrar</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                       </div>
                     </div>

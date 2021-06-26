@@ -124,7 +124,7 @@
                     </div>
                     <div id="sestudiante">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cancelar</button>
-                        <button class="btn btn-primary" id="btnAgregar"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
+                        <button class="btn btn-primary" id="btnAgregar" onclick="deshabilitar(btnAgregar)"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
                     </div>
                 </div>
             </div>
@@ -208,7 +208,7 @@
                     $('#crearModalLabel').text('DETALLES DEL EXAMEN');
                     $('#createModal').modal('show');
                     
-                    var fila = '<a href="" id="aBtnAprobar"><button type="button" class="btn btn-success" id="btnAprobar">';
+                    var fila = '<a href="" id="aBtnAprobar"><button type="button" class="btn btn-success" id="btnAprobar" onclick="deshabilitar(btnAprobar)">';
                     fila+='<span class="mdi mdi-account-plus" ></span>&nbsp;Aprobar examen</button></a>&nbsp;';
                     $('#cestudiante').html(fila);
                     $('#btnAprobar').click(function(){

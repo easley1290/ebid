@@ -236,7 +236,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cancelar</button>
-                            <button type="submit" class="btn btn-primary" id="validarComp"><span class="mdi mdi-check"></span>&nbsp;VALIDAR</button>
+                            <button type="submit" class="btn btn-primary" id="validarComp" onclick="deshabilitar(validarComp)"><span class="mdi mdi-check"></span>&nbsp;VALIDAR</button>
                         </div>
                         </div>
                     </form>
@@ -271,7 +271,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cancelar</button>
-                            <button type="submit" class="btn btn-primary" id="deleteComp"><span class="mdi mdi-check"></span>&nbsp;ELIMINAR</button>
+                            <button type="submit" class="btn btn-primary" id="deleteComp" onclick="deshabilitar(deleteComp)"><span class="mdi mdi-check"></span>&nbsp;ELIMINAR</button>
                         </div>
                         </div>
                     </form>
@@ -374,7 +374,7 @@
                 }
                 var data = table.row($tr).data();
                     //("#d_image_comprobante").attr("href", data[4]);
-                    $("#d_image_comprobante").attr("href", "http://ebid.edu.bo/public"+data[4]);
+                    $("#d_image_comprobante").attr("href", "http://ebid.edu.bo"+data[4]);
 
                     $("#d_tipo_comp").val(data[3]);
                     $("#d_telefono").val(data[6]);
@@ -382,7 +382,7 @@
 
                     $("#d_tip_comp").text("Esta seguro de eliminar el comprobante de '"+data[3]+"' del estudiante '"+data[1]+"'");
 
-                    $("#d_img_image_comprobante").attr("src", "http://ebid.edu.bo/public"+data[4]);
+                    $("#d_img_image_comprobante").attr("src", "http://ebid.edu.bo"+data[4]);
 
                     $('#delete').modal('show');
                     $('#deleteForm').attr('action', 'comprobante/'+data[5]);
@@ -403,8 +403,8 @@
                 // $("#e_image_comprobante").attr("href", data[4]);
                 // $("#e_img_image_comprobante").attr("src", data[4]);
 
-                $("#e_image_comprobante").attr("href","http://ebid.edu.bo/public"+ data[4]);
-                $("#e_img_image_comprobante").attr("src", "http://ebid.edu.bo/public"+data[4]);
+                $("#e_image_comprobante").attr("href","http://ebid.edu.bo"+ data[4]);
+                $("#e_img_image_comprobante").attr("src", "http://ebid.edu.bo"+data[4]);
                 $("#e_numero_comprobante").val(data[7]);
 
                 $("#e_tipo_comprobante option[value='"+data[3]+"']").attr("selected", true);
@@ -427,8 +427,8 @@
                 // $("#e2_image_comprobante").attr("href", data[3]);
                 // $("#e2_img_image_comprobante").attr("src", data[3]);
 
-                $("#e2_image_comprobante").attr("href", "http://ebid.edu.bo/public"+data[3]);
-                $("#e2_img_image_comprobante").attr("src", "http://ebid.edu.bo/public"+data[3]);
+                $("#e2_image_comprobante").attr("href", "http://ebid.edu.bo"+data[3]);
+                $("#e2_img_image_comprobante").attr("src", "http://ebid.edu.bo"+data[3]);
                 $("#e2_numero_comprobante").val(data[6]);
                 
                 $("#e2_tipo_comprobante option[value='"+data[2]+"']").attr("selected", true);
@@ -448,7 +448,7 @@
                 var data = table.row($tr).data();
                 //$("#image_comprobante").attr("href", data[4]);
 
-                $("#image_comprobante").attr("href", "http://ebid.edu.bo/public"+data[4]);
+                $("#image_comprobante").attr("href", "http://ebid.edu.bo"+data[4]);
                 
                 $("#tipo_comp").val(data[3]);
                 $("#telefono").val(data[6]);
@@ -456,7 +456,7 @@
                 $("#name").val(data[1]);
                 $("#tip_comp").text("Esta seguro de validar el comprobante de '"+data[3]+"' del estudiante '"+data[1]+"'");
                 //$("#img_image_comprobante").attr("src", data[4]);
-                $("#img_image_comprobante").attr("src", "http://ebid.edu.bo/public"+data[4]);
+                $("#img_image_comprobante").attr("src", "http://ebid.edu.bo"+data[4]);
 
                 $('#validate').modal('show');
                 

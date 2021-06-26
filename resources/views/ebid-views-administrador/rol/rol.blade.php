@@ -88,8 +88,9 @@
                         <input name="rol_descripcion" type="text" class="form-control" id="exampleInputPassword1">
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" id="crearRol" onclick="deshabilitar(crearRol)">Crear registro</button>
                       </div>
                     </div>
                     </form>
@@ -118,8 +119,8 @@
                         <input name="rol_descripcion" id="rol_descripcion" type="text" class="form-control" id="exampleInputPassword1">
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Guardar</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" id="modRol" onclick="deshabilitar(modRol)">Guardar</button>
                       </div>
                     </div>
                     </form>
@@ -143,8 +144,8 @@
                         <label for="exampleInputEmail1" class="form-label">Esta seguro de elimiar el rol?</label>
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Borrar</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" id="borrarRol" onclick="deshabilitar(borrarRol)">Borrar</button>
                       </div>
                     </div>
                     </form>

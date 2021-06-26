@@ -68,11 +68,6 @@
                         </table>
                       </div>
                     </div>
-                   <!-- Prueba <div>
-                    @foreach($aux[1] as $dominio)
-                      <h1>{{$dominio->subd_dom_id}}</h1>
-                    @endforeach
-                    </div> end Prueba-->
             </div>
      
             <!-- Modal crear-->
@@ -103,7 +98,7 @@
                         </select>
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" id="crearEsp" onclick="deshabilitar(crearEsp)">Crear especialidad</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                       </div>
                     </div>
@@ -166,7 +161,7 @@
                         <label for="exampleInputEmail1" class="form-label">Esta seguro de elimiar la especialidad?</label>
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Borrar</button>
+                        <button type="submit" class="btn btn-primary" id="borrarEsp" onclick="deshabilitar(borrarEsp)">Borrar</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                       </div>
                     </div>

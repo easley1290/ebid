@@ -115,7 +115,7 @@
                                             required autocomplete="off">
                                 </div>
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-lg btn-primary btn-block mb-4" id="btnAgregar">Registrar est. pre inscrito</button>
+                                    <button type="submit" class="btn btn-lg btn-primary btn-block mb-4" id="preinscribir" onclick="deshabilitar(preinscribir)">Registrar est. pre inscrito</button>
                                 </div>
                             </div>
                         </form>

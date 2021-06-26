@@ -82,11 +82,6 @@
                         </table>
                       </div>
                     </div>
-                   <!-- Prueba <div>
-                    @foreach($aux[1] as $dominio)
-                      <h1>{{$dominio->subd_dom_id}}</h1>
-                    @endforeach
-                    </div> end Prueba-->
             </div>
      
             <!-- Modal crear-->
@@ -129,7 +124,7 @@
                         <textarea id="exampleInputPassword12" name="doc_descripcion" rows="4" cols="55" class="form-control"></textarea>
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" id="crearDocente" onclick="deshabilitar(crearDocente)">Crear registro docente</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                       </div>
                     </div>
@@ -201,7 +196,7 @@
                         <label for="exampleInputEmail1" class="form-label">Esta seguro de elimiar a la persona como docente?</label>
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Borrar</button>
+                        <button type="submit" class="btn btn-primary" id="borrarDocente" onclick="deshabilitar(borrarDocente)">Borrar</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                       </div>
                     </div>

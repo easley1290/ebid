@@ -158,7 +158,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cancelar</button>
-                        <button type="submit" class="btn btn-primary"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
+                        <button type="submit" class="btn btn-primary" id="crearNot" onclick="deshabilitar(crearNot)"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
                     </div>
                 </form>
             </div>
@@ -252,7 +252,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cancelar</button>
-                        <button type="submit" class="btn btn-primary"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
+                        <button type="submit" class="btn btn-primary" id="ModificarNot" onclick="deshabilitar(ModificarNot)"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
                     </div>
                 </form>
             </div>
@@ -276,7 +276,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cancelar</button>
-                            <button type="submit" class="btn btn-primary"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
+                            <button type="submit" class="btn btn-primary" id="eliminarNot" onclick="deshabilitar(eliminarNot)"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
                         </div>
                     </div>
                 </form>
@@ -308,12 +308,10 @@
                 var data = table.row($tr).data();
                 $('#e_nombre_noticia').val(data[1]);
                 $('#e_historia_noticia').val(data[5]);
-                // $("#e_imagen_noticia").attr("href", data[4]);
-                // $("#img_imagen_noticia").attr("src", data[4]);
-                $("#e_imagen_noticia").attr("href", "http://ebid.edu.bo/public"+data[4]);
-                $("#img_imagen_noticia").attr("src","http://ebid.edu.bo/public"+ data[4]);
+                $("#e_imagen_noticia").attr("href", "http://ebid.edu.bo"+data[4]);
+                $("#img_imagen_noticia").attr("src","http://ebid.edu.bo"+ data[4]);
 
-                $("#e_imagen_noticia").text("http://ebid.edu.bo/public"+data[4]);
+                $("#e_imagen_noticia").text("http://ebid.edu.bo"+data[4]);
                 
                 if(data[3]=='Noticia Activo'){
                     $("#radio1").attr("checked", "checked");

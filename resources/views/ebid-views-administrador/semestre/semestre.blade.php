@@ -68,11 +68,6 @@
                         </table>
                       </div>
                     </div>
-                   <!-- Prueba <div>
-                    @foreach($aux[1] as $dominio)
-                      <h1>{{$dominio->subd_dom_id}}</h1>
-                    @endforeach
-                    </div> end Prueba-->
             </div>
      
             <!-- Modal crear-->
@@ -103,8 +98,9 @@
                         </select>
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" id="crearSemestre" onclick="deshabilitar(crearSemestre)">Crear registro</button>
                       </div>
                     </div>
                     </form>
@@ -141,8 +137,9 @@
                         </select>
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" id="modSem" onclick="deshabilitar(modSem)">Guardar</button>
                       </div>
                     </div>
                     </form>
@@ -166,8 +163,9 @@
                         <label for="exampleInputEmail1" class="form-label">Esta seguro de elimiar el Semestre?</label>
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Borrar</button>
+                        
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" id="borrarSem" onclick="deshabilitar(borrarSem)">Borrar</button>
                       </div>
                     </div>
                     </form>

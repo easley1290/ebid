@@ -137,8 +137,9 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary">Crear</button>
+                      
                       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="submit" class="btn btn-primary" id="crearUA" onclick="deshabilitar(crearUA)">Crear registro</button>
                     </div>
                   </div>
                     </form>
@@ -204,8 +205,9 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary">Guardar</button>
+                      
                       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="submit" class="btn btn-primary" id="modUA" onclick="deshabilitar(modUA)">Guardar</button>
                     </div>
                     </div>
                     </form> 
@@ -228,8 +230,9 @@
                         <label for="exampleInputEmail1" class="form-label">Esta seguro de eliminar la Unidad Académica?</label>
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Borrar</button>
+                        
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" id="borrarUA" onclick="deshabilitar(borrarUA)">Borrar</button>
                       </div>
                     </div>
                     </form>

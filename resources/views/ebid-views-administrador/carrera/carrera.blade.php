@@ -125,7 +125,7 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary">Crear</button>
+                      <button type="submit" class="btn btn-primary" id="agregarCarrera" onclick="deshabilitar(agregarCarrera)">Crear</button>
                       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                     </div>
                   </div>
@@ -208,7 +208,7 @@
                         <label for="exampleInputEmail1" class="form-label">Esta seguro de eliminar la Carrera?</label>
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Borrar</button>
+                        <button type="submit" class="btn btn-primary" id="borrarCarrera" onclick="deshabilitar(borrarCarrera)">Borrar</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                       </div>
                     </div>

@@ -204,7 +204,7 @@
                 alert('Se verifico que la nota final es igual a 0 verifique las notas practicas y teoricas');
             }
         }
-        $("#submitt").click(function(){        
+        $("#submitt").click(function(){    
             $("#createRegistros").submit();
         });
     </script>

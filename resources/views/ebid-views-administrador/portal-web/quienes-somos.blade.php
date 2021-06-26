@@ -254,7 +254,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cancelar</button>
-                    <button type="submit" class="btn btn-primary"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
+                    <button type="submit" class="btn btn-primary" id="modQS" onclick="deshabilitar(modQS)"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
                   </div>
             </form>
           </div>

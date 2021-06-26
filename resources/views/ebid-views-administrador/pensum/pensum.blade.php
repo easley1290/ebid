@@ -444,7 +444,7 @@
                         </select>
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" id="crearPen" onclick="deshabilitar(crearPen)">Crear nuevo registro</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                       </div>
                     </div>
@@ -523,7 +523,7 @@
                         <label for="exampleInputEmail1" class="form-label">Esta seguro de elimiar la materia del pensum?</label>
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Borrar</button>
+                        <button type="submit" class="btn btn-primary" id="borrarR" onclick="deshabilitar(borrarR)">Borrar</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                       </div>
                     </div>

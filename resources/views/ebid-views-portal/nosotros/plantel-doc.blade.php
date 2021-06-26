@@ -37,7 +37,7 @@
                                           display: flex;
                                           justify-content: center;
                                           align-items: center;">
-            <img src="http://ebid.edu.bo/public{{$adm->per_foto_personal}}" class="img-fluid" alt="" width="100%">
+            <img src="http://ebid.edu.bo{{$adm->per_foto_personal}}" class="img-fluid" alt="" width="100%">
             <div class="social">
               <p style="font-size: 12px; color:black;">{{$adm->doc_descripcion}}</p>
               <a href=""><i class="icofont-facebook"></i></a>

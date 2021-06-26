@@ -25,7 +25,7 @@
                         <div class="d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
                             <div class="member" data-aos="fade-up" data-aos-delay="100">
                                 <div class="member-img mb-4">
-                                    <img src="{{ "http://ebid.edu.bo/public".$noticia->not_imagen }}" class="img-fluid" width="100%" alt="">
+                                    <img src="{{ "http://ebid.edu.bo".$noticia->not_imagen }}" class="img-fluid" width="100%" alt="">
                                 </div>
                                 <div class="member-info">
                                     @foreach ($uacad as $ua)

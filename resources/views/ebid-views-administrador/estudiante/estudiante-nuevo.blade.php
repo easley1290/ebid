@@ -278,7 +278,7 @@
                                             </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                                            <button type="submit" class="btn btn-primary" onclick="deshabilitar()" id="conf">CONFIRMAR REGISTRO</button>
+                                            <button type="submit" class="btn btn-primary" id="nuevoEstAdm" onclick="deshabilitar(nuevoEstAdm)">CONFIRMAR REGISTRO</button>
                                         </div>
                                     </div>
                                 </div>

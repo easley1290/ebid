@@ -156,7 +156,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cancelar</button>
-                        <button type="submit" class="btn btn-primary"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
+                        <button type="submit" class="btn btn-primary" id="crearVid" onclick="deshabilitar(crearVid)"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
                     </div>
                 </form>
             </div>
@@ -242,7 +242,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cancelar</button>
-                        <button type="submit" class="btn btn-primary"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
+                        <button type="submit" class="btn btn-primary" id="modVid" onclick="deshabilitar(modVid)"><span class="mdi mdi-check"></span>&nbsp;Confirmar cambios</button>
                     </div>
                 </form>
             </div>
@@ -271,7 +271,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cancelar</button>
-                            <button type="submit" class="btn btn-primary"><span class="mdi mdi-check"></span>&nbsp;Confirmar ELIMINACIÓN</button>
+                            <button type="submit" class="btn btn-primary" id="EliminarVid" onclick="deshabilitar(EliminarVid)"><span class="mdi mdi-check"></span>&nbsp;Confirmar ELIMINACIÓN</button>
                         </div>
                     </div>
                 </form>

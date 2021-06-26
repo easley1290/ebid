@@ -58,7 +58,7 @@
                                 <td class="" style="display:none">{{ $persona->per_materno}}</td>
                                 <td class="" width="10%">{{ $persona->per_codigo_institucional}}</td>
                                 <td class="" width="10%">{{ $persona->per_correo_institucional}}</td>
-                                <td class="" width="15%"><img href="http://ebid.edu.bo/public{{$persona->per_foto_personal}}" src="http://ebid.edu.bo/public{{$persona->per_foto_personal}}" width="100%"></td>
+                                <td class="" width="15%"><img href="http://ebid.edu.bo{{$persona->per_foto_personal}}" src="http://ebid.edu.bo{{$persona->per_foto_personal}}" width="100%"></td>
                                 <td class="" style="display:none">{{ $persona->per_contrasenia}}</td>
                                 <td width="35%">
                                   <button class="btn btn-success edit">

@@ -143,7 +143,7 @@
                         <input name="adm_descripcion" type="text" class="form-control" id="adm_descrn">
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Agregar</button>
+                        <button type="submit" class="btn btn-primary" id="agregarAdministrador" onclick="deshabilitar(agregarAdministrador)">Agregar</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                       </div>
                     </div>
@@ -226,7 +226,7 @@
                         <label for="exampleInputEmail1" class="form-label">Esta seguro de elimiar a la persona como Administrador?</label>
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Borrar</button>
+                        <button type="submit" class="btn btn-primary" id="eliminarAdministrador" onclick="deshabilitar(eliminarAdministrador)">Borrar</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                       </div>
                     </div>

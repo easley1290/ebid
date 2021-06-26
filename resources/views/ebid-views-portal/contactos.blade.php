@@ -96,11 +96,21 @@
           <div class="validate"></div>
         </div>
         <div class="text-center">
-          <button type="submit" style="color: white">Enviar mensaje</button>
+          <button type="submit" onclick="deshabilitar(enviarMensaje)" id="enviarMensaje" style="color: white">Enviar mensaje</button>
         </div>
       </form>
     </div>
   </div>
 </section>
+<script type="text/javascript">
+  function deshabilitar(param1){
+      setTimeout(function(){
+          var a = document.getElementsByClassName("validate")[4].innerHTML;
+          if(!a){
+            param1.disabled = true;
+          }
+      }, 20);
+  }
+</script>
 @endsection
 

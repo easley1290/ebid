@@ -102,8 +102,8 @@
                         </select>
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" id="crearCat" onclick="deshabilitar(crearCat)">Crear catergoria de docente</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                       </div>
                     </div>
                     </form>
@@ -169,7 +169,7 @@
                         <label for="exampleInputEmail1" class="form-label">Esta seguro de elimiar la categoría?</label>
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Borrar</button>
+                        <button type="submit" class="btn btn-primary" id="borrarCat" onclick="deshabilitar(borrarCat)">Borrar</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                       </div>
                     </div>

@@ -104,8 +104,9 @@
                     </div>
                     &nbsp;
                     <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary">Crear</button>
+                      
                       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="submit" class="btn btn-primary" id="crearZoom" onclick="deshabilitar(crearZoom)">Crear</button>
                     </div>
                   </div>
                   </form>
@@ -145,8 +146,9 @@
                     </div>
                     &nbsp;
                     <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary">Modificar</button>
+                      
                       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="submit" class="btn btn-primary" id="modZoom" onclick="deshabilitar(modZoom)">Modificar</button>
                     </div>
                   </div>
                   </form> 
@@ -169,8 +171,8 @@
                         <label for="exampleInputEmail1" class="form-label">Esta seguro de eliminar la reunión?</label>
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Borrar</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" id="borrarZoom" onclick="deshabilitar(borrarZoom)">Borrar</button>
                       </div>
                     </div>
                     </form>

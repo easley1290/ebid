@@ -141,7 +141,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="mdi mdi-cancel"></span>&nbsp;Cerrar</button>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary" id="subirComp" onclick="deshabilitar(subirComp)">
                             <span class="mdi mdi-folder-upload"></span>&nbsp;Subir comprobante
                         </button>
                     </div>
