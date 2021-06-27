@@ -76,23 +76,23 @@ class ImprimirController extends Controller
     {
         try{
             $personas_adm = Personas::select('personas.name','personas.email','personas.per_telefono','personas.per_num_documentacion','personas.per_codigo_institucional','personas.per_rol','subdominios.subd_nombre')
-                        ->join('Subdominios', 'personas.per_subd_documentacion', '=', 'subdominios.subd_id')
+                        ->join('subdominios', 'personas.per_subd_documentacion', '=', 'subdominios.subd_id')
                         ->where('personas.per_subd_estado','=',1)
                         ->where('personas.per_rol', '=',[1,2])
                         ->get();
             $personas_adm_num = Personas::select('personas.name','personas.email','personas.per_telefono','personas.per_num_documentacion','personas.per_codigo_institucional','personas.per_rol','subdominios.subd_nombre')
-                        ->join('Subdominios', 'personas.per_subd_documentacion', '=', 'subdominios.subd_id')
+                        ->join('subdominios', 'personas.per_subd_documentacion', '=', 'subdominios.subd_id')
                         ->where('personas.per_subd_estado','=',1)
                         ->where('personas.per_rol', '=',[1,2])
                         ->count();
             
             $personas_doc = Personas::select('personas.name','personas.email','personas.per_telefono','personas.per_num_documentacion','personas.per_codigo_institucional','personas.per_rol','subdominios.subd_nombre')
-                        ->join('Subdominios', 'personas.per_subd_documentacion', '=', 'subdominios.subd_id')
+                        ->join('subdominios', 'personas.per_subd_documentacion', '=', 'subdominios.subd_id')
                         ->where('personas.per_subd_estado','=',1)
                         ->where('personas.per_rol', '=',[6])
                         ->get(); 
             $personas_doc_num = Personas::select('personas.name','personas.email','personas.per_telefono','personas.per_num_documentacion','personas.per_codigo_institucional','personas.per_rol','subdominios.subd_nombre')
-                        ->join('Subdominios', 'personas.per_subd_documentacion', '=', 'subdominios.subd_id')
+                        ->join('subdominios', 'personas.per_subd_documentacion', '=', 'subdominios.subd_id')
                         ->where('personas.per_subd_estado','=',1)
                         ->where('personas.per_rol', '=',[6])
                         ->count(); 

@@ -120,7 +120,8 @@
         <tbody>
             
             <?php
-                foreach ($personas_est as $persona_est) {
+                if ($personas_est_num>0) {
+                    foreach ($personas_est as $persona_est) {
             ?>
                 <tr>
                     <td>{{$persona_est->name}}</td>
@@ -130,7 +131,15 @@
                     <td class="td_center">{{$persona_est->per_correo_institucional}}</td>
                     <td class="td_center">{{$persona_est->rol_descripcion}}</td>
                 </tr>
-            <?php
+                <?php
+                    }
+                }
+                else {
+                    ?>
+                    <tr>
+                        <td class="td_center" colspan="6">NO SE ENCONTRÓ "ESTUDIANTES" ACTIVOS</td>
+                    </tr>
+                    <?php
                 }
             ?>
             <tr>
@@ -143,7 +152,7 @@
     <table>
         <thead>
             <tr>
-                <th colspan="6">Usuarios Registrados</th>
+                <th colspan="6">Usuarios Registrados (No asignados)</th>
             </tr>
             <tr>
                 <th style="width: 25%">Nombre</th>
@@ -157,7 +166,8 @@
         <tbody>
             
             <?php
-                foreach ($personas_usu as $persona_usu) {
+                if ($personas_usu_num>0) {
+                    foreach ($personas_usu as $persona_usu) {
             ?>
                 <tr>
                     <td>{{$persona_usu->name}}</td>
@@ -167,7 +177,15 @@
                     <td class="td_center">{{$persona_usu->per_correo_institucional}}</td>
                     <td class="td_center">{{$persona_usu->rol_descripcion}}</td>
                 </tr>
-            <?php
+                <?php
+                    }
+                }
+                else {
+                    ?>
+                    <tr>
+                        <td class="td_center" colspan="6">NO SE ENCONTRÓ "USUARIOS" SIN ROL ASIGNADO</td>
+                    </tr>
+                    <?php
                 }
             ?>
             <tr>

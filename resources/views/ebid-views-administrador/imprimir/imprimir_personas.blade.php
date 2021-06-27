@@ -120,7 +120,8 @@
         <tbody>
             
             <?php
-                foreach ($personas_adm as $persona_adm) {
+                if ($personas_adm_num>0) {
+                    foreach ($personas_adm as $persona_adm) {
             ?>
                 <tr>
                     <td>{{$persona_adm->name}}</td>
@@ -130,7 +131,15 @@
                     <td class="td_center">{{$persona_adm->email}}</td>
                     <td class="td_center">{{$persona_adm->per_codigo_institucional}}</td>
                 </tr>
-            <?php
+                <?php
+                    }
+                }
+                else {
+                    ?>
+                    <tr>
+                        <td class="td_center" colspan="6">NO SE ENCONTRÓ PERSONAL "ADMINSTRATIVO" ACTIVO</td>
+                    </tr>
+                    <?php
                 }
             ?>
             <tr>
@@ -157,7 +166,8 @@
         <tbody>
             
             <?php
-                foreach ($personas_doc as $persona_doc) {
+                if ($personas_doc_num>0) {
+                    foreach ($personas_doc as $persona_doc) {
             ?>
                 <tr>
                     <td>{{$persona_doc->name}}</td>
@@ -167,7 +177,15 @@
                     <td class="td_center">{{$persona_doc->email}}</td>
                     <td class="td_center">{{$persona_doc->per_codigo_institucional}}</td>
                 </tr>
-            <?php
+                <?php
+                    }
+                }
+                else {
+                    ?>
+                    <tr>
+                        <td class="td_center" colspan="6">NO SE ENCONTRÓ PERSONAL "DOCENTE" ACTIVO</td>
+                    </tr>
+                    <?php
                 }
             ?>
 
