@@ -75,31 +75,36 @@
 <?php 
 $path = '/assets/img/logo.png'; 
 $semestre='';
-switch ($materiaEstudiante[0]->mate_sem_id) {
-    case '1':
-        $semestre='Primer Año';
-        break;
-    case '2':
-        $semestre='Segundo Año';
-        break;
-    case '3':
-        $semestre='Tercer Año';
-        break;
-    case '4':
-        $semestre='Cuarto Año';
-        break;
+$semestre=0;
+if (count($materiaEstudiante)>0) {
+    $carrera= (int)substr($materiaEstudiante[0]->mate_mat_id, -3);
+    switch ($materiaEstudiante[0]->mate_sem_id) {
+        case '1':
+            $semestre='Primer Año';
+            break;
+        case '2':
+            $semestre='Segundo Año';
+            break;
+        case '3':
+            $semestre='Tercer Año';
+            break;
+        case '4':
+            $semestre='Cuarto Año';
+            break;
+        
+        default:
+            $semestre='No definido';
+            break;
+    }
+
     
-    default:
-        # code...
-        break;
 }
-$carrera= (int)substr($materiaEstudiante[0]->mate_mat_id, -3);;
 $carrera_nombre= '';
 if ($carrera <=399) 
 {
     $carrera_nombre = 'Básicas';
 }
-else 
+else
 {
     $carrera_nombre = 'Especialidad';
 }
@@ -193,20 +198,30 @@ else
             <?php
                 if (count($materiaEstudiante)>0) {
                     foreach ($materiaEstudiante as $arr) {
+                        //SEGMENTAR NOTAS
+                        $nota1_aux = "0|0|0";
+                        $nota2_aux = "0|0|0";
+                        $nota3_aux = "0|0|0";
+                        $nota4_aux = "0|0|0";
+
+                        $nota1_array = explode("|", $arr->nota_final1);
+                        $nota2_array = explode("|", $arr->nota_final2);
+                        $nota3_array = explode("|", $arr->nota_final3);
+                        $nota4_array = explode("|", $arr->nota_final4);
             ?>
                 <tr>
                     <td class="td_center">{{$arr->mat_id}}</td>
                     <td class="td_center">{{$arr->mat_nombre}}</td>
-                    <td class="td_center">{{$arr->nota_final1}}</td>
-                    <td class="td_center"></td>
-                    <td class="td_center">{{$arr->nota_final2}}</td>
-                    <td class="td_center"></td>
-                    <td class="td_center">{{$arr->nota_final3}}</td>
-                    <td class="td_center"></td>
-                    <td class="td_center">{{$arr->nota_final4}}</td>
-                    <td class="td_center"></td>
+                    <td class="td_center">{{$nota1_array[0]}}</td>
+                    <td class="td_center">{{$nota1_array[1]}}</td>
+                    <td class="td_center">{{$nota2_array[0]}}</td>
+                    <td class="td_center">{{$nota2_array[1]}}</td>
+                    <td class="td_center">{{$nota3_array[0]}}</td>
+                    <td class="td_center">{{$nota3_array[1]}}</td>
+                    <td class="td_center">{{$nota4_array[0]}}</td>
+                    <td class="td_center">{{$nota4_array[1]}}</td>
                     <td class="td_center">{{$arr->nota_dosT}}</td>
-                    <td class="td_center">{{ ($arr->nota_final * 100) / 100}}</td>
+                    <td class="td_center">{{$arr->nota_final}}</td>
                 </tr>
             <?php
                     }

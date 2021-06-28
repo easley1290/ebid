@@ -23,16 +23,39 @@ class ImprimirController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function ImprimirIndex()
     {
-        $today = Carbon::now()->format('d/m/Y H:i');
-        $pdf = \PDF::loadView('ebid-views-administrador.notas.notas-imprimir', compact('today'));
-        return $pdf->stream('Notas '.$today.'.pdf');
+        try{
+            $estudiantes=Personas::select('estudiantes.est_id', 'personas.name', 'personas.per_id')
+                        ->join('estudiantes', 'estudiantes.est_per_id', '=', 'personas.per_id')
+                        ->get();
+            $semestres=Semestre::all();
+            return view('ebid-views-administrador.imprimir.imprimir_notas_vista', [
+                'estudiantes'=>$estudiantes,
+                'semestres'=>$semestres
+            ]);
+        }
+        catch(QueryException $err){
+            if($err){
+                $e = json_decode(json_encode($err), true);
+                $numeroError = $e['errorInfo'][1];
+                $nombreError = $e['errorInfo'][2];
+                return redirect()->route('administracion.index')->with('status', 'Hubo un error inusual ('.$numeroError.' - '.$nombreError.')');
+            }
+            else{
+                return redirect()->route('administracion.index')->with('status', 'Hubo un error inusual');
+            }
+        }
     }
     public function ImprimirNotas(Request $request)
     {
         try{
             if($request){
+
+                $this->validate($request,[
+                    'codigo_estudiante' => 'required',
+                    'imprimir_anio' => 'required'
+                ]);
 
                 $idEstudiante = Estudiantes::select('*')
                                 ->where('est_per_id', '=', $request->get('codigo_estudiante'))
@@ -49,14 +72,18 @@ class ImprimirController extends Controller
                                 ->where('materia_estudiante.mate_sem_id', '=', $request->get('imprimir_anio'))
                                 ->where('personas.per_rol', '=', 3)
                                 ->get();
-                                //dd($materiaEstudiante);
+               //dd($materiaEstudiante);
                 $today = Carbon::now()->format('d/m/Y');
                 $hour = Carbon::now()->format('H:i');
-                
-                $pdf = \PDF::loadView('ebid-views-administrador.notas.notas-imprimir', 
-                compact('today','hour','materiaEstudiante','persona'))
-                ->setPaper('a4', 'landscape');
-                return $pdf->stream('Seguimiento de Notas '.$today.'.pdf');
+                if (count($materiaEstudiante)>0) {
+                    $pdf = \PDF::loadView('ebid-views-administrador.notas.notas-imprimir', 
+                    compact('today','hour','materiaEstudiante','persona'))
+                    ->setPaper('a4', 'landscape');
+                    return $pdf->stream('Seguimiento de Notas '.$today.'.pdf');
+                }
+                else{
+                    return redirect()->route('ImprimirIndex')->with('status', 'No se encontró los registros seleccionados');
+                }
             }
         }
         catch(QueryException $err){
@@ -78,12 +105,12 @@ class ImprimirController extends Controller
             $personas_adm = Personas::select('personas.name','personas.email','personas.per_telefono','personas.per_num_documentacion','personas.per_codigo_institucional','personas.per_rol','subdominios.subd_nombre')
                         ->join('subdominios', 'personas.per_subd_documentacion', '=', 'subdominios.subd_id')
                         ->where('personas.per_subd_estado','=',1)
-                        ->where('personas.per_rol', '=',[1,2])
+                        ->where('personas.per_rol', '=',[1,2,10])
                         ->get();
             $personas_adm_num = Personas::select('personas.name','personas.email','personas.per_telefono','personas.per_num_documentacion','personas.per_codigo_institucional','personas.per_rol','subdominios.subd_nombre')
                         ->join('subdominios', 'personas.per_subd_documentacion', '=', 'subdominios.subd_id')
                         ->where('personas.per_subd_estado','=',1)
-                        ->where('personas.per_rol', '=',[1,2])
+                        ->where('personas.per_rol', '=',[1,2,10])
                         ->count();
             
             $personas_doc = Personas::select('personas.name','personas.email','personas.per_telefono','personas.per_num_documentacion','personas.per_codigo_institucional','personas.per_rol','subdominios.subd_nombre')

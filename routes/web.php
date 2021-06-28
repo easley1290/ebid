@@ -173,6 +173,7 @@ Route::resource('/Nota', NotaController::class);
 
 /***************  Informes  ****************** */
 //Route::resource('/Imprimir', ImprimirController::class);
+Route::get('/ImprimirIndex', [ImprimirController::class, 'ImprimirIndex'])->name('ImprimirIndex');
 Route::get('/ImprimirPersonal', [ImprimirController::class, 'ImprimirPersonal'])->name('ImprimirPersonal');
 Route::get('/ImprimirEstudiantes', [ImprimirController::class, 'ImprimirEstudiantes'])->name('ImprimirEstudiantes');
 Route::post('/ImprimirNotas', [ImprimirController::class, 'ImprimirNotas'])->name('ImprimirNotas');

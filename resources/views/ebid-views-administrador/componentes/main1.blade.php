@@ -7,24 +7,9 @@
           <div id="sidebar" class="sidebar">
             <!-- Aplication Brand -->
             <div class="app-brand">
-              <a href="/" title="Sleek Dashboard">
-                <svg
-                  class="brand-icon"
-                  preserveAspectRatio="xMidYMid"
-                  width="30"
-                  height="33"
-                  viewBox="0 0 30 33"
-                >
-                  <g fill="none" fill-rule="evenodd">
-                    <path
-                      class="logo-fill-blue"
-                      fill="#7DBCFF"
-                      d="M0 4v25l8 4V0zM22 4v25l8 4V0z"
-                    />
-                    <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
-                  </g>
-                </svg>
-                <span class="brand-name text-truncate">Ebid</span>
+              <a href="/administracion" >
+                <img src="{{ asset('assets/img/logo.png') }}" alt="" style="height: 50px;" class="img-fluid">
+                
               </a>
             </div>
             <!-- begin sidebar scrollbar -->
@@ -38,199 +23,47 @@
                       <span class="nav-text">Inicio</span>
                     </a>
                   </li>
-                  <!----------------------------ROLES Y PERMISOS---------------------------------->
-                  @if (in_array(auth()->user()->per_rol, array(1, 2, 3, 4)))
-                    <li  class="has-sub" >
-                      <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
-                        aria-expanded="false" aria-controls="dashboard">
-                        <i class="mdi mdi-key"></i>
-                        <span class="nav-text">Parametros</span> <b class="caret"></b>
-                      </a>
-                      <ul  class="collapse"  id="dashboard"
-                        data-parent="#sidebar-menu">
-                        <div class="sub-menu">
-                              <li>
-                                <a class="sidenav-item-link" href="{{ route('Rol.index') }}">
-                                  <span class="nav-text">Roles</span>
-                                  
-                                </a>
-                              </li>
-                              <li >
-                                <a class="sidenav-item-link" href="analytics.html">
-                                  <span class="nav-text">Permisos</span>                             
-                                </a>
-                              </li>
-                              <li>
-                                <a class="sidenav-item-link" href="{{ route('Dominio.index') }}">
-                                  <span class="nav-text">Dominios</span>
-                                  
-                                </a>
-                              </li>
-                              <li >
-                                <a class="sidenav-item-link" href="{{ route('Subdominio.index') }}">
-                                  <span class="nav-text">Subdominios</span>                             
-                                </a>
-                              </li>   
-                        </div>
-                      </ul>
-                    </li>
-                  @endif
+                  <!----------------------------PORTAL---------------------------------->
+                  @if (auth()->user()->per_rol == 1)
+                  <li  class="has-sub" >
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#portal"
+                      aria-expanded="false" aria-controls="portal">
+                      <i class="mdi mdi-monitor"></i>
+                      <span class="nav-text">Admín. Portal web</span> <b class="caret"></b>
+                    </a>
+                    <ul  class="collapse"  id="portal"
+                      data-parent="#sidebar-menu">
+                      <div class="sub-menu">
+                            <li>
+                              <a class="sidenav-item-link" href="{{ route('quienessomos.index') }}">
+                                <span class="nav-text">Quienes Somos</span>
+                              </a>
+                            </li>
+                            <li>
+                              <a class="sidenav-item-link" href="{{ route('noticias.index') }}">
+                                <span class="nav-text">Noticias</span>                             
+                              </a>
+                            </li> 
+                            <li>
+                              <a class="sidenav-item-link" href="{{ route('galeria.index') }}">
+                                <span class="nav-text">Galeria</span>                             
+                              </a>
+                            </li>
+                            <li>
+                              <a class="sidenav-item-link" href="{{ route('videos.index') }}">
+                                <span class="nav-text">Videos</span>                             
+                              </a>
+                            </li>
+                            <li>
+                              <a class="sidenav-item-link" href="{{ route('contactos.index') }}">
+                                <span class="nav-text">Contactos</span>                             
+                              </a>
+                            </li>   
+                      </div>
+                    </ul>
+                  </li>
                   
-                  <!----------------------------PARAMETROS---------------------------------->
-                  <!--
-                  <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#parametros"
-                      aria-expanded="false" aria-controls="parametros">
-                      <i class="mdi mdi-checkbox-multiple-blank-outline"></i>
-                      <span class="nav-text">Parametros</span> <b class="caret"></b>
-                    </a>
-                    <ul  class="collapse"  id="parametros"
-                      data-parent="#sidebar-menu">
-                      <div class="sub-menu">
-                            <li>
-                              <a class="sidenav-item-link" href="{{ route('Dominio.index') }}">
-                                <span class="nav-text">Dominios</span>
-                                
-                              </a>
-                            </li>
-                            <li >
-                              <a class="sidenav-item-link" href="{{ route('Subdominio.index') }}">
-                                <span class="nav-text">Subdominios</span>                             
-                              </a>
-                            </li>   
-                      </div>
-                    </ul>
-                  </li>   -->
-                  <!----------------------------PERFIL DEL USUARIO---------------------------------->
-                  @if (in_array(auth()->user()->per_rol, array(1, 2, 3, 4)))
-                  <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#perfil"
-                      aria-expanded="false" aria-controls="perfil">
-                      <i class="mdi mdi-account"></i>
-                      <span class="nav-text">Perfil</span> <b class="caret"></b>
-                    </a>
-                    <ul  class="collapse"  id="perfil"
-                      data-parent="#sidebar-menu">
-                      <div class="sub-menu">
-                            <li>
-                              <a class="sidenav-item-link" href="{{route('Persona.index')}}">
-                                <span class="nav-text">Personas</span>
-                                
-                              </a>
-                            </li>
-                            <li >
-                              <a class="sidenav-item-link" href="{{route('PersonaInstitucional.index')}}">
-                                <span class="nav-text">Institucional</span>                             
-                              </a>
-                            </li> 
-                            <!--li >
-                              <a class="sidenav-item-link" href="{{route('Contrasenia.index')}}">
-                                <span class="nav-text">Cambiar Contraseña</span>                             
-                              </a>
-                            </li--> 
-                      </div>
-                    </ul>
-                  </li>
-                  @endif
-                  <!----------------------------MODULO DE USUARIOS---------------------------------->
-                  @if (in_array(auth()->user()->per_rol, array(1, 2, 3, 4)))
-                  <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#usuarios"
-                      aria-expanded="false" aria-controls="usuarios">
-                      <i class="mdi mdi-account-group"></i>
-                      <span class="nav-text">USUARIOS</span> <b class="caret"></b>
-                    </a>
-                    <ul  class="collapse"  id="usuarios"
-                      data-parent="#sidebar-menu">
-                      <div class="sub-menu">
-                            <li>
-                              <a class="sidenav-item-link" href="index.html">
-                                <span class="nav-text">Estudiantes</span>
-                                
-                              </a>
-                            </li>
-                            <li >
-                              <a class="sidenav-item-link" href="{{ route('Docente.index') }}">
-                                <span class="nav-text">Docentes</span>                             
-                              </a>
-                            </li> 
-                            <li >
-                              <a class="sidenav-item-link" href="analytics.html">
-                                <span class="nav-text">Administrativo</span>                             
-                              </a>
-                            </li>   
-                      </div>
-                    </ul>
-                  </li>
-                  @endif
-                  <!----------------------------NOTAS---------------------------------->
-                  @if (in_array(auth()->user()->per_rol, array(1, 2, 3, 4)))
-                  <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="{{ route('Nota.index') }}">
-                      <i class="mdi mdi-notebook"></i>
-                      <span class="nav-text">Notas</span>
-                    </a>
-                  </li>
-                  @endif
-                  <!----------------------------INSCRIPCION---------------------------------->
-                  @if (in_array(auth()->user()->per_rol, array(1, 2, 3, 4)))
-                  <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#inscripcion"
-                      aria-expanded="false" aria-controls="inscripcion">
-                      <i class="mdi mdi-cash-multiple"></i>
-                      <span class="nav-text">Inscripción</span> <b class="caret"></b>
-                    </a>
-                    <ul  class="collapse"  id="inscripcion"
-                      data-parent="#sidebar-menu">
-                      <div class="sub-menu">
-                            <li>
-                              <a class="sidenav-item-link" href="{{ route('Comprobante.index') }}">
-                                <span class="nav-text">Subir Comprobante</span>
-                                
-                              </a>
-                            </li>
-                            <li >
-                              <a class="sidenav-item-link" href="{{ route('ValidarComprobante.index') }}">
-                                <span class="nav-text">Validar Comprobantes</span>                             
-                              </a>
-                            </li> 
-                            <li >
-                              <a class="sidenav-item-link" href="{{ route('RegistroComprobante.index') }}">
-                                <span class="nav-text">Comprobantes Validados</span>                             
-                              </a>
-                            </li>   
-                      </div>
-                    </ul>
-                  </li>
-                  @endif
-                  <!----------------------------ENSEÑANZA---------------------------------->
-                  @if (in_array(auth()->user()->per_rol, array(1, 2, 3, 4)))
-                  <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#cursos"
-                      aria-expanded="false" aria-controls="cursos">
-                      <i class="mdi mdi-book-open-page-variant"></i>
-                      <span class="nav-text">Área académica</span> <b class="caret"></b>
-                    </a>
-                    <ul  class="collapse"  id="cursos"
-                      data-parent="#sidebar-menu">
-                      <div class="sub-menu">
-                            <li>
-                              <a class="sidenav-item-link" href="#">
-                                <span class="nav-text">Seguimiento de estudiantes</span>
-                                
-                              </a>
-                            </li>
-                            <li >
-                              <a class="sidenav-item-link" href="{{ route('MateriaDocente.index') }}">
-                                <span class="nav-text">Seguimiento de docentes</span>                             
-                              </a>
-                            </li>  
-                      </div>
-                    </ul>
-                  </li>
-                  @endif
                   <!----------------------------ORGANIZACIÓN---------------------------------->
-                  @if (in_array(auth()->user()->per_rol, array(1, 2, 3, 4)))
                   <li  class="has-sub" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#materias"
                       aria-expanded="false" aria-controls="materias">
@@ -278,53 +111,279 @@
                       </div>
                     </ul>
                   </li>
-                  @endif
-                  <!----------------------------PORTAL---------------------------------->
-                  @if (in_array(auth()->user()->per_rol, array(1, 2, 3, 4)))
+                  
+                  <!----------------------------PERFIL DEL USUARIO---------------------------------->
                   <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#portal"
-                      aria-expanded="false" aria-controls="portal">
-                      <i class="mdi mdi-monitor"></i>
-                      <span class="nav-text">Admón. Portal web</span> <b class="caret"></b>
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#perfil"
+                      aria-expanded="false" aria-controls="perfil">
+                      <i class="mdi mdi-account"></i>
+                      <span class="nav-text">Perfiles</span> <b class="caret"></b>
                     </a>
-                    <ul  class="collapse"  id="portal"
+                    <ul  class="collapse"  id="perfil"
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
                             <li>
-                              <a class="sidenav-item-link" href="{{ route('quienessomos.index') }}">
-                                <span class="nav-text">Quienes Somos</span>
+                              <a class="sidenav-item-link" href="{{route('Persona.index')}}">
+                                <span class="nav-text">Personas</span>
+                                
                               </a>
                             </li>
+                            <li >
+                              <a class="sidenav-item-link" href="{{route('PersonaInstitucional.index')}}">
+                                <span class="nav-text">Institucional</span>                             
+                              </a>
+                            </li> 
+                      </div>
+                    </ul>
+                  </li>
+    
+                  <!----------------------------MODULO DE USUARIOS---------------------------------->
+                  <li  class="has-sub" >
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#usuarios"
+                      aria-expanded="false" aria-controls="usuarios">
+                      <i class="mdi mdi-account-group"></i>
+                      <span class="nav-text">USUARIOS</span> <b class="caret"></b>
+                    </a>
+                    <ul  class="collapse"  id="usuarios"
+                      data-parent="#sidebar-menu">
+                      <div class="sub-menu">
                             <li>
+                              <a class="sidenav-item-link" href="{{ route('estudiante-usuario.index') }}">
+                                <span class="nav-text">Estudiantes</span>
+                              </a>
+                            </li>
+                          <li>
+                            <a class="sidenav-item-link" href="{{ route('Administrador.index') }}">
+                              <span class="nav-text">Administrativo</span>                             
+                            </a>
+                          </li> 
+                            <li >
+                              <a class="sidenav-item-link" href="{{ route('Docente.index') }}">
+                                <span class="nav-text">Docentes</span>                             
+                              </a>
+                            </li>
+                      </div>
+                    </ul>
+                  </li>
+                  
+                  <!----------------------------REPORTES---------------------------------->
+                  <li  class="has-sub" >
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#informe"
+                      aria-expanded="false" aria-controls="informe">
+                      <i class="mdi mdi-file-document-edit-outline"></i>
+                      <span class="nav-text">Informes</span> <b class="caret"></b>
+                    </a>
+                    <ul  class="collapse"  id="informe"
+                      data-parent="#sidebar-menu">
+                      <div class="sub-menu">
+                            <li >
+                              <a class="sidenav-item-link" href="{{route('ImprimirPersonal')}}" target="blank_">
+                                <span class="nav-text">Personal (Informe)</span>                             
+                              </a>
+                            </li> 
+                            <li >
+                              <a class="sidenav-item-link" href="{{route('ImprimirEstudiantes')}}" target="blank_">
+                                <span class="nav-text">Estudiantes (Informe)</span>                             
+                              </a>
+                            </li> 
+                            <li >
+                              <a class="sidenav-item-link" href="{{route('ImprimirIndex')}}">
+                                <span class="nav-text">Notas (Informe)</span>                             
+                              </a>
+                            </li> 
+                      </div>
+                    </ul>
+                  </li>
+                  <!----------------------------ROLES Y PERMISOS---------------------------------->
+                  <li  class="has-sub" >
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
+                      aria-expanded="false" aria-controls="dashboard">
+                      <i class="mdi mdi-key"></i>
+                      <span class="nav-text">Parametros</span> <b class="caret"></b>
+                    </a>
+                    <ul  class="collapse"  id="dashboard"
+                      data-parent="#sidebar-menu">
+                      <div class="sub-menu">
+                            <li>
+                              <a class="sidenav-item-link" href="{{ route('Rol.index') }}">
+                                <span class="nav-text">Roles</span>
+                                
+                              </a>
+                            </li>
+                            <li >
                               <a class="sidenav-item-link" href="analytics.html">
-                                <span class="nav-text">Programa de enseñanza</span>                             
-                              </a>
-                            </li> 
-                              
-                            <li>
-                              <a class="sidenav-item-link" href="{{ route('noticias.index') }}">
-                                <span class="nav-text">Noticias</span>                             
-                              </a>
-                            </li> 
-                            <li>
-                              <a class="sidenav-item-link" href="{{ route('galeria.index') }}">
-                                <span class="nav-text">Galeria</span>                             
+                                <span class="nav-text">Permisos</span>                             
                               </a>
                             </li>
                             <li>
-                              <a class="sidenav-item-link" href="{{ route('videos.index') }}">
-                                <span class="nav-text">Videos</span>                             
+                              <a class="sidenav-item-link" href="{{ route('Dominio.index') }}">
+                                <span class="nav-text">Dominios</span>
+                                
                               </a>
                             </li>
-                            <li>
-                              <a class="sidenav-item-link" href="{{ route('contactos.index') }}">
-                                <span class="nav-text">Contactos</span>                             
+                            <li >
+                              <a class="sidenav-item-link" href="{{ route('Subdominio.index') }}">
+                                <span class="nav-text">Subdominios</span>                             
                               </a>
                             </li>   
                       </div>
                     </ul>
                   </li>
+
+                  <!----------------------------POSTULANTES---------------------------------->  
+                  <li  class="has-sub" >
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#nuevos"
+                      aria-expanded="false" aria-controls="nuevos">
+                      <i class="mdi mdi-account-key"></i>
+                      <span class="nav-text">Postulantes</span> <b class="caret"></b>
+                    </a>
+                    <ul  class="collapse"  id="nuevos"
+                      data-parent="#sidebar-menu">
+                      <div class="sub-menu">
+                        <li>
+                          <a class="sidenav-item-link" href="{{ route('postulante.index') }}">
+                            <span class="nav-text">Lista de postulantes</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a class="sidenav-item-link" href="{{ route('postulante.create') }}">
+                            <span class="nav-text">Inscripcion de postulantes</span>
+                          </a>
+                        </li>     
+                        <li>
+                          <a class="sidenav-item-link" href="{{ route('calendario-ingreso.index') }}">
+                            <span class="nav-text">Programar examen de ingreso</span>                             
+                          </a>
+                        </li>  
+                      </div>
+                    </ul>
+                  </li>
+                 @endif
+                  <!----------------------------ENSEÑANZA---------------------------------->
+                  @if (auth()->user()->per_rol <= 2)
+                    <li  class="has-sub" >
+                      <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#cursos"
+                        aria-expanded="false" aria-controls="cursos">
+                        <i class="mdi mdi-book-open-page-variant"></i>
+                        <span class="nav-text">Área académica</span> <b class="caret"></b>
+                      </a>
+                      <ul  class="collapse"  id="cursos"
+                        data-parent="#sidebar-menu">
+                        <div class="sub-menu">
+                          <li>
+                            <a class="sidenav-item-link" href="{{ route('MateriaDocente.index') }}">
+                              <span class="nav-text">Asignacion de materia a docentes</span>                             
+                            </a>
+                          </li>
+                          <li>
+                            <a class="sidenav-item-link" href="{{ route('seguimiento-estudiantes.index') }}">
+                              <span class="nav-text">Seguimiento a estudiantes</span>
+                            </a>
+                          </li> 
+                        </div>
+                      </ul>
+                    </li>
+                  <!----------------------------ZOOM---------------------------------->
+                    <li  class="has-sub" >
+                      <a class="sidenav-item-link" href="{{ route('listZoom') }}">
+                        <i class="mdi mdi-calendar-clock"></i>
+                        <span class="nav-text">Zoom</span>
+                      </a>
+                    </li>
                   @endif
+
+                  @if (auth()->user()->per_rol == 6)
+                    <!----------------------------NOTAS---------------------------------->
+                    <li  class="has-sub" >
+                      <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#cursos"
+                        aria-expanded="false" aria-controls="cursos">
+                        <i class="mdi mdi-book-open-page-variant"></i>
+                        <span class="nav-text">NOTAS</span> <b class="caret"></b>
+                      </a>
+                      <ul  class="collapse"  id="cursos"
+                        data-parent="#sidebar-menu">
+                        <div class="sub-menu">
+                          <li>
+                            <a class="sidenav-item-link" href="{{ route('ver-notas.index') }}">
+                              <span class="nav-text">Consultar las notas de los estudiantes</span>                             
+                            </a>
+                          </li>
+                          <li>
+                            <a class="sidenav-item-link" href="{{ route('subir-notas.index') }}">
+                              <span class="nav-text">Subir notas de los estudiantes</span>
+                            </a>
+                          </li> 
+                        </div>
+                      </ul>
+                    </li>
+                    
+                  @endif
+                  @if (auth()->user()->per_rol == 3)
+                    <!----------------------------VER NOTAS---------------------------------->
+                    <li  class="has-sub" >
+                      <a class="sidenav-item-link" href="{{ route('seguimiento-estudiantes.index') }}">
+                        <i class="mdi mdi-notebook"></i>
+                        <span class="nav-text">Ver mis notas</span>
+                      </a>
+                    </li>
+                  @endif
+                  @if (auth()->user()->per_rol <= 5)
+                    <!----------------------------INSCRIPCION---------------------------------->
+                    <li  class="has-sub" >
+                      <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#inscripcion"
+                        aria-expanded="false" aria-controls="inscripcion">
+                        <i class="mdi mdi-cash-multiple"></i>
+                        <span class="nav-text">Inscrip. estudiantes</span> <b class="caret"></b>
+                      </a>
+                      <ul  class="collapse"  id="inscripcion"
+                        data-parent="#sidebar-menu">
+                        <div class="sub-menu">
+                          @if (auth()->user()->per_rol >= 3)
+                          <li>
+                            <a class="sidenav-item-link" href="{{ route('subir-comprobante.index') }}">
+                              <span class="nav-text">Subir Comprobante</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a class="sidenav-item-link" href="{{ route('comprobante.index') }}">
+                              <span class="nav-text">Ver mis comprobantes</span>                             
+                            </a>
+                          </li> 
+                          @endif
+                          @if (auth()->user()->per_rol == 5)
+                            <li>
+                              <a class="sidenav-item-link" href="{{ route('estudiante-nuevo-est.show', auth()->user()->per_id) }}">
+                                <span class="nav-text">Registrar perfil de estudiante</span>
+                              </a>
+                            </li>
+                          @endif
+                          @if (auth()->user()->per_rol == 1)
+                            <li>
+                              <a class="sidenav-item-link" href="{{ route('estudiante.index') }}">
+                                <span class="nav-text">Inscribir estudiantes</span>                             
+                              </a>
+                            </li>
+                            <li>
+                              <a class="sidenav-item-link" href="{{ route('comprobante.index') }}">
+                                <span class="nav-text">Validar comprobantes</span>                             
+                              </a>
+                            </li>  
+                            <li>
+                              <a class="sidenav-item-link" href="{{ route('subir-comprobantes.index') }}">
+                                <span class="nav-text">Subir Comprobante</span>
+                              </a>
+                            </li>
+                          @endif  
+                        </div>
+                      </ul>
+                    </li>
+                  @endif
+                  
+                  
+                  
+                  
+
+                  
                   <!----------------------------SALIR---------------------------------->
                   <li  class="has-sub" >
                     <a class="sidenav-item-link" href="{{ route('logout') }}"
@@ -338,59 +397,10 @@
                         @csrf
                     </form>
                   </li>
-                  
-
-
-                  <!--li  class="has-sub" >
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#documentation"
-                      aria-expanded="false" aria-controls="documentation">
-                      <i class="mdi mdi-book-open-page-variant"></i>
-                      <span class="nav-text">Documentation</span> <b class="caret"></b>
-                    </a>
-                    <ul  class="collapse"  id="documentation"
-                      data-parent="#sidebar-menu">
-                      <div class="sub-menu">
-                            <li class="section-title">
-                              Getting Started
-                            </li>
-                            <li >
-                              <a class="sidenav-item-link" href="introduction.html">
-                                <span class="nav-text">Introduction</span>
-                              </a>
-                            </li>
-                            
-
-                            <li class="section-title">
-                              Layouts
-                            </li>
-                            <li  class="has-sub" >
-                              <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#headers"
-                                aria-expanded="false" aria-controls="headers">
-                                <span class="nav-text">Header Variations</span> <b class="caret"></b>
-                              </a>
-                              <ul  class="collapse"  id="headers">
-                                <div class="sub-menu">
-                                  <li >
-                                    <a href="header-fixed.html">Header Fixed</a>
-                                  </li>
-                                  <li >
-                                    <a href="header-static.html">Header Static</a>
-                                  </li>
-                                </div>
-                              </ul>
-                            </li>
-                      </div>
-                    </ul>
-                  </li-->
               </ul>
             </div>
           </div>
         </aside>
-
-
-
-
-
     <div class="page-wrapper">
           <!-- Header -->
           <header class="main-header " id="header">
@@ -405,7 +415,7 @@
 
               <div class="navbar-right ">
                 <ul class="nav navbar-nav">
-                  <li class="dropdown notifications-menu">
+                  <!--li class="dropdown notifications-menu">
                     <button class="dropdown-toggle" data-toggle="dropdown">
                       <i class="mdi mdi-bell-outline"></i>
                     </button>
@@ -420,7 +430,7 @@
                         <a class="text-center" href="#"> View All </a>
                       </li>
                     </ul>
-                  </li>
+                  </li-->
                   <!--li class="right-sidebar-in right-sidebar-2-menu">
                     <i class="mdi mdi-settings mdi-spin"></i>
                   </li-->
@@ -428,7 +438,7 @@
                   <!-- User Account -->
                   <li class="dropdown user-menu">
                     <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                      <img src="{{ auth()->user()->per_foto_personal }}" class="user-image" alt="User Image" />
+                      <img src="http://ebid.edu.bo{{ auth()->user()->per_foto_personal }}" class="user-image" alt="User Image" />
                       <span class="d-none d-lg-inline-block">{{ auth()->user()->name}}</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
@@ -447,7 +457,7 @@
                       </li>
 
                       <li>
-                        <a class="sidenav-item-link" href="{{route('Contrasenia.index')}}">
+                        <a class="sidenav-item-link" href="{{route('Contrasena.index')}}">
                           <i class="mdi mdi-lock"></i> Cambiar contraseña                           
                         </a>
                       </li>
@@ -473,13 +483,10 @@
 
 
       <div class="content-wrapper">					 
-          
           @yield('contenido')
-
       </div>
     </div>
   </div>
-  
 </body>
 @extends('ebid-views-administrador.componentes.script')
 </html>
